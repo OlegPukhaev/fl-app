@@ -1,0 +1,155 @@
+Prefix Verb     URI Pattern                                                       Controller#Action
+                        new_user_session GET      /api/auth/sign_in(.:format)                                       api/v1/sessions#new
+                            user_session POST     /api/auth/sign_in(.:format)                                       api/v1/sessions#create
+                    destroy_user_session DELETE   /api/auth/sign_out(.:format)                                      api/v1/sessions#destroy
+                           user_password POST     /api/auth/password(.:format)                                      devise_token_auth/passwords#create
+                       new_user_password GET      /api/auth/password/new(.:format)                                  devise_token_auth/passwords#new
+                      edit_user_password GET      /api/auth/password/edit(.:format)                                 devise_token_auth/passwords#edit
+                                         PATCH    /api/auth/password(.:format)                                      devise_token_auth/passwords#update
+                                         PUT      /api/auth/password(.:format)                                      devise_token_auth/passwords#update
+                cancel_user_registration GET      /api/auth/cancel(.:format)                                        api/v1/registrations#cancel
+                       user_registration POST     /api/auth(.:format)                                               api/v1/registrations#create
+                   new_user_registration GET      /api/auth/sign_up(.:format)                                       api/v1/registrations#new
+                  edit_user_registration GET      /api/auth/edit(.:format)                                          api/v1/registrations#edit
+                                         PATCH    /api/auth(.:format)                                               api/v1/registrations#update
+                                         PUT      /api/auth(.:format)                                               api/v1/registrations#update
+                                         DELETE   /api/auth(.:format)                                               api/v1/registrations#destroy
+                 api_auth_validate_token GET      /api/auth/validate_token(.:format)                                api/v1/token_validations#validate_token
+                        api_auth_failure GET      /api/auth/failure(.:format)                                       api/v1/omniauth_callbacks#omniauth_failure
+                                         GET      /api/auth/:provider/callback(.:format)                            api/v1/omniauth_callbacks#omniauth_success
+                                         GET|POST /omniauth/:provider/callback(.:format)                            api/v1/omniauth_callbacks#redirect_callbacks
+                        omniauth_failure GET|POST /omniauth/failure(.:format)                                       api/v1/omniauth_callbacks#omniauth_failure
+                                         GET      /api/auth/:provider(.:format)                                     redirect(301)
+                      audio_api_v1_media POST     /api/v1/media/audio(.:format)                                     api/v1/media#create_audio
+                      image_api_v1_media POST     /api/v1/media/image(.:format)                                     api/v1/media#create_image
+                       file_api_v1_media POST     /api/v1/media/file(.:format)                                      api/v1/media#create_file
+                            api_v1_media GET      /api/v1/media(.:format)                                           api/v1/media#index
+                                         GET      /api/v1/media(.:format)                                           api/v1/media#index
+                           api_v1_medium PATCH    /api/v1/media/:id(.:format)                                       api/v1/media#update
+                                         PUT      /api/v1/media/:id(.:format)                                       api/v1/media#update
+                                         DELETE   /api/v1/media/:id(.:format)                                       api/v1/media#destroy
+                  contact_us_api_v1_misc POST     /api/v1/misc/contact_us(.:format)                                 api/v1/misc#contact_us
+         feedback_categories_api_v1_misc GET      /api/v1/misc/feedback_categories(.:format)                        api/v1/misc#get_feedback_categories
+             s3_access_token_api_v1_misc GET      /api/v1/misc/s3_access_token(.:format)                            api/v1/misc#s3_access_token
+                                         POST     /api/v1/misc/feedback_categories(.:format)                        api/v1/misc#add_feedback_category
+                help_request_api_v1_misc POST     /api/v1/misc/help_request(.:format)                               api/v1/misc#help_request
+               get_languages_api_v1_misc GET      /api/v1/misc/get_languages(.:format)                              api/v1/misc#get_languages
+                get_overview_api_v1_misc GET      /api/v1/misc/get_overview(.:format)                               api/v1/misc#get_overview
+                             api_v1_misc POST     /api/v1/misc(.:format)                                            api/v1/miscs#create
+                                         GET      /api/v1/misc(.:format)                                            api/v1/miscs#show
+                                         PATCH    /api/v1/misc(.:format)                                            api/v1/miscs#update
+                                         PUT      /api/v1/misc(.:format)                                            api/v1/miscs#update
+                                         DELETE   /api/v1/misc(.:format)                                            api/v1/miscs#destroy
+                           api_v1_params GET      /api/v1/params(.:format)                                          api/v1/params#index
+                                         POST     /api/v1/params(.:format)                                          api/v1/params#create
+                            api_v1_param GET      /api/v1/params/:id(.:format)                                      api/v1/params#show
+                                         PATCH    /api/v1/params/:id(.:format)                                      api/v1/params#update
+                                         PUT      /api/v1/params/:id(.:format)                                      api/v1/params#update
+                                         DELETE   /api/v1/params/:id(.:format)                                      api/v1/params#destroy
+                      api_v1_pusher_auth POST     /api/v1/pusher/auth(.:format)                                     api/v1/messages#chat_auth
+                         api_v1_personal GET      /api/v1/profile/personal(.:format)                                api/v1/personal_info#show_personal
+                                         PUT      /api/v1/profile/personal(.:format)                                api/v1/personal_info#update_personal
+                       api_v1_profession GET      /api/v1/profile/profession(.:format)                              api/v1/professional_info#show_professional
+                                         PUT      /api/v1/profile/profession(.:format)                              api/v1/professional_info#update_profession
+                   api_v1_add_promotions POST     /api/v1/profile/add_promotions(.:format)                          api/v1/default_promotions#add_promotions
+                       api_v1_educations POST     /api/v1/profile/educations(.:format)                              api/v1/educations#create
+                        api_v1_education PATCH    /api/v1/profile/educations/:id(.:format)                          api/v1/educations#update
+                                         PUT      /api/v1/profile/educations/:id(.:format)                          api/v1/educations#update
+                                         DELETE   /api/v1/profile/educations/:id(.:format)                          api/v1/educations#destroy
+                      api_v1_experiences GET      /api/v1/profile/experiences(.:format)                             api/v1/experiences#index
+                                         POST     /api/v1/profile/experiences(.:format)                             api/v1/experiences#create
+                       api_v1_experience PATCH    /api/v1/profile/experiences/:id(.:format)                         api/v1/experiences#update
+                                         PUT      /api/v1/profile/experiences/:id(.:format)                         api/v1/experiences#update
+                                         DELETE   /api/v1/profile/experiences/:id(.:format)                         api/v1/experiences#destroy
+                  api_v1_user_promotions GET      /api/v1/profile/user_promotions(.:format)                         api/v1/user_promotions#index
+                                         POST     /api/v1/profile/user_promotions(.:format)                         api/v1/user_promotions#create
+                   api_v1_user_promotion PATCH    /api/v1/profile/user_promotions/:id(.:format)                     api/v1/user_promotions#update
+                                         PUT      /api/v1/profile/user_promotions/:id(.:format)                     api/v1/user_promotions#update
+                                         DELETE   /api/v1/profile/user_promotions/:id(.:format)                     api/v1/user_promotions#destroy
+               api_v1_default_promotions GET      /api/v1/profile/default_promotions(.:format)                      api/v1/default_promotions#index
+                                  api_v1 GET      /api/v1/profile/skills(.:format)                                  api/v1/skills#all_skills
+                                         POST     /api/v1/profile/skills(.:format)                                  api/v1/skills#create_skill_categories
+                             api_v1_user GET      /api/v1/profile/skills/user(.:format)                             api/v1/skills#user_skills
+                       api_v1_skill_tags GET      /api/v1/profile/skills/skill_tags(.:format)                       api/v1/skills#skill_tags
+                                         POST     /api/v1/profile/skills/skill_tags(.:format)                       api/v1/skills#create_skill_tags
+                           api_v1_search GET      /api/v1/profile/skills/search(.:format)                           api/v1/skills#search
+              favorite_api_v1_contractor POST     /api/v1/tellents/:id/favorite(.:format)                           api/v1/contractors#favorite
+                                         DELETE   /api/v1/tellents/:id/favorite(.:format)                           api/v1/contractors#un_favorite
+               search_api_v1_contractors GET      /api/v1/tellents/search(.:format)                                 api/v1/contractors#search
+            favorites_api_v1_contractors GET      /api/v1/tellents/favorites(.:format)                              api/v1/contractors#get_favorites
+                      api_v1_contractors GET      /api/v1/tellents(.:format)                                        api/v1/contractors#index
+                       api_v1_contractor GET      /api/v1/tellents/:id(.:format)                                    api/v1/contractors#show
+                     favorite_api_v1_job POST     /api/v1/jobs/:id/favorite(.:format)                               api/v1/jobs#favorite
+                  send_report_api_v1_job POST     /api/v1/jobs/:id/send_report(.:format)                            api/v1/jobs#send_report
+                                         DELETE   /api/v1/jobs/:id/favorite(.:format)                               api/v1/jobs#un_favorite
+                      search_api_v1_jobs GET      /api/v1/jobs/search(.:format)                                     api/v1/jobs#search
+                   favorites_api_v1_jobs GET      /api/v1/jobs/favorites(.:format)                                  api/v1/jobs#get_favorites
+                             api_v1_jobs GET      /api/v1/jobs(.:format)                                            api/v1/jobs#index
+                              api_v1_job GET      /api/v1/jobs/:id(.:format)                                        api/v1/jobs#show
+            send_message_api_v1_messages POST     /api/v1/messages/send_message(.:format)                           api/v1/messages#send_message
+                add_file_api_v1_messages POST     /api/v1/messages/add_file(.:format)                               api/v1/messages#add_file
+                contacts_api_v1_messages GET      /api/v1/messages/contacts(.:format)                               api/v1/messages#contacts
+              get_unread_api_v1_messages GET      /api/v1/messages/get_unread(.:format)                             api/v1/messages#get_unread
+                                         GET      /api/v1/messages/:receiver_id(.:format)                           api/v1/messages#message_list
+                         api_v1_messages POST     /api/v1/messages(.:format)                                        api/v1/messages#create
+                                         GET      /api/v1/messages(.:format)                                        api/v1/messages#show
+                                         PATCH    /api/v1/messages(.:format)                                        api/v1/messages#update
+                                         PUT      /api/v1/messages(.:format)                                        api/v1/messages#update
+                                         DELETE   /api/v1/messages(.:format)                                        api/v1/messages#destroy
+                  hire_api_v1_client_job POST     /api/v1/client_jobs/:id/hire(.:format)                            api/v1/client_jobs#hire
+                                         POST     /api/v1/client_jobs/:id/:talent_id/immediately_hire(.:format)     api/v1/client_jobs#immediately_hire
+                                         POST     /api/v1/client_jobs/:id/:talent_id/direct_hire_existing(.:format) api/v1/client_jobs#direct_hire_existing
+               search_api_v1_client_jobs GET      /api/v1/client_jobs/search(.:format)                              api/v1/client_jobs#search
+          direct_hire_api_v1_client_jobs POST     /api/v1/client_jobs/direct_hire(.:format)                         api/v1/client_jobs#direct_hire
+                      api_v1_client_jobs GET      /api/v1/client_jobs(.:format)                                     api/v1/client_jobs#index
+                                         POST     /api/v1/client_jobs(.:format)                                     api/v1/client_jobs#create
+                       api_v1_client_job DELETE   /api/v1/client_jobs/:id(.:format)                                 api/v1/client_jobs#destroy
+                                         DELETE   /api/v1/talent_jobs/bids/:id(.:format)                            api/v1/talent_jobs#cancel_bid
+                      api_v1_talent_jobs GET      /api/v1/talent_jobs(.:format)                                     api/v1/talent_jobs#index
+                                         POST     /api/v1/talent_jobs(.:format)                                     api/v1/talent_jobs#create
+                                         PATCH    /api/v1/contractor(.:format)                                      api/v1/contractors#update
+                                         PUT      /api/v1/contractor(.:format)                                      api/v1/contractors#update
+  accept_skill_test_api_v1_talent_offers POST     /api/v1/talent_offers/accept_skill_test(.:format)                 api/v1/talent_offers#accept_skill_test
+  reject_skill_test_api_v1_talent_offers POST     /api/v1/talent_offers/reject_skill_test(.:format)                 api/v1/talent_offers#reject_skill_test
+   accept_job_offer_api_v1_talent_offers POST     /api/v1/talent_offers/accept_job_offer(.:format)                  api/v1/talent_offers#accept_job_offer
+   reject_job_offer_api_v1_talent_offers POST     /api/v1/talent_offers/reject_job_offer(.:format)                  api/v1/talent_offers#reject_job_offer
+complete_skill_test_api_v1_talent_offers POST     /api/v1/talent_offers/complete_skill_test(.:format)               api/v1/talent_offers#complete_skill_test
+                    api_v1_talent_offers GET      /api/v1/talent_offers(.:format)                                   api/v1/talent_offers#index
+                     api_v1_talent_offer PATCH    /api/v1/talent_offers/:id(.:format)                               api/v1/talent_offers#update
+                                         PUT      /api/v1/talent_offers/:id(.:format)                               api/v1/talent_offers#update
+             fund_api_v1_offer_milestone POST     /api/v1/offers/:offer_id/milestones/:id/fund(.:format)            api/v1/milestones#fund
+           submit_api_v1_offer_milestone POST     /api/v1/offers/:offer_id/milestones/:id/submit(.:format)          api/v1/milestones#submit
+           reject_api_v1_offer_milestone POST     /api/v1/offers/:offer_id/milestones/:id/reject(.:format)          api/v1/milestones#reject
+          release_api_v1_offer_milestone POST     /api/v1/offers/:offer_id/milestones/:id/release(.:format)         api/v1/milestones#release
+                 api_v1_offer_milestones GET      /api/v1/offers/:offer_id/milestones(.:format)                     api/v1/milestones#index
+                                         POST     /api/v1/offers/:offer_id/milestones(.:format)                     api/v1/milestones#create
+                  api_v1_offer_milestone GET      /api/v1/offers/:offer_id/milestones/:id(.:format)                 api/v1/milestones#show
+                                         PATCH    /api/v1/offers/:offer_id/milestones/:id(.:format)                 api/v1/milestones#update
+                                         PUT      /api/v1/offers/:offer_id/milestones/:id(.:format)                 api/v1/milestones#update
+                                         DELETE   /api/v1/offers/:offer_id/milestones/:id(.:format)                 api/v1/milestones#destroy
+             offer_with_job_api_v1_offer GET      /api/v1/offers/:id/offer_with_job(.:format)                       api/v1/offers#offer_with_job
+                 finish_job_api_v1_offer PUT      /api/v1/offers/:id/finish_job(.:format)                           api/v1/offers#finish_job
+          resend_skill_test_api_v1_offer PUT      /api/v1/offers/:id/resend_skill_test(.:format)                    api/v1/offers#resend_skill_test
+          reject_skill_test_api_v1_offer PUT      /api/v1/offers/:id/reject_skill_test(.:format)                    api/v1/offers#reject_skill_test
+              to_milestones_api_v1_offer PUT      /api/v1/offers/:id/to_milestones(.:format)                        api/v1/offers#to_milestones
+           close_skill_test_api_v1_offer PUT      /api/v1/offers/:id/close_skill_test(.:format)                     api/v1/offers#close_skill_test
+        complete_skill_test_api_v1_offer PUT      /api/v1/offers/:id/complete_skill_test(.:format)                  api/v1/offers#complete_skill_test
+               reject_offer_api_v1_offer PUT      /api/v1/offers/:id/reject_offer(.:format)                         api/v1/offers#reject_offer
+reject_completed_skill_test_api_v1_offer PUT      /api/v1/offers/:id/reject_completed_skill_test(.:format)          api/v1/offers#reject_completed_skill_test
+                 save_files_api_v1_offer POST     /api/v1/offers/:id/save_files(.:format)                           api/v1/offers#save_files
+          start_skill_test_api_v1_offers POST     /api/v1/offers/start_skill_test(.:format)                         api/v1/offers#start_skill_test
+              submit_offer_api_v1_offers POST     /api/v1/offers/submit_offer(.:format)                             api/v1/offers#submit_offer
+                           api_v1_offers GET      /api/v1/offers(.:format)                                          api/v1/offers#index
+                            api_v1_offer GET      /api/v1/offers/:id(.:format)                                      api/v1/offers#show
+                                         PATCH    /api/v1/offers/:id(.:format)                                      api/v1/offers#update
+                                         PUT      /api/v1/offers/:id(.:format)                                      api/v1/offers#update
+                                         DELETE   /api/v1/offers/:id(.:format)                                      api/v1/offers#destroy
+                         save_api_v1_bid POST     /api/v1/bids/:id/save(.:format)                                   api/v1/bids#save
+                      default_api_v1_bid POST     /api/v1/bids/:id/default(.:format)                                api/v1/bids#default
+                        state_api_v1_bid GET      /api/v1/bids/:id/state(.:format)                                  api/v1/bids#state
+                             api_v1_bids GET      /api/v1/bids(.:format)                                            api/v1/bids#index
+                                         POST     /api/v1/bids(.:format)                                            api/v1/bids#create
+                              api_v1_bid GET      /api/v1/bids/:id(.:format)                                        api/v1/bids#show
+                                         DELETE   /api/v1/bids/:id(.:format)                                        api/v1/bids#destroy
+                                         PATCH    /api/v1/contractor(.:format)                                      api/v1/contractors#update
+                                         PUT      /api/v1/contractor(.:format)                                      api/v1/contractors#update
