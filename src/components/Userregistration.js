@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 // import {connect} from 'react-redux';
 
 var Auth = require('../../node_modules/j-toker/src/j-toker.js');
@@ -66,8 +67,6 @@ class Userregistration extends React.Component {
     
   constructor () {
     super();
-
-    // this.userRegistr = this.userRegistr.bind(this);
   }
 
   userRegistr () {
