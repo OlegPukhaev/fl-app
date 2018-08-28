@@ -15,11 +15,9 @@ class User extends React.Component {
     super()
 
     this.state = { 
-      user_first_name : '',
-      user_last_name : '',
-      user_email : '',
-      user_password : '',
-      user:{}
+      user_first_name : '', user_last_name : '', user_email : '', user_password : '',
+      user:{},
+      email_login: '', password_login: ''
     } 
 
     this.userLogin = this.userLogin.bind(this)
@@ -28,6 +26,7 @@ class User extends React.Component {
     this.onClickUpdateAcc = this.onClickUpdateAcc.bind(this)
     this.onChangeReg = this.onChangeReg.bind(this)
     this.addUser = this.addUser.bind(this)
+    this.onChangelogin = this.onChangelogin.bind(this)
   }
 
   addUser = (value) => this.props.dispatch(addUser(value));
@@ -40,15 +39,16 @@ class User extends React.Component {
         email: this.state.email,
         password: this.state.password
       });
-      PubSub.subscribe('auth.validation.success', function(ev, userobj) {
-        this.setState({user: userobj});
-        this.addUser(this.state.user);
+      Auth.validateToken()
+      .then(function(user) {
+        this.setState({
+          username: user.username
+        })
       }.bind(this));
     } else {
       alert("Empty fields!!!");
     }
   }
-
 
   onChangeReg (event) {
     switch (event.target.id) {
@@ -67,10 +67,22 @@ class User extends React.Component {
       }
   }
 
+  onChangelogin (event) {
+    switch (event.target.id) {
+      case "email_login":
+       this.setState({email: event.target.value});
+       break;
+      case "password_login":
+       this.setState({password: event.target.value});
+       break;
+      }
+      // console.log(this.state);
+  }
+
   userLogin () {
     Auth.emailSignIn({
-      email: 'mika@bukina.com',
-      password: "123456789"
+      email: this.state.email,
+      password: this.state.password
     });
     
     PubSub.subscribe('auth.validation.success', function(ev, userobj) {
@@ -81,6 +93,8 @@ class User extends React.Component {
 
   signOut () {
     Auth.signOut();
+    this.setState({user: null});
+    this.addUser();
   }
 
   onClickUpdateAcc () {
@@ -89,10 +103,8 @@ class User extends React.Component {
       password: "123456789"
     });
   }
-  
 
   render() {
-
     return (
       <div id="userform">
 
@@ -111,11 +123,10 @@ class User extends React.Component {
 
         <div id="user-log">
           <h3>Sign in</h3>
-          <input type="text" placeholder="Email"></input>
-          <input type="text" placeholder="Password"></input>
-          <button onClick={this.userLogin}>Sign in</button>
+          <input type="email" id="email_login" placeholder="Email" onChange={this.onChangelogin}/><br></br>
+          <input type="password" id="password_login" placeholder="Password" onChange={this.onChangelogin}/><br></br>
+          <button onClick={this.userLogin}>Sign in</button><br></br><br></br>
           <button onClick={this.signOut}>Sign out</button>
-
 
           <h2>Welcome {this.props.user.full_name}</h2>
           <h2>Welcome {this.props.user.first_name}</h2>
