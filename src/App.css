@@ -26,3 +26,17 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+#userform {
+  width: 400px;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, 0);
+}
+
+#first_name {
+  display: block;
+  width: 100%;
+}
