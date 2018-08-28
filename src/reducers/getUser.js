@@ -1,5 +1,5 @@
 const ADD_USER = 'ADD_USER',
-      DELL_USER = 'DELL_USER';
+      EXIT_USER = 'DELL_USER';
 
 let initialState = {
   //   first_name : "User",  
@@ -9,8 +9,6 @@ let initialState = {
     }
 
 export function addUser(object) {
-	// alert(fname);
-	// console.log("-->",object);
     return dispatch => {
       dispatch({
 		type: ADD_USER, 
@@ -19,17 +17,22 @@ export function addUser(object) {
     };
   }
 
+export function exitUser() {
+    return dispatch => {
+      dispatch({
+    type: EXIT_USER, 
+    payload: {}
+      });
+    };
+  }
+
 const actionsMap = {
 	[ADD_USER]: (state, action) => {
-		return {
-					...state = action.payload
-		};
+		return state = action.payload;
 	},
-	[DELL_USER]: (state, action) => {
-		return {
-					...state = action.payload
-		};
-	}
+	[EXIT_USER]: (state, action) => {
+		return state = action.payload;
+  }
 };
 
 export default function getUser(state = initialState, action) {

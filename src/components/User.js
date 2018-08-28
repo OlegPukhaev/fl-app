@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import '../App.css';
-import {addUser} from '../reducers/getUser';
+import {addUser, exitUser} from '../reducers/getUser';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     PubSub = require('../../node_modules/pubsub-js/src/pubsub.js');
 
@@ -27,9 +27,11 @@ class User extends React.Component {
     this.onChangeReg = this.onChangeReg.bind(this)
     this.addUser = this.addUser.bind(this)
     this.onChangelogin = this.onChangelogin.bind(this)
+    this.isLogIn = this.isLogIn.bind(this)
   }
 
   addUser = (value) => this.props.dispatch(addUser(value));
+  exitUser = () => this.props.dispatch(exitUser());
 
   userRegistr () {
     if ((this.state.first_name !== "") && (this.state.last_name !== "") && (this.state.email !== "") && (this.state.password !== "")){
@@ -76,31 +78,37 @@ class User extends React.Component {
        this.setState({password: event.target.value});
        break;
       }
-      // console.log(this.state);
   }
 
   userLogin () {
-    Auth.emailSignIn({
-      email: this.state.email,
-      password: this.state.password
-    });
-    
-    PubSub.subscribe('auth.validation.success', function(ev, userobj) {
-      this.setState({user: userobj});
-      this.addUser(this.state.user);
-    }.bind(this));
+      Auth.emailSignIn({
+        email: this.state.email,
+        password: this.state.password
+      });
+      PubSub.subscribe('auth.validation.success', function(ev, userobj) {
+        this.setState({user: userobj});
+        this.addUser(this.state.user);
+                  }.bind(this));
   }
 
   signOut () {
     Auth.signOut();
-    this.setState({user: null});
-    this.addUser();
+    this.exitUser();
   }
 
   onClickUpdateAcc () {
     Auth.updateAccount({
-      address: 'nuba818400@gmail.com',
+      email: 'nuba8184@gmail.com',
       password: "123456789"
+    });
+  }
+
+  isLogIn() {
+    Auth.validateToken()
+    .then(function(user) {
+      alert("Hello" + user.full_name);
+    }.bind(this))
+    .fail(function() {alert("fffggg")
     });
   }
 
@@ -120,7 +128,7 @@ class User extends React.Component {
           <input type="password" id="password" placeholder="Password"  onChange={this.onChangeReg}/><br></br>
           <br></br><button type="submit" onClick={this.userRegistr}>Sign up</button>
         </div>
-
+        {/* {this.isLogIn} */}
         <div id="user-log">
           <h3>Sign in</h3>
           <input type="email" id="email_login" placeholder="Email" onChange={this.onChangelogin}/><br></br>
@@ -129,9 +137,11 @@ class User extends React.Component {
           <button onClick={this.signOut}>Sign out</button>
 
           <h2>Welcome {this.props.user.full_name}</h2>
-          <h2>Welcome {this.props.user.first_name}</h2>
-          <h2>Welcome {this.props.user.last_name}</h2>
+          <h2>Firs Name {this.props.user.first_name}</h2>
+          <h2>Last Name {this.props.user.last_name}</h2>
           <h2>E-mail {this.props.user.email}</h2>
+
+          {/* {console.log(this.props.user)} */}
         </div>
       </div>
     );
