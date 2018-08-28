@@ -2,6 +2,7 @@ const ADD_USER = 'ADD_USER',
       EXIT_USER = 'DELL_USER';
 
 let initialState = {
+  userinfo:[]
   //   first_name : "User",  
   //   last_name : "Name",  
   //   email : "test@test.com",  
@@ -9,6 +10,7 @@ let initialState = {
     }
 
 export function addUser(object) {
+  console.log("nnn");
     return dispatch => {
       dispatch({
 		type: ADD_USER, 
@@ -28,10 +30,15 @@ export function exitUser() {
 
 const actionsMap = {
 	[ADD_USER]: (state, action) => {
-		return state = action.payload;
+    // state.userinfo = action.payload
+      return state = {
+        userinfo: action.payload
+      }
 	},
 	[EXIT_USER]: (state, action) => {
-		return state = action.payload;
+		return state = {
+      userinfo: action.payload
+    }
   }
 };
 

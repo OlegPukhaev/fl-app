@@ -16,7 +16,7 @@ class User extends React.Component {
 
     this.state = { 
       user_first_name : '', user_last_name : '', user_email : '', user_password : '',
-      user:{},
+      userobj:{},
       email_login: '', password_login: ''
     } 
 
@@ -27,7 +27,7 @@ class User extends React.Component {
     this.onChangeReg = this.onChangeReg.bind(this)
     this.addUser = this.addUser.bind(this)
     this.onChangelogin = this.onChangelogin.bind(this)
-    this.isLogIn = this.isLogIn.bind(this)
+    // this.isLogIn = this.isLogIn.bind(this)
   }
 
   addUser = (value) => this.props.dispatch(addUser(value));
@@ -80,15 +80,23 @@ class User extends React.Component {
       }
   }
 
+  componentDidMount
+
+
   userLogin () {
       Auth.emailSignIn({
         email: this.state.email,
         password: this.state.password
+      }).then(function (user){
+        console.log(user.first_name);
+      }).fail(function(resp) {
+        console.log(resp);
       });
+
       PubSub.subscribe('auth.validation.success', function(ev, userobj) {
         this.setState({user: userobj});
         this.addUser(this.state.user);
-                  }.bind(this));
+      }.bind(this));
   }
 
   signOut () {
@@ -100,17 +108,19 @@ class User extends React.Component {
     Auth.updateAccount({
       email: 'nuba8184@gmail.com',
       password: "123456789"
+    }).then(function (user){
+      // alert("Welcome mr. " + user.last_name);
     });
   }
 
-  isLogIn() {
-    Auth.validateToken()
-    .then(function(user) {
-      alert("Hello" + user.full_name);
-    }.bind(this))
-    .fail(function() {alert("fffggg")
-    });
-  }
+  // isLogIn() {
+  //   Auth.validateToken()
+  //   .then(function(user) {
+  //     alert("Hello" + user.full_name);
+  //   }.bind(this))
+  //   .fail(function() {alert("fffggg")
+  //   });
+  // }
 
   render() {
     return (
@@ -136,10 +146,10 @@ class User extends React.Component {
           <button onClick={this.userLogin}>Sign in</button><br></br><br></br>
           <button onClick={this.signOut}>Sign out</button>
 
-          <h2>Welcome {this.props.user.full_name}</h2>
-          <h2>Firs Name {this.props.user.first_name}</h2>
-          <h2>Last Name {this.props.user.last_name}</h2>
-          <h2>E-mail {this.props.user.email}</h2>
+          <h2>Welcome {this.props.user.userinfo.full_name}</h2>
+          <h2>Firs Name {this.props.user.userinfo.first_name}</h2>
+          <h2>Last Name {this.props.user.userinfo.last_name}</h2>
+          <h2>E-mail {this.props.user.userinfo.email}</h2>
 
           {/* {console.log(this.props.user)} */}
         </div>
@@ -152,6 +162,7 @@ function mapStateToProps (state){
   return {
       user: state.user
   }
+  
 }
 
 export default connect(mapStateToProps)(User);
