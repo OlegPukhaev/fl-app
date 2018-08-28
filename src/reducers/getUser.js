@@ -1,27 +1,27 @@
-const GET_USER = 'GET_USER';
+const ADD_USER = 'ADD_USER';
 
 let initialState = {
-    first_name : "User",  
-    last_name : "Name",  
-    email : "test@test.com",  
-	full_name: "User Name"
+  //   first_name : "User",  
+  //   last_name : "Name",  
+  //   email : "test@test.com",  
+	// full_name: "User Name"
     }
 
-export function getUser(value) {
+export function addUser(object) {
+	// alert(fname);
+	console.log("-->",object);
     return dispatch => {
       dispatch({
-        type: GET_USER, 
-        payload: value      
+		type: ADD_USER, 
+		payload: object
       });
     };
   }
 
 const actionsMap = {
-
-	[GET_USER]: (state, action) => {
+	[ADD_USER]: (state, action) => {
 		return {
-					...state, 
-					card: [...state.card, action.payload]
+					...state = action.payload
 		};
 	},
 };
