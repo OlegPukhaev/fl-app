@@ -1,18 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import '../App.css';
+import '../../node_modules/toastr/build/toastr.css';
 import {addUser, exitUser} from '../reducers/getUser';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
-    PubSub = require('../../node_modules/pubsub-js/src/pubsub.js');
+    PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
+    toastr = require('../../node_modules/toastr/toastr');
 
-Auth.configure({
-  apiUrl:                'https://floating-atoll-63112.herokuapp.com/api',
-});
+Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
+
+// Auth.validateToken()
+// .then(function(user) {
+//   this.addUser(user);
+// }.bind(this))
+// .fail(function() {
+//   // this.exitUser;
+// });
+
 
 class User extends React.Component {
 
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = { 
       user_first_name : '', user_last_name : '', user_email : '', user_password : '',
@@ -22,16 +31,13 @@ class User extends React.Component {
 
     this.userLogin = this.userLogin.bind(this)
     this.userRegistr = this.userRegistr.bind(this)
-    this.signOut = this.signOut.bind(this)
-    this.onClickUpdateAcc = this.onClickUpdateAcc.bind(this)
     this.onChangeReg = this.onChangeReg.bind(this)
     this.addUser = this.addUser.bind(this)
     this.onChangelogin = this.onChangelogin.bind(this)
-    // this.isLogIn = this.isLogIn.bind(this)
   }
 
   addUser = (value) => this.props.dispatch(addUser(value));
-  exitUser = () => this.props.dispatch(exitUser());
+  // exitUser = () => this.props.dispatch(exitUser());
 
   userRegistr () {
     if ((this.state.first_name !== "") && (this.state.last_name !== "") && (this.state.email !== "") && (this.state.password !== "")){
@@ -80,47 +86,21 @@ class User extends React.Component {
       }
   }
 
-  componentDidMount
-
-
   userLogin () {
       Auth.emailSignIn({
         email: this.state.email,
         password: this.state.password
-      }).then(function (user){
-        console.log(user.first_name);
-      }).fail(function(resp) {
-        console.log(resp);
-      });
+      }).then(function (){
+          toastr.success('Welcome ' + Auth.user.full_name, 'Login successfull');
+        }).fail(function(resp) {
+          toastr.error('Please enter correct Login and Password.', 'Wrong Login or Password')
+          return;
+        });
 
-      PubSub.subscribe('auth.validation.success', function(ev, userobj) {
-        this.setState({user: userobj});
-        this.addUser(this.state.user);
-      }.bind(this));
+        this.addUser(Auth.user);
   }
 
-  signOut () {
-    Auth.signOut();
-    this.exitUser();
-  }
 
-  onClickUpdateAcc () {
-    Auth.updateAccount({
-      email: 'nuba8184@gmail.com',
-      password: "123456789"
-    }).then(function (user){
-      // alert("Welcome mr. " + user.last_name);
-    });
-  }
-
-  // isLogIn() {
-  //   Auth.validateToken()
-  //   .then(function(user) {
-  //     alert("Hello" + user.full_name);
-  //   }.bind(this))
-  //   .fail(function() {alert("fffggg")
-  //   });
-  // }
 
   render() {
     return (
@@ -138,20 +118,12 @@ class User extends React.Component {
           <input type="password" id="password" placeholder="Password"  onChange={this.onChangeReg}/><br></br>
           <br></br><button type="submit" onClick={this.userRegistr}>Sign up</button>
         </div>
-        {/* {this.isLogIn} */}
+
         <div id="user-log">
           <h3>Sign in</h3>
           <input type="email" id="email_login" placeholder="Email" onChange={this.onChangelogin}/><br></br>
           <input type="password" id="password_login" placeholder="Password" onChange={this.onChangelogin}/><br></br>
           <button onClick={this.userLogin}>Sign in</button><br></br><br></br>
-          <button onClick={this.signOut}>Sign out</button>
-
-          <h2>Welcome {this.props.user.userinfo.full_name}</h2>
-          <h2>Firs Name {this.props.user.userinfo.first_name}</h2>
-          <h2>Last Name {this.props.user.userinfo.last_name}</h2>
-          <h2>E-mail {this.props.user.userinfo.email}</h2>
-
-          {/* {console.log(this.props.user)} */}
         </div>
       </div>
     );
@@ -162,7 +134,6 @@ function mapStateToProps (state){
   return {
       user: state.user
   }
-  
 }
 
 export default connect(mapStateToProps)(User);
