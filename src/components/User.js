@@ -2,26 +2,18 @@ import React from 'react';
 import {connect} from 'react-redux';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-import {addUser, exitUser} from '../reducers/getUser';
+import {addUser, userValid} from '../reducers/getUser';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
     toastr = require('../../node_modules/toastr/toastr');
 
-Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
-
-// Auth.validateToken()
-// .then(function(user) {
-//   this.addUser(user);
-// }.bind(this))
-// .fail(function() {
-//   // this.exitUser;
-// });
-
+    Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
 
 class User extends React.Component {
 
   constructor (props) {
     super(props)
+
 
     this.state = { 
       user_first_name : '', user_last_name : '', user_email : '', user_password : '',
@@ -35,8 +27,6 @@ class User extends React.Component {
     this.addUser = this.addUser.bind(this)
     this.onChangelogin = this.onChangelogin.bind(this)
   }
-
-  addUser = (value) => this.props.dispatch(addUser(value));
   // exitUser = () => this.props.dispatch(exitUser());
 
   userRegistr () {
@@ -86,26 +76,27 @@ class User extends React.Component {
       }
   }
 
+  userValid = (value) => this.props.dispatch(userValid(value));
+  addUser = (value) => this.props.dispatch(addUser(value));
+
+  setUserStates () {
+    this.addUser(Auth.user);
+    this.userValid(true);
+  }
+
   userLogin () {
       Auth.emailSignIn({
         email: this.state.email,
         password: this.state.password
-      }).then(function (){
-          toastr.success('Welcome ' + Auth.user.full_name, 'Login successfull');
-        }).fail(function(resp) {
-          toastr.error('Please enter correct Login and Password.', 'Wrong Login or Password')
-          return;
-        });
-
-        this.addUser(Auth.user);
+      }).then(this.setUserStates());
   }
-
-
 
   render() {
     return (
       <div id="userform">
-
+        {/* {console.log(this.props.user)} */}
+        {this.props.user.userinfo.full_name}
+        {this.props.user.uservalid}
         <div id="user-reg">
           <h3>Registration</h3>
           First Name :

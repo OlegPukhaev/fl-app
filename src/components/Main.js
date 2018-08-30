@@ -1,49 +1,60 @@
+
 import React from 'react';
+// import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import User from './User';
 import LinkPage from './LinkPage';
-// import {addUser, exitUser} from '../reducers/getUser';
+// import userValid from './../reducers/getUser';
+import {addUser, userValid} from '../reducers/getUser';
+
 var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
     toastr = require('../../node_modules/toastr/toastr');
 
 Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
 
+
+
+// const AppStackNavigator = createStackNavigatior({
+//   login: {
+//     screen: User
+//   }
+// })
+
+
+
 class Main extends React.Component {
-constructor () {
-  super();
 
-  this.state = {validUser: null};
-  this.userVal = this.userVal.bind(this);
-}
+  constructor (props) {
+    super(props);
 
-userVal(){
-  let validate;
-    Auth.validateToken()
-      .then(function(user) {
-        // console.log("true");
-        validate = true;
-        // this.setState({validUser: true});
-      }.bind(this))
-      .fail(function() {
-        // console.log("kkk","false");
-        validate = false;
-        // this.setState({validUser: false});
-      })
-      return validate;
-}
+    this.setUserStates = this.setUserStates.bind(this);
+    this.userValid = this.userValid.bind(this);
+  }
+
+  userValid = (value) => this.props.dispatch(userValid(value));
+  addUser = (value) => this.props.dispatch(addUser(value));
+
+  setUserStates () {
+    // console.log(Auth.user)
+    this.addUser(Auth.user);
+    // this.userValid(true);
+  }
+
+  checkUserValid () {
+    PubSub.subscribe('auth', function() {
+      this.setUserStates();
+    }.bind(this));
+  }
 
   render() {
-    // console.log('fff',this.userVal());
+    // console.log('777', this.props.user.uservalid);
+    this.checkUserValid();
     return (
-      <div id="mainpage">
-        {/* {this.props.user.uservalid == false ? <User /> : <LinkPage />} */}
-        {this.userVal == true ? <LinkPage /> : <User />}
-        {/* {console.log(this.userValidation())} */}
-        {/* {console.log(this.props.user.uservalid)} */}
-        {/* {console.log(this.state.validUser)} */}
+      <div>
+        {this.props.user.uservalid == true ? <LinkPage /> : <User /> }
       </div>
     );
   }

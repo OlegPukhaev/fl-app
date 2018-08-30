@@ -3,32 +3,26 @@ const ADD_USER = 'ADD_USER',
       USER_VALID = 'USER_VALID';
 
 let initialState = {
-  uservalid:null,
+  uservalid:false,
   userinfo:[]
-  //   first_name : "User",  
-  //   last_name : "Name",  
-  //   email : "test@test.com",  
-	// full_name: "User Name"
-    }
+}
 
   export function userValid(value) {
-    console.log(value);
+    // console.log(value);
       return dispatch => {
         dispatch({
-      type: ADD_USER, 
-      payload: value,
-      // validation: true
+      type: USER_VALID, 
+      uservalid: value
         });
       };
     }
 
 export function addUser(object) {
-  console.log(object);
+  // console.log(object);
     return dispatch => {
       dispatch({
 		type: ADD_USER, 
     payload: object,
-    // validation: true
       });
     };
   }
@@ -38,28 +32,28 @@ export function exitUser() {
     return dispatch => {
       dispatch({
     type: EXIT_USER, 
-    payload: userobj,
-    // validation: false
+    payload: userobj
       });
     };
   }
 
 const actionsMap = {
 	[ADD_USER]: (state, action) => {
-      return state = {
+      
+      return {...state,
         userinfo: action.payload,
-        uservalid: action.validation
+        uservalid: true
       }
 	},
 	[EXIT_USER]: (state, action) => {
 		return state = {
       userinfo: action.payload,
-      uservalid: action.validation
+      uservalid: false
     }
   },
 	[USER_VALID]: (state, action) => {
-		return state = {
-      uservalid: action.validation
+		return state = {...state,
+      uservalid: action.uservalid
     }
   }
 };
