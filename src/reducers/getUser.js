@@ -41,14 +41,14 @@ const actionsMap = {
 	[ADD_USER]: (state, action) => {
       
       return {...state,
-        userinfo: action.payload,
-        uservalid: true
+        userinfo: action.payload
       }
 	},
 	[EXIT_USER]: (state, action) => {
+    state.userinfo = []
 		return state = {
-      userinfo: action.payload,
-      uservalid: false
+      userinfo: state.userinfo,
+      // uservalid: false
     }
   },
 	[USER_VALID]: (state, action) => {

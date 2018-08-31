@@ -7,7 +7,33 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
     toastr = require('../../node_modules/toastr/toastr');
 
-    Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
+    Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
+  });
+    
+    const axios = require('../../node_modules/axios');
+    axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
+    axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+    axios.defaults.headers.common['access-token'] = '5Pyj0VqKssQ6qrHVszikCg';
+    axios.defaults.headers.common['expiry'] = '1536904460';
+    axios.defaults.headers.common['token-type'] = 'Bearer';
+    axios.defaults.headers.common['uid'] = 'nuba818400@gmail.com';
+    axios.defaults.headers.common['client'] = 'hfgdkcZZiioDEIRziT-XKw';
+
+    // axios.get('/api/v1/profile/skills/user'
+    axios.get('/api/v1/profile/personal'
+  )
+      .then(function (response) {
+        // handle success
+        console.log(' my data ', response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log('my errors' , error);
+      })
+      .then(function () {
+        // always executed
+      });
+
 
 class User extends React.Component {
 

@@ -38,23 +38,32 @@ class Main extends React.Component {
   addUser = (value) => this.props.dispatch(addUser(value));
 
   setUserStates () {
-    // console.log(Auth.user)
+    console.log(Auth.user)
     this.addUser(Auth.user);
-    // this.userValid(true);
+    this.userValid(true);
   }
 
   checkUserValid () {
-    PubSub.subscribe('auth', function() {
+    // PubSub.subscribe('auth.validation.success', function() {
+    //   this.setUserStates();
+    // }.bind(this));
+    Auth.validateToken()
+    .then(function(user) {
       this.setUserStates();
-    }.bind(this));
+    });
+
+
+
   }
 
   render() {
-    // console.log('777', this.props.user.uservalid);
-    this.checkUserValid();
+    console.log('777', this.props.user);
+    // this.checkUserValid();
     return (
       <div>
-        {this.props.user.uservalid == true ? <LinkPage /> : <User /> }
+        {/* {this.props.user.uservalid == true ? <LinkPage /> : <User /> } */}
+        <User />
+        <LinkPage />
       </div>
     );
   }
