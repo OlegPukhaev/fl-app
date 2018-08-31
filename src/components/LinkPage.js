@@ -13,9 +13,6 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 
 
 class Skills extends React.Component {
-
- 
-// const Skills = React.createClass({
   render() { 
     return (
       <div>
@@ -46,11 +43,11 @@ class Tellent extends React.Component {
   }
 }
 
-const Child = ({ match }) => (
-  <div>
-    <h3>ID: {match.params.component}</h3>
-  </div>
-);
+// const Child = ({ match }) => (
+//   <div>
+//     <h3>ID: {match.params.component}</h3>
+//   </div>
+// );
 
 class Menu extends React.Component {
   render (){
@@ -61,9 +58,11 @@ class Menu extends React.Component {
           <ul>
             <li><Link to="/skills">Skills</Link></li>
             <li><Link to="/tellent">Tellent</Link></li>
+            <li><Link to="/tellent">Tellent</Link></li>
           </ul>
-          <Route component={Skills} />
           <Route component={Tellent} />
+          <Route component={Skills} />
+          <Route component={Menu} />
           {/* <Route path="/:id" component={Child} /> */}
       </div>
     );
@@ -91,7 +90,16 @@ onClickSignOut () {
   render() {
     return (
       <BrowserRouter>
-        <Route  component={Menu}/>
+        {/* <Route  component={Menu}/> */}
+        <div>
+
+          <ul>
+            <li><Link to="/skills">Skills</Link></li>
+            <li><Link to="/tellent">Tellent</Link></li>
+          </ul>
+          <Route path="/skills" component={Skills} />
+          <Route path="/tellent" component={Tellent} />
+        </div>
       </BrowserRouter>
     );
     

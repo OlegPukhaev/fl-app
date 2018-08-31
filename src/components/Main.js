@@ -61,7 +61,8 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        {getToken() !== false ? <LinkPage /> : <User />}
+        {/* {getToken() !== false ? <LinkPage /> : <User />} */}
+        <LinkPage />
       </div>
     );
   }
