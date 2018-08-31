@@ -1,73 +1,17 @@
 import React from 'react';
-import { render , component} from 'react-dom';
-// import {Router, Route} from 'react-router';
-import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
-
 import {connect} from 'react-redux';
+import { render , component} from 'react-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
+
+import Home from './Home';
+import Skills from './Skills';
+import Tellent from './Tellent';
+
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import { userValid } from '../reducers/getUser';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 // const axios = require('../../node_modules/axios/index');
-
-
-
-class Skills extends React.Component {
-  render() { 
-    return (
-      <div>
-        <h3>Skills</h3>
-        <p>Здесь будет реализация навыков всяких и т.д. и т.п.</p>
-        <p>Здесь будет реализация навыков всяких и т.д. и т.п.</p>
-        <p>Здесь будет реализация навыков всяких и т.д. и т.п.</p>
-        <p>Здесь будет реализация навыков всяких и т.д. и т.п.</p>
-
-      </div>    
-    );
-  }
-}
-
-class Tellent extends React.Component {
-  render() {
-    return (
-      <div>
-        <h3>Tellent</h3>
-        <p>Поиск работы </p>
-        <p>Поиск работы </p>
-        <p>Поиск работы </p>
-        <p>Поиск работы </p>
-        <p>Поиск работы </p>
-
-      </div>
-    );
-  }
-}
-
-// const Child = ({ match }) => (
-//   <div>
-//     <h3>ID: {match.params.component}</h3>
-//   </div>
-// );
-
-class Menu extends React.Component {
-  render (){
-    return (
-      <div>
-        <h1>Menu</h1>
-        {/* change the <a>s to <Link>s */}
-          <ul>
-            <li><Link to="/skills">Skills</Link></li>
-            <li><Link to="/tellent">Tellent</Link></li>
-            <li><Link to="/tellent">Tellent</Link></li>
-          </ul>
-          <Route component={Tellent} />
-          <Route component={Skills} />
-          <Route component={Menu} />
-          {/* <Route path="/:id" component={Child} /> */}
-      </div>
-    );
-  }
-}
 
 class LinkPage extends React.Component {
 constructor (props) {
@@ -90,15 +34,18 @@ onClickSignOut () {
   render() {
     return (
       <BrowserRouter>
-        {/* <Route  component={Menu}/> */}
         <div>
-
-          <ul>
-            <li><Link to="/skills">Skills</Link></li>
-            <li><Link to="/tellent">Tellent</Link></li>
-          </ul>
-          <Route path="/skills" component={Skills} />
-          <Route path="/tellent" component={Tellent} />
+          {/* <Route path="/" component={Menu} /> */}
+              <h1>Menu</h1>
+              <ul>
+                <li><Link to="/home">Home</Link></li>
+                <li><Link to="/skills">Skills</Link></li>
+                <li><Link to="/tellent">Tellent</Link></li>
+              </ul>
+            <Route exact path="/home" component={Home} />
+            <Route path="/skills" component={Skills} />
+            <Route path="/tellent" component={Tellent} />
+          {/* <Route />   */}
         </div>
       </BrowserRouter>
     );
