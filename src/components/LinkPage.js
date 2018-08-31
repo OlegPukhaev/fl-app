@@ -62,7 +62,8 @@ class Menu extends React.Component {
             <li><Link to="/skills">Skills</Link></li>
             <li><Link to="/tellent">Tellent</Link></li>
           </ul>
-
+          <Route component={Skills} />
+          <Route component={Tellent} />
           {/* <Route path="/:id" component={Child} /> */}
       </div>
     );
@@ -90,11 +91,7 @@ onClickSignOut () {
   render() {
     return (
       <BrowserRouter>
-        <Route  component={Menu}>
-        <
-          <Route component={Skills} />
-          <Route component={Tellent} />
-        </Route>
+        <Route  component={Menu}/>
       </BrowserRouter>
     );
     
