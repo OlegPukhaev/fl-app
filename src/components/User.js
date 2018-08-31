@@ -8,11 +8,12 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     toastr = require('../../node_modules/toastr/toastr');
 
     Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
+    storage : 'localStorage'
   });
-    
+ 
     const axios = require('../../node_modules/axios');
     axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
-    axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+    // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
     axios.defaults.headers.common['access-token'] = '5Pyj0VqKssQ6qrHVszikCg';
     axios.defaults.headers.common['expiry'] = '1536904460';
     axios.defaults.headers.common['token-type'] = 'Bearer';
@@ -114,7 +115,8 @@ class User extends React.Component {
       Auth.emailSignIn({
         email: this.state.email,
         password: this.state.password
-      }).then(this.setUserStates());
+      }).then(//редирект на мэин пэйдж
+      );
   }
 
   render() {

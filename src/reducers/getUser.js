@@ -3,22 +3,20 @@ const ADD_USER = 'ADD_USER',
       USER_VALID = 'USER_VALID';
 
 let initialState = {
-  uservalid:false,
+  token:null,
   userinfo:[]
 }
 
   export function userValid(value) {
-    // console.log(value);
       return dispatch => {
         dispatch({
-      type: USER_VALID, 
-      uservalid: value
+          type: USER_VALID, 
+          payload: value
         });
       };
     }
 
 export function addUser(object) {
-  // console.log(object);
     return dispatch => {
       dispatch({
 		type: ADD_USER, 
@@ -39,7 +37,6 @@ export function exitUser() {
 
 const actionsMap = {
 	[ADD_USER]: (state, action) => {
-      
       return {...state,
         userinfo: action.payload
       }
@@ -48,12 +45,11 @@ const actionsMap = {
     state.userinfo = []
 		return state = {
       userinfo: state.userinfo,
-      // uservalid: false
     }
   },
 	[USER_VALID]: (state, action) => {
 		return state = {...state,
-      uservalid: action.uservalid
+      token: action.payload
     }
   }
 };

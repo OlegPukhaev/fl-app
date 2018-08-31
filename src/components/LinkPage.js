@@ -1,67 +1,117 @@
 import React from 'react';
+import { render , component} from 'react-dom';
+// import {Router, Route} from 'react-router';
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+
 import {connect} from 'react-redux';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-import {exitUser, userValid} from '../reducers/getUser';
-var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
-    PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
-    toastr = require('../../node_modules/toastr/toastr');
+import { userValid } from '../reducers/getUser';
+var Auth = require('../../node_modules/j-toker/src/j-toker.js');
+// const axios = require('../../node_modules/axios/index');
 
 
 
-const axios = require('../../node_modules/axios/index');
+class Skills extends React.Component {
 
-    // Make a request for a user with a given ID
-    // axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/pusher');
-    // axios.post('https://floating-atoll-63112.herokuapp.com/api/v1/profile/skills/skill_tags');
-    // https://floating-atoll-63112.herokuapp.com/api/v1/profile/skills/user
-    // axios.get('https://floating-atoll-63112.herokuapp.com/api/v1/media')
-      // .then(function (response) {
-      //   // handle success
-      //   console.log(' my data ', response);
-      // })
-      // .catch(function (error) {
-      //   // handle error
-      //   console.log('my errors' , error);
-      // })
-      // .then(function () {
-      //   // always executed
-      // });
+ 
+// const Skills = React.createClass({
+  render() { 
+    return (
+      <div>
+        <h3>Skills</h3>
+        <p>Здесь будет реализация навыков всяких и т.д. и т.п.</p>
+        <p>Здесь будет реализация навыков всяких и т.д. и т.п.</p>
+        <p>Здесь будет реализация навыков всяких и т.д. и т.п.</p>
+        <p>Здесь будет реализация навыков всяких и т.д. и т.п.</p>
 
-
-class LinkPage extends React.Component {
-constructor (props) {
-    super(props);
-
-    Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
-    this.onClickSignOut = this.onClickSignOut.bind(this);
-    // this.exitUser = this.exitUser.bind(this);
+      </div>    
+    );
+  }
 }
 
-exitUser = () => this.props.dispatch(exitUser());
-userValid = (value) => this.props.dispatch(userValid(value));
-
-onClickSignOut () {
-    Auth.signOut();
-    this.exitUser();
-    this.userValid(false);
-}
-
+class Tellent extends React.Component {
   render() {
     return (
-      <div id="userform">
-        Hello: {Auth.user.full_name}<br></br>
-        {/* {console.log("lll", this.props.user.userinfo)} */}
-        <button type="button" onClick={this.onClickSignOut}>Sign Out</button>
+      <div>
+        <h3>Tellent</h3>
+        <p>Поиск работы </p>
+        <p>Поиск работы </p>
+        <p>Поиск работы </p>
+        <p>Поиск работы </p>
+        <p>Поиск работы </p>
+
       </div>
     );
   }
 }
 
-function mapStateToProps (state){
-  return {
-      user: state.user
+const Child = ({ match }) => (
+  <div>
+    <h3>ID: {match.params.component}</h3>
+  </div>
+);
+
+class Menu extends React.Component {
+  render (){
+    return (
+      <div>
+        <h1>Menu</h1>
+        {/* change the <a>s to <Link>s */}
+          <ul>
+            <li><Link to="/skills">Skills</Link></li>
+            <li><Link to="/tellent">Tellent</Link></li>
+          </ul>
+
+          {/* <Route path="/:id" component={Child} /> */}
+      </div>
+    );
   }
 }
 
-export default connect(mapStateToProps)(LinkPage);
+class LinkPage extends React.Component {
+constructor (props) {
+    super(props);
+
+    // Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
+    this.onClickSignOut = this.onClickSignOut.bind(this);
+    // this.exitUser = this.exitUser.bind(this);
+}
+
+// exitUser = () => this.props.dispatch(exitUser());
+// userValid = (value) => this.props.dispatch(userValid(value));
+
+onClickSignOut () {
+  localStorage.clear()
+  Auth.signOut();
+  this.userValid(null);
+}
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Route  component={Menu}>
+        <
+          <Route component={Skills} />
+          <Route component={Tellent} />
+        </Route>
+      </BrowserRouter>
+    );
+    
+    // return (
+    //   <div id="userform">
+    //     Hello: {Auth.user.full_name}<br></br>
+    //     {/* {console.log("lll", this.props.user.userinfo)} */}
+    //     <button type="button" onClick={this.onClickSignOut}>Sign Out</button>
+    //   </div>
+    // );
+  }
+}
+
+// function mapStateToProps (state){
+//   return {
+//       user: state.user
+//   }
+// }
+
+export default LinkPage;
