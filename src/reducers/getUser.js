@@ -3,7 +3,7 @@ const ADD_USER = 'ADD_USER',
       USER_VALID = 'USER_VALID';
 
 let initialState = {
-  token:null,
+  // token:null,
   userinfo:[]
 }
 

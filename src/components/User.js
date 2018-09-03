@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {getToken} from './../functions/config';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import {addUser, userValid} from '../reducers/getUser';
@@ -10,15 +11,21 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
     storage : 'localStorage'
   });
- 
-    const axios = require('../../node_modules/axios');
-    axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
+
+  var configapi = getToken();
+
+   const axios = require('../../node_modules/axios');
+   console.log('----lll', configapi['access-token']);
     // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-    axios.defaults.headers.common['access-token'] = '5Pyj0VqKssQ6qrHVszikCg';
-    axios.defaults.headers.common['expiry'] = '1536904460';
-    axios.defaults.headers.common['token-type'] = 'Bearer';
-    axios.defaults.headers.common['uid'] = 'nuba818400@gmail.com';
-    axios.defaults.headers.common['client'] = 'hfgdkcZZiioDEIRziT-XKw';
+    
+    axios.defaults.headers.common['access-token'] = configapi['access-token'];
+    axios.defaults.headers.common['expiry'] = configapi['expiry'];
+    axios.defaults.headers.common['token-type'] = configapi['token-type'];
+    axios.defaults.headers.common['uid'] = configapi['uid'];
+    axios.defaults.headers.common['client'] = configapi['client'];
+    
+    axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
+    // axios.defaults.headers.common = {configapi};
 
     // axios.get('/api/v1/profile/skills/user'
     axios.get('/api/v1/profile/personal'

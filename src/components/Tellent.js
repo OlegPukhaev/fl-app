@@ -13,7 +13,7 @@ class Tellent extends React.Component {
       return (
         <div>
           <h3>Tellent</h3>
-          <p>Поиск работы, поиск талантов и талантищев это тоже много значит. </p>
+          <p>Поиск проектов и фрилансеров </p>
         </div>
       );
     }

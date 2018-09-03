@@ -1,5 +1,7 @@
 export function getToken(){
-    var token = localStorage.getItem('authHeaders');
-    if (token) return token
+    const returnObj = JSON.parse(localStorage.getItem('authHeaders'));
+    if (returnObj) {
+        return returnObj;
+    }
         else return false;
 }

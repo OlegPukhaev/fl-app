@@ -38,7 +38,6 @@ onClickSignOut () {
           {/* <Route path="/" component={Menu} /> */}
               <h1>Menu</h1>
               <ul>
-                <li><Link to="/home">Home</Link></li>
                 <li><Link to="/skills">Skills</Link></li>
                 <li><Link to="/tellent">Tellent</Link></li>
               </ul>
