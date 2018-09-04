@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-import SharedSkills from './SharedSkills';
+import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
 import SkillsStepTwo from './SkillsStepTwo';
 // import { userValid } from '../reducers/getUser';
@@ -16,8 +16,7 @@ class Skills extends React.Component {
   render() { 
     return (
     <div class="tab-content my-central-info">
-      <div role="tabpanel" class="tab-pane my-tab step-1-open" id="skills">
-       
+      <div role="tabpanel" class="tab-pane my-tab step-3-open" id="skills">
         <div class="steps-nav flexbox justify-space-between">
           <div class="steps-nav-title">Your Shared Skills</div>
           <div class="steps-nav-btn">
@@ -26,12 +25,13 @@ class Skills extends React.Component {
               <button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler">Done</button>
             </div>
             <button type="button" class="btn btn-blue btn-bold step-3-btn step-1-toggler step-toggler">Add</button>
+            {/* <button type="button" class="btn btn-blue btn-bold step-3-btn">Add</button> */}
           </div>
         </div>
-        
+
         <SkillsStepOne />
         <SkillsStepTwo />
-        <SharedSkills />
+        <SkillsStepThree />
 
         <div class="skills-footer">
           <a href="#">
@@ -40,10 +40,6 @@ class Skills extends React.Component {
           </a>
         </div>
       </div>
-      
-
-
-
     </div>   
     );
   }

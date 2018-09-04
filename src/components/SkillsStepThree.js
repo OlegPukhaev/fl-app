@@ -5,7 +5,7 @@ import React from 'react';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
-class SharedSkills extends React.Component {
+class SkillsStepThree extends React.Component {
   render() { 
     return (
         <div class="step-3">
@@ -161,4 +161,4 @@ class SharedSkills extends React.Component {
   }
 }
 
-export default SharedSkills;
+export default SkillsStepThree;
