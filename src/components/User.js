@@ -15,9 +15,6 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
   var configapi = getToken();
 
    const axios = require('../../node_modules/axios');
-   console.log('----lll', configapi['access-token']);
-    // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-    
     axios.defaults.headers.common['access-token'] = configapi['access-token'];
     axios.defaults.headers.common['expiry'] = configapi['expiry'];
     axios.defaults.headers.common['token-type'] = configapi['token-type'];
@@ -25,9 +22,6 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     axios.defaults.headers.common['client'] = configapi['client'];
     
     axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
-    // axios.defaults.headers.common = {configapi};
-
-    // axios.get('/api/v1/profile/skills/user'
     axios.get('/api/v1/profile/personal'
   )
       .then(function (response) {
@@ -129,7 +123,6 @@ class User extends React.Component {
   render() {
     return (
       <div id="userform">
-        {/* {console.log(this.props.user)} */}
         {this.props.user.userinfo.full_name}
         {this.props.user.uservalid}
         <div id="user-reg">

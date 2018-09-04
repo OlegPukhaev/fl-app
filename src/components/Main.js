@@ -22,7 +22,7 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
 Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
 
 var configapi = getToken();
-console.log("Token!!!!", configapi);
+// console.log("Token!!!!", configapi);
 // const AppStackNavigator = createStackNavigatior({
 //   login: {
 //     screen: User

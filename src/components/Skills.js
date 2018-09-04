@@ -7,12 +7,45 @@ import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
 import SkillsStepTwo from './SkillsStepTwo';
-// import { userValid } from '../reducers/getUser';
-// import {getToken} from './../functions/config';
-var Auth = require('../../node_modules/j-toker/src/j-toker.js');
+import {getToken} from './../functions/config';
+import {getSkills} from './../reducers/skills'
+// var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 // const axios = require('../../node_modules/axios/index');
 
+var configapi = getToken();
+
+   const axios = require('../../node_modules/axios');
+  //  console.log('----lll', configapi['access-token']);
+    // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+    
+    axios.defaults.headers.common['access-token'] = configapi['access-token'];
+    axios.defaults.headers.common['expiry'] = configapi['expiry'];
+    axios.defaults.headers.common['token-type'] = configapi['token-type'];
+    axios.defaults.headers.common['uid'] = configapi['uid'];
+    axios.defaults.headers.common['client'] = configapi['client'];
+    
+    axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
+
+    axios.get('/api/v1/profile/skills/user')
+      .then(function (response) {
+        // handle success
+        console.log(' my data ', response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log('my errors' , error);
+      })
+      .then(function () {
+        // always executed
+      });
+
 class Skills extends React.Component {
+
+  getSkillsData () {
+
+  }
+
+
   render() { 
     return (
     <div class="tab-content my-central-info">
@@ -49,14 +82,14 @@ class Skills extends React.Component {
 function mapDispatchToProps(dispatch){
   return {
     // add: () => dispatch(addTodo())
+    getSkills: (value) => dispatch(getSkills(value))
   }
 }
 
 function mapStateToProps (state){
   return {
-    user: state.user
+    skills: state.skills
   }
 }
 
-// export default Skills;
 export default connect(mapStateToProps, mapDispatchToProps)(Skills)
