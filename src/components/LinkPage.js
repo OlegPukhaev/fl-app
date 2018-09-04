@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { render , component} from 'react-dom';
+// import { render , component} from 'react-dom';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 import Home from './Home';
