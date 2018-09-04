@@ -1,14 +1,14 @@
 import React from 'react';
-import { render , component} from 'react-dom';
-import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
+// import { render , component} from 'react-dom';
+// import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
 import SkillsStepTwo from './SkillsStepTwo';
 import {getToken} from './../functions/config';
-import {getSkills} from './../reducers/skills'
+import {getSkills} from '../reducers/userSkills'
 // var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 // const axios = require('../../node_modules/axios/index');
 
@@ -21,21 +21,11 @@ axios.defaults.headers.common['uid'] = configapi['uid'];
 axios.defaults.headers.common['client'] = configapi['client'];
 axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
 
-class Skills extends React.Component {
-constructor (props) {
-  super(props);
-
-  console.log('oleg', this.props.skillsinfo);
-}
-
-
-  getSkillsData () {
-    axios.get('/api/v1/profile/skills/user')
+axios.get('/api/v1/profile/skills/user')
       .then(function (response) {
         // handle success
-        console.log(' my data - data', response.data);
-        getSkills(response.data);
-        // console.log('jjjj', this.props.skillsinfo.skills);
+        console.log(' my data - data', response);
+        
       })
       .catch(function (error) {
         // handle error
@@ -43,15 +33,36 @@ constructor (props) {
       })
       .then(function () {
         // always executed
+        getSkills("Oleg Nubo molodec");
       });
+
+
+class Skills extends React.Component {
+constructor (props) {
+  super(props);
+  
+  this.state = {}
+  this.getSkillsData = this.getSkillsData.bind(this);
+  this.onClickGetState = this.onClickGetState.bind(this);
+}
+
+  getSkills = (value) => this.props.dispatch(getSkills(value));
+
+  getSkillsData () {
+    
+  }
+
+  onClickGetState () {
+    var obj = "Новые данные";
+    this.getSkills(obj);
   }
 
 
   render() { 
-    this.getSkillsData();
-    
     return (
     <div class="tab-content my-central-info">
+    Данные -- ++ : {this.props.skills.skillsinfo}
+    <button type="button" onClick={this.onClickGetState}>click</button>
       <div role="tabpanel" class="tab-pane my-tab step-3-open" id="skills">
         <div class="steps-nav flexbox justify-space-between">
           <div class="steps-nav-title">Your Shared Skills</div>
@@ -66,9 +77,11 @@ constructor (props) {
         </div>
 
         <SkillsStepOne />
-        <SkillsStepTwo />
-        <SkillsStepThree />
-        {this.props.skillsinfo.profession_categories}
+        <SkillsStepTwo /> 
+        <SkillsStepThree /> 
+
+        
+       
 
         <div class="skills-footer">
           <a href="#">
@@ -82,18 +95,11 @@ constructor (props) {
   }
 }
 
-
-function mapDispatchToProps(dispatch){
-  return {
-    // add: () => dispatch(addTodo())
-    getSkills: (value) => dispatch(getSkills(value))
-  }
-}
-
 function mapStateToProps (state){
   return {
-    skillsinfo: state.skills
+    skills: state.skills,
+    user: state.user
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Skills)
+export default connect(mapStateToProps)(Skills)

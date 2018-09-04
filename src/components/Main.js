@@ -138,18 +138,18 @@ class Main extends React.Component {
 																				My Promo
 																			</a>
 																		</li>
-																		<li role="presentation">
-																		{/* <Link to="/skills"> */}
+																		<li role="presentation" class="active">
 																			<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">
+																			<span class="icon icon-skills"></span>
+																				My Skills
+																			</a>
+																			
+																			{/* <Link to="/skills">
 																				<span class="icon icon-skills"></span>
 																				My Skills
-																				{/* <span class="icon icon-skills"></span>My Skills</Link> */}
-																			</a>
-																			{/* </Link> */}
-																			
-																	
+																			</Link> */}
 																		</li>
-																		<li role="presentation" class="active">
+																		<li role="presentation">
 																			<a href="#saved" aria-controls="saved" role="tab" data-toggle="tab">
 																				<span class="icon icon-saved"></span>
 																				Saved
@@ -182,7 +182,7 @@ class Main extends React.Component {
 																		{/* <!--Skills page START --> */}
 
 																		<Skills />
-																		{/* <Route path="/skills" component={Skills} />
+																		{/* <Route exact={true} path="/skills" component={Skills} />
         												    <Route path="/tellent" component={Tellent} />		 */}
 																	</div>
 															</div>
@@ -201,7 +201,9 @@ class Main extends React.Component {
 
 
 
-        {/* {getToken() !== false ? <LinkPage /> : <User />} */}
+				{/* {getToken() !== false ? <LinkPage /> : <User />} */}
+				{/* <User /> */}
+				
       </div>
     );
   }

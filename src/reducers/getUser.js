@@ -37,6 +37,7 @@ export function exitUser() {
 
 const actionsMap = {
 	[ADD_USER]: (state, action) => {
+    console.log("User log");
       return {...state,
         userinfo: action.payload
       }
