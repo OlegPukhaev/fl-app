@@ -13,23 +13,29 @@ import {getSkills} from './../reducers/skills'
 // const axios = require('../../node_modules/axios/index');
 
 var configapi = getToken();
+const axios = require('../../node_modules/axios');
+axios.defaults.headers.common['access-token'] = configapi['access-token'];
+axios.defaults.headers.common['expiry'] = configapi['expiry'];
+axios.defaults.headers.common['token-type'] = configapi['token-type'];
+axios.defaults.headers.common['uid'] = configapi['uid'];
+axios.defaults.headers.common['client'] = configapi['client'];
+axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
 
-   const axios = require('../../node_modules/axios');
-  //  console.log('----lll', configapi['access-token']);
-    // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-    
-    axios.defaults.headers.common['access-token'] = configapi['access-token'];
-    axios.defaults.headers.common['expiry'] = configapi['expiry'];
-    axios.defaults.headers.common['token-type'] = configapi['token-type'];
-    axios.defaults.headers.common['uid'] = configapi['uid'];
-    axios.defaults.headers.common['client'] = configapi['client'];
-    
-    axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
+class Skills extends React.Component {
+constructor (props) {
+  super(props);
 
+  console.log('oleg', this.props.skillsinfo);
+}
+
+
+  getSkillsData () {
     axios.get('/api/v1/profile/skills/user')
       .then(function (response) {
         // handle success
-        console.log(' my data ', response);
+        console.log(' my data - data', response.data);
+        getSkills(response.data);
+        // console.log('jjjj', this.props.skillsinfo.skills);
       })
       .catch(function (error) {
         // handle error
@@ -38,15 +44,12 @@ var configapi = getToken();
       .then(function () {
         // always executed
       });
-
-class Skills extends React.Component {
-
-  getSkillsData () {
-
   }
 
 
   render() { 
+    this.getSkillsData();
+    
     return (
     <div class="tab-content my-central-info">
       <div role="tabpanel" class="tab-pane my-tab step-3-open" id="skills">
@@ -65,6 +68,7 @@ class Skills extends React.Component {
         <SkillsStepOne />
         <SkillsStepTwo />
         <SkillsStepThree />
+        {this.props.skillsinfo.profession_categories}
 
         <div class="skills-footer">
           <a href="#">
@@ -88,7 +92,7 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps (state){
   return {
-    skills: state.skills
+    skillsinfo: state.skills
   }
 }
 

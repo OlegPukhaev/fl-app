@@ -7,8 +7,11 @@ let initialState = {
 }
 
   export function getSkills(value) {
+    // console.log('mmm' ,value);
       return dispatch => {
+       
         dispatch({
+          
           type: GET_SKILLS,
           payload: value
         });
@@ -37,18 +40,18 @@ let initialState = {
 const actionsMap = {
 	[GET_SKILLS]: (state, action) => {
       return {...state,
-        userinfo: action.payload
+        skills: action.payload
       }
 	},
 	[ADD_SKILLS]: (state, action) => {
     state.userinfo = []
 		return state = {
-      userinfo: state.userinfo,
+      skills: state.userinfo,
     }
   },
 	[DEL_SKILLS]: (state, action) => {
 		return state = {...state,
-      token: action.payload
+      skills: action.payload
     }
   }
 };
