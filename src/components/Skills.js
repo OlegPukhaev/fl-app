@@ -4,6 +4,9 @@ import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
+import SharedSkills from './SharedSkills';
+import SkillsStepOne from './SkillsStepOne';
+import SkillsStepTwo from './SkillsStepTwo';
 // import { userValid } from '../reducers/getUser';
 // import {getToken} from './../functions/config';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js');
@@ -12,10 +15,36 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 class Skills extends React.Component {
   render() { 
     return (
-      <div>
-        <h3>Skills</h3>
-        <p>Добавление скиллс</p>
-      </div>    
+    <div class="tab-content my-central-info">
+      <div role="tabpanel" class="tab-pane my-tab step-1-open" id="skills">
+       
+        <div class="steps-nav flexbox justify-space-between">
+          <div class="steps-nav-title">Your Shared Skills</div>
+          <div class="steps-nav-btn">
+            <div class="btn-group step-2-btn clearfix">
+              <button type="button" class="btn btn-blue-border btn-bold step-1-toggler step-toggler">Back</button>
+              <button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler">Done</button>
+            </div>
+            <button type="button" class="btn btn-blue btn-bold step-3-btn step-1-toggler step-toggler">Add</button>
+          </div>
+        </div>
+        
+        <SkillsStepOne />
+        <SkillsStepTwo />
+        <SharedSkills />
+
+        <div class="skills-footer">
+          <a href="#">
+            <span class="icon icon-add btn btn-blue add-btn"></span>
+            Add Here New Teachers Skill Category
+          </a>
+        </div>
+      </div>
+      
+
+
+
+    </div>   
     );
   }
 }

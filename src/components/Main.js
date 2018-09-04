@@ -107,12 +107,11 @@ class Main extends React.Component {
         
         <div class="content">
           <div class="container-fluid">
-
             <div class="panel panel-default my-main-panel">
               <div class="panel-body">
+								{/* <BrowserRouter> */}
                 <div class="flexbox">
 									<div class="right-col">
-								<BrowserRouter>
 																	{/* <!-- Nav tabs --> */}
 																	<ul class="nav nav-pills nav-stacked my-sidebar" role="tablist">
 																		<li role="presentation">
@@ -140,11 +139,15 @@ class Main extends React.Component {
 																			</a>
 																		</li>
 																		<li role="presentation">
-																			{/* <a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">
+																		{/* <Link to="/skills"> */}
+																			<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">
 																				<span class="icon icon-skills"></span>
 																				My Skills
-																			</a> */}
-																			<Link to="/skills" aria-controls="skills" role="tab" data-toggle="tab"><span class="icon icon-skills"></span>My Skills</Link>
+																				{/* <span class="icon icon-skills"></span>My Skills</Link> */}
+																			</a>
+																			{/* </Link> */}
+																			
+																	
 																		</li>
 																		<li role="presentation" class="active">
 																			<a href="#saved" aria-controls="saved" role="tab" data-toggle="tab">
@@ -171,459 +174,28 @@ class Main extends React.Component {
 																			</a>
 																		</li>
 																	</ul>
-														</BrowserRouter>
+														
 															</div>	{/* <!--right-col End--> */}
 
-															<div class="left-col"></div>
-																	{/* <!-- Tab panes --> */}
+															<div class="left-col">
 																	<div class="tab-content my-central-info">
-
 																		{/* <!--Skills page START --> */}
-																		<div role="tabpanel" class="tab-pane my-tab step-1-open" id="skills">
-																			<div class="steps-nav flexbox justify-space-between">
-																				<div class="steps-nav-title">Your Shared Skills</div>
-																				<div class="steps-nav-btn">
-																					<div class="btn-group step-2-btn clearfix">
-																						<button type="button" class="btn btn-blue-border btn-bold step-1-toggler step-toggler">Back</button>
-																						<button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler">Done</button>
-																					</div>
-																					<button type="button" class="btn btn-blue btn-bold step-3-btn step-1-toggler step-toggler">Add</button>
-																				</div>
-																			</div>
-																			<div class="step-1">
-																				<div class="skill-block skill-cat">
-																					<div class="skill-block-title">Choose  Your Skill Category</div>
-																					<div class="skill-block-list">
-																						<form>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-1">
-																								<label for="cat-1">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-2">
-																								<label for="cat-2">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-3">
-																								<label for="cat-3">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-4">
-																								<label for="cat-4">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-5">
-																								<label for="cat-5">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-6">
-																								<label for="cat-6">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-7">
-																								<label for="cat-7">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-8">
-																								<label for="cat-8">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-9">
-																								<label for="cat-9">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																							<div class="checkbox-block">
-																								<input type="checkbox" id="cat-10">
-																								<label for="cat-10">
-																									<span class="checkbox-circle">
-																										<span class="icon icon-check-mark"></span>
-																									</span>
-																									<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																								</label>
-																							</div>
-																						</form>
-																					</div>
-																					<button type="button" class="btn btn-blue btn-bold step-2-toggler step-toggler">Next</button>
-																				</div>
-																			</div>
-																			<div class="step-2">
-																				<div class="skill-subcat">
-																					<div class="flexbox justify-space-between">
-																						<div class="skill-block">
-																							<div class="skill-block-title">Math &amp; Science</div>
-																							<div class="skill-block-list">
-																								<form>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-1">
-																										<label for="math-1">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-2">
-																										<label for="math-2">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-3">
-																										<label for="math-3">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-4">
-																										<label for="math-4">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-5">
-																										<label for="math-5">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-6">
-																										<label for="math-6">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-7">
-																										<label for="math-7">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-8">
-																										<label for="math-8">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-9">
-																										<label for="math-9">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-10">
-																										<label for="math-10">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																								</form>
-																							</div>
-																						</div>
-																						<div class="skill-sub-block">
-																							<form class="form-group">
-																								<input type="text" class="form-control" placeholder="Write new skill">
-																								<button class="add-btn btn btn-blue">
-																									<span class="icon icon-add"></span>
-																								</button>
-																							</form>
-																							<div class="skill-tags-block clearfix">
-																								<div class="skill-tag">Math</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Math</div>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																				<div class="skill-subcat">
-																					<div class="flexbox justify-space-between">
-																						<div class="skill-block">
-																							<div class="skill-block-title">Biology</div>
-																							<div class="skill-block-list">
-																								<form>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="biol-6">
-																										<label for="biol-6">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="biol-7">
-																										<label for="biol-7">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																								</form>
-																							</div>
-																						</div>
-																						<div class="skill-sub-block">
-																							<form class="form-group">
-																								<input type="text" class="form-control" placeholder="Write new skill">
-																								<button class="add-btn btn btn-blue">
-																									<span class="icon icon-add"></span>
-																								</button>
-																							</form>
-																							<div class="skill-tags-block clearfix">
-																								<div class="skill-tag">Math</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Math</div>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																			</div>
-																			<div class="step-3">
-																				<div class="skill-subcat skill-subcat--item">
-																					<div class="flexbox justify-space-between">
-																						<div class="skill-block">
-																							<div class="skill-block-title">Math &amp; Science</div>
-																							<div class="skill-block-list">
-																								<form>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-1" checked>
-																										<label for="math-1">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-2" checked>
-																										<label for="math-2">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-3" checked>
-																										<label for="math-3">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-4" checked>
-																										<label for="math-4">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="math-5" checked>
-																										<label for="math-5">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																								</form>
-																							</div>
-																						</div>
-																						<div class="skill-sub-block">
-																							<div class="skill-block-title">Skills</div>
-																							<div class="skill-tags-block clearfix">
-																								<div class="skill-tag">Math</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Math</div>
-																							</div>
-																						</div>
-																					</div>
-																					<div class="skill-block-footer">
-																						<a href="#">View More</a>
-																						<a href="#">Edit</a>
-																					</div>
-																				</div>
-																				<div class="skill-subcat skill-subcat--item">
-																					<div class="flexbox justify-space-between">
-																						<div class="skill-block">
-																							<div class="skill-block-title">Biology</div>
-																							<div class="skill-block-list">
-																								<form>
-																									<div class="checkbox-block">
-																										<input type="checkbox" id="biol-6" checked>
-																										<label for="biol-6">
-																											<span class="checkbox-circle">
-																												<span class="icon icon-check-mark"></span>
-																											</span>
-																											<span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-																										</label>
-																									</div>
-																								</form>
-																							</div>
-																						</div>
-																						<div class="skill-sub-block">
-																							<div class="skill-block-title">Skills</div>
-																							<div class="skill-tags-block clearfix">
-																								<div class="skill-tag">Math</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Trigonometry</div>
-																								<div class="skill-tag">Calculus</div>
-																								<div class="skill-tag">Math</div>
-																							</div>
-																						</div>
-																					</div>
-																					<div class="skill-block-footer">
-																						<a href="#">View More</a>
-																						<a href="#">Edit</a>
-																					</div>
-																				</div>
-																				<div class="skill-subcat skill-subcat--new">
-																					<div class="skill-block-title">New Skill Category</div>
-																					<div class="flexbox justify-space-between">
-																						<div class="skill-block">
-																							<form>
-																								<div class="input-block">
-																									Category
-																									<input type="text" placeholder="Insert your new category here..">
-																								</div>
-																							</form>
-																						</div>
-																						<div class="skill-block">
-																							<form>
-																								<div class="input-block">
-																									Subcategory
-																									<input type="text" placeholder="Insert your new subcategory here..">
-																								</div>
-																							</form>
-																						</div>
-																						<div class="skill-sub-block">
-																							<div class="skill-block-title">Skills</div>
-																							<form class="form-group">
-																								<input type="text" class="form-control" placeholder="Write new skill">
-																								<button class="add-btn btn btn-blue">
-																									<span class="icon icon-add"></span>
-																								</button>
-																							</form>
-																							<div class="skill-tags-block clearfix">
-																								<div class="skill-tag">Math</div>
-																								<div class="skill-tag">Trigonometry</div>
-																							</div>
-																						</div>
-																					</div>
-																					<button type="button" class="btn btn-blue add-skill-btn">Add Skill Category</button>
-																				</div>
-																				<div class="skills-footer">
-																					<a href="#">
-																						<span class="icon icon-add btn btn-blue add-btn"></span>
-																						Add Here New Teachers Skill Category
-																					</a>
-																				</div>
-																			</div>
-																		 </div>{/*<!--Skills page END --> */}
+
+																		<Skills />
+																		{/* <Route path="/skills" component={Skills} />
+        												    <Route path="/tellent" component={Tellent} />		 */}
 																	</div>
 															</div>
 
 
 
                 </div>
+							{/* </BrowserRouter> */}
               </div>
              </div> 
 
           </div>
         </div>
-        {/* /// */}
         
 
 
