@@ -10,50 +10,32 @@ import SkillsStepTwo from './SkillsStepTwo';
 import {getSkills} from '../reducers/userSkills';
 import axios from 'axios';
 
-
-
-// console.log(getSkillsData());
-
 class Skills extends React.Component {
 constructor () {
   super();
-  
-  this.state = {testvalue: null};
-  // this.getSkillsData = this.getSkillsData.bind(this);
-  this.onClickGetState = this.onClickGetState.bind(this);
+ 
 }
 
-  // getSkills = (value) => this.props.getSkills(value);
-
-  getSkillsData() {
-   
+  getSkillsData = () => {
     axios.get('/api/v1/profile/skills/user')
     .then(response => {
-      console.log('response data' , response.data);
-      // this.getSkills("new");
       this.props.getSkills(response.data);
     })
     .catch(function (error) {
       console.log('my errors' , error);
       return false;
     });  
-
-
   }
 
-  onClickGetState (obj) {
+  onClickGetState = (obj) => {
     var obj = "Новые данные  0000";
     this.props.getSkills(obj);
   }
 
-
   render() { 
-    // console.log("getData", this.props.skills);
     return (
-    <div class="tab-content my-central-info">
-    {this.props.skills.skillsinfo}
-    <button type="button" onClick={this.onClickGetState}>click</button>
-      <div role="tabpanel" class="tab-pane my-tab step-3-open" id="skills">
+    <div class="tab-content my-central-info ">
+      <div role="tabpanel" class="tab-pane my-tab step-3-open active" id="skills">
         <div class="steps-nav flexbox justify-space-between">
           <div class="steps-nav-title">Your Shared Skills</div>
           <div class="steps-nav-btn">
@@ -62,16 +44,12 @@ constructor () {
               <button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler">Done</button>
             </div>
             <button type="button" class="btn btn-blue btn-bold step-3-btn step-1-toggler step-toggler">Add</button>
-            {/* <button type="button" class="btn btn-blue btn-bold step-3-btn">Add</button> */}
           </div>
         </div>
 
-        {/* <SkillsStepOne />
-        <SkillsStepTwo />  */}
-        {this.getSkillsData() !== false && <SkillsStepThree /> }
-
-        
-       
+        <SkillsStepOne />
+        <SkillsStepTwo />
+        <SkillsStepThree />
 
         <div class="skills-footer">
           <a href="#">

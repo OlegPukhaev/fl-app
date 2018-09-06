@@ -4,15 +4,17 @@ import React, { Component } from 'react';
 import './App.css';
 import store from './store';
 import {Provider} from 'react-redux';
+import {getToken} from '../src/functions/config';
 import Main from './components/Main';
+import User from './components/User';
+import LinkPage from './components/LinkPage';
+
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {/* <div> */}
-          <Main />
-        {/* </div> */}
+        <LinkPage />
       </Provider>
     );
   }

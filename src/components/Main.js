@@ -106,7 +106,6 @@ class Main extends React.Component {
           <div class="container-fluid">
             <div class="panel panel-default my-main-panel">
               <div class="panel-body">
-								{/* <BrowserRouter> */}
                 <div class="flexbox">
 									<div class="right-col">
 																	{/* <!-- Nav tabs --> */}
@@ -135,14 +134,13 @@ class Main extends React.Component {
 																				My Promo
 																			</a>
 																		</li>
-																		<li role="presentation">
-																			<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab" onClick={this.onClickGetData}>
+																		<li role="presentation" class="active">
+																			<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">
 																			<span class="icon icon-skills"></span>
 																				My Skills
 																			</a>
-
 																		</li>
-																		<li role="presentation" class="active">
+																		<li role="presentation" >
 																			<a href="#saved" aria-controls="saved" role="tab" data-toggle="tab">
 																				<span class="icon icon-saved"></span>
 																				Saved
@@ -175,6 +173,7 @@ class Main extends React.Component {
 																		{/* <!--Skills page START --> */}
 
 																		<Skills />
+																		
 																		{/* <Route exact={true} path="/skills" component={Skills} />
         												    <Route path="/tellent" component={Tellent} />		 */}
 																	</div>
@@ -183,7 +182,6 @@ class Main extends React.Component {
 
 
                 </div>
-							{/* </BrowserRouter> */}
               </div>
              </div> 
 

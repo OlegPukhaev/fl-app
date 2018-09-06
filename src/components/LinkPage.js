@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 import Home from './Home';
-import Skills from './Skills';
+import Main from './Main';
 import Tellent from './Tellent';
 
 import '../App.css';
@@ -38,11 +38,11 @@ onClickSignOut () {
           {/* <Route path="/" component={Menu} /> */}
               <h1>Menu</h1>
               <ul>
-                <li><Link to="/skills">Skills</Link></li>
+                <li><Link to="/Main">Main</Link></li>
                 <li><Link to="/tellent">Tellent</Link></li>
               </ul>
             <Route exact path="/home" component={Home} />
-            <Route path="/skills" component={Skills} />
+            <Route path="/Main" component={Main} />
             <Route path="/tellent" component={Tellent} />
           {/* <Route />   */}
         </div>
