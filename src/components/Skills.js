@@ -1,67 +1,57 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
-// import { render , component} from 'react-dom';
-// import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+import {CONFIG} from '../functions/config';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
 import SkillsStepTwo from './SkillsStepTwo';
-import {getToken} from './../functions/config';
-import {getSkills} from '../reducers/userSkills'
-// var Auth = require('../../node_modules/j-toker/src/j-toker.js');
-// const axios = require('../../node_modules/axios/index');
+import {getSkills} from '../reducers/userSkills';
+import axios from 'axios';
 
-var configapi = getToken();
-const axios = require('../../node_modules/axios');
-axios.defaults.headers.common['access-token'] = configapi['access-token'];
-axios.defaults.headers.common['expiry'] = configapi['expiry'];
-axios.defaults.headers.common['token-type'] = configapi['token-type'];
-axios.defaults.headers.common['uid'] = configapi['uid'];
-axios.defaults.headers.common['client'] = configapi['client'];
-axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
 
-axios.get('/api/v1/profile/skills/user')
-      .then(function (response) {
-        // handle success
-        console.log(' my data - data', response);
-        
-      })
-      .catch(function (error) {
-        // handle error
-        console.log('my errors' , error);
-      })
-      .then(function () {
-        // always executed
-        getSkills("Oleg Nubo molodec");
-      });
 
+// console.log(getSkillsData());
 
 class Skills extends React.Component {
-constructor (props) {
-  super(props);
+constructor () {
+  super();
   
-  this.state = {}
-  this.getSkillsData = this.getSkillsData.bind(this);
+  this.state = {testvalue: null};
+  // this.getSkillsData = this.getSkillsData.bind(this);
   this.onClickGetState = this.onClickGetState.bind(this);
 }
 
-  getSkills = (value) => this.props.dispatch(getSkills(value));
+  // getSkills = (value) => this.props.getSkills(value);
 
-  getSkillsData () {
-    
+  getSkillsData() {
+   
+    axios.get('/api/v1/profile/skills/user')
+    .then(response => {
+      console.log('response data' , response.data);
+      // this.getSkills("new");
+      this.props.getSkills(response.data);
+    })
+    .catch(function (error) {
+      console.log('my errors' , error);
+      return false;
+    });  
+
+
   }
 
-  onClickGetState () {
-    var obj = "Новые данные";
-    this.getSkills(obj);
+  onClickGetState (obj) {
+    var obj = "Новые данные  0000";
+    this.props.getSkills(obj);
   }
 
 
   render() { 
+    // console.log("getData", this.props.skills);
     return (
     <div class="tab-content my-central-info">
-    Данные -- ++ : {this.props.skills.skillsinfo}
+    {this.props.skills.skillsinfo}
     <button type="button" onClick={this.onClickGetState}>click</button>
       <div role="tabpanel" class="tab-pane my-tab step-3-open" id="skills">
         <div class="steps-nav flexbox justify-space-between">
@@ -76,9 +66,9 @@ constructor (props) {
           </div>
         </div>
 
-        <SkillsStepOne />
-        <SkillsStepTwo /> 
-        <SkillsStepThree /> 
+        {/* <SkillsStepOne />
+        <SkillsStepTwo />  */}
+        {this.getSkillsData() !== false && <SkillsStepThree /> }
 
         
        
@@ -95,6 +85,15 @@ constructor (props) {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      getSkills
+    },
+    dispatch
+  );
+ };
+
 function mapStateToProps (state){
   return {
     skills: state.skills,
@@ -102,4 +101,4 @@ function mapStateToProps (state){
   }
 }
 
-export default connect(mapStateToProps)(Skills)
+export default connect(mapStateToProps, mapDispatchToProps)(Skills)

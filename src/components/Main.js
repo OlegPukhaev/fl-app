@@ -1,9 +1,9 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+// import {BrowserRouter, Route, Link} from 'react-router-dom';
 // import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
-import Home from './Home';
+// import Home from './Home';
 import Skills from './Skills';
 import Tellent from './Tellent';
 
@@ -12,7 +12,7 @@ import '../../node_modules/toastr/build/toastr.css';
 import User from './User';
 import LinkPage from './LinkPage';
 import {getToken} from '../functions/config'
-import {addUser, userValid} from '../reducers/getUser';
+// import {addUser, userValid} from '../reducers/getUser';
 
 
 var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
@@ -29,14 +29,11 @@ var configapi = getToken();
 //   }
 // })
 
-
-
 class Main extends React.Component {
 
   constructor (props) {
     super(props);
   }
-
 
   render() {
     return (
@@ -82,7 +79,7 @@ class Main extends React.Component {
 		                        <li>
 		                            <a href="#">Favorites <div class="caret"></div></a>
 		                        </li>
-								 <li>
+								 						<li>
 		                            <a href="#">About <div class="caret"></div></a>
 		                        </li>
 		                    </ul>
@@ -138,18 +135,14 @@ class Main extends React.Component {
 																				My Promo
 																			</a>
 																		</li>
-																		<li role="presentation" class="active">
-																			<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">
+																		<li role="presentation">
+																			<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab" onClick={this.onClickGetData}>
 																			<span class="icon icon-skills"></span>
 																				My Skills
 																			</a>
-																			
-																			{/* <Link to="/skills">
-																				<span class="icon icon-skills"></span>
-																				My Skills
-																			</Link> */}
+
 																		</li>
-																		<li role="presentation">
+																		<li role="presentation" class="active">
 																			<a href="#saved" aria-controls="saved" role="tab" data-toggle="tab">
 																				<span class="icon icon-saved"></span>
 																				Saved
