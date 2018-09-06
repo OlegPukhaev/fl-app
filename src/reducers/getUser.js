@@ -1,4 +1,4 @@
-const ADD_USER = 'ADD_USER',
+const GET_USER = 'ADD_USER',
       EXIT_USER = 'DELL_USER',
       USER_VALID = 'USER_VALID';
 
@@ -7,20 +7,20 @@ let initialState = {
   userinfo:[]
 }
 
-  export function userValid(value) {
-      return dispatch => {
-        dispatch({
-          type: USER_VALID, 
-          payload: value
-        });
-      };
-    }
+  // export function userValid(value) {
+  //     return dispatch => {
+  //       dispatch({
+  //         type: USER_VALID, 
+  //         payload: value
+  //       });
+  //     };
+  //   }
 
-export function addUser(object) {
+export function getUser(object) {
     return dispatch => {
       dispatch({
-		type: ADD_USER, 
-    payload: object,
+		type: GET_USER, 
+    payload: object
       });
     };
   }
@@ -36,7 +36,7 @@ export function exitUser() {
   }
 
 const actionsMap = {
-	[ADD_USER]: (state, action) => {
+	[GET_USER]: (state, action) => {
     console.log("User log");
       return {...state,
         userinfo: action.payload
@@ -44,13 +44,8 @@ const actionsMap = {
 	},
 	[EXIT_USER]: (state, action) => {
     state.userinfo = []
-		return state = {
-      userinfo: state.userinfo,
-    }
-  },
-	[USER_VALID]: (state, action) => {
-		return state = {...state,
-      token: action.payload
+		return {...state ,
+      userinfo: state.userinfo
     }
   }
 };

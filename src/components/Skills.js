@@ -72,11 +72,11 @@ const mapDispatchToProps = dispatch => {
   );
  };
 
-function mapStateToProps (state){
+function mapStateToProps (state) {
   return {
     skills: state.skills,
     user: state.user
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Skills)

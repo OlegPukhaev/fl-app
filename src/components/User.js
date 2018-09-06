@@ -1,9 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getToken} from './../functions/config';
+import { bindActionCreators } from 'redux';
+import {CONFIG} from '../functions/config';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-import {addUser, userValid} from '../reducers/getUser';
+import {getUser} from '../reducers/getUser';
+import axios from 'axios';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
     toastr = require('../../node_modules/toastr/toastr');
@@ -14,7 +17,7 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
 
   var configapi = getToken();
 
-   const axios = require('../../node_modules/axios');
+  //  const axios = require('../../node_modules/axios');
     axios.defaults.headers.common['access-token'] = configapi['access-token'];
     axios.defaults.headers.common['expiry'] = configapi['expiry'];
     axios.defaults.headers.common['token-type'] = configapi['token-type'];
@@ -22,13 +25,14 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     axios.defaults.headers.common['client'] = configapi['client'];
     
     axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
-    axios.get('/api/v1/profile/personal'
-  )
-      .then(function (response) {
+    
+    axios.get('/api/v1/profile/personal')
+      .then(response => {
         // handle success
-        console.log(' my data ', response);
+        console.log(' Hello ', response.data.user.full_name);
+        this.props.getUser(response.data);
       })
-      .catch(function (error) {
+      .catch(error => {
         // handle error
         console.log('my errors' , error);
       })
@@ -42,22 +46,23 @@ class User extends React.Component {
   constructor (props) {
     super(props)
 
-
     this.state = { 
       user_first_name : '', user_last_name : '', user_email : '', user_password : '',
       userobj:{},
       email_login: '', password_login: ''
     } 
 
-    this.userLogin = this.userLogin.bind(this)
-    this.userRegistr = this.userRegistr.bind(this)
-    this.onChangeReg = this.onChangeReg.bind(this)
-    this.addUser = this.addUser.bind(this)
-    this.onChangelogin = this.onChangelogin.bind(this)
+    // this.userLogin = this.userLogin.bind(this)
+    // this.userRegistr = this.userRegistr.bind(this)
+    // this.onChangeReg = this.onChangeReg.bind(this)
+    // this.addUser = this.addUser.bind(this)
+    // this.onChangelogin = this.onChangelogin.bind(this)
   }
   // exitUser = () => this.props.dispatch(exitUser());
 
-  userRegistr () {
+
+
+  userRegistr = ()  => {
     if ((this.state.first_name !== "") && (this.state.last_name !== "") && (this.state.email !== "") && (this.state.password !== "")){
       Auth.emailSignUp({
         first_name: this.state.first_name,
@@ -76,7 +81,7 @@ class User extends React.Component {
     }
   }
 
-  onChangeReg (event) {
+  onChangeReg = (event) => {
     switch (event.target.id) {
       case "first_name":
        this.setState({first_name: event.target.value});
@@ -93,7 +98,7 @@ class User extends React.Component {
       }
   }
 
-  onChangelogin (event) {
+  onChangelogin = (event) => {
     switch (event.target.id) {
       case "email_login":
        this.setState({email: event.target.value});
@@ -104,20 +109,21 @@ class User extends React.Component {
       }
   }
 
-  userValid = (value) => this.props.dispatch(userValid(value));
-  addUser = (value) => this.props.dispatch(addUser(value));
+  // userValid = (value) => this.props.dispatch(userValid(value));
+  // addUser = (value) => this.props.dispatch(addUser(value));
 
   setUserStates () {
     this.addUser(Auth.user);
     this.userValid(true);
   }
 
-  userLogin () {
+  userLogin = () => {
       Auth.emailSignIn({
         email: this.state.email,
         password: this.state.password
-      }).then(//редирект на мэин пэйдж
-      );
+      }).then(response => {
+
+      });
   }
 
   render() {
@@ -149,10 +155,19 @@ class User extends React.Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      getUser
+    },
+    dispatch
+  );
+ };
+
 function mapStateToProps (state){
   return {
       user: state.user
   }
 }
 
-export default connect(mapStateToProps)(User);
+export default connect(mapStateToProps, mapDispatchToProps)(User);

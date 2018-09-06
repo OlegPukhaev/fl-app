@@ -5,13 +5,38 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 import Home from './Home';
 import Main from './Main';
+import User from './User';
 import Tellent from './Tellent';
+import {getToken} from '../functions/config';
+
+
 
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-import { userValid } from '../reducers/getUser';
+// import { userValid } from '../reducers/getUser';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 // const axios = require('../../node_modules/axios/index');
+
+class Menu extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          {/* <Route path="/" component={Menu} /> */}
+              <h1>Menu</h1>
+              <ul>
+                <li><Link to="/Main">Main</Link></li>
+                <li><Link to="/tellent">Tellent</Link></li>
+              </ul>
+            <Route exact path="/home" component={Home} />
+            <Route path="/Main" component={Main} />
+            <Route path="/tellent" component={Tellent} />
+          {/* <Route />   */}
+        </div>
+      </BrowserRouter>
+    );
+  }
+}
 
 class LinkPage extends React.Component {
 constructor (props) {
@@ -33,20 +58,9 @@ onClickSignOut () {
 
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          {/* <Route path="/" component={Menu} /> */}
-              <h1>Menu</h1>
-              <ul>
-                <li><Link to="/Main">Main</Link></li>
-                <li><Link to="/tellent">Tellent</Link></li>
-              </ul>
-            <Route exact path="/home" component={Home} />
-            <Route path="/Main" component={Main} />
-            <Route path="/tellent" component={Tellent} />
-          {/* <Route />   */}
-        </div>
-      </BrowserRouter>
+      <div>
+        {getToken() !== false ? <Menu /> : <User />}
+      </div>
     );
     
     // return (
