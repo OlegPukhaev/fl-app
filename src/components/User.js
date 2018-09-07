@@ -30,7 +30,7 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
       .then(response => {
         // handle success
         console.log(' Hello ', response.data.user.full_name);
-        this.props.getUser(response.data);
+        // this.props.getUser(response.data);
       })
       .catch(error => {
         // handle error

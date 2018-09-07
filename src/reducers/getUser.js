@@ -1,20 +1,9 @@
 const GET_USER = 'ADD_USER',
-      EXIT_USER = 'DELL_USER',
-      USER_VALID = 'USER_VALID';
+      EXIT_USER = 'DELL_USER';
 
 let initialState = {
-  // token:null,
   userinfo:[]
-}
-
-  // export function userValid(value) {
-  //     return dispatch => {
-  //       dispatch({
-  //         type: USER_VALID, 
-  //         payload: value
-  //       });
-  //     };
-  //   }
+};
 
 export function getUser(object) {
     return dispatch => {

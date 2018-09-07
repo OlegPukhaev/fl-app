@@ -1,11 +1,17 @@
 import React from 'react';
-// import {connect} from 'react-redux';
-// import { render , component} from 'react-dom';
-// import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
+import { render , component} from 'react-dom';
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
 class SkillsStepThree extends React.Component {
+	constructor (props) {
+		super(props);
+
+		// console.log(this.props.data);
+	}
+
   render() { 
     return (
         <div class="step-3">
@@ -63,6 +69,7 @@ class SkillsStepThree extends React.Component {
                             </form>
                         </div>
                     </div>
+										Дата: {this.props.data}
                     <div class="skill-sub-block">
                         <div class="skill-block-title">Skills</div>
                         <div class="skill-tags-block clearfix">

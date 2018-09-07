@@ -13,7 +13,6 @@ import {getToken} from '../functions/config';
 
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-// import { userValid } from '../reducers/getUser';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 // const axios = require('../../node_modules/axios/index');
 
@@ -50,6 +49,11 @@ constructor (props) {
 // exitUser = () => this.props.dispatch(exitUser());
 // userValid = (value) => this.props.dispatch(userValid(value));
 
+componentDidMount = () => {
+  //сделать проверку на авторизацию и на Local storage есил существует то и то тогда записать в сторе состояние для 
+  //выбора Меню или Юзера
+}
+
 onClickSignOut () {
   localStorage.clear()
   Auth.signOut();
@@ -62,14 +66,6 @@ onClickSignOut () {
         {getToken() !== false ? <Menu /> : <User />}
       </div>
     );
-    
-    // return (
-    //   <div id="userform">
-    //     Hello: {Auth.user.full_name}<br></br>
-    //     {/* {console.log("lll", this.props.user.userinfo)} */}
-    //     <button type="button" onClick={this.onClickSignOut}>Sign Out</button>
-    //   </div>
-    // );
   }
 }
 

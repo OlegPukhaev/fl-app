@@ -187,14 +187,6 @@ class Main extends React.Component {
 
           </div>
         </div>
-        
-
-
-
-
-				{/* {getToken() !== false ? <LinkPage /> : <User />} */}
-				{/* <User /> */}
-				
       </div>
     );
   }

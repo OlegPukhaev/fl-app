@@ -1,7 +1,8 @@
 const GET_SKILLS = 'GET_SKILLS';
 
 let initialState = {
-  skillsinfo:[]
+  skillsdata:[],
+  testname: "Oleg"
 }
 
   export function getSkills(value) {
@@ -15,9 +16,10 @@ let initialState = {
 
 const actionsMap = {
 	[GET_SKILLS]: (state, action) => {
+      // state.skillsinfo = action.payload.profession_categories.filter(state.skillsinfo.profession_categories);
       return {...state,
-        skillsinfo: action.payload
-      }
+        skillsdata: action.payload
+      };
 	}
 };
 
