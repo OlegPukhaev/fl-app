@@ -1,4 +1,5 @@
 import {getToken} from '../functions/config';
+import axios from 'axios';
 var configapi = getToken;
 
 export const CONFIG = axios.create({

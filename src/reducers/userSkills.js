@@ -1,9 +1,10 @@
 const GET_SKILLS = 'GET_SKILLS';
 
+// let initialState = [];
 let initialState = {
-  skillsdata:[],
-  testname: "Oleg"
+  skillsdata : []
 }
+
 
   export function getSkills(value) {
       return dispatch => {
@@ -16,11 +17,17 @@ let initialState = {
 
 const actionsMap = {
 	[GET_SKILLS]: (state, action) => {
-      // state.skillsinfo = action.payload.profession_categories.filter(state.skillsinfo.profession_categories);
-      return {...state,
-        skillsdata: action.payload
-      };
+    return {
+      ...state, 
+      skillsdata: action.payload
+    }
 	}
+	// [GET_SKILLS]: (state, action) => {
+  //   return state = {
+  //     ...state, 
+  //     skillsdata: action.payload
+  //   }
+	// }
 };
 
 export default function userSkills(state = initialState, action) {

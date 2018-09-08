@@ -1,3 +1,4 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -8,7 +9,7 @@ import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
 import SkillsStepTwo from './SkillsStepTwo';
 import {getSkills} from '../reducers/userSkills';
-import getObject
+// import getObject
 import axios from 'axios';
 
 class Skills extends React.Component {
@@ -20,48 +21,23 @@ constructor () {
 }
 
 
+
 componentWillMount = () => {
   axios.get('/api/v1/profile/skills/user')
   .then(response => {
     console.log("Component Will mounth ", response);
-    // var copy = Object.assign({}, response.data.profession_categories);
-    
-    this.props.getSkills(response.data.profession_categories);
-    // console.log("props " , this.props.myskills.skillsdata[0].name);
+    // Reactotron.log(response)
+    var copy = Object.assign({}, response);
+    // var array = JSON.parse(response);
+    this.props.getSkills(response);
+    // Reactotron.log(copy);
+    // console.log("props " , r);
   })
   .catch(function (error) {
     console.log('my errors' , error);
     return false;
   }); 
 };
-
-  componentDidMount = () => {
-    // axios.get('/api/v1/profile/skills/user')
-    // .then(response => {
-    //   console.log("Component Did mounth ", response);
-    //   // var copy = Object.assign({}, response.data.profession_categories);
-    //   this.props.getSkills(response.data.profession_categories);
-    //   // console.log("props " , this.props.myskills.skillsdata[0].name);
-    // })
-    // .catch(function (error) {
-    //   console.log('my errors' , error);
-    //   return false;
-    // }); 
-  };
-
-
-
-  // componentWillReceiveProps = (nextProps) => {
-  //   if(nextProps.myskills !== this.props.myskills) {
-  //     // nextProps.myProp имеет другое значение, чем наше текущее myProps
-  //     // поэтому мы можем что-нибудь рассчитать базируясь на новом значении.
-  //   }
-  // }
-
-  // onClickGetState = (obj) => {
-  //   var obj = "Новые данные  0000";
-  //   this.props.getSkills(obj);
-  // }
 
   eachSkills = (item, index) => {
     // if (item.taskid === this.props.taskid) {
@@ -73,12 +49,11 @@ componentWillMount = () => {
   };
 
   render() { 
+    // Reactotron.log(this.props.skills)
     return (
     <div class="tab-content my-central-info ">
-    {/* {this.props.myskills.skillsdata[0].name} */}
-    {/* {this.state.data.data.profession_categories[0].name} */}
-    {/* {console.log('ghg', this.state.data.data.profession_categories)} */}
-      {console.log('renderer' , this.props.myskills.skillsdata[5].id)}
+      {/* {this.props.skills} */}
+      {Reactotron.log(this.props.skills.skillsdata.data.profession_categories['0'].id)}
       <div role="tabpanel" class="tab-pane my-tab step-3-open active" id="skills">
         <div class="steps-nav flexbox justify-space-between">
           <div class="steps-nav-title">Your Shared Skills</div>
@@ -118,8 +93,8 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
   return  {
-    myskills: state.skills,
-    user: state.user
+    skills: state.skills
+    // user: state.user
   }
 }
 

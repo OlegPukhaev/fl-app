@@ -1,27 +1,19 @@
 import React from 'react';
-import {connect} from 'react-redux';
-// import { render , component} from 'react-dom';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
-
+import Test from './Test';
 import Home from './Home';
 import Main from './Main';
 import User from './User';
 import Tellent from './Tellent';
 import {getToken} from '../functions/config';
-
-
-
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-var Auth = require('../../node_modules/j-toker/src/j-toker.js');
-// const axios = require('../../node_modules/axios/index');
 
 class Menu extends React.Component {
   render() {
     return (
       <BrowserRouter>
         <div>
-          {/* <Route path="/" component={Menu} /> */}
               <h1>Menu</h1>
               <ul>
                 <li><Link to="/Main">Main</Link></li>
@@ -30,7 +22,6 @@ class Menu extends React.Component {
             <Route exact path="/home" component={Home} />
             <Route path="/Main" component={Main} />
             <Route path="/tellent" component={Tellent} />
-          {/* <Route />   */}
         </div>
       </BrowserRouter>
     );
@@ -41,38 +32,28 @@ class LinkPage extends React.Component {
 constructor (props) {
     super(props);
 
-    // Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
-    this.onClickSignOut = this.onClickSignOut.bind(this);
-    // this.exitUser = this.exitUser.bind(this);
+    // this.onClickSignOut = this.onClickSignOut.bind(this);
 }
-
-// exitUser = () => this.props.dispatch(exitUser());
-// userValid = (value) => this.props.dispatch(userValid(value));
 
 componentDidMount = () => {
   //сделать проверку на авторизацию и на Local storage есил существует то и то тогда записать в сторе состояние для 
   //выбора Меню или Юзера
 }
 
-onClickSignOut () {
-  localStorage.clear()
-  Auth.signOut();
-  this.userValid(null);
-}
+// onClickSignOut () {
+//   localStorage.clear()
+//   Auth.signOut();
+//   this.userValid(null);
+// }
 
   render() {
     return (
       <div>
-        {getToken() !== false ? <Menu /> : <User />}
+        {/* {getToken() !== false ? <Menu /> : <User />} */}
+        {getToken() !== false ? <Test /> : <User />}
       </div>
     );
   }
 }
-
-// function mapStateToProps (state){
-//   return {
-//       user: state.user
-//   }
-// }
 
 export default LinkPage;
