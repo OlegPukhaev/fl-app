@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {CONFIG} from '../functions/config';
+import {CONFIG} from '../functions/api';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
@@ -38,7 +38,7 @@ allSkills = (item, index) => {
 };
 
   render() { 
-    // Reactotron.log(this.props.skills); 
+    Reactotron.log(this.props.skills); 
     return (
     <div class="tab-content my-central-info ">
       <div role="tabpanel" class="tab-pane my-tab step-3-open active" id="skills">

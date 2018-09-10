@@ -1,10 +1,10 @@
-const GET_SKILLS = 'GET_SKILLS';
+const GET_SKILLS = 'GET_SKILLS',
+      REMOVE_SKILL = 'REMOVE_SKILL';
 
-// let initialState = [];
 let initialState = {
-  skillsdata : []
+  skillsdata : [],
+  categories : []
 }
-
 
   export function getSkills(value) {
       return dispatch => {
@@ -15,19 +15,34 @@ let initialState = {
       };
     }
 
+  export function removeSkill(value) {
+      return dispatch => {
+        dispatch({
+          type: REMOVE_SKILL, 
+          payload: value
+        });
+      };
+    }
+
 const actionsMap = {
 	[GET_SKILLS]: (state, action) => {
     return {
       ...state, 
-      skillsdata: action.payload
+      skillsdata: action.payload,
+      categories: action.payload.filter(item => {
+        if (item.selected === true) return item;
+      })
+
+    }
+	},
+	[REMOVE_SKILL]: (state, action) => {
+    console.log("фильтер" , state.categories.filter(item => item.id != action.payload));
+    // var newobject = state.categories.filter(item => item.id != action.payload)
+    return {
+        ...state,
+        categories: state.categories.filter(item => item.id != action.payload)
     }
 	}
-	// [GET_SKILLS]: (state, action) => {
-  //   return state = {
-  //     ...state, 
-  //     skillsdata: action.payload
-  //   }
-	// }
 };
 
 export default function userSkills(state = initialState, action) {

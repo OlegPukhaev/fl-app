@@ -1,88 +1,11 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
-import { render , component} from 'react-dom';
-import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import {removeSkill} from './../reducers/userSkills';
+import SkillSubcat from './SkillSubcat';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-
-
-class SkillSubcat extends React.Component {
-  constructor(props){
-    super(props);
-  }
-
-  skillBlockList = (item, index) => {
-    if (item.selected === true)
-      return (
-        <div class="checkbox-block" key={item.id}>
-          <input type="checkbox" id="math-1" checked />
-          <label for="math-1">
-            <span class="checkbox-circle">
-              <span class="icon icon-check-mark"></span>
-            </span>
-            <span class="checkbox-text">{item.name}</span>
-          </label>
-        </div>
-      );
-  }
-
-  skillsTagList = (item, index) => {
-    return (
-      <div class="skill-tag" key={item.id}>{item.name}</div>
-    );  
-  }
-
-  allSkills = (item, index) => {
-    if (item.selected !== false) {
-      
-      return (
-        <div class="skill-subcat skill-subcat--item">
-         <div class="flexbox justify-space-between">
-            <div class="skill-block">
-
-            <div id={item.id} key={index} class="skill-block-title">{item.name}</div>
-
-              <div class="skill-block-list">
-                <form>
-                  {
-                    item.skill_categories.map(this.skillBlockList)
-                  }
-                </form>
-              </div>
-          </div>
-
-            <div class="skill-sub-block">
-              <div class="skill-block-title">Skills</div>
-              <div class="skill-tags-block clearfix">
-                {
-                  item.skill_tags.map(this.skillsTagList)
-                }
-              </div>
-            </div>
-
-          </div>
-          <div class="skill-block-footer">
-              <a href="#">View More</a>
-              <a href="#">Edit</a>
-           </div>
-        </div> 
-
-        
-      );
-    }
-  }
-
-  render() { 
-    return (
-      <div class="step-3">
-          {
-            this.props.skills.skillsdata.map(this.allSkills)
-          }
-      </div>
-    );
-  }
-}
 
 class SkillsStepThree extends React.Component {
 	constructor (props) {
@@ -138,4 +61,19 @@ class SkillsStepThree extends React.Component {
   }
 }
 
-export default SkillsStepThree;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      removeSkill
+    },
+    dispatch
+  );
+ };
+
+function mapStateToProps (state) {
+  return  {
+    skills: state.skills
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SkillsStepThree)
