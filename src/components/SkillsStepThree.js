@@ -12,63 +12,73 @@ class SkillSubcat extends React.Component {
     super(props);
   }
 
+  skillBlockList = (item, index) => {
+    if (item.selected === true)
+      return (
+        <div class="checkbox-block" key={item.id}>
+          <input type="checkbox" id="math-1" checked />
+          <label for="math-1">
+            <span class="checkbox-circle">
+              <span class="icon icon-check-mark"></span>
+            </span>
+            <span class="checkbox-text">{item.name}</span>
+          </label>
+        </div>
+      );
+  }
+
+  skillsTagList = (item, index) => {
+    return (
+      <div class="skill-tag" key={item.id}>{item.name}</div>
+    );  
+  }
+
   allSkills = (item, index) => {
     if (item.selected !== false) {
       
       return (
-        <div>
+        <div class="skill-subcat skill-subcat--item">
+         <div class="flexbox justify-space-between">
+            <div class="skill-block">
 
-          <div id={item.id} key={index} class="skill-block-title">{item.name}</div>
+            <div id={item.id} key={index} class="skill-block-title">{item.name}</div>
 
-            <div class="skill-block-list">
-              <form>
+              <div class="skill-block-list">
+                <form>
+                  {
+                    item.skill_categories.map(this.skillBlockList)
+                  }
+                </form>
+              </div>
+          </div>
+
+            <div class="skill-sub-block">
+              <div class="skill-block-title">Skills</div>
+              <div class="skill-tags-block clearfix">
                 {
-                  item.skill_categories.map((subitem, subindex) => ( 
-                    {subitem.selected !== false &&
-                        <div class="checkbox-block">
-                          <input type="checkbox" id="math-1" checked />
-                          <label for="math-1">
-                            <span class="checkbox-circle">
-                              <span class="icon icon-check-mark"></span>
-                            </span>
-                            <span class="checkbox-text">{subitem.name}</span>
-                          </label>
-                        </div>
-                    }    
-                  ))
+                  item.skill_tags.map(this.skillsTagList)
                 }
-              </form>
+              </div>
             </div>
 
-        </div>
+          </div>
+          <div class="skill-block-footer">
+              <a href="#">View More</a>
+              <a href="#">Edit</a>
+           </div>
+        </div> 
+
+        
       );
     }
   }
 
   render() { 
     return (
-      <div class="flexbox justify-space-between">
-
-          <div class="skill-block">
-              {
-                this.props.skills.skillsdata.map(this.allSkills)
-              }
-          </div>
-
-
-          <div class="skill-sub-block">
-              <div class="skill-block-title">Skills</div>
-              <div class="skill-tags-block clearfix">
-                  <div class="skill-tag">Math</div>
-                  <div class="skill-tag">Trigonometry</div>
-                  <div class="skill-tag">Calculus</div>
-                  <div class="skill-tag">Trigonometry</div>
-                  <div class="skill-tag">Calculus</div>
-                  <div class="skill-tag">Trigonometry</div>
-                  <div class="skill-tag">Calculus</div>
-                  <div class="skill-tag">Math</div>
-              </div>
-          </div>
+      <div class="step-3">
+          {
+            this.props.skills.skillsdata.map(this.allSkills)
+          }
       </div>
     );
   }
@@ -77,8 +87,6 @@ class SkillSubcat extends React.Component {
 class SkillsStepThree extends React.Component {
 	constructor (props) {
 		super(props);
-
-
         
 	}
 
@@ -87,15 +95,7 @@ class SkillsStepThree extends React.Component {
           <div class="step-3">
           {Reactotron.log(this.props.skills)}
 
-            <div class="skill-subcat skill-subcat--item">
-               
                 <SkillSubcat skills={this.props.skills}/>
-
-                <div class="skill-block-footer">
-                    <a href="#">View More</a>
-                    <a href="#">Edit</a>
-                </div>
-            </div>
 
             <div class="skill-subcat skill-subcat--new">
                 <div class="skill-block-title">New Skill Category</div>

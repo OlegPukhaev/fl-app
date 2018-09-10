@@ -57,12 +57,12 @@ allSkills = (item, index) => {
         <SkillsStepTwo />
         <SkillsStepThree skills={this.props.skills}/>
 
-        <div class="skills-footer">
+        {/* <div class="skills-footer">
           <a href="#">
             <span class="icon icon-add btn btn-blue add-btn"></span>
             Add Here New Teachers Skill Category
           </a>
-        </div>
+        </div> */}
       </div>
     </div>   
     );
