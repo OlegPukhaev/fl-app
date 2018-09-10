@@ -27,7 +27,7 @@ class SkillSubcat extends React.Component {
   }
 
   onClickDeleteSkills = (event) => {
-    this.props.removeSkill(event.target.id);
+    this.props.removeSkill(event.target.id)
     this.updateApiData(arrForUpdate(this.props.skills.categories));
   }
 

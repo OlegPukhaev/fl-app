@@ -12,27 +12,17 @@ export function getObject(obj){
         return returnObj;
 }
 
-export function getData(item, index){
-   var categories = [{
-        id:1,
-        skill_categories:[8, 9, 10],
-        skill_tags:[{
-            id: 2412,
-            name: "Translation English Yiddish"
-        }]
-    }]
-}
-
-
-export function getSkillCats(value) {
-    var obj=[];
-    value.map((item) => {
-        if (item.selected == true) obj.push(item.id);
-    })
-    return obj;
-}
-
 export function arrForUpdate (value){
+// array convert to api congig format
+
+    function getSkillCats(value) {
+        var obj=[];
+        value.map((item) => {
+            if (item.selected == true) obj.push(item.id);
+        })
+        return obj;
+    }
+
     var obj=[];
     value.map((item) => {
         obj.push({
