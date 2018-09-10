@@ -49,8 +49,8 @@ componentDidMount = () => {
   render() {
     return (
       <div>
-        {/* {getToken() !== false ? <Menu /> : <User />} */}
-        {getToken() !== false ? <Test /> : <User />}
+        {getToken() !== false ? <Menu /> : <User />}
+        {/* {getToken() !== false ? <Test /> : <User />} */}
       </div>
     );
   }

@@ -1,3 +1,4 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import { render , component} from 'react-dom';
@@ -5,122 +6,91 @@ import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
+
+class SkillSubcat extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  allSkills = (item, index) => {
+    if (item.selected !== false) {
+      
+      return (
+        <div>
+
+          <div id={item.id} key={index} class="skill-block-title">{item.name}</div>
+
+            <div class="skill-block-list">
+              <form>
+                {
+                  item.skill_categories.map((subitem, subindex) => ( 
+                    {subitem.selected !== false &&
+                        <div class="checkbox-block">
+                          <input type="checkbox" id="math-1" checked />
+                          <label for="math-1">
+                            <span class="checkbox-circle">
+                              <span class="icon icon-check-mark"></span>
+                            </span>
+                            <span class="checkbox-text">{subitem.name}</span>
+                          </label>
+                        </div>
+                    }    
+                  ))
+                }
+              </form>
+            </div>
+
+        </div>
+      );
+    }
+  }
+
+  render() { 
+    return (
+      <div class="flexbox justify-space-between">
+
+          <div class="skill-block">
+              {
+                this.props.skills.skillsdata.map(this.allSkills)
+              }
+          </div>
+
+
+          <div class="skill-sub-block">
+              <div class="skill-block-title">Skills</div>
+              <div class="skill-tags-block clearfix">
+                  <div class="skill-tag">Math</div>
+                  <div class="skill-tag">Trigonometry</div>
+                  <div class="skill-tag">Calculus</div>
+                  <div class="skill-tag">Trigonometry</div>
+                  <div class="skill-tag">Calculus</div>
+                  <div class="skill-tag">Trigonometry</div>
+                  <div class="skill-tag">Calculus</div>
+                  <div class="skill-tag">Math</div>
+              </div>
+          </div>
+      </div>
+    );
+  }
+}
+
 class SkillsStepThree extends React.Component {
 	constructor (props) {
 		super(props);
 
-		// console.log(this.props.data);
+
+        
 	}
 
   render() { 
-    return (
-        <div class="step-3">
+      return (
+          <div class="step-3">
+          {Reactotron.log(this.props.skills)}
+
             <div class="skill-subcat skill-subcat--item">
-                <div class="flexbox justify-space-between">
-                    <div class="skill-block">
-                        <div class="skill-block-title">Math &amp; Science</div>
-                        <div class="skill-block-list">
-                            <form>
-                                <div class="checkbox-block">
-                                    <input type="checkbox" id="math-1" checked />
-                                    <label for="math-1">
-                                        <span class="checkbox-circle">
-                                            <span class="icon icon-check-mark"></span>
-                                        </span>
-                                        <span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-                                    </label>
-                                </div>
-                                <div class="checkbox-block">
-                                    <input type="checkbox" id="math-2" checked />
-                                    <label for="math-2">
-                                        <span class="checkbox-circle">
-                                            <span class="icon icon-check-mark"></span>
-                                        </span>
-                                        <span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-                                    </label>
-                                </div>
-                                <div class="checkbox-block">
-                                    <input type="checkbox" id="math-3" checked />
-                                    <label for="math-3">
-                                        <span class="checkbox-circle">
-                                            <span class="icon icon-check-mark"></span>
-                                        </span>
-                                        <span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-                                    </label>
-                                </div>
-                                <div class="checkbox-block">
-                                    <input type="checkbox" id="math-4" checked />
-                                    <label for="math-4">
-                                        <span class="checkbox-circle">
-                                            <span class="icon icon-check-mark"></span>
-                                        </span>
-                                        <span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-                                    </label>
-                                </div>
-                                <div class="checkbox-block">
-                                    <input type="checkbox" id="math-5" checked />
-                                    <label for="math-5">
-                                        <span class="checkbox-circle">
-                                            <span class="icon icon-check-mark"></span>
-                                        </span>
-                                        <span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-										Дата: {this.props.data}
-                    <div class="skill-sub-block">
-                        <div class="skill-block-title">Skills</div>
-                        <div class="skill-tags-block clearfix">
-                            <div class="skill-tag">Math</div>
-                            <div class="skill-tag">Trigonometry</div>
-                            <div class="skill-tag">Calculus</div>
-                            <div class="skill-tag">Trigonometry</div>
-                            <div class="skill-tag">Calculus</div>
-                            <div class="skill-tag">Trigonometry</div>
-                            <div class="skill-tag">Calculus</div>
-                            <div class="skill-tag">Math</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-block-footer">
-                    <a href="#">View More</a>
-                    <a href="#">Edit</a>
-                </div>
-            </div>
-            <div class="skill-subcat skill-subcat--item">
-                <div class="flexbox justify-space-between">
-                    <div class="skill-block">
-                        <div class="skill-block-title">Biology</div>
-                        <div class="skill-block-list">
-                            <form>
-                                <div class="checkbox-block">
-                                    <input type="checkbox" id="biol-6" checked />
-                                    <label for="biol-6">
-                                        <span class="checkbox-circle">
-                                            <span class="icon icon-check-mark"></span>
-                                        </span>
-                                        <span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="skill-sub-block">
-                        <div class="skill-block-title">Skills</div>
-                        <div class="skill-tags-block clearfix">
-                            <div class="skill-tag">Math</div>
-                            <div class="skill-tag">Trigonometry</div>
-                            <div class="skill-tag">Calculus</div>
-                            <div class="skill-tag">Trigonometry</div>
-                            <div class="skill-tag">Calculus</div>
-                            <div class="skill-tag">Trigonometry</div>
-                            <div class="skill-tag">Calculus</div>
-                            <div class="skill-tag">Math</div>
-                        </div>
-                    </div>
-                </div>
+               
+                <SkillSubcat skills={this.props.skills}/>
+
                 <div class="skill-block-footer">
                     <a href="#">View More</a>
                     <a href="#">Edit</a>

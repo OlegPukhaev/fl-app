@@ -16,22 +16,12 @@ class Skills extends React.Component {
 constructor () {
   super()
 
-  // this.name = this.props.myskills.skillsdata[0].name;
-  // this.state = {data:[]}
 }
-
-
 
 componentWillMount = () => {
   axios.get('/api/v1/profile/skills/user')
   .then(response => {
-    console.log("Component Will mounth ", response);
-    // Reactotron.log(response)
-    var copy = Object.assign({}, response);
-    // var array = JSON.parse(response);
-    this.props.getSkills(response);
-    // Reactotron.log(copy);
-    // console.log("props " , r);
+    this.props.getSkills(response.data.profession_categories);
   })
   .catch(function (error) {
     console.log('my errors' , error);
@@ -39,21 +29,18 @@ componentWillMount = () => {
   }); 
 };
 
-  eachSkills = (item, index) => {
-    // if (item.taskid === this.props.taskid) {
-      return (
-        <div class="coll-12 bg-light rounded mt-1 p-2" key={index} index={index} id={index}>
-          <p>{item.name} say: <br /></p>
-        </div>
-        );
-  };
+allSkills = (item, index) => {
+  if (item.selected !== false) {
+    return (
+      <li id={item.id} key={index}>{item.name}</li>
+    );
+  }
+};
 
   render() { 
-    // Reactotron.log(this.props.skills)
+    // Reactotron.log(this.props.skills); 
     return (
     <div class="tab-content my-central-info ">
-      {/* {this.props.skills} */}
-      {Reactotron.log(this.props.skills.skillsdata.data.profession_categories['0'].id)}
       <div role="tabpanel" class="tab-pane my-tab step-3-open active" id="skills">
         <div class="steps-nav flexbox justify-space-between">
           <div class="steps-nav-title">Your Shared Skills</div>
@@ -68,7 +55,7 @@ componentWillMount = () => {
 
         <SkillsStepOne />
         <SkillsStepTwo />
-        <SkillsStepThree data="{this.props.skills}"/>
+        <SkillsStepThree skills={this.props.skills}/>
 
         <div class="skills-footer">
           <a href="#">
@@ -94,7 +81,6 @@ const mapDispatchToProps = dispatch => {
 function mapStateToProps (state) {
   return  {
     skills: state.skills
-    // user: state.user
   }
 }
 

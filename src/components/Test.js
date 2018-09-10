@@ -8,21 +8,14 @@ import '../../node_modules/toastr/build/toastr.css';
 import {getSkills} from '../reducers/userSkills';
 import axios from 'axios';
 
-
-
 class Test extends React.Component {
   constructor () {
     super();
-
-    // this.allSkills = this.allSkills.bind(this);
   }
-
 
   componentWillMount = () => {
   axios.get('/api/v1/profile/skills/user')
   .then(response => {
-    // console.log("Component Will mounth ", response);
-    // Reactotron.log(response)
     this.props.getSkills(response.data.profession_categories);
   })
   .catch(function (error) {
@@ -33,16 +26,17 @@ class Test extends React.Component {
 
   allSkills = (item, index) => {
     if (item.selected !== false) {
-      return <li id={item.id} key={index}>{item.name}</li>
+      return (
+        <li id={item.id} key={index}>{item.name}</li>
+      );
     }
   };
-
  
   render() {
     return (
       <div>
           Данные тут:
-          {Reactotron.log(this.props.skills)}
+          {/* {Reactotron.log(this.props.skills)} */}
           <ul>
             {
               this.props.skills.skillsdata.map(this.allSkills)
