@@ -38,7 +38,7 @@ allSkills = (item, index) => {
 };
 
   render() { 
-    Reactotron.log(this.props.skills); 
+    // Reactotron.log(this.props.skills); 
     return (
     <div class="tab-content my-central-info ">
       <div role="tabpanel" class="tab-pane my-tab step-3-open active" id="skills">

@@ -6,6 +6,8 @@ import {removeSkill} from './../reducers/userSkills';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import {CONFIG} from '../functions/api';
+import axios from 'axios';
+import {arrForUpdate} from './../functions/function';
 
 class SkillSubcat extends React.Component {
 
@@ -13,9 +15,20 @@ class SkillSubcat extends React.Component {
     super(props);
   }
 
+  updateApiData = (value) => {
+
+    axios({
+        method: 'post',
+        url: 'https://floating-atoll-63112.herokuapp.com/api/v1/profile/skills',
+        data: {
+            categories : value
+        }
+      });
+  }
+
   onClickDeleteSkills = (event) => {
     this.props.removeSkill(event.target.id);
-
+    this.updateApiData(arrForUpdate(this.props.skills.categories));
   }
 
   skillBlockList = (item, index) => {
@@ -33,13 +46,13 @@ class SkillSubcat extends React.Component {
       );
   }
 
-  skillsTagList = (item, index) => {
+  skillsTagList = (item) => {
     return (
       <div class="skill-tag" key={item.id}>{item.name}</div>
     );  
   }
 
-  allSkills = (item, index) => {
+  allSkills = (item) => {
     if (item.selected !== false) {
       
       return (
@@ -69,8 +82,8 @@ class SkillSubcat extends React.Component {
 
           </div>
           <div class="skill-block-footer" key={item.id}>
-              <a href="#" id={item.id} key={item.id} onClick={this.onClickDeleteSkills}>Delete</a>
-              <a href="#" id={item.id} key={item.id}>Edit</a>
+              <a href="#" key={item.id} onClick={this.onClickDeleteSkills}>Delete</a>
+              <a href ="#" id={item.id} key={item.id}>Edit</a>
            </div>
         </div> 
 

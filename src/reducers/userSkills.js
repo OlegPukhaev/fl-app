@@ -37,7 +37,6 @@ const actionsMap = {
 	},
 	[REMOVE_SKILL]: (state, action) => {
     console.log("фильтер" , state.categories.filter(item => item.id != action.payload));
-    // var newobject = state.categories.filter(item => item.id != action.payload)
     return {
         ...state,
         categories: state.categories.filter(item => item.id != action.payload)
