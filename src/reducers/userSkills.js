@@ -1,9 +1,13 @@
 const GET_SKILLS = 'GET_SKILLS',
+      ADD_SKILL = 'ADD_SKILL',
+      SET_ACTIVE = 'SET_ACTIVE',
       REMOVE_SKILL = 'REMOVE_SKILL';
 
 let initialState = {
   skillsdata : [],
-  categories : []
+  categories : [],
+  addCategories: [],
+  activeWin: "step-3-open"
 }
 
   export function getSkills(value) {
@@ -23,6 +27,24 @@ let initialState = {
         });
       };
     }
+  
+  export function addSkill(value) {
+      return dispatch => {
+        dispatch({
+          type: ADD_SKILL, 
+          payload: value
+        });
+      };
+    }
+
+  export function setActiveWin(value) {
+      return dispatch => {
+        dispatch({
+          type: SET_ACTIVE, 
+          payload: value
+        });
+      };
+    }
 
 const actionsMap = {
 	[GET_SKILLS]: (state, action) => {
@@ -31,18 +53,32 @@ const actionsMap = {
       skillsdata: action.payload,
       categories: action.payload.filter(item => {
         if (item.selected === true) return item;
-      })
-
+      }),
+      addCategories: action.payload
     }
 	},
 	[REMOVE_SKILL]: (state, action) => {
-    // console.log("фильтер" , state.categories.filter(item => item.id != action.payload));
-    // console.log(state.skillsdata[action.payload-1].selected);
     state.skillsdata[action.payload-1].selected=false;
     return {
         ...state,
         categories: state.categories.filter(item => item.id != action.payload),
         skillsdata: state.skillsdata
+    }
+	},
+	[ADD_SKILL]: (state, action) => {
+    state.addCategories.forEach(element => {
+      element.selected = false;
+    });
+    state.addCategories[action.payload-1].selected=true;
+    return {
+        ...state,
+        skillsdata: state.addCategories
+    }
+	},
+	[SET_ACTIVE]: (state, action) => {
+    return {
+        ...state,
+        activeWin: action.payload
     }
 	}
 };

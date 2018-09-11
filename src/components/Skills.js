@@ -40,7 +40,7 @@ allSkills = (item, index) => {
     // Reactotron.log(this.props.skills); 
     return (
     <div class="tab-content my-central-info ">
-      <div role="tabpanel" class="tab-pane my-tab step-3-open active" id="skills">
+      <div role="tabpanel" class="tab-pane my-tab active" class={this.props.skills.activeWin} id="skills">
         <div class="steps-nav flexbox justify-space-between">
           <div class="steps-nav-title">Your Shared Skills</div>
           <div class="steps-nav-btn">
@@ -52,7 +52,7 @@ allSkills = (item, index) => {
           </div>
         </div>
 
-        <SkillsStepOne skills={this.props.skills}/>
+        <SkillsStepOne data={this.props.skills}/>
         <SkillsStepTwo />
         <SkillsStepThree skills={this.props.skills}/>
 

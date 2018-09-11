@@ -1,23 +1,48 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {addSkill, setActiveWin} from './../reducers/userSkills';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
+
+
+
 class SkillsStepOne extends React.Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
+
+    this.state = {active: []}
+  }
+  
+  componentWillReceiveProps () {
+    Reactotron.log(this.props.data)
   }
 
-  skillBlockList = (item) => {
+  onClickSetChecked = (event) => {
+    this.props.addSkill(event.target.id);
+  }
+
+  onClickSetSubCat = () => {
+    this.props.setActiveWin("step-2-open");
+  }
+
+   skillBlockList = (item ,index) => {
     return (
-      <div class="checkbox-block" key={'block'+item.key}>
-        <input id={item.id} key={'input'+item.key} type="checkbox" />
-        <label for="cat-3">
-          <span class="checkbox-circle">
-            <span class="icon icon-check-mark"></span>
+        <div id={item.id} class="checkbox-block" onClick={this.onClickSetChecked}>
+        
+          <input 
+            id={item.id} 
+            type="checkbox" 
+            checked={item.selected}
+          />
+
+        <label id={item.id} for="cat-3">
+          <span id={item.id} class="checkbox-circle">
+            <span  id={item.id} class="icon icon-check-mark"></span>
           </span>
-          <span class="checkbox-text">{item.name}</span>
+          <span id={item.id} class="checkbox-text">{item.name}</span>
         </label>
       </div>
     );
@@ -32,12 +57,13 @@ class SkillsStepOne extends React.Component {
             <form>
 
               { 
-                this.props.skills.skillsdata.map(this.skillBlockList)
+                this.props.skills.addCategories.map(this.skillBlockList)
               }
 
             </form>
           </div>
-          <button type="button" class="btn btn-blue btn-bold step-2-toggler step-toggler">Next</button>
+          {/* step-2-toggler step-toggler */}
+          <button type="button" class="btn btn-blue btn-bold" onClick={this.onClickSetSubCat}>Next</button>
         </div>
       </div>        
     );
@@ -47,7 +73,8 @@ class SkillsStepOne extends React.Component {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      // removeSkill
+      addSkill,
+      setActiveWin
     },
     dispatch
   );
