@@ -1,6 +1,9 @@
+import Reactotron from 'reactotron-react-js';
+
 const GET_SKILLS = 'GET_SKILLS',
       ADD_SKILL = 'ADD_SKILL',
       SET_ACTIVE = 'SET_ACTIVE',
+      CHECK_SUB_CAT = 'CHECK_SUB_CAT',
       REMOVE_SKILL = 'REMOVE_SKILL';
 
 let initialState = {
@@ -48,6 +51,16 @@ let initialState = {
       };
     }
 
+  export function checkSubcat(catId, subCatId) {
+    return dispatch => {
+      dispatch({
+        type: CHECK_SUB_CAT, 
+        id : catId,
+        subId: subCatId
+      });
+    }; 
+  }
+
 const actionsMap = {
 	[GET_SKILLS]: (state, action) => {
     return {
@@ -82,6 +95,15 @@ const actionsMap = {
         ...state,
         activeWin: action.payload,
         addSkillId: action.id
+    }
+	},
+	[CHECK_SUB_CAT]: (state, action) => {
+    state.skillsdata[action.id].skill_categories[action.subId].selected = true;
+    Reactotron.log(action.id, action.subId);
+    Reactotron.log(state.skillsdata[action.id].skill_categories);
+    return {
+        ...state,
+        skillsdata: state.skillsdata
     }
 	}
 };

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
+import {checkSubcat} from './../reducers/userSkills';
 
 
 
@@ -12,20 +13,21 @@ class SkillBlock extends React.Component {
   }
 
   onClickChecked = (event) => {
-    alert(event.target.id);
+    // alert(event.target.id);
+    this.props.checkSubcat( this.props.id, event.target.id)
   }
 
   getListSubCat = (item, index) => {
     return(
-      <div class="checkbox-block" id={item.id}>
-      <input type="checkbox" id={item.id} checked={item.selected} onClick={this.onClickChecked}/>
-      <label for="biol-6">
-        <span class="checkbox-circle">
-          <span class="icon icon-check-mark"></span>
-        </span>
-        <span class="checkbox-text">{item.name}</span>
-      </label>
-    </div>
+      <div class="checkbox-block" key={index} id={index}>
+        <input type="checkbox" checked={item.selected}/>
+        <label for="biol-6">
+          <span class="checkbox-circle">
+            <span class="icon icon-check-mark" key={index} id={index} onClick={this.onClickChecked}></span>
+          </span>
+          <span class="checkbox-text" key={index} id={index} onClick={this.onClickChecked}>{item.name}</span>
+        </label>
+      </div>
     );
   }
 
@@ -51,7 +53,7 @@ class SkillBlock extends React.Component {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      // removeSkill
+      checkSubcat
     },
     dispatch
   );
