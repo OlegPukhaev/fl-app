@@ -1,3 +1,4 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -6,39 +7,19 @@ import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
 class SkillsStepTwo extends React.Component {
+  constructor(props){
+    super(props);
+  }
   render() { 
     return (
       <div class="step-2">
         <div class="skill-subcat">
             <div class="flexbox justify-space-between">
-               
-              <SkillBlock />
-                 {/* <div class="skill-block">
-                    <div class="skill-block-title">Biology</div>
-                    <div class="skill-block-list">
-                        <form>
-                            <div class="checkbox-block">
-                                <input type="checkbox" id="biol-6" />
-                                <label for="biol-6">
-                                    <span class="checkbox-circle">
-                                        <span class="icon icon-check-mark"></span>
-                                    </span>
-                                    <span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-                                </label>
-                            </div>
-                            <div class="checkbox-block">
-                                <input type="checkbox" id="biol-7" />
-                                <label for="biol-7">
-                                    <span class="checkbox-circle">
-                                        <span class="icon icon-check-mark"></span>
-                                    </span>
-                                    <span class="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                </div> */}
-
+               {/* {Reactotron.log(this.props.skills.addSkillId)} */}
+              <SkillBlock 
+                id={this.props.skills.addSkillId} 
+                data={this.props.skills.skillsdata[this.props.skills.addSkillId]}
+              />
 
                 <div class="skill-sub-block">
                     <form class="form-group">

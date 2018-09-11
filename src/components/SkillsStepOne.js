@@ -6,9 +6,6 @@ import {addSkill, setActiveWin} from './../reducers/userSkills';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
-
-
-
 class SkillsStepOne extends React.Component {
   constructor (props) {
     super(props);
@@ -26,7 +23,6 @@ class SkillsStepOne extends React.Component {
   }
 
   onClickSetSubCat = () => {
-    alert(this.state.activeID);
     this.props.setActiveWin("step-2-open", this.state.activeID);
   }
 
@@ -64,7 +60,6 @@ class SkillsStepOne extends React.Component {
 
             </form>
           </div>
-          {/* step-2-toggler step-toggler */}
           <button type="button" class="btn btn-blue btn-bold" onClick={this.onClickSetSubCat}>Next</button>
         </div>
       </div>        

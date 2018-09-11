@@ -43,7 +43,7 @@ let initialState = {
         dispatch({
           type: SET_ACTIVE, 
           payload: value,
-          id:skillId
+          id:skillId-1
         });
       };
     }

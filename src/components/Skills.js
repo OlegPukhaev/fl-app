@@ -52,8 +52,8 @@ allSkills = (item, index) => {
           </div>
         </div>
 
-        <SkillsStepOne data={this.props.skills}/>
-        <SkillsStepTwo />
+        <SkillsStepOne />
+        {this.props.skills.addSkillId !== null && <SkillsStepTwo />}
         <SkillsStepThree skills={this.props.skills}/>
 
       </div>
