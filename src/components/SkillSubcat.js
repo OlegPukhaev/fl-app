@@ -27,11 +27,14 @@ class SkillSubcat extends React.Component {
   }
 
   onClickDeleteSkills = (event) => {
-    this.props.removeSkill(event.target.id)
-    this.updateApiData(arrForUpdate(this.props.skills.categories));
+    this.props.removeSkill(event.target.id);
+    var delObj = this.props.skills.categories.filter(item => item.id != event.target.id);
+
+    Reactotron.log(delObj); 
+    this.updateApiData(arrForUpdate(delObj));
   }
 
-  skillBlockList = (item, index) => {
+  skillBlockList = (item) => {
     if (item.selected === true)
       return (
         <div class="checkbox-block" key={item.id}>
@@ -82,7 +85,7 @@ class SkillSubcat extends React.Component {
 
           </div>
           <div class="skill-block-footer" key={item.id}>
-              <a href="#" key={item.id} onClick={this.onClickDeleteSkills}>Delete</a>
+              <a href="#" id={item.id} key={item.id} onClick={this.onClickDeleteSkills}>Delete</a>
               <a href ="#" id={item.id} key={item.id}>Edit</a>
            </div>
         </div> 
@@ -93,7 +96,6 @@ class SkillSubcat extends React.Component {
   }
 
   render() { 
-    Reactotron.log(this.props.skills); 
     return (
       <div class="step-3">
           {

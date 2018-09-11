@@ -36,10 +36,13 @@ const actionsMap = {
     }
 	},
 	[REMOVE_SKILL]: (state, action) => {
-    console.log("фильтер" , state.categories.filter(item => item.id != action.payload));
+    // console.log("фильтер" , state.categories.filter(item => item.id != action.payload));
+    // console.log(state.skillsdata[action.payload-1].selected);
+    state.skillsdata[action.payload-1].selected=false;
     return {
         ...state,
-        categories: state.categories.filter(item => item.id != action.payload)
+        categories: state.categories.filter(item => item.id != action.payload),
+        skillsdata: state.skillsdata
     }
 	}
 };
