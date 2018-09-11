@@ -10,7 +10,6 @@ import '../../node_modules/toastr/build/toastr.css';
 class SkillsStepThree extends React.Component {
 	constructor (props) {
 		super(props);
-        
 	}
 
   render() { 

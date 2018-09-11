@@ -9,7 +9,6 @@ import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
 import SkillsStepTwo from './SkillsStepTwo';
 import {getSkills} from '../reducers/userSkills';
-// import getObject
 import axios from 'axios';
 
 class Skills extends React.Component {
@@ -53,16 +52,10 @@ allSkills = (item, index) => {
           </div>
         </div>
 
-        <SkillsStepOne />
+        <SkillsStepOne skills={this.props.skills}/>
         <SkillsStepTwo />
         <SkillsStepThree skills={this.props.skills}/>
 
-        {/* <div class="skills-footer">
-          <a href="#">
-            <span class="icon icon-add btn btn-blue add-btn"></span>
-            Add Here New Teachers Skill Category
-          </a>
-        </div> */}
       </div>
     </div>   
     );

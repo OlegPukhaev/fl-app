@@ -6,7 +6,6 @@ import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import { userValid } from '../reducers/getUser';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js');
-// const axios = require('../../node_modules/axios/index');
 
 class Tellent extends React.Component {
     render() {
