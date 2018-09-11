@@ -7,7 +7,8 @@ let initialState = {
   skillsdata : [],
   categories : [],
   addCategories: [],
-  activeWin: "step-3-open"
+  activeWin: "step-3-open",
+  addSkillId: null
 }
 
   export function getSkills(value) {
@@ -37,11 +38,12 @@ let initialState = {
       };
     }
 
-  export function setActiveWin(value) {
+  export function setActiveWin(value, skillId) {
       return dispatch => {
         dispatch({
           type: SET_ACTIVE, 
-          payload: value
+          payload: value,
+          id:skillId
         });
       };
     }
@@ -78,7 +80,8 @@ const actionsMap = {
 	[SET_ACTIVE]: (state, action) => {
     return {
         ...state,
-        activeWin: action.payload
+        activeWin: action.payload,
+        addSkillId: action.id
     }
 	}
 };

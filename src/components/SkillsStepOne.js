@@ -13,7 +13,7 @@ class SkillsStepOne extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {active: []}
+    this.state = {activeID : null}
   }
   
   componentWillReceiveProps () {
@@ -22,10 +22,12 @@ class SkillsStepOne extends React.Component {
 
   onClickSetChecked = (event) => {
     this.props.addSkill(event.target.id);
+    this.setState({activeID:event.target.id});
   }
 
   onClickSetSubCat = () => {
-    this.props.setActiveWin("step-2-open");
+    alert(this.state.activeID);
+    this.props.setActiveWin("step-2-open", this.state.activeID);
   }
 
    skillBlockList = (item ,index) => {
