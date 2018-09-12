@@ -84,9 +84,9 @@ const actionsMap = {
     }
 	},
 	[ADD_SKILL]: (state, action) => {
-    state.addCategories.map(item => {
-      item.selected = false;
-    });
+    // state.addCategories.map(item => {
+    //   item.selected = false;
+    // });
     state.addCategories[action.payload-1].selected=true;
     // Reactotron.log('fff',state.skillsdata);
     return {
@@ -101,7 +101,7 @@ const actionsMap = {
         activeWin: action.payload,
         addSkillId: action.id
     }
-	},
+  },
 	[CHECK_SUB_CAT]: (state, action) => {
     if(state.skillsdata[action.id].skill_categories[action.subId].selected !== true) {
       state.skillsdata[action.id].selected = true;
