@@ -4,6 +4,7 @@ const GET_SKILLS = 'GET_SKILLS',
       ADD_SKILL = 'ADD_SKILL',
       SET_ACTIVE = 'SET_ACTIVE',
       CHECK_SUB_CAT = 'CHECK_SUB_CAT',
+      SEARCH_SKILL_TAG_WIN = 'SEARCH_SKILL_TAG_WIN',
       REMOVE_SKILL = 'REMOVE_SKILL';
 
 let initialState = {
@@ -11,8 +12,18 @@ let initialState = {
   categories : [],
   addCategories: [],
   activeWin: "step-3-open",
-  addSkillId: null
+  addSkillId: null,
+  showSkillTagWin: false
 }
+
+  export function searchSkillTagWin(value) {
+      return dispatch => {
+        dispatch({
+          type: SEARCH_SKILL_TAG_WIN, 
+          payload: value
+        });
+      };
+    }
 
   export function getSkills(value) {
       return dispatch => {
@@ -100,6 +111,12 @@ const actionsMap = {
         ...state,
         activeWin: action.payload,
         addSkillId: action.id
+    }
+  },
+	[SEARCH_SKILL_TAG_WIN]: (state, action) => {
+    return {
+        ...state,
+        showSkillTagWin: action.payload
     }
   },
 	[CHECK_SUB_CAT]: (state, action) => {

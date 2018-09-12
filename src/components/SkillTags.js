@@ -2,19 +2,22 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import SkillBlock from './SkillBlock';
+import SkillSearchList from './SkillSearchList';
+// import SkillBlock from './SkillBlock';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import axios from 'axios';
+import {searchSkillTagWin} from './../reducers/userSkills';
 
 
-class SearchWin extends React.Component {
+class SearchList extends React.Component {
   constructor (props) {
     super(props);
   }
 
   onClickAddTag = (event) => {
     alert(event.target.id);
+    this.props.searchSkillTagWin(false);
   }
 
   render () {
@@ -52,10 +55,10 @@ class SkillTags extends React.Component {
     axios.get('/api/v1/profile/skills/search?q='+event.target.value)
     .then(response => {
       this.setState({
-        tags: response,
-        searchModalWin: true
+        tags: response
       });
-      Reactotron.log(this.state.tags, this.state.searchModalWin);
+      this.props.searchSkillTagWin(true);
+      Reactotron.log(this.props.showSkillTagWin);
     })
     .catch(error => {
       console.log('my errors' , error);
@@ -67,7 +70,8 @@ class SkillTags extends React.Component {
   render() { 
     return (
       <div class="skill-sub-block">
-        {this.state.searchModalWin === true && <SearchWin data={this.state.tags.data.skills}/>}
+      {Reactotron.log(this.props.skills.showSkillTagWin)}
+        {this.props.skills.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills}/>}
         <form class="form-group">
           <input type="text" class="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag}/>
           <button class="add-btn btn btn-blue">
@@ -89,7 +93,7 @@ class SkillTags extends React.Component {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      // removeSkill
+      searchSkillTagWin
     },
     dispatch
   );
