@@ -13,7 +13,6 @@ class SkillBlock extends React.Component {
   }
 
   onClickChecked = (event) => {
-    // alert(event.target.id);
     this.props.checkSubcat( this.props.id, event.target.id)
   }
 

@@ -98,9 +98,13 @@ const actionsMap = {
     }
 	},
 	[CHECK_SUB_CAT]: (state, action) => {
-    state.skillsdata[action.id].skill_categories[action.subId].selected = true;
-    Reactotron.log(action.id, action.subId);
-    Reactotron.log(state.skillsdata[action.id].skill_categories);
+    if(state.skillsdata[action.id].skill_categories[action.subId].selected !== true) {
+      state.skillsdata[action.id].skill_categories[action.subId].selected = true;
+    } else {
+      state.skillsdata[action.id].skill_categories[action.subId].selected = false;
+    }
+    // Reactotron.log(action.id, action.subId);
+    // Reactotron.log(state.skillsdata[action.id].skill_categories);
     return {
         ...state,
         skillsdata: state.skillsdata
