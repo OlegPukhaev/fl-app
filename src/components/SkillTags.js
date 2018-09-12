@@ -7,9 +7,39 @@ import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import axios from 'axios';
 
+
+class SearchWin extends React.Component {
+  constructor (props) {
+    super(props);
+  }
+
+  onClickAddTag = (event) => {
+    alert(event.target.id);
+  }
+
+  render () {
+    Reactotron.log('oleg ',this.props.data);
+    return (
+      <div class="modal-tag-win">
+        <ul>
+          {
+            this.props.data.map((item) => {
+              return <li id={item.id} onClick={this.onClickAddTag}>{item.name}</li>
+            })
+          }
+        </ul>
+      </div>
+    );
+  }
+}
+
 class SkillTags extends React.Component {
   constructor(props){
     super(props);
+
+    this.state = {searchModalWin: false,
+                  tags:[]
+    }
   }
 
   skillTags = (item, index) => {
@@ -19,28 +49,25 @@ class SkillTags extends React.Component {
   }
 
   onChangeGetTag = (event) => {
-    
-    // alert(event.target.value);
     axios.get('/api/v1/profile/skills/search?q='+event.target.value)
     .then(response => {
-      // handle success
-      console.log(' Hello ', response.data.user.full_name);
-      // this.props.getUser(response.data);
+      this.setState({
+        tags: response,
+        searchModalWin: true
+      });
+      Reactotron.log(this.state.tags, this.state.searchModalWin);
     })
     .catch(error => {
-      // handle error
       console.log('my errors' , error);
     })
     .then(function () {
-      // always executed
     });
   }
-
-
 
   render() { 
     return (
       <div class="skill-sub-block">
+        {this.state.searchModalWin === true && <SearchWin data={this.state.tags.data.skills}/>}
         <form class="form-group">
           <input type="text" class="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag}/>
           <button class="add-btn btn btn-blue">
@@ -52,6 +79,7 @@ class SkillTags extends React.Component {
             this.props.skills.skillsdata[this.props.id].skill_tags.map(this.skillTags)
           }
         </div>
+        {/* <SearchWin data={this.state.tags.data.skills}/> */}
       </div>
 
     );
