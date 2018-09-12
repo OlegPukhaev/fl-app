@@ -14,7 +14,7 @@ class SkillSearchList extends React.Component {
     }
   
     onClickAddTag = (event) => {
-      alert(event.target.id);
+      alert(this.props.data[event.target.id].name);
       this.props.searchSkillTagWin(false);
     }
   
@@ -24,8 +24,8 @@ class SkillSearchList extends React.Component {
         <div class="modal-tag-win">
           <ul>
             {
-              this.props.data.map((item) => {
-                return <li id={item.id} onClick={this.onClickAddTag}>{item.name}</li>
+              this.props.data.map((item, index) => {
+                return <li id={index} onClick={this.onClickAddTag}>{item.name}</li>
               })
             }
           </ul>

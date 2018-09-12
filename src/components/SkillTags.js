@@ -10,31 +10,31 @@ import axios from 'axios';
 import {searchSkillTagWin} from './../reducers/userSkills';
 
 
-class SearchList extends React.Component {
-  constructor (props) {
-    super(props);
-  }
+// class SearchList extends React.Component {
+//   constructor (props) {
+//     super(props);
+//   }
 
-  onClickAddTag = (event) => {
-    alert(event.target.id);
-    this.props.searchSkillTagWin(false);
-  }
+//   onClickAddTag = (event) => {
+//     alert(event.target.id);
+//     this.props.searchSkillTagWin(false);
+//   }
 
-  render () {
-    Reactotron.log('oleg ',this.props.data);
-    return (
-      <div class="modal-tag-win">
-        <ul>
-          {
-            this.props.data.map((item) => {
-              return <li id={item.id} onClick={this.onClickAddTag}>{item.name}</li>
-            })
-          }
-        </ul>
-      </div>
-    );
-  }
-}
+//   render () {
+//     Reactotron.log('oleg ',this.props.data);
+//     return (
+//       <div class="modal-tag-win">
+//         <ul>
+//           {
+//             this.props.data.map((item) => {
+//               return <li id={item.id} onClick={this.onClickAddTag}>{item.name}</li>
+//             })
+//           }
+//         </ul>
+//       </div>
+//     );
+//   }
+// }
 
 class SkillTags extends React.Component {
   constructor(props){

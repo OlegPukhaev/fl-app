@@ -2,6 +2,7 @@ import Reactotron from 'reactotron-react-js';
 
 const GET_SKILLS = 'GET_SKILLS',
       ADD_SKILL = 'ADD_SKILL',
+      ADD_SKILL_TAG = 'ADD_SKILL_TAG',
       SET_ACTIVE = 'SET_ACTIVE',
       CHECK_SUB_CAT = 'CHECK_SUB_CAT',
       SEARCH_SKILL_TAG_WIN = 'SEARCH_SKILL_TAG_WIN',
@@ -134,7 +135,13 @@ const actionsMap = {
           if (item.selected === true) return item;
         })
     }
-	}
+  },
+  [ADD_SKILL_TAG]: (state, action) => {
+    return {
+        // ...state,
+        // showSkillTagWin: action.payload
+    }
+  },
 };
 
 export default function userSkills(state = initialState, action) {
