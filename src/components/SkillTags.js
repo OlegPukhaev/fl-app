@@ -5,31 +5,55 @@ import { bindActionCreators } from 'redux';
 import SkillBlock from './SkillBlock';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
+import axios from 'axios';
 
 class SkillTags extends React.Component {
   constructor(props){
     super(props);
   }
+
+  skillTags = (item, index) => {
+    return (
+      <div class="skill-tag" id={item.id}>{item.name}</div>
+    );
+  }
+
+  onChangeGetTag = (event) => {
+    
+    // alert(event.target.value);
+    axios.get('/api/v1/profile/skills/search?q='+event.target.value)
+    .then(response => {
+      // handle success
+      console.log(' Hello ', response.data.user.full_name);
+      // this.props.getUser(response.data);
+    })
+    .catch(error => {
+      // handle error
+      console.log('my errors' , error);
+    })
+    .then(function () {
+      // always executed
+    });
+  }
+
+
+
   render() { 
     return (
       <div class="skill-sub-block">
         <form class="form-group">
-          <input type="text" class="form-control" placeholder="Write new skill" />
+          <input type="text" class="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag}/>
           <button class="add-btn btn btn-blue">
             <span class="icon icon-add"></span>
           </button>
         </form>
         <div class="skill-tags-block clearfix">
-          <div class="skill-tag">Math</div>
-          <div class="skill-tag">Trigonometry</div>
-          <div class="skill-tag">Calculus</div>
-          <div class="skill-tag">Trigonometry</div>
-          <div class="skill-tag">Calculus</div>
-          <div class="skill-tag">Trigonometry</div>
-          <div class="skill-tag">Calculus</div>
-          <div class="skill-tag">Math</div>
+          {
+            this.props.skills.skillsdata[this.props.id].skill_tags.map(this.skillTags)
+          }
         </div>
       </div>
+
     );
   }
 }

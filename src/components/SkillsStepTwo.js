@@ -22,7 +22,7 @@ class SkillsStepTwo extends React.Component {
                 data={this.props.skills.skillsdata[this.props.skills.addSkillId]}
               />
 
-              <SkillTags />
+              <SkillTags id={this.props.skills.addSkillId}/>
 
             </div>
         </div>
