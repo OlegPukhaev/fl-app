@@ -15,11 +15,11 @@ class SkillsStepThree extends React.Component {
   render() { 
       return (
           <div class="step-3">
-          {Reactotron.log(this.props.skills)}
+            {Reactotron.log(this.props.skills)}
 
                 <SkillSubcat skills={this.props.skills}/>
 
-            <div class="skill-subcat skill-subcat--new">
+            {/* <div class="skill-subcat skill-subcat--new">
                 <div class="skill-block-title">New Skill Category</div>
                 <div class="flexbox justify-space-between">
                     <div class="skill-block">
@@ -53,7 +53,7 @@ class SkillsStepThree extends React.Component {
                     </div>
                 </div>
                 <button type="button" class="btn btn-blue add-skill-btn">Add Skill Category</button>
-            </div>
+            </div> */}
 
     </div>  
     );

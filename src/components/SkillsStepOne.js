@@ -10,12 +10,15 @@ class SkillsStepOne extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {activeID : null}
+    this.state = {
+      activeID : null,
+      menu : []
+    }
   }
   
-  componentWillReceiveProps () {
-    Reactotron.log(this.props.data)
-  }
+  // componentWillReceiveProps () {
+  //   Reactotron.log(this.props.data)
+  // }
 
   onClickSetChecked = (event) => {
     this.props.addSkill(event.target.id);
@@ -24,6 +27,10 @@ class SkillsStepOne extends React.Component {
 
   onClickSetSubCat = () => {
     this.props.setActiveWin("step-2-open", this.state.activeID);
+  }
+
+  localMenu = () => {
+
   }
 
    skillBlockList = (item ,index) => {

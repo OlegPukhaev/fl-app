@@ -8,7 +8,7 @@ import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
 import SkillsStepTwo from './SkillsStepTwo';
-import {getSkills} from '../reducers/userSkills';
+import {getSkills, setActiveWin} from '../reducers/userSkills';
 import axios from 'axios';
 
 class Skills extends React.Component {
@@ -36,6 +36,14 @@ allSkills = (item, index) => {
   }
 };
 
+onClickAddSkills = () => {
+  this.props.setActiveWin("step-1-open", null);  
+}
+
+onClickSendApi = () => {
+  this.props.setActiveWin("step-3-open", null)
+}
+
   render() { 
     // Reactotron.log(this.props.skills); 
     return (
@@ -46,13 +54,13 @@ allSkills = (item, index) => {
           <div class="steps-nav-btn">
             <div class="btn-group step-2-btn clearfix">
               <button type="button" class="btn btn-blue-border btn-bold step-1-toggler step-toggler">Back</button>
-              <button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler">Done</button>
+              <button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler" onClick={this.onClickSendApi}>Done</button>
             </div>
-            <button type="button" class="btn btn-blue btn-bold step-3-btn step-1-toggler step-toggler">Add</button>
+            <button type="button" class="btn btn-blue btn-bold step-3-btn step-1-toggler step-toggler" onClick={this.onClickAddSkills}>Add</button>
           </div>
         </div>
 
-        <SkillsStepOne />
+        {this.props.skills.activeWin === "step-1-open" && <SkillsStepOne />}
         {this.props.skills.activeWin === "step-2-open" && <SkillsStepTwo />}
         {this.props.skills.activeWin === "step-3-open" && <SkillsStepThree skills={this.props.skills}/>}
 
@@ -65,7 +73,8 @@ allSkills = (item, index) => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      getSkills
+      getSkills,
+      setActiveWin
     },
     dispatch
   );

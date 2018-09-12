@@ -62,14 +62,17 @@ let initialState = {
   }
 
 const actionsMap = {
+  
 	[GET_SKILLS]: (state, action) => {
+    var copyObject = Object.assign([], action.payload);
+    // Reactotron.log(copyObject);
     return {
       ...state, 
       skillsdata: action.payload,
       categories: action.payload.filter(item => {
         if (item.selected === true) return item;
       }),
-      addCategories: action.payload
+      addCategories: copyObject
     }
 	},
 	[REMOVE_SKILL]: (state, action) => {
@@ -81,16 +84,18 @@ const actionsMap = {
     }
 	},
 	[ADD_SKILL]: (state, action) => {
-    state.addCategories.forEach(element => {
-      element.selected = false;
+    state.addCategories.map(item => {
+      item.selected = false;
     });
     state.addCategories[action.payload-1].selected=true;
+    // Reactotron.log('fff',state.skillsdata);
     return {
         ...state,
-        skillsdata: state.addCategories
+        addCategories: state.addCategories
     }
 	},
 	[SET_ACTIVE]: (state, action) => {
+    Reactotron.log(action.payload);
     return {
         ...state,
         activeWin: action.payload,
@@ -99,12 +104,12 @@ const actionsMap = {
 	},
 	[CHECK_SUB_CAT]: (state, action) => {
     if(state.skillsdata[action.id].skill_categories[action.subId].selected !== true) {
+      state.skillsdata[action.id].selected = true;
       state.skillsdata[action.id].skill_categories[action.subId].selected = true;
     } else {
+      state.skillsdata[action.id].selected = true;
       state.skillsdata[action.id].skill_categories[action.subId].selected = false;
     }
-    // Reactotron.log(action.id, action.subId);
-    // Reactotron.log(state.skillsdata[action.id].skill_categories);
     return {
         ...state,
         skillsdata: state.skillsdata
