@@ -64,7 +64,7 @@ let initialState = {
 const actionsMap = {
   
 	[GET_SKILLS]: (state, action) => {
-    var copyObject = Object.assign([], action.payload);
+    // var copyObject = Object.assign([], action.payload);
     // Reactotron.log(copyObject);
     return {
       ...state, 
@@ -72,7 +72,7 @@ const actionsMap = {
       categories: action.payload.filter(item => {
         if (item.selected === true) return item;
       }),
-      addCategories: copyObject
+      addCategories: action.payload
     }
 	},
 	[REMOVE_SKILL]: (state, action) => {
@@ -112,7 +112,10 @@ const actionsMap = {
     }
     return {
         ...state,
-        skillsdata: state.skillsdata
+        skillsdata: state.skillsdata,
+        categories: state.skillsdata.filter(item => {
+          if (item.selected === true) return item;
+        })
     }
 	}
 };

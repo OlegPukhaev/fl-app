@@ -9,6 +9,7 @@ import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
 import SkillsStepTwo from './SkillsStepTwo';
 import {getSkills, setActiveWin} from '../reducers/userSkills';
+import {arrForUpdate} from './../functions/function';
 import axios from 'axios';
 
 class Skills extends React.Component {
@@ -40,8 +41,28 @@ onClickAddSkills = () => {
   this.props.setActiveWin("step-1-open", null);  
 }
 
+
+
+updateApiData = (value) => {
+  axios({
+      method: 'post',
+      url: 'https://floating-atoll-63112.herokuapp.com/api/v1/profile/skills',
+      data: {
+          categories : value
+      }
+    });
+}
+
+// onClickDeleteSkills = (event) => {
+//   this.props.removeSkill(event.target.id);
+//   var delObj = this.props.skills.categories.filter(item => item.id != event.target.id);
+//   this.updateApiData(arrForUpdate(delObj));
+// }
+
 onClickSendApi = () => {
   this.props.setActiveWin("step-3-open", null)
+  var updateObj = this.props.skills.categories;
+  this.updateApiData(arrForUpdate(updateObj));
 }
 
 onClickBack = () => {
