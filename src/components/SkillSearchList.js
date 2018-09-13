@@ -13,6 +13,10 @@ class SkillSearchList extends React.Component {
       super(props);
     }
   
+    // onBlurCloseWin = () => {
+    //   alert("dd");
+    // }
+
     onClickAddTag = (event) => {
       this.props.addSkillTags(this.props.skillid, this.props.data[event.target.id].id, this.props.data[event.target.id].name);
       this.props.searchSkillTagWin(false);

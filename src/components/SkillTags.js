@@ -18,8 +18,6 @@ class SkillTags extends React.Component {
   }
 
   onClickRemoveTag = (event) => {
-    // alert(this.props.id, event.target.id);
-    // Reactotron
     Reactotron.log({"skill id":this.props.id,"tag id" : event.target.id})
     this.props.removeSkillTags(this.props.id, event.target.id);
   }
@@ -31,19 +29,24 @@ class SkillTags extends React.Component {
   }
 
   onChangeGetTag = (event) => {
-    axios.get('/api/v1/profile/skills/search?q='+event.target.value)
-    .then(response => {
-      this.setState({
-        tags: response
+      axios.get('/api/v1/profile/skills/search?q='+event.target.value)
+      .then(response => {
+        var size = Object.keys(response.data.skills).length;
+        Reactotron.log("responce", size, response.data.skills);
+
+        if (size > 0){
+          this.setState({
+            tags: response
+          });
+          this.props.searchSkillTagWin(true);
+        }
+      })
+      .catch(error => {
+        console.log('my errors' , error);
+      })
+      .then(function () {
       });
-      this.props.searchSkillTagWin(true);
-      // Reactotron.log(this.props.showSkillTagWin);
-    })
-    .catch(error => {
-      console.log('my errors' , error);
-    })
-    .then(function () {
-    });
+    // }
   }
 
   render() { 
@@ -62,7 +65,6 @@ class SkillTags extends React.Component {
             this.props.skills.skillsdata[this.props.id].skill_tags.map(this.skillTags)
           }
         </div>
-        {/* <SearchWin data={this.state.tags.data.skills}/> */}
       </div>
 
     );

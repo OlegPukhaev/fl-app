@@ -15,10 +15,6 @@ class SkillsStepOne extends React.Component {
       menu : []
     }
   }
-  
-  // componentWillReceiveProps () {
-  //   Reactotron.log(this.props.data)
-  // }
 
   onClickSetChecked = (event) => {
     this.props.addSkill(event.target.id);
@@ -28,10 +24,6 @@ class SkillsStepOne extends React.Component {
   onClickSetSubCat = () => {
     this.props.setActiveWin("step-2-open", this.state.activeID);
     this.props.skillBackWindow("step-1-open");
-  }
-
-  localMenu = () => {
-
   }
 
    skillBlockList = (item ,index) => {
@@ -61,11 +53,9 @@ class SkillsStepOne extends React.Component {
           <div class="skill-block-title">Choose  Your Skill Category</div>
           <div class="skill-block-list">
             <form>
-
               { 
                 this.props.skills.addCategories.map(this.skillBlockList)
               }
-
             </form>
           </div>
           <button type="button" class="btn btn-blue btn-bold" onClick={this.onClickSetSubCat}>Next</button>
