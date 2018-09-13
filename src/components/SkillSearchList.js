@@ -6,7 +6,7 @@ import SkillBlock from './SkillBlock';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import axios from 'axios';
-import {searchSkillTagWin} from './../reducers/userSkills';
+import {searchSkillTagWin, addSkillTags} from './../reducers/userSkills';
 
 class SkillSearchList extends React.Component {
     constructor (props) {
@@ -14,7 +14,7 @@ class SkillSearchList extends React.Component {
     }
   
     onClickAddTag = (event) => {
-      alert(this.props.data[event.target.id].name);
+      this.props.addSkillTags(this.props.skillid, this.props.data[event.target.id].id, this.props.data[event.target.id].name);
       this.props.searchSkillTagWin(false);
     }
   
@@ -37,7 +37,8 @@ class SkillSearchList extends React.Component {
   const mapDispatchToProps = dispatch => {
     return bindActionCreators(
       {
-        searchSkillTagWin
+        searchSkillTagWin,
+        addSkillTags
       },
       dispatch
     );

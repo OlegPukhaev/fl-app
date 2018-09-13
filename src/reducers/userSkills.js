@@ -73,6 +73,17 @@ let initialState = {
     }; 
   }
 
+  export function addSkillTags(skillId, tagId, tagName) {
+    return dispatch => {
+      dispatch({
+        type: ADD_SKILL_TAG, 
+        skillId : skillId,
+        tagId: tagId,
+        tagName: tagName
+      });
+    }; 
+  }
+
 const actionsMap = {
   
 	[GET_SKILLS]: (state, action) => {
@@ -137,9 +148,16 @@ const actionsMap = {
     }
   },
   [ADD_SKILL_TAG]: (state, action) => {
+    state.skillsdata[action.skillId].skill_tags.push({"id": action.tagId, "name": action.tagName});
+    // Reactotron.log(action.skillId,action.tagId,action.tagName)
     return {
-        // ...state,
-        // showSkillTagWin: action.payload
+      // skillId : skillId,
+      // tagId: tagId,
+      // tagName: tagName
+      ...state,
+        skillsdata: state.skillsdata
+
+
     }
   },
 };
