@@ -149,15 +149,9 @@ const actionsMap = {
   },
   [ADD_SKILL_TAG]: (state, action) => {
     state.skillsdata[action.skillId].skill_tags.push({"id": action.tagId, "name": action.tagName});
-    // Reactotron.log(action.skillId,action.tagId,action.tagName)
     return {
-      // skillId : skillId,
-      // tagId: tagId,
-      // tagName: tagName
       ...state,
         skillsdata: state.skillsdata
-
-
     }
   },
 };
