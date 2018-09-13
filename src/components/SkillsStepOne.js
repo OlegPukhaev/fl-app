@@ -32,7 +32,10 @@ class SkillsStepOne extends React.Component {
 
   }
 
-   skillBlockList = (item) => {
+   skillBlockList = (item, index) => {
+    
+    
+
     return (
         <div id={item.id} class="checkbox-block" onClick={this.onClickSetChecked}>
           <input 
