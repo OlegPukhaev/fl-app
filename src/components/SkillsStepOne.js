@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import {addSkill, setActiveWin, skillBackWindow} from './../reducers/userSkills';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
+var toastr = require('../../node_modules/toastr/toastr');
 
 class SkillsStepOne extends React.Component {
   constructor (props) {
@@ -25,11 +26,13 @@ class SkillsStepOne extends React.Component {
     if (this.state.activeID !== null) {
       this.props.setActiveWin("step-2-open", this.state.activeID);
       this.props.skillBackWindow("step-1-open");
+    } else {
+      toastr.warning('Please select categories from list')
     }
 
   }
 
-   skillBlockList = (item ,index) => {
+   skillBlockList = (item) => {
     return (
         <div id={item.id} class="checkbox-block" onClick={this.onClickSetChecked}>
           <input 

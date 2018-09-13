@@ -6,20 +6,17 @@ import SkillBlock from './SkillBlock';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import axios from 'axios';
-import {searchSkillTagWin, addSkillTags} from './../reducers/userSkills';
+import {searchSkillTagWin, addSkillTags, setInputEmpty} from './../reducers/userSkills';
 
 class SkillSearchList extends React.Component {
     constructor (props) {
       super(props);
     }
-  
-    // onBlurCloseWin = () => {
-    //   alert("dd");
-    // }
 
     onClickAddTag = (event) => {
       this.props.addSkillTags(this.props.skillid, this.props.data[event.target.id].id, this.props.data[event.target.id].name);
       this.props.searchSkillTagWin(false);
+      this.props.setInputEmpty("");
     }
   
     render () {
@@ -42,7 +39,8 @@ class SkillSearchList extends React.Component {
     return bindActionCreators(
       {
         searchSkillTagWin,
-        addSkillTags
+        addSkillTags,
+        setInputEmpty
       },
       dispatch
     );

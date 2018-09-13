@@ -8,7 +8,8 @@ const GET_SKILLS = 'GET_SKILLS',
       SEARCH_SKILL_TAG_WIN = 'SEARCH_SKILL_TAG_WIN',
       REMOVE_SKILL = 'REMOVE_SKILL',
       REMOVE_SKILL_TAG = 'REMOVE_SKILL_TAG',
-      BACK_WINDOW = 'BACK_WINDOW';
+      BACK_WINDOW = 'BACK_WINDOW',
+      EMPTY_INPUT = 'EMPTY_INPUT';
 
 
 let initialState = {
@@ -18,9 +19,18 @@ let initialState = {
   activeWin: "step-3-open",
   addSkillId: null,
   showSkillTagWin: false,
-  backWindow:"step-3-open"
-  
+  backWindow:"step-3-open",
+  emptyInput:""
 }
+
+  export function setInputEmpty(value) {
+      return dispatch => {
+        dispatch({
+          type: EMPTY_INPUT, 
+          payload: value
+        });
+      };
+    }
 
   export function skillBackWindow(value) {
       return dispatch => {
@@ -191,6 +201,12 @@ const actionsMap = {
     return {
       ...state,
         backWindow: action.payload
+    }
+  },
+  [EMPTY_INPUT]: (state, action) => {
+    return {
+      ...state,
+        emptyInput: action.payload
     }
   }
 

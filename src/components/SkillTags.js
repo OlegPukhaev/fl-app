@@ -6,7 +6,7 @@ import SkillSearchList from './SkillSearchList';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import axios from 'axios';
-import {searchSkillTagWin, removeSkillTags} from './../reducers/userSkills';
+import {searchSkillTagWin, removeSkillTags, setInputEmpty} from './../reducers/userSkills';
 
 class SkillTags extends React.Component {
   constructor(props){
@@ -29,6 +29,7 @@ class SkillTags extends React.Component {
   }
 
   onChangeGetTag = (event) => {
+      this.props.setInputEmpty(event.target.value);
       axios.get('/api/v1/profile/skills/search?q='+event.target.value)
       .then(response => {
         var size = Object.keys(response.data.skills).length;
@@ -55,7 +56,7 @@ class SkillTags extends React.Component {
       
         {this.props.skills.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.id}/>}
         <form class="form-group">
-          <input type="text" class="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag}/>
+          <input type="text" class="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag} value={this.props.skills.emptyInput}/>
           <button class="add-btn btn btn-blue">
             <span class="icon icon-add"></span>
           </button>
@@ -75,7 +76,8 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       searchSkillTagWin,
-      removeSkillTags
+      removeSkillTags,
+      setInputEmpty
     },
     dispatch
   );
