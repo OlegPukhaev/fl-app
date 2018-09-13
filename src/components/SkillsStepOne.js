@@ -22,14 +22,16 @@ class SkillsStepOne extends React.Component {
   }
 
   onClickSetSubCat = () => {
-    this.props.setActiveWin("step-2-open", this.state.activeID);
-    this.props.skillBackWindow("step-1-open");
+    if (this.state.activeID !== null) {
+      this.props.setActiveWin("step-2-open", this.state.activeID);
+      this.props.skillBackWindow("step-1-open");
+    }
+
   }
 
    skillBlockList = (item ,index) => {
     return (
         <div id={item.id} class="checkbox-block" onClick={this.onClickSetChecked}>
-        
           <input 
             id={item.id} 
             type="checkbox" 
