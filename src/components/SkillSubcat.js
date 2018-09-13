@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {removeSkill, setActiveWin} from './../reducers/userSkills';
+import {removeSkill, setActiveWin, skillBackWindow} from './../reducers/userSkills';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import {CONFIG} from '../functions/api';
@@ -54,6 +54,7 @@ class SkillSubcat extends React.Component {
   onClickEditSkill = (event) => {
     // alert(event.target.id);
     this.props.setActiveWin("step-2-open", event.target.id);
+    this.props.skillBackWindow("step-3-open");
   }
 
   allSkills = (item) => {
@@ -109,7 +110,8 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators(
       {
         removeSkill,
-        setActiveWin
+        setActiveWin,
+        skillBackWindow
       },
       dispatch
     );

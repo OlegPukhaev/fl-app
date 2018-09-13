@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {addSkill, setActiveWin} from './../reducers/userSkills';
+import {addSkill, setActiveWin, skillBackWindow} from './../reducers/userSkills';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
@@ -27,6 +27,7 @@ class SkillsStepOne extends React.Component {
 
   onClickSetSubCat = () => {
     this.props.setActiveWin("step-2-open", this.state.activeID);
+    this.props.skillBackWindow("step-1-open");
   }
 
   localMenu = () => {
@@ -78,7 +79,8 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       addSkill,
-      setActiveWin
+      setActiveWin,
+      skillBackWindow
     },
     dispatch
   );

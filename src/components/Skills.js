@@ -41,8 +41,6 @@ onClickAddSkills = () => {
   this.props.setActiveWin("step-1-open", null);  
 }
 
-
-
 updateApiData = (value) => {
   axios({
       method: 'post',
@@ -53,12 +51,6 @@ updateApiData = (value) => {
     });
 }
 
-// onClickDeleteSkills = (event) => {
-//   this.props.removeSkill(event.target.id);
-//   var delObj = this.props.skills.categories.filter(item => item.id != event.target.id);
-//   this.updateApiData(arrForUpdate(delObj));
-// }
-
 onClickSendApi = () => {
   this.props.setActiveWin("step-3-open", null)
   var updateObj = this.props.skills.categories;
@@ -66,11 +58,10 @@ onClickSendApi = () => {
 }
 
 onClickBack = () => {
-  this.props.setActiveWin("step-2-open")
+  this.props.setActiveWin(this.props.skills.backWindow, null )
 }
 
   render() { 
-    // Reactotron.log(this.props.skills); 
     return (
     <div class="tab-content my-central-info ">
       <div role="tabpanel" class="tab-pane my-tab active" class={this.props.skills.activeWin} id="skills">

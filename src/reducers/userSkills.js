@@ -7,7 +7,9 @@ const GET_SKILLS = 'GET_SKILLS',
       CHECK_SUB_CAT = 'CHECK_SUB_CAT',
       SEARCH_SKILL_TAG_WIN = 'SEARCH_SKILL_TAG_WIN',
       REMOVE_SKILL = 'REMOVE_SKILL',
-      REMOVE_SKILL_TAG = 'REMOVE_SKILL_TAG';
+      REMOVE_SKILL_TAG = 'REMOVE_SKILL_TAG',
+      BACK_WINDOW = 'BACK_WINDOW';
+
 
 let initialState = {
   skillsdata : [],
@@ -15,8 +17,19 @@ let initialState = {
   addCategories: [],
   activeWin: "step-3-open",
   addSkillId: null,
-  showSkillTagWin: false
+  showSkillTagWin: false,
+  backWindow:"step-3-open"
+  
 }
+
+  export function skillBackWindow(value) {
+      return dispatch => {
+        dispatch({
+          type: BACK_WINDOW, 
+          payload: value
+        });
+      };
+    }
 
   export function searchSkillTagWin(value) {
       return dispatch => {
@@ -169,10 +182,15 @@ const actionsMap = {
   },
   [REMOVE_SKILL_TAG]: (state, action) => {
     state.skillsdata[action.skillId].skill_tags.splice(action.tagId, 1);
-    Reactotron.log("Ура");
     return {
       ...state,
         skillsdata: state.skillsdata
+    }
+  },
+  [BACK_WINDOW]: (state, action) => {
+    return {
+      ...state,
+        backWindow: action.payload
     }
   }
 

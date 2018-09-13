@@ -16,7 +16,6 @@ class SkillsStepTwo extends React.Component {
       <div class="step-2">
         <div class="skill-subcat">
             <div class="flexbox justify-space-between">
-               {/* {Reactotron.log(this.props.skills.addSkillId)} */}
               <SkillBlock 
                 id={this.props.skills.addSkillId} 
                 data={this.props.skills.skillsdata[this.props.skills.addSkillId]}
