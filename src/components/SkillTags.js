@@ -6,7 +6,7 @@ import SkillSearchList from './SkillSearchList';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import axios from 'axios';
-import {searchSkillTagWin} from './../reducers/userSkills';
+import {searchSkillTagWin, removeSkillTags} from './../reducers/userSkills';
 
 class SkillTags extends React.Component {
   constructor(props){
@@ -17,9 +17,16 @@ class SkillTags extends React.Component {
     }
   }
 
+  onClickRemoveTag = (event) => {
+    // alert(this.props.id, event.target.id);
+    // Reactotron
+    Reactotron.log({"skill id":this.props.id,"tag id" : event.target.id})
+    this.props.removeSkillTags(this.props.id, event.target.id);
+  }
+
   skillTags = (item, index) => {
     return (
-      <div class="skill-tag" id={item.id}>{item.name}</div>
+      <div class="skill-tag" id={index} onClick={this.onClickRemoveTag}>{item.name}</div>
     );
   }
 
@@ -30,7 +37,7 @@ class SkillTags extends React.Component {
         tags: response
       });
       this.props.searchSkillTagWin(true);
-      Reactotron.log(this.props.showSkillTagWin);
+      // Reactotron.log(this.props.showSkillTagWin);
     })
     .catch(error => {
       console.log('my errors' , error);
@@ -42,7 +49,7 @@ class SkillTags extends React.Component {
   render() { 
     return (
       <div class="skill-sub-block">
-      {Reactotron.log(this.props.skills.showSkillTagWin)}
+      
         {this.props.skills.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.id}/>}
         <form class="form-group">
           <input type="text" class="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag}/>
@@ -65,7 +72,8 @@ class SkillTags extends React.Component {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      searchSkillTagWin
+      searchSkillTagWin,
+      removeSkillTags
     },
     dispatch
   );

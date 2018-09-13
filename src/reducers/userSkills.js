@@ -6,7 +6,8 @@ const GET_SKILLS = 'GET_SKILLS',
       SET_ACTIVE = 'SET_ACTIVE',
       CHECK_SUB_CAT = 'CHECK_SUB_CAT',
       SEARCH_SKILL_TAG_WIN = 'SEARCH_SKILL_TAG_WIN',
-      REMOVE_SKILL = 'REMOVE_SKILL';
+      REMOVE_SKILL = 'REMOVE_SKILL',
+      REMOVE_SKILL_TAG = 'REMOVE_SKILL_TAG';
 
 let initialState = {
   skillsdata : [],
@@ -39,7 +40,7 @@ let initialState = {
       return dispatch => {
         dispatch({
           type: REMOVE_SKILL, 
-          payload: value
+          payload: value-1
         });
       };
     }
@@ -84,11 +85,19 @@ let initialState = {
     }; 
   }
 
+  export function removeSkillTags(sId, tId) {
+    return dispatch => {
+      dispatch({
+        type: REMOVE_SKILL_TAG, 
+        skillId : sId,
+        tagId: tId
+      });
+    }; 
+  }
+
 const actionsMap = {
   
 	[GET_SKILLS]: (state, action) => {
-    // var copyObject = Object.assign([], action.payload);
-    // Reactotron.log(copyObject);
     return {
       ...state, 
       skillsdata: action.payload,
@@ -99,11 +108,15 @@ const actionsMap = {
     }
 	},
 	[REMOVE_SKILL]: (state, action) => {
-    state.skillsdata[action.payload-1].selected=false;
+    state.skillsdata[action.payload].selected=false;
+    state.skillsdata[action.payload].skill_tags=[];
+    state.skillsdata[action.payload].skill_categories.map(item => {
+      item.selected = false;
+    });
     return {
         ...state,
-        categories: state.categories.filter(item => item.id != action.payload),
-        skillsdata: state.skillsdata
+        skillsdata: state.skillsdata,
+        categories: state.categories.filter(item => item.id != action.payload)
     }
 	},
 	[ADD_SKILL]: (state, action) => {
@@ -118,7 +131,7 @@ const actionsMap = {
     }
 	},
 	[SET_ACTIVE]: (state, action) => {
-    Reactotron.log(action.payload);
+    // Reactotron.log(action.payload);
     return {
         ...state,
         activeWin: action.payload,
@@ -154,6 +167,15 @@ const actionsMap = {
         skillsdata: state.skillsdata
     }
   },
+  [REMOVE_SKILL_TAG]: (state, action) => {
+    state.skillsdata[action.skillId].skill_tags.splice(action.tagId, 1);
+    Reactotron.log("Ура");
+    return {
+      ...state,
+        skillsdata: state.skillsdata
+    }
+  }
+
 };
 
 export default function userSkills(state = initialState, action) {
