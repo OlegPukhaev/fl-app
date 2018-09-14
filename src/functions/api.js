@@ -2,7 +2,7 @@ import {getToken} from '../functions/config';
 import axios from 'axios';
 var configapi = getToken;
 
-export const CONFIG = axios.create({
+export const axiosConfig = axios.create({
     headers: {
         common: {
             'access-token' : configapi['access-token'],
@@ -15,3 +15,5 @@ export const CONFIG = axios.create({
     },
     baseURL : 'https://floating-atoll-63112.herokuapp'
 });
+
+export default axiosConfig;
