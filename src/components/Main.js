@@ -1,4 +1,4 @@
-
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 // import {BrowserRouter, Route, Link} from 'react-router-dom';
@@ -37,6 +37,7 @@ class Main extends React.Component {
 	}
 
   render() {
+		Reactotron.log(this.props.user);
     return (
       <div class="wrapper">
         <nav class="main-top-nav flexbox justify-space-between">
@@ -91,6 +92,7 @@ class Main extends React.Component {
 	    				</div>
 	    				<div class="user-box-nav dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span class="caret"></span></a>
+							{Reactotron.log(this.props.user)}
 							 <ul class="dropdown-menu">
 								<li><a href="" onClick={this.onClickSignOut}>Logout</a></li>
 							  </ul>

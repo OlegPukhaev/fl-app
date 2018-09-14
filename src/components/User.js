@@ -1,17 +1,21 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import {getToken} from './../functions/config';
 import { bindActionCreators } from 'redux';
 import {CONFIG} from '../functions/api';
 import '../App.css';
-import '../../node_modules/toastr/build/toastr.css';
+
+
 import {getUser,setUserStatus} from '../reducers/getUser';
 import axios from 'axios';
+import '../../node_modules/toastr/build/toastr.css';
+var toastr = require('../../node_modules/toastr/toastr');
 var Auth = require('../../node_modules/j-toker/src/j-toker.js')
 
-    Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
-    storage : 'localStorage'
-  });
+Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
+storage : 'localStorage'
+});
 
   var configapi = getToken();
 
@@ -93,9 +97,11 @@ class User extends React.Component {
       Auth.emailSignIn({
         email: this.state.email,
         password: this.state.password
-      }).then(() => {
+      }).then((response) => {
         this.props.setUserStatus(true);
-        this.props.history.push('/');
+        this.props.history.push('/Main');
+      }).catch(()=>{
+        toastr.warning('Incorrect Login please try again');
       });
   }
 
