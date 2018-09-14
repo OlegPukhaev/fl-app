@@ -14,20 +14,7 @@ class SkillsStepOne extends React.Component {
     this.state = {
       prevActivID : null,
       activeID : null,
-      selectedID : [
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-       {"selected":false},
-      ]
+       selectedID : []
     }
   }
 
@@ -53,10 +40,6 @@ class SkillsStepOne extends React.Component {
   }
 
    skillBlockList = (item, index) => {
-    // var elemObj = elemObj.push({: false});
-    // Reactotron.log("IDDD" , this.state.selectedID);
-    Reactotron.log(this.state.activeID, this.state.prevActivID );
-
     return (
         <div id={item.id} class="checkbox-block" onClick={this.onClickSetChecked}>
           <input 
@@ -76,7 +59,15 @@ class SkillsStepOne extends React.Component {
   }
 
   componentWillMount = () => {
-      
+    var obj = [];
+    this.props.skills.addCategories.map(item => {
+      obj.push({"selected":false});
+    });
+    
+    Reactotron.log(obj);
+    this.setState({selectedID:obj});
+    
+    // {"selected":false}
   }
 
   render() { 
@@ -88,7 +79,6 @@ class SkillsStepOne extends React.Component {
             <form>
               { 
                 this.props.skills.addCategories.map(this.skillBlockList)
-                // this.skillBlockList(this.props.skills.addCategories)
               }
             </form>
           </div>
