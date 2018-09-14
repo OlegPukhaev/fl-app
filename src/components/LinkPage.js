@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import Test from './Test';
 import Home from './Home';
 import Main from './Main';
@@ -49,8 +49,21 @@ componentDidMount = () => {
   render() {
     return (
       <div>
-        {getToken() !== false ? <Menu /> : <User />}
+        {/* {getToken() !== false ? <Menu /> : <User />} */}
         {/* {getToken() !== false ? <Test /> : <User />} */}
+        <BrowserRouter>
+          <div>
+            <h1>Menu</h1>
+            <Link to="/User">Login</Link>
+            <Link to="/Main">Main</Link>
+            <Link to="/Tellent">Tellent</Link>
+            <Switch>
+              <Route path="/User" component={User} />
+              <Route exact path="/Main" component={Main} />
+              <Route path="/tellent" component={Tellent} />
+            </Switch>
+          </div>
+        </BrowserRouter>
       </div>
     );
   }

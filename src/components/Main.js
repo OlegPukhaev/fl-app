@@ -22,23 +22,22 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
 Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
 
 var configapi = getToken();
-// console.log("Token!!!!", configapi);
-// const AppStackNavigator = createStackNavigatior({
-//   login: {
-//     screen: User
-//   }
-// })
 
 class Main extends React.Component {
 
   constructor (props) {
     super(props);
-  }
+	}
+	
+	onClickSignOut = () => {
+		localStorage.clear();
+		Auth.signOut();
+		this.props.history.push('/User');
+	}
 
   render() {
     return (
       <div class="wrapper">
-        {/* /// */}
         <nav class="main-top-nav flexbox justify-space-between">
     			<div class="logo">
     				<a class="logo-link" href="index.html"><img src="images/logo.png" height="39" width="auto" /></a>
@@ -80,7 +79,7 @@ class Main extends React.Component {
 		                            <a href="#">Favorites <div class="caret"></div></a>
 		                        </li>
 								 						<li>
-		                            <a href="#">About <div class="caret"></div></a>
+		                            <a href="">About <div class="caret"></div></a>
 		                        </li>
 		                    </ul>
 		    			</div>
@@ -92,10 +91,7 @@ class Main extends React.Component {
 	    				<div class="user-box-nav dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span class="caret"></span></a>
 							 <ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li><a href="#">One more separated link</a></li>
+								<li><a href="#" onClick={this.onClickSignOut}>Logout</a></li>
 							  </ul>
 						</div>
 	    			</div>

@@ -36,7 +36,6 @@ class SkillsStepOne extends React.Component {
     } else {
       toastr.warning('Please select categories from list')
     }
-
   }
 
    skillBlockList = (item, index) => {
@@ -63,11 +62,7 @@ class SkillsStepOne extends React.Component {
     this.props.skills.addCategories.map(item => {
       obj.push({"selected":false});
     });
-    
-    Reactotron.log(obj);
     this.setState({selectedID:obj});
-    
-    // {"selected":false}
   }
 
   render() { 

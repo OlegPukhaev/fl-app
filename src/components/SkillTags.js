@@ -12,13 +12,13 @@ class SkillTags extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {searchModalWin: false,
-                  tags:[]
+    this.state = {
+      searchModalWin: false,
+      tags:[]
     }
   }
 
   onClickRemoveTag = (event) => {
-    Reactotron.log({"skill id":this.props.id,"tag id" : event.target.id})
     this.props.removeSkillTags(this.props.id, event.target.id);
   }
 
@@ -33,8 +33,6 @@ class SkillTags extends React.Component {
       axios.get('/api/v1/profile/skills/search?q='+event.target.value)
       .then(response => {
         var size = Object.keys(response.data.skills).length;
-        Reactotron.log("responce", size, response.data.skills);
-
         if (size > 0){
           this.setState({
             tags: response
@@ -47,7 +45,6 @@ class SkillTags extends React.Component {
       })
       .then(function () {
       });
-    // }
   }
 
   render() { 

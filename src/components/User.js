@@ -121,8 +121,8 @@ class User extends React.Component {
       Auth.emailSignIn({
         email: this.state.email,
         password: this.state.password
-      }).then(response => {
-
+      }).then(() => {
+        this.props.history.push('/Main');
       });
   }
 
