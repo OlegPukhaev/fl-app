@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {CONFIG} from '../functions/api';
+// import {CONFIG} from '../functions/api';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
@@ -18,7 +18,8 @@ constructor () {
 
 }
 
-componentWillMount = () => {
+// componentWillReceiveProps = () => {
+componentDidMount = () => {
   axios.get('/api/v1/profile/skills/user')
   .then(response => {
     this.props.getSkills(response.data.profession_categories);

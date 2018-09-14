@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import {CONFIG} from '../functions/config';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-import {getUser} from '../reducers/getUser';
+import {getUser,setUserStatus} from '../reducers/getUser';
 import axios from 'axios';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
@@ -51,16 +51,7 @@ class User extends React.Component {
       userobj:{},
       email_login: '', password_login: ''
     } 
-
-    // this.userLogin = this.userLogin.bind(this)
-    // this.userRegistr = this.userRegistr.bind(this)
-    // this.onChangeReg = this.onChangeReg.bind(this)
-    // this.addUser = this.addUser.bind(this)
-    // this.onChangelogin = this.onChangelogin.bind(this)
   }
-  // exitUser = () => this.props.dispatch(exitUser());
-
-
 
   userRegistr = ()  => {
     if ((this.state.first_name !== "") && (this.state.last_name !== "") && (this.state.email !== "") && (this.state.password !== "")){
@@ -109,9 +100,6 @@ class User extends React.Component {
       }
   }
 
-  // userValid = (value) => this.props.dispatch(userValid(value));
-  // addUser = (value) => this.props.dispatch(addUser(value));
-
   setUserStates () {
     this.addUser(Auth.user);
     this.userValid(true);
@@ -122,7 +110,8 @@ class User extends React.Component {
         email: this.state.email,
         password: this.state.password
       }).then(() => {
-        this.props.history.push('/Main');
+        this.props.setUserStatus(true);
+        this.props.history.push('/');
       });
   }
 
@@ -158,7 +147,8 @@ class User extends React.Component {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      getUser
+      getUser,
+      setUserStatus
     },
     dispatch
   );

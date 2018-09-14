@@ -1,9 +1,20 @@
 const GET_USER = 'ADD_USER',
-      EXIT_USER = 'DELL_USER';
+      EXIT_USER = 'DELL_USER',
+      IS_USER_LOGIN = "IS_USER_LOGIN";
 
 let initialState = {
-  userinfo:[]
+  userinfo:[],
+  isUserLogin: false
 };
+
+export function setUserStatus(value) {
+    return dispatch => {
+      dispatch({
+		type: IS_USER_LOGIN, 
+    payload: value
+      });
+    };
+  }
 
 export function getUser(object) {
     return dispatch => {
@@ -25,8 +36,14 @@ export function exitUser() {
   }
 
 const actionsMap = {
+	[IS_USER_LOGIN]: (state, action) => {
+    // console.log("User log");
+      return {...state,
+        isUserLogin: action.payload
+      }
+	},
 	[GET_USER]: (state, action) => {
-    console.log("User log");
+    // console.log("User log");
       return {...state,
         userinfo: action.payload
       }

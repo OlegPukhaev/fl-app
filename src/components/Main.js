@@ -12,8 +12,8 @@ import '../../node_modules/toastr/build/toastr.css';
 import User from './User';
 import LinkPage from './LinkPage';
 import {getToken} from '../functions/config'
-// import {addUser, userValid} from '../reducers/getUser';
-
+import {setUserStatus} from '../reducers/getUser';
+import { bindActionCreators } from 'redux';
 
 var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
@@ -32,6 +32,7 @@ class Main extends React.Component {
 	onClickSignOut = () => {
 		localStorage.clear();
 		Auth.signOut();
+		this.props.setUserStatus(false);
 		this.props.history.push('/User');
 	}
 
@@ -91,7 +92,7 @@ class Main extends React.Component {
 	    				<div class="user-box-nav dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span class="caret"></span></a>
 							 <ul class="dropdown-menu">
-								<li><a href="#" onClick={this.onClickSignOut}>Logout</a></li>
+								<li><a href="" onClick={this.onClickSignOut}>Logout</a></li>
 							  </ul>
 						</div>
 	    			</div>
@@ -188,23 +189,18 @@ class Main extends React.Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      setUserStatus
+    },
+    dispatch
+  );
+ };
 
-
-
-
-
-
-
-function mapDispatchToProps(dispatch){
-  return {
-    // add: () => dispatch(addTodo())
-    // userValid: (value) => dispatch(userValid(value))
-  }
-}
-
-function mapStateToProps (state){
-  return {
-      user: state.user
+function mapStateToProps (state) {
+  return  {
+    user: state.user
   }
 }
 
