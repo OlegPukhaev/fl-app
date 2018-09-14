@@ -2,14 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getToken} from './../functions/config';
 import { bindActionCreators } from 'redux';
-import {CONFIG} from '../functions/config';
+import {CONFIG} from '../functions/api';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import {getUser,setUserStatus} from '../reducers/getUser';
 import axios from 'axios';
-var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
-    PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
-    toastr = require('../../node_modules/toastr/toastr');
+var Auth = require('../../node_modules/j-toker/src/j-toker.js')
 
     Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
     storage : 'localStorage'
@@ -25,20 +23,6 @@ var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
     axios.defaults.headers.common['client'] = configapi['client'];
     
     axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
-    
-    axios.get('/api/v1/profile/personal')
-      .then(response => {
-        // handle success
-        console.log(' Hello ', response.data.user.full_name);
-        // this.props.getUser(response.data);
-      })
-      .catch(error => {
-        // handle error
-        console.log('my errors' , error);
-      })
-      .then(function () {
-        // always executed
-      });
 
 
 class User extends React.Component {

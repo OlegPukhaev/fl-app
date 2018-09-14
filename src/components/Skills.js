@@ -3,6 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import {CONFIG} from '../functions/api';
+import { getToken } from './../functions/function';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
@@ -20,6 +21,15 @@ constructor () {
 
 // componentWillReceiveProps = () => {
 componentDidMount = () => {
+  var configapi = getToken();
+
+  axios.defaults.headers.common['access-token'] = configapi['access-token'];
+  axios.defaults.headers.common['expiry'] = configapi['expiry'];
+  axios.defaults.headers.common['token-type'] = configapi['token-type'];
+  axios.defaults.headers.common['uid'] = configapi['uid'];
+  axios.defaults.headers.common['client'] = configapi['client'];
+  axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
+
   axios.get('/api/v1/profile/skills/user')
   .then(response => {
     this.props.getSkills(response.data.profession_categories);
