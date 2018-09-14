@@ -9,7 +9,8 @@ const GET_SKILLS = 'GET_SKILLS',
       REMOVE_SKILL = 'REMOVE_SKILL',
       REMOVE_SKILL_TAG = 'REMOVE_SKILL_TAG',
       BACK_WINDOW = 'BACK_WINDOW',
-      EMPTY_INPUT = 'EMPTY_INPUT';
+      EMPTY_INPUT = 'EMPTY_INPUT',
+      GET_MENU_SKILLS = 'GET_MENU_SKILLS';
 
 
 let initialState = {
@@ -54,6 +55,15 @@ let initialState = {
       return dispatch => {
         dispatch({
           type: GET_SKILLS, 
+          payload: value
+        });
+      };
+    }
+
+  export function getMenuSkills(value) {
+      return dispatch => {
+        dispatch({
+          type: GET_MENU_SKILLS, 
           payload: value
         });
       };
@@ -120,14 +130,23 @@ let initialState = {
 
 const actionsMap = {
   
+
+
+	[GET_MENU_SKILLS]: (state, action) => {
+    var copy = Object.assign([], action.payload)
+    return {
+      ...state, 
+      addCategories: copy
+    }
+	},
 	[GET_SKILLS]: (state, action) => {
     return {
       ...state, 
       skillsdata: action.payload,
       categories: action.payload.filter(item => {
         if (item.selected === true) return item;
-      }),
-      addCategories: action.payload
+      })
+      // addCategories: action.payload
     }
 	},
 	[REMOVE_SKILL]: (state, action) => {
@@ -146,8 +165,8 @@ const actionsMap = {
     // state.addCategories.map(item => {
     //   item.selected = false;
     // });
-    state.addCategories[action.payload-1].selected=true;
-    // Reactotron.log('fff',state.skillsdata);
+    // state.addCategories[action.payload-1].selected=true;
+    // // Reactotron.log('fff',state.skillsdata);
     return {
         ...state,
         addCategories: state.addCategories

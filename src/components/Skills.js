@@ -8,7 +8,7 @@ import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
 import SkillsStepTwo from './SkillsStepTwo';
-import {getSkills, setActiveWin} from '../reducers/userSkills';
+import {getSkills, setActiveWin, getMenuSkills} from '../reducers/userSkills';
 import {arrForUpdate} from './../functions/function';
 import axios from 'axios';
 
@@ -22,6 +22,7 @@ componentWillMount = () => {
   axios.get('/api/v1/profile/skills/user')
   .then(response => {
     this.props.getSkills(response.data.profession_categories);
+    this.props.getMenuSkills(response.data.profession_categories);
   })
   .catch(function (error) {
     console.log('my errors' , error);
@@ -90,7 +91,8 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       getSkills,
-      setActiveWin
+      setActiveWin,
+      getMenuSkills
     },
     dispatch
   );

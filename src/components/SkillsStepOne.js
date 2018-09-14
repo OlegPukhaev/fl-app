@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {addSkill, setActiveWin, skillBackWindow} from './../reducers/userSkills';
+import {addSkill, setActiveWin, skillBackWindow, getMenuSkills} from './../reducers/userSkills';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 var toastr = require('../../node_modules/toastr/toastr');
@@ -12,14 +12,34 @@ class SkillsStepOne extends React.Component {
     super(props);
 
     this.state = {
+      prevActivID : null,
       activeID : null,
-      menu : []
+      selectedID : [
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+       {"selected":false},
+      ]
     }
   }
 
   onClickSetChecked = (event) => {
-    this.props.addSkill(event.target.id);
-    this.setState({activeID:event.target.id});
+    var selectedCopy = Object.assign({}, this.state.selectedID);
+    selectedCopy[event.target.id-1].selected = true;
+    if(this.state.prevActivID != null) selectedCopy[this.state.prevActivID].selected = false;
+    this.setState({
+      selectedID:selectedCopy,
+      prevActivID:event.target.id-1,
+      activeID: event.target.id
+    });
   }
 
   onClickSetSubCat = () => {
@@ -33,17 +53,18 @@ class SkillsStepOne extends React.Component {
   }
 
    skillBlockList = (item, index) => {
-    
-    
+    // var elemObj = elemObj.push({: false});
+    // Reactotron.log("IDDD" , this.state.selectedID);
+    Reactotron.log(this.state.activeID, this.state.prevActivID );
 
     return (
         <div id={item.id} class="checkbox-block" onClick={this.onClickSetChecked}>
           <input 
+            name={"check"+item.id}
             id={item.id} 
-            type="checkbox" 
-            checked={item.selected}
+            type = "checkbox" 
+            checked = {this.state.selectedID[index].selected}
           />
-
         <label id={item.id} for="cat-3">
           <span id={item.id} class="checkbox-circle">
             <span  id={item.id} class="icon icon-check-mark"></span>
@@ -52,6 +73,10 @@ class SkillsStepOne extends React.Component {
         </label>
       </div>
     );
+  }
+
+  componentWillMount = () => {
+      
   }
 
   render() { 
@@ -63,6 +88,7 @@ class SkillsStepOne extends React.Component {
             <form>
               { 
                 this.props.skills.addCategories.map(this.skillBlockList)
+                // this.skillBlockList(this.props.skills.addCategories)
               }
             </form>
           </div>
@@ -78,7 +104,8 @@ const mapDispatchToProps = dispatch => {
     {
       addSkill,
       setActiveWin,
-      skillBackWindow
+      skillBackWindow,
+      getMenuSkills
     },
     dispatch
   );
