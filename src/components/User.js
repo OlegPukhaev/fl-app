@@ -17,18 +17,6 @@ Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
 storage : 'localStorage'
 });
 
-  var configapi = getToken();
-
-  //  const axios = require('../../node_modules/axios');
-    axios.defaults.headers.common['access-token'] = configapi['access-token'];
-    axios.defaults.headers.common['expiry'] = configapi['expiry'];
-    axios.defaults.headers.common['token-type'] = configapi['token-type'];
-    axios.defaults.headers.common['uid'] = configapi['uid'];
-    axios.defaults.headers.common['client'] = configapi['client'];
-    
-    axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
-
-
 class User extends React.Component {
 
   constructor (props) {
@@ -48,16 +36,12 @@ class User extends React.Component {
         last_name: this.state.last_name,
         email: this.state.email,
         password: this.state.password
+      }).then((response) => {
+        toastr.success('Register successfull');
+      }).catch(()=>{
+        toastr.warning('Warning, please try again');
       });
-      Auth.validateToken()
-      .then(function(user) {
-        this.setState({
-          username: user.username
-        })
-      }.bind(this));
-    } else {
-      alert("Empty fields!!!");
-    }
+    } 
   }
 
   onChangeReg = (event) => {

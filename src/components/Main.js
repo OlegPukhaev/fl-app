@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 // import Home from './Home';
 import Skills from './Skills';
 import Tellent from './Tellent';
-
+import axios from 'axios';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import User from './User';
@@ -28,7 +28,7 @@ class Main extends React.Component {
   constructor (props) {
     super(props);
 	}
-	
+
 	onClickSignOut = () => {
 		localStorage.clear();
 		Auth.signOut();
@@ -173,8 +173,6 @@ class Main extends React.Component {
 
 																		<Skills />
 																		
-																		{/* <Route exact={true} path="/skills" component={Skills} />
-        												    <Route path="/tellent" component={Tellent} />		 */}
 																	</div>
 															</div>
 

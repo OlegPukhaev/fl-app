@@ -14,7 +14,6 @@ export function getObject(obj){
 
 export function arrForUpdate (value){
 // array convert to api congig format
-
     function getSkillCats(value) {
         var obj=[];
         value.map((item) => {

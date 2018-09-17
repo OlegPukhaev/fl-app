@@ -27,10 +27,10 @@ componentWillMount = () => {
         <BrowserRouter>
           <div>
             <h1>Menu</h1>
-            {this.props.user.isUserLogin == false && <Link to="/User">Login</Link>} 
-            <Link to="/">Home</Link>
-            {this.props.user.isUserLogin === true && <Link to="/Main">Main</Link>}
-            {this.props.user.isUserLogin == true && <Link to="/Tellent">Tellent</Link>}
+            {this.props.user.isUserLogin == false && <Link to="/User"> Login | </Link>} 
+            <Link to="/">Home </Link>
+            {this.props.user.isUserLogin === true && <Link to="/Main">| Main </Link>}
+            {this.props.user.isUserLogin == true && <Link to="/Tellent">| Tellent </Link>}
             <Switch>
               <Route path="/User" component={User} />
               <Route exact path="/home" component={Main} />
