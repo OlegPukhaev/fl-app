@@ -15,7 +15,6 @@ class SkillsStepThree extends React.Component {
   render() { 
     return (
       <div class="step-3">
-        {/* {Reactotron.log(this.props.skills)} */}
             <SkillSubcat skills={this.props.skills}/>
       </div>  
     );

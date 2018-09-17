@@ -3,7 +3,6 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getData } from '../functions/api';
-// import { getToken } from './../functions/function';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';

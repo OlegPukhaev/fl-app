@@ -5,8 +5,6 @@ import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import {checkSubcat} from './../reducers/userSkills';
 
-
-
 class SkillBlock extends React.Component {
   constructor (props) {
     super(props);
