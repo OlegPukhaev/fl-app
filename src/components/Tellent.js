@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import { userValid } from '../reducers/getUser';
+import NoResultJobs from './tellents/NoResultJobs';
+import NoResultTellents from './tellents/NoResultTellents';
 var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 
 class Tellent extends React.Component {
@@ -906,17 +908,9 @@ class Tellent extends React.Component {
 							<div class="flexbox row">
 								<div class="col-xs-12">
 
-									<div class="noresults noresults--tallents">
-										<img src="images/tallents@2x.png" />
-										<h2 class="blue-color">We didn’t find anybody</h2>
-										<p>Please try modifying your search to get more results.</p>
-									</div>
+                  <NoResultTellents />
 
-									<div class="noresults noresults--jobs">
-										<img src="images/jobs@2x.png" />
-										<h2 class="blue-color">We didn’t find any job</h2>
-										<p>Please try modifying your search to get more results.</p>
-									</div>
+                  <NoResultJobs />
 
 								</div>
 
