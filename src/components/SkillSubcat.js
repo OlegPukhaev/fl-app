@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {removeSkill, setActiveWin, skillBackWindow} from './../reducers/userSkills';
-import '../App.css';
+// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import {CONFIG} from '../functions/api';
 import axios from 'axios';

@@ -7,7 +7,7 @@ class JobBoxesFilter extends React.Component {
       <div class="panel panel-default panel-gray job-boxes-filter">
         <div class="search-filter radio-block flexbox justify-space-center">
           <div class="radio">
-            <input type="radio" name="job-boxes-filter" id="jobs-filter-2" value="jobs-filter" checked />
+            <input type="radio" name="job-boxes-filter" id="jobs-filter-2" value="jobs-filter"/>
             <label for="jobs-filter-2">
               <span class="radio-text">Jobs</span>
             </label>
@@ -18,7 +18,7 @@ class JobBoxesFilter extends React.Component {
             </div>
           </button>
           <div class="radio">
-            <input type="radio" name="job-boxes-filter" id="talents-filter-2" value="talents-filter" />
+            <input type="radio" name="job-boxes-filter" id="talents-filter-2" value="talents-filter" checked />
             <label for="talents-filter-2">
               <span class="radio-text">Talents</span>
             </label>

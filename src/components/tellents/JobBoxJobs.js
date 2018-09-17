@@ -4,7 +4,7 @@ import React from 'react';
 class JobBoxJobs extends React.Component {
   render() { 
     return (
-										
+    <div class="job-boxes-wrapper job-boxes-wrapper--jobs flexbox justify-space-between flex-wrap">								
         <div class="job-box-block">
         <div class="panel panel-default job-box">
             <div class="job-box-header flexbox justify-space-between">
@@ -203,7 +203,7 @@ class JobBoxJobs extends React.Component {
             </div>
         </div>{/* <!--job-box End--> */}
     </div>
-
+</div>
     );
   }
 }
