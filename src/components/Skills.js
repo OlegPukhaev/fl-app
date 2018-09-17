@@ -2,8 +2,8 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {axiosConfig} from '../functions/api';
-import { getToken } from './../functions/function';
+import { getData } from '../functions/api';
+// import { getToken } from './../functions/function';
 import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
@@ -19,24 +19,10 @@ constructor () {
 }
 
 componentDidMount = () => {
-  var configapi = getToken();
-
-  axios.defaults.headers.common['access-token'] = configapi['access-token'];
-  axios.defaults.headers.common['expiry'] = configapi['expiry'];
-  axios.defaults.headers.common['token-type'] = configapi['token-type'];
-  axios.defaults.headers.common['uid'] = configapi['uid'];
-  axios.defaults.headers.common['client'] = configapi['client'];
-  axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
-
-  axios.get('/api/v1/profile/skills/user')
-  .then(response => {
-    this.props.getSkills(response.data.profession_categories);
-    this.props.getMenuSkills(response.data.profession_categories);
-  })
-  .catch(function (error) {
-    console.log('my errors' , error);
-    return false;
-  }); 
+  getData('/api/v1/profile/skills/user').then(apiData => {
+    this.props.getSkills(apiData.data.profession_categories);
+    this.props.getMenuSkills(apiData.data.profession_categories);
+  });
 };
 
 allSkills = (item, index) => {
