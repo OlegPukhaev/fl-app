@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SkillSearchList from './SkillSearchList';
-import '../App.css';
+// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import axios from 'axios';
 import {searchSkillTagWin, removeSkillTags, setInputEmpty} from './../reducers/userSkills';

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import '../App.css';
+// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import {checkSubcat} from './../reducers/userSkills';
 

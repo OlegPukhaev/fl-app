@@ -7,7 +7,7 @@ import Home from './Home';
 import Skills from './Skills';
 import Tellent from './Tellent';
 
-import '../App.css';
+// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import User from './User';
 import LinkPage from './LinkPage';

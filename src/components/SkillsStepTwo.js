@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import SkillBlock from './SkillBlock';
 import SkillTags from './SkillTags';
-import '../App.css';
+// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
 class SkillsStepTwo extends React.Component {

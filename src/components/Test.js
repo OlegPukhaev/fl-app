@@ -14,15 +14,15 @@ class Test extends React.Component {
   }
 
   componentWillMount = () => {
-  axios.get('/api/v1/profile/skills/user')
-  .then(response => {
-    this.props.getSkills(response.data.profession_categories);
-  })
-  .catch(function (error) {
-    console.log('my errors' , error);
-    return false;
-  }); 
-};
+    axios.get('/api/v1/profile/skills/user')
+    .then(response => {
+      this.props.getSkills(response.data.profession_categories);
+    })
+    .catch(function (error) {
+      console.log('my errors' , error);
+      return false;
+    }); 
+  };
 
   allSkills = (item, index) => {
     if (item.selected !== false) {

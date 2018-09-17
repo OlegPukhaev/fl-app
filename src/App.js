@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React, { Component } from 'react';
 
 import './App.css';
-import store from './store';
+import createStore from './reducers/createStore';
 import {Provider} from 'react-redux';
 import LinkPage from './components/LinkPage';
 
@@ -26,7 +26,7 @@ class App extends Component {
     //   important: true
     // })
     return (
-      <Provider store={store}>
+      <Provider store={createStore}>
         <LinkPage />
       </Provider>
     );

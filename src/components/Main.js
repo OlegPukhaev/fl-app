@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import Skills from './Skills';
 import Tellent from './Tellent';
 import axios from 'axios';
-import '../App.css';
+// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import User from './User';
 import LinkPage from './LinkPage';

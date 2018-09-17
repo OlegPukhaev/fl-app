@@ -3,11 +3,20 @@ import { render } from 'react-dom';
 import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../App.css';
+// import './bootstrap/css/bootstrap.min.css';
+// import './styles/styles.css';
+// import './styles/media.css';
+
 import '../../node_modules/toastr/build/toastr.css';
 import { userValid } from '../reducers/getUser';
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
-var Auth = require('../../node_modules/j-toker/src/j-toker.js');
+import JobBoxesFilter from './tellents/JobBoxesFilter';
+import LeftSideBarFilters from './tellents/LeftSideBarFilters';
+import SearchForm from './tellents/SearchForm';
+import JobBoxTellent from './tellents/JobBoxTellent';
+import JobBoxJobs from './tellents/JobBoxJobs';
+// var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 
 class Tellent extends React.Component {
     render() {
@@ -22,26 +31,9 @@ class Tellent extends React.Component {
 				</div>
     			<section class="nav-mobile flexbox justify-space-between">
     				<section class="nav-tablet flexbox justify-space-center">
-    					<div class="search-form">
-		    				<form class="my-search-form" role="search">
-		    					<input type="text" class="form-control" placeholder="Search" />
-		    					<div class="search-filter radio-block">
-									<div class="radio">
-										<input type="radio" name="optionsRadios" id="option-jobs" value="option1" checked />
-										<label for="option-jobs">
-											<span class="radio-text">Jobs</span>
-										</label>
-									</div>
-									<div class="radio">
-										<input type="radio" name="optionsRadios" id="option-talents" value="option2" />
-										<label for="option-talents">
-											<span class="radio-text">Talents</span>
-										</label>
-									</div>
-								</div>
-								<a href="" type="submit" class="btn-search"><i class="icon icon-loupe"></i></a>
-							</form>
-		    			</div>
+
+              <SearchForm />
+
 		    			<div class="nav-list">
 		    				<ul class="flexbox justify-space-between">
 		                        <li class="active">
@@ -256,40 +248,22 @@ class Tellent extends React.Component {
 									<a href="" type="submit" class="btn-search"><i class="icon icon-loupe"></i></a>
 								</form>
 			    			</div>
-			    			<div class="job-post-status flexbox justify-space-between">
+			    			{/* <div class="job-post-status flexbox justify-space-between">
 			    				<div>
 			    					<span class="status-text"><em>Job was posted successfully</em></span>
 					    			<a href="#">Preview</a>
 					    			<a href="#">Go to My Jobs</a>
 			    				</div>
 				    			<button class="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
-				    		</div>
+				    		</div> */}
 			    		</div>
 					</div>{/* <!-- content-header row - END --> */}
 
 					<div class="row job-boxes-header flexbox">
 						<div class="col-xs-2 left-sidebar">
-							<div class="panel panel-default panel-gray job-boxes-filter">
-								<div class="search-filter radio-block flexbox justify-space-center">
-									<div class="radio">
-										<input type="radio" name="job-boxes-filter" id="jobs-filter-2" value="jobs-filter" checked />
-										<label for="jobs-filter-2">
-											<span class="radio-text">Jobs</span>
-										</label>
-									</div>
-									<button type="button" class="btn radio-switcher clearfix">
-										<div class="circul-shape">
-											<span class="icon icon-check-mark"></span>
-										</div>
-									</button>
-									<div class="radio">
-										<input type="radio" name="job-boxes-filter" id="talents-filter-2" value="talents-filter" />
-										<label for="talents-filter-2">
-											<span class="radio-text">Talents</span>
-										</label>
-									</div>
-								</div>
-							</div>
+               
+              				<JobBoxesFilter />
+
 							<button class="btn filter-btn panel-gray">
 								<div class="flexbox justify-space-between">
 									<span>Advanced Filters</span> 
@@ -300,7 +274,7 @@ class Tellent extends React.Component {
 						<div class="col-xs-10">
 							<div class="panel panel-default panel-gray job-boxes-nav">
 								<nav class="flexbox justify-space-between">
-									<div class="filter-nav">
+									{/* <div class="filter-nav">
 										<span class="filter-list-title">Jobs for me</span>
 										<ul class="filter-list list-unstyled">
 											<li class="blue-color">UI design</li>
@@ -309,7 +283,7 @@ class Tellent extends React.Component {
 												<span class="icon icon-plus-button"></span>
 											</li>
 										</ul>
-									</div>
+									</div> */}
 									<div class="sort-nav">
 										<span class="sort-nav-title">Sort By</span>
 										<button type="button" class="btn">
@@ -367,539 +341,8 @@ class Tellent extends React.Component {
 
 					<div class="row main-content flexbox">
 						<div class="col-xs-2 left-sidebar">
-							<div class="panel panel-default">
-								<button class="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
-								<div class="filter-block">
-									<div class="filter-title">
-										Experience:
-									</div>
-									<div class="checkbox-list-block clearfix">
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-1.1" />
-											<label for="checkbox-1.1">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Intern</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-1.2" />
-											<label for="checkbox-1.2">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Junior</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-1.3" />
-											<label for="checkbox-1.3">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Senior</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-1.4" />
-											<label for="checkbox-1.4">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Expert</span>
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="filter-block">
-									<div class="filter-title">
-										Posted:
-									</div>
-									<div class="checkbox-list-block clearfix">
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-2.1" />
-											<label for="checkbox-2.1">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">24h</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-2.2" />
-											<label for="checkbox-2.2">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">1w</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-2.3" />
-											<label for="checkbox-2.3">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">3d </span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-2.4" />
-											<label for="checkbox-2.4">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#62; 1 W</span>
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="filter-block">
-									<div class="filter-title">
-										Place:
-									</div>
-									<div class="checkbox-list-block clearfix">
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-3.1" />
-											<label for="checkbox-3.1">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">On-line</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-3.2" />
-											<label for="checkbox-3.2">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">On-site</span>
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="filter-block">
-									<div class="filter-title">
-										Loocation:
-									</div>
-									<div class="filter-dropdown-block clearfix">
-										<button type="button" class="btn btn-default dropdown-toggle">
-											<div class="flexbox justify-space-between">
-												<span class="text">Country</span>
-												<span class="icon icon-down-arrow"></span>
-											</div>
-										</button>
-										<div class="dropdown-list">
-											<div class="caret-block">
-												<span class="caret-top"></span>
-											</div>
-											<div class="dropdown-list-wrapper">
-												<div class="checkbox-list-block">
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.1" />
-														<label for="checkbox-4.1">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">USA</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.2" />
-														<label for="checkbox-4.2">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Canada</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.3" />
-														<label for="checkbox-4.3">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Poland</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.4" />
-														<label for="checkbox-4.4">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Italia</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.5" />
-														<label for="checkbox-4.5">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">France</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.6" />
-														<label for="checkbox-4.6">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Ukraine</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.7" />
-														<label for="checkbox-4.7">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Turkey</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.8" />
-														<label for="checkbox-4.8">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Italia</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.9" />
-														<label for="checkbox-4.9">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">France</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.10" />
-														<label for="checkbox-4.10">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Ukraine</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-4.11" />
-														<label for="checkbox-4.11">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Turkey</span>
-														</label>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								<div class="filter-block">
-									<div class="filter-title">
-										Languages:
-									</div>
-									<div class="filter-dropdown-block clearfix">
-										<button type="button" class="btn btn-default dropdown-toggle">
-											<div class="flexbox justify-space-between">
-												<span class="text">Languages</span>
-												<span class="icon icon-down-arrow"></span>
-											</div>
-										</button>
-										<div class="dropdown-list">
-											<div class="caret-block">
-												<span class="caret-top"></span>
-											</div>
-											<div class="dropdown-list-wrapper">
-												<div class="checkbox-list-block">
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.1" />
-														<label for="checkbox-5.1">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">English</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.2" />
-														<label for="checkbox-5.2">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Russian</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.3" />
-														<label for="checkbox-5.3">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Poland</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.4" />
-														<label for="checkbox-5.4">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Italia</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.5" />
-														<label for="checkbox-5.5">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Franch</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.6" />
-														<label for="checkbox-5.6">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Ukrainien</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.7" />
-														<label for="checkbox-5.7">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Turkey</span>
-														</label>
-													</div>
-													<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.8" />
-														<label for="checkbox-5.8">
-															<span class="filter-checkbox">
-																<span class="icon icon-check-mark"></span>
-															</span>
-															<span class="checkbox-text">Italien</span>
-														</label>
-													</div>
-												</div>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								<div class="filter-block">
-									<div class="filter-title">
-										Availability:
-									</div>
-									<div class="checkbox-list-block clearfix">
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-6.1" />
-											<label for="checkbox-6.1">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#60; 20 h</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-6.2" />
-											<label for="checkbox-6.2">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#62;  30 h</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-6.3" />
-											<label for="checkbox-6.3">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">30 h</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-6.4" />
-											<label for="checkbox-6.4">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Full-time</span>
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="filter-block">
-									<div class="filter-title">
-										Payment:
-									</div>
-									<div class="checkbox-list-block clearfix">
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-7.1" />
-											<label for="checkbox-7.1">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Fixed</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-7.2" />
-											<label for="checkbox-7.2">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Hourly</span>
-											</label>
-										</div>
-									</div>
-									<div class="filter-inputs flexbox justify-space-between">
-										<input type="text" value="0" class="form-control" /> 
-										<span>to</span>
-										<input type="text" value="$20" class="form-control" />
-									</div>
-								</div>
-								<div class="filter-block">
-									<div class="filter-title">
-										Budget:
-									</div>
-									<div class="checkbox-list-block clearfix">
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-8.1" />
-											<label for="checkbox-8.1">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Not defined</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-8.2" />
-											<label for="checkbox-8.2">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#60;$100</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-8.3" />
-											<label for="checkbox-8.3">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#60;$1000</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-8.4" />
-											<label for="checkbox-8.4">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#60;$300</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-8.5" />
-											<label for="checkbox-8.5">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#62;$1000</span>
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="filter-block">
-									<div class="filter-title">
-										Proposals:
-									</div>
-									<div class="checkbox-list-block clearfix">
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-9.1" />
-											<label for="checkbox-9.1">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">none</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-9.2" />
-											<label for="checkbox-9.2">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#60;20</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-9.3" />
-											<label for="checkbox-9.3">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#60;5</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-9.4" />
-											<label for="checkbox-9.4">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#62;20</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-9.5" />
-											<label for="checkbox-9.5">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">&#60;10</span>
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="filter-block">
-									<div class="filter-title">
-										Job Delivery:
-									</div>
-									<div class="checkbox-list-block clearfix">
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-10.1" />
-											<label for="checkbox-10.1">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Not defined</span>
-											</label>
-										</div>
-										<div class="checkbox-block">
-											<input type="checkbox" id="checkbox-10.2" />
-											<label for="checkbox-10.2">
-												<span class="filter-checkbox">
-													<span class="icon icon-check-mark"></span>
-												</span>
-												<span class="checkbox-text">Less 1W</span>
-											</label>
-										</div>
-									</div>
-								</div>
-							</div>
+
+                  <LeftSideBarFilters />
 							
 						</div>{/* <!--col-xs-2 End--> */}
 
@@ -908,10 +351,16 @@ class Tellent extends React.Component {
 							<div class="flexbox row">
 								<div class="col-xs-12">
 
-                  <NoResultTellents />
+                  {/* <NoResultTellents /> */}
 
-                  <NoResultJobs />
+                  {/* <NoResultJobs /> */}
 
+                  {/* <JobBoxTellent />
+                  <JobBoxTellent />
+                  <JobBoxTellent />
+                  <JobBoxTellent /> */}
+
+                  <JobBoxJobs />
 								</div>
 
 								<div class="col-xs-3 right-sidebar">

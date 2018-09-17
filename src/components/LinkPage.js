@@ -7,7 +7,7 @@ import User from './User';
 import Tellent from './Tellent';
 import {getToken} from '../functions/config';
 import {setUserStatus} from './../reducers/getUser';
-import '../App.css';
+// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
 class LinkPage extends React.Component {
@@ -31,7 +31,7 @@ componentWillMount = () => {
             <Link to="/">Home </Link>
             {this.props.user.isUserLogin === true && <Link to="/Main">| Main </Link>}
             {this.props.user.isUserLogin == true && <Link to="/Tellent">| Tellent </Link>}
-            <Link to="/Tellent">| Tellent </Link>
+            {/* <Link to="/Tellent">| Tellent </Link> */}
             
             <Switch>
               <Route path="/User" component={User} />
