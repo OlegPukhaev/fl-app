@@ -52,153 +52,154 @@ class Tellent extends React.Component {
 		    			</div>
     				</section>
 	    			<div class="user-box">
-{/* //             
-// 						<div class="notifications">
-// 							<div class="notifications-icon">
-// 								<div class="notif">
-// 								</div>
-// 							</div>
-// 							<div class="notifications-dropdown">
-// 								<div class="notifications-dropdown__header">
-// 									Notifications
-// 								</div>
-// 								<div class="element-list">
-// 									<div class="element-list__item flexbox align-items-center">
-// 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-// 											<img  class="circul-shape" src="images/bid-photo.png" alt="" />
-// 										</div>
-// 										<div class="element-list__item-description">
-// 											<div class="element-list__item--text">
-// 												<a href="javascript:;" class="element-list__item-link">
-// 													Tamir Yaacov
-// 												</a>
-// 												sent you a message
-// 											</div>
-// 											<div class="element-list__item-date">
-// 												Today, 15:45 pm
-// 											</div>
-// 										</div>
-// 									</div>
-// 									<div class="element-list__item flexbox align-items-center element-list__item--active">
-// 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-// 											<img src="images/money-icon.png" alt="" />
-// 										</div>
-// 										<div class="element-list__item-description">
-// 											<div class="element-list__text">
-// 												You received payment for job
-// 												<a href="javascript:;" class="element-list__item-link">
-// 													HTML to PSD
-// 												</a>
-// 											</div>
-// 											<div class="element-list__item-date">
-// 												19 Nov, 15:45 pm
-// 											</div>
-// 										</div>
-// 									</div>
-// 									<div class="element-list__item flexbox align-items-center element-list__item--active">
-// 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-// 											<img src="images/horn-icon.png" alt="" />
-// 										</div>
-// 										<div class="element-list__item-description">
-// 											<div class="element-list__text">
-// 												Your skill test was approved for the job
-// 												<a href="javascript:;" class="element-list__item-link">
-// 													«PHP, CSS and Joomla Tasks».
-// 												</a>
-// 											</div>
-// 											<div class="element-list__item-date">
-// 												19 Nov, 15:45 pm
-// 											</div>
-// 										</div>
-// 									</div>
-// 									<div class="element-list__item flexbox align-items-center">
-// 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-// 											<img src="images/case-icon-grey.png" alt="" />
-// 										</div>
-// 										<div class="element-list__item-description">
-// 											<div class="element-list__item--text">
-// 												Client apply you to a job
-// 												<a href="javascript:;" class="element-list__item-link">
-// 													«PHP, CSS and Joomla Tasks».
-// 												</a>
+{/* 					
+// //             
+// // 						<div class="notifications">
+// // 							<div class="notifications-icon">
+// // 								<div class="notif">
+// // 								</div>
+// // 							</div>
+// // 							<div class="notifications-dropdown">
+// // 								<div class="notifications-dropdown__header">
+// // 									Notifications
+// // 								</div>
+// // 								<div class="element-list">
+// // 									<div class="element-list__item flexbox align-items-center">
+// // 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
+// // 											<img  class="circul-shape" src="images/bid-photo.png" alt="" />
+// // 										</div>
+// // 										<div class="element-list__item-description">
+// // 											<div class="element-list__item--text">
+// // 												<a href="javascript:;" class="element-list__item-link">
+// // 													Tamir Yaacov
+// // 												</a>
+// // 												sent you a message
+// // 											</div>
+// // 											<div class="element-list__item-date">
+// // 												Today, 15:45 pm
+// // 											</div>
+// // 										</div>
+// // 									</div>
+// // 									<div class="element-list__item flexbox align-items-center element-list__item--active">
+// // 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
+// // 											<img src="images/money-icon.png" alt="" />
+// // 										</div>
+// // 										<div class="element-list__item-description">
+// // 											<div class="element-list__text">
+// // 												You received payment for job
+// // 												<a href="javascript:;" class="element-list__item-link">
+// // 													HTML to PSD
+// // 												</a>
+// // 											</div>
+// // 											<div class="element-list__item-date">
+// // 												19 Nov, 15:45 pm
+// // 											</div>
+// // 										</div>
+// // 									</div>
+// // 									<div class="element-list__item flexbox align-items-center element-list__item--active">
+// // 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
+// // 											<img src="images/horn-icon.png" alt="" />
+// // 										</div>
+// // 										<div class="element-list__item-description">
+// // 											<div class="element-list__text">
+// // 												Your skill test was approved for the job
+// // 												<a href="javascript:;" class="element-list__item-link">
+// // 													«PHP, CSS and Joomla Tasks».
+// // 												</a>
+// // 											</div>
+// // 											<div class="element-list__item-date">
+// // 												19 Nov, 15:45 pm
+// // 											</div>
+// // 										</div>
+// // 									</div>
+// // 									<div class="element-list__item flexbox align-items-center">
+// // 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
+// // 											<img src="images/case-icon-grey.png" alt="" />
+// // 										</div>
+// // 										<div class="element-list__item-description">
+// // 											<div class="element-list__item--text">
+// // 												Client apply you to a job
+// // 												<a href="javascript:;" class="element-list__item-link">
+// // 													«PHP, CSS and Joomla Tasks».
+// // 												</a>
 
-// 											</div>
-// 											<div class="element-list__item-date">
-// 												Today, 15:45 pm
-// 											</div>
-// 										</div>
-// 									</div>
-// 									<div class="element-list__item flexbox align-items-center">
-// 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-// 											<img src="images/case-icon-grey.png" alt="" />
-// 										</div>
-// 										<div class="element-list__item-description">
-// 											<div class="element-list__item--text">
-// 												You ended the job
-// 												<a href="javascript:;" class="element-list__item-link">
-// 													«Landing Page»
-// 												</a>
+// // 											</div>
+// // 											<div class="element-list__item-date">
+// // 												Today, 15:45 pm
+// // 											</div>
+// // 										</div>
+// // 									</div>
+// // 									<div class="element-list__item flexbox align-items-center">
+// // 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
+// // 											<img src="images/case-icon-grey.png" alt="" />
+// // 										</div>
+// // 										<div class="element-list__item-description">
+// // 											<div class="element-list__item--text">
+// // 												You ended the job
+// // 												<a href="javascript:;" class="element-list__item-link">
+// // 													«Landing Page»
+// // 												</a>
 
-// 											</div>
-// 											<div class="element-list__item-date">
-// 												Today, 15:45 pm
-// 											</div>
-// 										</div>
-// 									</div>
-// 									<div class="element-list__item flexbox align-items-center">
-// 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-// 											<img  class="circul-shape" src="images/bid-photo.png" alt="" />
-// 										</div>
-// 										<div class="element-list__item-description">
-// 											<div class="element-list__item--text">
-// 												<a href="javascript:;" class="element-list__item-link">
-// 													Tamir Yaacov
-// 												</a>
-// 												leave a feedback for you for job «Sale page design»
-// 											</div>
-// 											<div class="element-list__item-date">
-// 												Today, 15:45 pm
-// 											</div>
-// 										</div>
-// 									</div>
-// 									<div class="element-list__item flexbox align-items-center">
-// 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-// 											<img src="images/case-icon-grey.png" alt="" />
-// 										</div>
-// 										<div class="element-list__item-description">
-// 											<div class="element-list__item--text">
-// 												New job could be interesting for you,
-// 												<a href="javascript:;" class="element-list__item-link">
-// 													«Landing Page»
-// 												</a>
+// // 											</div>
+// // 											<div class="element-list__item-date">
+// // 												Today, 15:45 pm
+// // 											</div>
+// // 										</div>
+// // 									</div>
+// // 									<div class="element-list__item flexbox align-items-center">
+// // 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
+// // 											<img  class="circul-shape" src="images/bid-photo.png" alt="" />
+// // 										</div>
+// // 										<div class="element-list__item-description">
+// // 											<div class="element-list__item--text">
+// // 												<a href="javascript:;" class="element-list__item-link">
+// // 													Tamir Yaacov
+// // 												</a>
+// // 												leave a feedback for you for job «Sale page design»
+// // 											</div>
+// // 											<div class="element-list__item-date">
+// // 												Today, 15:45 pm
+// // 											</div>
+// // 										</div>
+// // 									</div>
+// // 									<div class="element-list__item flexbox align-items-center">
+// // 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
+// // 											<img src="images/case-icon-grey.png" alt="" />
+// // 										</div>
+// // 										<div class="element-list__item-description">
+// // 											<div class="element-list__item--text">
+// // 												New job could be interesting for you,
+// // 												<a href="javascript:;" class="element-list__item-link">
+// // 													«Landing Page»
+// // 												</a>
 
-// 											</div>
-// 											<div class="element-list__item-date">
-// 												Today, 15:45 pm
-// 											</div>
-// 										</div>
-// 									</div>
-// 									<div class="element-list__item flexbox align-items-center">
-// 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-// 											<img src="images/case-icon-grey.png" alt="" />
-// 										</div>
-// 										<div class="element-list__item-description">
-// 											<div class="element-list__item--text">
-// 												You received 3 new bids on your job
-// 												<a href="javascript:;" class="element-list__item-link">
-// 													«Landing Page»
-// 												</a>
+// // 											</div>
+// // 											<div class="element-list__item-date">
+// // 												Today, 15:45 pm
+// // 											</div>
+// // 										</div>
+// // 									</div>
+// // 									<div class="element-list__item flexbox align-items-center">
+// // 										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
+// // 											<img src="images/case-icon-grey.png" alt="" />
+// // 										</div>
+// // 										<div class="element-list__item-description">
+// // 											<div class="element-list__item--text">
+// // 												You received 3 new bids on your job
+// // 												<a href="javascript:;" class="element-list__item-link">
+// // 													«Landing Page»
+// // 												</a>
 
-// 											</div>
-// 											<div class="element-list__item-date">
-// 												Today, 15:45 pm
-// 											</div>
-// 										</div>
-// 									</div>
-// 								</div>
-// 							</div>
-// 						</div>
-// 	    				 */}
+// // 											</div>
+// // 											<div class="element-list__item-date">
+// // 												Today, 15:45 pm
+// // 											</div>
+// // 										</div>
+// // 									</div>
+// // 								</div>
+// // 							</div>
+// // 						</div>
+    				 */}
               <div class="user-photo">
 	    					<i class="notif"></i>
 	    				</div>
@@ -355,12 +356,12 @@ class Tellent extends React.Component {
 
                   {/* <NoResultJobs /> */}
 
-                  {/* <JobBoxTellent />
                   <JobBoxTellent />
                   <JobBoxTellent />
-                  <JobBoxTellent /> */}
+                  <JobBoxTellent />
+                  <JobBoxTellent />
 
-                  <JobBoxJobs />
+                  {/* <JobBoxJobs /> */}
 								</div>
 
 								<div class="col-xs-3 right-sidebar">
