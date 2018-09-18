@@ -26,7 +26,7 @@ class JobBoxesFilter extends React.Component {
               <span class="radio-text">Jobs</span>
             </label>
           </div>
-          <button type="button" class="btn radio-switcher clearfix" onClick={this.onClickToggle} >
+          <button type="button" id="toggle-id" class="btn radio-switcher clearfix" onClick={this.onClickToggle} >
             <div class="circul-shape">
               <span class="icon icon-check-mark" ></span>
             </div>

@@ -68,16 +68,21 @@ const actionsMap = {
 	},   
 	[DATA_TOGGLER]: (state, action) => {
 			Reactotron.log(state.isTellents, state.isJobs);
-			
+			var val1, val2;
 			switch (action.payload){
-				case
-				default:
+				case 'jobs-filter-2':
+					val1=false;
+					val2=true;
+				case 'talents-filter-2':
+					val1=true;
+					val2=false;
+				case 'toggle-id':
 					if (state.isTellents === true){
-						var val1=false;
-						var val2=true;
+						val1=false;
+						val2=true;
 					} else {
-						var val1=true;
-						var val2=false;
+						val1=true;
+						val2=false;
 					}
 			}
 		
