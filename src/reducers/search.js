@@ -21,10 +21,20 @@ let initialState = {
 		// ],
     // ds:""
 	},
-	toggler:"Tellents",
+	isTellents:true,
+	isJobs:false
 	
 }
 
+  export function inputSearch(value) {
+      return dispatch => {
+        dispatch({
+          type: INPUT_SEARCH, 
+          payload: value
+        });
+      };
+		}
+		
   export function getData(value) {
       return dispatch => {
         dispatch({
@@ -37,13 +47,19 @@ let initialState = {
   export function dataToggler(value) {
       return dispatch => {
         dispatch({
-          type: DATA_TOGGLER, 
-          payload: value
+					type: DATA_TOGGLER,
+					payload: value
         });
       };
     }
 
 const actionsMap = {
+	[INPUT_SEARCH]: (state, action) => {
+			return {
+					...state, 
+					config: state.config.q = action.payload
+		}
+	},   
 	[GET_DATA]: (state, action) => {
 			return {
 					...state, 
@@ -51,13 +67,28 @@ const actionsMap = {
 		}
 	},   
 	[DATA_TOGGLER]: (state, action) => {
-			return {
-					...state, 
-					toggler: action.payload
-		}
+			Reactotron.log(state.isTellents, state.isJobs);
+			
+			switch (action.payload){
+				case
+				default:
+					if (state.isTellents === true){
+						var val1=false;
+						var val2=true;
+					} else {
+						var val1=true;
+						var val2=false;
+					}
+			}
+		
+				return {
+						...state, 
+						isTellents: val1,
+						isJobs: val2
+				}
 	}  
 
-};
+}
 
 export default function search(state = initialState, action) {
     const reduceFn = actionsMap[action.type];

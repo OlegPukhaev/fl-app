@@ -90,30 +90,8 @@ class Tellent extends React.Component {
  							</div>
  						</div>
  						<div class="col-xs-10">
- 							<div class="search-form">
- 			    				<form class="my-search-form" role="search">
- 			    					<input type="text" class="form-control" placeholder="Search for ..." />
- 			    					<div class="search-filter radio-block clearfix">
- 										<div class="radio">
- 											<input type="radio" name="home-page-filter" id="jobs-filter-1" value="jobs-filter" checked />
- 											<label for="jobs-filter-1">
- 												<span class="radio-text mobile-hide">Jobs</span>
- 												<span class="radio-text mobile-show">J</span>
- 											</label>
- 										</div>
- 										<div class="radio">
- 											<input type="radio" name="home-page-filter" id="talents-filter-1" value="talents-filter" />
- 											<label for="talents-filter-1">
- 												<span class="radio-text mobile-hide">Talents</span>
- 												<span class="radio-text mobile-show">T</span>
- 											</label>
- 										</div>
- 									</div>
- 									<a href="" type="submit" class="btn-search"><i class="icon icon-loupe"></i></a>
- 								</form>
- 			    			</div>
-
- 			    		</div>
+ 									<SearchForm />
+						</div>
  					</div>{/* <!-- content-header row - END --> */}
 
  					<div class="row job-boxes-header flexbox">
@@ -270,7 +248,6 @@ class Tellent extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-
 			},
 			dispatch
 		);
