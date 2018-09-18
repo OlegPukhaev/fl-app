@@ -20,7 +20,7 @@ class SkillSearchList extends React.Component {
     }
   
     render () {
-      Reactotron.log('oleg ',this.props.data);
+      // Reactotron.log('oleg ',this.props.data);
       return (
         <div class="modal-tag-win">
           <ul>

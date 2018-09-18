@@ -6,5 +6,5 @@ import search from './search';
 export default combineReducers({
     user: getUser,
     skills: userSkills,
-    searchdata:search
+    search:search
 })

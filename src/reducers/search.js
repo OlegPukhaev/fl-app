@@ -1,30 +1,34 @@
 import Reactotron from 'reactotron-react-js';
 
 const 
-    GET_TELLENT = 'GET_TELLENT',
-    GET_JOBS = 'GET_JOBS',
-    DATA_TOGGLER = 'GET_TOGGLER';
+		GET_DATA = 'GET_DATA',
+		DATA_TOGGLER = 'DATA_TOGGLER',
+		INPUT_SEARCH = 'INPUT_SEARCH';
 
 
 let initialState = {
-  tellentsdata : [],
-  jobsdata:[],
-  toggler:false
+	config : {
+		q: "%7B%7D",
+		// exp:[],
+    // avl:"",
+    // lang:[],
+    // loc:[],
+    // skill:"",
+    // rate:"",
+		// place:[
+		// 	{online:false},
+		// 	{onsite:false}
+		// ],
+    // ds:""
+	},
+	toggler:"Tellents",
+	
 }
 
-  export function getTellent(value) {
+  export function getData(value) {
       return dispatch => {
         dispatch({
-          type: GET_TELLENT, 
-          payload: value
-        });
-      };
-    }
-
-  export function getJobs(value) {
-      return dispatch => {
-        dispatch({
-          type: GET_JOBS, 
+          type: GET_DATA, 
           payload: value
         });
       };
@@ -40,16 +44,10 @@ let initialState = {
     }
 
 const actionsMap = {
-	[GET_TELLENT]: (state, action) => {
+	[GET_DATA]: (state, action) => {
 			return {
 					...state, 
-					tellentsdata: action.payload
-		}
-	},   
-	[GET_JOBS]: (state, action) => {
-			return {
-					...state, 
-					jobsdata: action.payload
+					searchData: action.payload
 		}
 	},   
 	[DATA_TOGGLER]: (state, action) => {

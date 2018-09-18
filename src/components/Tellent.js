@@ -1,14 +1,11 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
-import { render } from 'react-dom';
-import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
-import {connect} from 'react-redux';
- import './../App.css';
-//  import './bootstrap/css/bootstrap.min.css';
-//  import './styles/styles.css';
-//  import './styles/media.css';
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { getData } from '../functions/api';
 import '../../node_modules/toastr/build/toastr.css';
-import { userValid } from '../reducers/getUser';
+import {arrForUpdate} from './../functions/function';
+
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
 import JobBoxesFilter from './tellents/JobBoxesFilter';
@@ -16,9 +13,21 @@ import LeftSideBarFilters from './tellents/LeftSideBarFilters';
 import SearchForm from './tellents/SearchForm';
 import JobBoxTellent from './tellents/JobBoxTellent';
 import JobBoxJobs from './tellents/JobBoxJobs';
- var Auth = require('../../node_modules/j-toker/src/j-toker.js');
+
+
 
 class Tellent extends React.Component {
+	constructor (props) {
+		super(props)
+	}
+
+	componentDidMount = () => {
+		getData('/api/v1/tellents/search?q='+this.props.search.config.q).then(apiData => {
+
+				Reactotron.log(this.props.search.config, apiData);
+			});
+	  };
+
     render() {
       return (
          <div class="wrapper">
@@ -33,6 +42,7 @@ class Tellent extends React.Component {
      				<section class="nav-tablet flexbox justify-space-center">
 
               			<SearchForm />
+										{this.props.search.toggler}
 
  		    			<div class="nav-list">
  		    				<ul class="flexbox justify-space-between">
@@ -52,154 +62,7 @@ class Tellent extends React.Component {
  		    			</div>
      				</section>
  	    			<div class="user-box">
- {/* 					
-               
-   						<div class="notifications">
-   							<div class="notifications-icon">
-   								<div class="notif">
-   								</div>
-   							</div>
-   							<div class="notifications-dropdown">
-   								<div class="notifications-dropdown__header">
-   									Notifications
-   								</div>
-   								<div class="element-list">
-   									<div class="element-list__item flexbox align-items-center">
-   										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-   											<img  class="circul-shape" src="images/bid-photo.png" alt="" />
-   										</div>
-   										<div class="element-list__item-description">
-   											<div class="element-list__item--text">
-   												<a href="javascript:;" class="element-list__item-link">
-   													Tamir Yaacov
-   												</a>
-   												sent you a message
-   											</div>
-   											<div class="element-list__item-date">
-   												Today, 15:45 pm
-   											</div>
-   										</div>
-   									</div>
-   									<div class="element-list__item flexbox align-items-center element-list__item--active">
-   										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-   											<img src="images/money-icon.png" alt="" />
-   										</div>
-   										<div class="element-list__item-description">
-   											<div class="element-list__text">
-   												You received payment for job
-   												<a href="javascript:;" class="element-list__item-link">
-   													HTML to PSD
-   												</a>
-   											</div>
-   											<div class="element-list__item-date">
-   												19 Nov, 15:45 pm
-   											</div>
-   										</div>
-   									</div>
-   									<div class="element-list__item flexbox align-items-center element-list__item--active">
-   										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-   											<img src="images/horn-icon.png" alt="" />
-   										</div>
-   										<div class="element-list__item-description">
-   											<div class="element-list__text">
-   												Your skill test was approved for the job
-   												<a href="javascript:;" class="element-list__item-link">
-   													«PHP, CSS and Joomla Tasks».
-   												</a>
-   											</div>
-   											<div class="element-list__item-date">
-   												19 Nov, 15:45 pm
-   											</div>
-   										</div>
-   									</div>
-   									<div class="element-list__item flexbox align-items-center">
-   										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-   											<img src="images/case-icon-grey.png" alt="" />
-   										</div>
-   										<div class="element-list__item-description">
-   											<div class="element-list__item--text">
-   												Client apply you to a job
-   												<a href="javascript:;" class="element-list__item-link">
-   													«PHP, CSS and Joomla Tasks».
-   												</a>
-
-   											</div>
-   											<div class="element-list__item-date">
-   												Today, 15:45 pm
-   											</div>
-   										</div>
-   									</div>
-   									<div class="element-list__item flexbox align-items-center">
-   										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-   											<img src="images/case-icon-grey.png" alt="" />
-   										</div>
-   										<div class="element-list__item-description">
-   											<div class="element-list__item--text">
-   												You ended the job
-   												<a href="javascript:;" class="element-list__item-link">
-   													«Landing Page»
-   												</a>
-
-   											</div>
-   											<div class="element-list__item-date">
-   												Today, 15:45 pm
-   											</div>
-   										</div>
-   									</div>
-   									<div class="element-list__item flexbox align-items-center">
-   										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-   											<img  class="circul-shape" src="images/bid-photo.png" alt="" />
-   										</div>
-   										<div class="element-list__item-description">
-   											<div class="element-list__item--text">
-   												<a href="javascript:;" class="element-list__item-link">
-   													Tamir Yaacov
-   												</a>
-   												leave a feedback for you for job «Sale page design»
-   											</div>
-   											<div class="element-list__item-date">
-   												Today, 15:45 pm
-   											</div>
-   										</div>
-   									</div>
-   									<div class="element-list__item flexbox align-items-center">
-   										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-   											<img src="images/case-icon-grey.png" alt="" />
-   										</div>
-   										<div class="element-list__item-description">
-   											<div class="element-list__item--text">
-   												New job could be interesting for you,
-   												<a href="javascript:;" class="element-list__item-link">
-   													«Landing Page»
-   												</a>
-
-   											</div>
-   											<div class="element-list__item-date">
-   												Today, 15:45 pm
-   											</div>
-   										</div>
-   									</div>
-   									<div class="element-list__item flexbox align-items-center">
-   										<div class="element-list__item-icon circul-shape flexbox justify-space-center align-items-center">
-   											<img src="images/case-icon-grey.png" alt="" />
-   										</div>
-   										<div class="element-list__item-description">
-   											<div class="element-list__item--text">
-   												You received 3 new bids on your job
-   												<a href="javascript:;" class="element-list__item-link">
-   													«Landing Page»
-   												</a>
-
-   											</div>
-   											<div class="element-list__item-date">
-   												Today, 15:45 pm
-   											</div>
-   										</div>
-   									</div>
-   								</div>
-   							</div>
-   						</div>
-     				 */}
+ 
                <div class="user-photo">
  	    					<i class="notif"></i>
  	    				</div>
@@ -249,14 +112,7 @@ class Tellent extends React.Component {
  									<a href="" type="submit" class="btn-search"><i class="icon icon-loupe"></i></a>
  								</form>
  			    			</div>
- 			    			{/* <div class="job-post-status flexbox justify-space-between">
- 			    				<div>
- 			    					<span class="status-text"><em>Job was posted successfully</em></span>
- 					    			<a href="#">Preview</a>
- 					    			<a href="#">Go to My Jobs</a>
- 			    				</div>
- 				    			<button class="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
- 				    		</div> */}
+
  			    		</div>
  					</div>{/* <!-- content-header row - END --> */}
 
@@ -363,48 +219,6 @@ class Tellent extends React.Component {
 
  								<div class="col-xs-3 right-sidebar">
 							
- 									{/* <div class="panel panel-default progress-boxes">
- 										<h4 class="blue-color">General Rank: 8.7</h4>
-										
- 										<div class="progress-box">
- 											<div class="progress-info blue-color">
- 												<a href="#" class="progress-title">Profile Completion</a>
- 												<span class="progress-perc float-right">50%</span>
- 											</div>
-												
- 											<div class="progress">
- 												<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
- 												</div>
- 											</div>
- 										</div>
-										
- 										<div class="progress-box">
- 											<div class="progress-info blue-color">
- 												<a href="#" class="progress-title">Profile Strength</a>
- 												<span class="progress-perc float-right">30%</span>
- 											</div>
-												
- 											<div class="progress">
- 												<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
- 												</div>
- 											</div>
- 										</div>
-										
- 										<div class="progress-box">
- 											<div class="progress-info blue-color">
- 												<a href="#" class="progress-title">Responsivity</a>
- 												<span class="progress-perc float-right">60%</span>
- 											</div>
-												
- 											<div class="progress">
- 												<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
- 												</div>
- 											</div>
- 										</div>
-										
- 									</div><!--panel end--> */}
-									
-									
  									<div class="panel panel-default panel-btn">
  										<a href="">
  											<i class="icon icon-hand"></i>
@@ -436,8 +250,6 @@ class Tellent extends React.Component {
  				</div> 
 			</div>{/* <!--content End--> */}
 	
-	
-	
 			<footer class="bg-white no-mrg">
 				<div class="container">
 					<span>© 2016 Talents </span>
@@ -455,4 +267,19 @@ class Tellent extends React.Component {
     }
   }
 
-  export default Tellent;
+	const mapDispatchToProps = dispatch => {
+		return bindActionCreators(
+			{
+
+			},
+			dispatch
+		);
+	 };
+	
+	function mapStateToProps (state) {
+		return  {
+			search:state.search
+		}
+	}
+	
+	export default connect(mapStateToProps, mapDispatchToProps)(Tellent)
