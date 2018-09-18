@@ -26,7 +26,11 @@ class Tellent extends React.Component {
 
 				Reactotron.log(this.props.search.config, apiData);
 			});
-	  };
+		}
+
+
+		
+
 
     render() {
       return (

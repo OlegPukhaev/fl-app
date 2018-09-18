@@ -4,22 +4,30 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { getData } from '../functions/api';
 import {inputSearch} from '../../reducers/search';
+import {searchData} from '../../functions/api';
 
 class SearchForm extends React.Component {
 	constructor () {
 		super()
 
-		this.state = {searchText: ""}
+		this.state = {searchText:""}
 	}
 
 	onChangeSearchText = (event) => {
-		// alert(event.target.value);
-		this.setState({searchText:event.target.value});
+		this.props.inputSearch(event.target.value);
+		// this.setState({searchText:event.target.value});
+	}
 
+	onClickGetData = () => {
+		alert('fff '+this.props.search.config.q);
+		searchData('/api/v1/tellents/search').then(apiData => {
+			Reactotron.log(this.props.search.config.p, apiData);
+
+		});
 	}
 
   render() { 
-		Reactotron.log(this.state.searchText);
+		Reactotron.log(this.props.search.config.q);
     return (
 			<div class="search-form">
 			<form class="my-search-form" role="search">
@@ -38,7 +46,7 @@ class SearchForm extends React.Component {
 						</label>
 					</div>
 				</div>
-				<a href="" type="submit" class="btn-search"><i class="icon icon-loupe"></i></a>
+				<a href="#" type="submit" class="btn-search" onClick={this.onClickGetData}><i class="icon icon-loupe"></i></a>
 			</form>
     </div>
     );

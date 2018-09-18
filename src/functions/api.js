@@ -23,19 +23,18 @@ export function getData(urlApi) {
     })
 }
 
-// export function searchData(urlApi) {
-//     return axios.get(urlApi).then(response => {
-//         let dataObj = Object.assign({}, response);
-//         return dataObj
-//     }).then(dataObj => {
-//         Reactotron.log("Inner api resp", dataObj);
-//         return dataObj;
-//         // return dataObj = "Урраа отсюда";
-//     }).catch(function (error) {
-//       console.log('my errors' , error);
-//     })
-// }
-
-
+export function searchData(urlApi, ) {
+    return axios.get(urlApi)
+    .then(response => {
+        let dataObj = Object.assign({}, response);
+        return dataObj
+    }).then(dataObj => {
+        Reactotron.log("Inner api resp", dataObj);
+        return dataObj;
+        // return dataObj = "Урраа отсюда";
+    }).catch(function (error) {
+      console.log('my errors' , error);
+    })
+}
 
 export default getData;

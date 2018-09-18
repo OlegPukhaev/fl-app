@@ -55,9 +55,11 @@ let initialState = {
 
 const actionsMap = {
 	[INPUT_SEARCH]: (state, action) => {
+			state.config.q = action.payload;
+			alert(state.config.q);
 			return {
 					...state, 
-					config: state.config.q = action.payload
+					config: state.config
 		}
 	},   
 	[GET_DATA]: (state, action) => {
