@@ -2,6 +2,38 @@ import React from 'react';
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
+	constructor (){
+		super();
+	}
+
+	checkerList = (item) => {
+		return (
+			<div class="checkbox-block">
+				<input type="checkbox" id={item.id} cheked={item.selected}/>
+				<label for={item.id}>
+					<span class="filter-checkbox">
+						<span class="icon icon-check-mark"></span>
+					</span>
+					<span class="checkbox-text">{item.name}</span>
+				</label>
+			</div>	
+		);		
+	}
+
+	// dsList  = (item) => {
+	// 	return (  
+	// 		<div class="checkbox-block">
+	// 			<input type="checkbox" id={item.id} cheked={item.selected}/>
+	// 			<label for={item.id}>
+	// 				<span class="filter-checkbox">
+	// 					<span class="icon icon-check-mark"></span>
+	// 				</span>
+	// 				<span class="checkbox-text">{item.name}</span>
+	// 			</label>
+	// 		</div>
+	// 	);
+	// }
+	 
   render() { 
     return (
         <div class="panel panel-default">
@@ -11,44 +43,29 @@ class LeftSideBarFilters extends React.Component {
                 Experience:
             </div>
             <div class="checkbox-list-block clearfix">
-                <div class="checkbox-block">
-                    <input type="checkbox" id="checkbox-1.1" />
-                    <label for="checkbox-1.1">
-                        <span class="filter-checkbox">
-                            <span class="icon icon-check-mark"></span>
-                        </span>
-                        <span class="checkbox-text">Intern</span>
-                    </label>
-                </div>
-                <div class="checkbox-block">
-                    <input type="checkbox" id="checkbox-1.2" />
-                    <label for="checkbox-1.2">
-                        <span class="filter-checkbox">
-                            <span class="icon icon-check-mark"></span>
-                        </span>
-                        <span class="checkbox-text">Junior</span>
-                    </label>
-                </div>
-                <div class="checkbox-block">
-                    <input type="checkbox" id="checkbox-1.3" />
-                    <label for="checkbox-1.3">
-                        <span class="filter-checkbox">
-                            <span class="icon icon-check-mark"></span>
-                        </span>
-                        <span class="checkbox-text">Senior</span>
-                    </label>
-                </div>
-                <div class="checkbox-block">
-                    <input type="checkbox" id="checkbox-1.4" />
-                    <label for="checkbox-1.4">
-                        <span class="filter-checkbox">
-                            <span class="icon icon-check-mark"></span>
-                        </span>
-                        <span class="checkbox-text">Expert</span>
-                    </label>
-                </div>
+								{this.props.data.exp.map(this.checkerList)}
             </div>
         </div>
+        <div class="filter-block">
+            <div class="filter-title">
+						Job Done Success:
+            </div>
+            <div class="checkbox-list-block clearfix">
+								{this.props.data.ds.map(this.checkerList)}
+            </div>
+        </div>
+        <div class="filter-block">
+            <div class="filter-title">
+						Skill Test Score:
+            </div>
+            <div class="checkbox-list-block clearfix">
+								{this.props.data.skill.map(this.checkerList)}
+            </div>
+        </div>
+
+
+
+{/* 				
         <div class="filter-block">
             <div class="filter-title">
                 Posted:
@@ -536,6 +553,8 @@ class LeftSideBarFilters extends React.Component {
                 </div>
             </div>
         </div>
+
+				 */}
     </div>
     );
   }

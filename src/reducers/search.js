@@ -10,17 +10,72 @@ const
 let initialState = {
 	config : {
 		q:"",
-		// exp:"intern,junior"
-    // avl:"",
-    // lang:[],
-    // loc:[],
-    // skill:"",
-    // rate:"",
-		// place:[
-		// 	{online:false},
-		// 	{onsite:false}
-		// ],
-    // ds:""
+		exp:[
+						{
+						id: "intern",
+						selected : false,
+						name: "Intern"
+					},
+					{
+						id:"junior",
+						selected: false,
+						name: "Junior"
+					},
+					{
+						id:"senior",
+						selected: false,
+						name: "Senior" 
+					},
+					{
+						id:"expert",
+						selected: false,
+						name: "Expert"
+					}
+				],
+		ds:[
+					{
+						id: "i_100",
+						selected : false,
+						name: "100%"
+					},
+					{
+						id:"m_95",
+						selected: false,
+						name: "> 95%"
+					},
+					{
+						id:"i_85_95",
+						selected: false,
+						name: "85-95%" 
+					},
+					{
+						id:"l_85",
+						selected: false,
+						name: "< 85%"
+					}
+				],
+		skill:[
+					{
+						id: "i_5",
+						selected : false,
+						name: "Best (5)"
+					},
+					{
+						id:"i_5_4",
+						selected: false,
+						name: "5-4.6"
+					},
+					{
+						id:"i_4",
+						selected: false,
+						name: "4.6-4" 
+					},
+					{
+						id:"l_4",
+						selected: false,
+						name: "< 4"
+					}
+				],
 	},
 	isTellents:true,
 	isJobs:false,

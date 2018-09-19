@@ -24,14 +24,15 @@ class Tellent extends React.Component {
 
 	componentDidMount = () => {
 		var StringifyQ = queryString.stringify({
-			q: JSON.stringify(this.props.search.config)
+			// q: JSON.stringify(this.props.search.config)
+			q: JSON.stringify({})
 		});
 		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
 			this.props.getTellentsData(apiData.data);
 		});
-		getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-			this.props.getJobsData(apiData.data);
-		});
+		// getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+		// 	this.props.getJobsData(apiData.data);
+		// });
 	}
 
     render() {
@@ -188,7 +189,7 @@ class Tellent extends React.Component {
  					<div class="row main-content flexbox">
  						<div class="col-xs-2 left-sidebar">
 
-                   			<LeftSideBarFilters />
+                   			<LeftSideBarFilters data={this.props.search.config}/>
 							
  						</div>{/* <!--col-xs-2 End--> */}
 
