@@ -5,6 +5,7 @@ const
 		GET_JOBS_DATA = 'GET_JOBS_DATA',
 		DATA_TOGGLER = 'DATA_TOGGLER',
 		GET_LANGUAGE = 'GET_LANGUAGE',
+		GET_COUNTRIES = 'GET_COUNTRIES',
 		INPUT_SEARCH = 'INPUT_SEARCH';
 
 
@@ -133,13 +134,8 @@ let initialState = {
 						name: "On-Site"
 					}
 				],
-		lang:[	
-					{
-						id: "online",
-						selected : false,
-						name: "On-Line"
-					},
-				],
+		lang:[],
+		loc:[],
 	},
 	isTellents:true,
 	isJobs:false,
@@ -147,6 +143,15 @@ let initialState = {
 	jobsData: null
 	
 }
+
+  export function getCountries(value) {
+      return dispatch => {
+        dispatch({
+          type: GET_COUNTRIES, 
+          payload: value
+        });
+      };
+		}
 
   export function getLanguage(value) {
       return dispatch => {
@@ -204,6 +209,13 @@ const actionsMap = {
 	},   
 	[GET_LANGUAGE]: (state, action) => {
 		state.config.lang = action.payload.languages;
+			return {
+					...state, 
+					config: state.config
+		}
+	},   
+	[GET_COUNTRIES]: (state, action) => {
+		state.config.loc = action.payload;
 			return {
 					...state, 
 					config: state.config

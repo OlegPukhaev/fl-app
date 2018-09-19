@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getData } from '../functions/api';
 import '../../node_modules/toastr/build/toastr.css';
 import {arrForUpdate} from './../functions/function';
-import {getTellentsData, getJobsData, getLanguage} from './../reducers/search';
+import {getTellentsData, getJobsData, getLanguage, getCountries} from './../reducers/search';
 
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
@@ -27,8 +27,8 @@ class Tellent extends React.Component {
 			// q: JSON.stringify(this.props.search.config)//открыть после создания редьюсера чобы все было пучком
 			q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
 		});
-		getData('/api/v1/misc/get_languages').then(apiData => {
-			this.props.getLanguage(apiData.data);
+		getData('/api/v1/misc/countries').then(apiData => {
+			this.props.getCountries(apiData.data);
 		});
 		getData('/api/v1/misc/get_languages').then(apiData => {
 			this.props.getLanguage(apiData.data);
@@ -268,7 +268,8 @@ class Tellent extends React.Component {
 			{
 				getTellentsData,
 				getJobsData,
-				getLanguage
+				getLanguage,
+				getCountries
 			},
 			dispatch
 		);
