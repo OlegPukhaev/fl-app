@@ -19,6 +19,20 @@ class LeftSideBarFilters extends React.Component {
 			</div>	
 		);		
 	}
+
+	langList = (item) => {
+		return (
+			<div class="checkbox-block">
+				<input type="checkbox" id={item.language_id} cheked={item.selected}/>
+				<label for={item.language_id}>
+					<span class="filter-checkbox">
+						<span class="icon icon-check-mark"></span>
+					</span>
+					<span class="checkbox-text">{item.name}</span>
+				</label>
+			</div>	
+		);		
+	}
 	 
   render() { 
     return (
@@ -73,30 +87,30 @@ class LeftSideBarFilters extends React.Component {
             </div>
         </div>
 
-				<div class="filter-block">
-					<div class="filter-title">
-							Languages:
-					</div>
-					<div class="filter-dropdown-block clearfix">
-							<button type="button" class="btn btn-default dropdown-toggle">
-									<div class="flexbox justify-space-between">
-											<span class="text">Languages</span>
-											<span class="icon icon-down-arrow"></span>
-									</div>
-							</button>
-							<div class="dropdown-list">
-									<div class="caret-block">
-											<span class="caret-top"></span>
-									</div>
-									<div class="dropdown-list-wrapper">
-											<div class="checkbox-list-block">
-														{this.props.data.lang.map(this.checkerList)}
-											</div>
-									</div>
-							</div>
-						</div>
-				</div>
 				
+        <div class="filter-block">
+            <div class="filter-title">
+                Languages:
+            </div>
+            <div class="filter-dropdown-block clearfix">
+                <button type="button" class="btn btn-default dropdown-toggle">
+                    <div class="flexbox justify-space-between">
+                        <span class="text">Language</span>
+                        <span class="icon icon-down-arrow"></span>
+                    </div>
+                </button>
+                <div class="dropdown-list">
+                    <div class="caret-block">
+                        <span class="caret-top"></span>
+                    </div>
+                    <div class="dropdown-list-wrapper">
+                        <div class="checkbox-list-block">
+													{this.props.data.lang.map(this.langList)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+				</div>
 				
         <div class="filter-block">
             <div class="filter-title">
