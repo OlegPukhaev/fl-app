@@ -17,7 +17,7 @@ constructor () {
   super()
 }
 
-componentDidMount = () => {
+componentWillMount = () => {
   getData('/api/v1/profile/skills/user').then(apiData => {
     this.props.getSkills(apiData.data.profession_categories);
     this.props.getMenuSkills(apiData.data.profession_categories);

@@ -13,24 +13,26 @@ import LeftSideBarFilters from './tellents/LeftSideBarFilters';
 import SearchForm from './tellents/SearchForm';
 import JobBoxTellent from './tellents/JobBoxTellent';
 import JobBoxJobs from './tellents/JobBoxJobs';
-
-
+const queryString = require('query-string');
+// import queryString fro
 
 class Tellent extends React.Component {
 	constructor (props) {
 		super(props)
 	}
 
-	componentDidMount = () => {
-		getData('/api/v1/tellents/search?q='+this.props.search.config.q).then(apiData => {
+	componentWillMount = () => {
+		// Reactotron.warn(queryString.stringify(this.props.search.config));
+		var StringifyQ = queryString.stringify({
+			q: JSON.stringify(this.props.search.config)
+		});
 
-				Reactotron.log(this.props.search.config, apiData);
+		Reactotron.warn("Mydata" , StringifyQ);
+
+		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+				Reactotron.log(apiData);
 			});
 		}
-
-
-		
-
 
     render() {
       return (
@@ -181,7 +183,7 @@ class Tellent extends React.Component {
  					<div class="row main-content flexbox">
  						<div class="col-xs-2 left-sidebar">
 
-                   <LeftSideBarFilters />
+                   			<LeftSideBarFilters />
 							
  						</div>{/* <!--col-xs-2 End--> */}
 

@@ -8,8 +8,8 @@ const
 
 let initialState = {
 	config : {
-		q: "%7B%7D",
-		// exp:[],
+		q: "ivan",
+		// exp:"intern,junior"
     // avl:"",
     // lang:[],
     // loc:[],

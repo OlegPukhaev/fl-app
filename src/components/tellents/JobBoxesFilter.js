@@ -16,7 +16,6 @@ class JobBoxesFilter extends React.Component {
   }
 
   render() { 
-    
     return (
       <div class="panel panel-default panel-gray job-boxes-filter">
         <div class="search-filter radio-block flexbox justify-space-center" >
