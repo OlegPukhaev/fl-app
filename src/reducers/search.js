@@ -1,7 +1,8 @@
 import Reactotron from 'reactotron-react-js';
 
 const 
-		GET_DATA = 'GET_DATA',
+		GET_TELLENTS_DATA = 'GET_TELLENTS_DATA',
+		GET_JOBS_DATA = 'GET_JOBS_DATA',
 		DATA_TOGGLER = 'DATA_TOGGLER',
 		INPUT_SEARCH = 'INPUT_SEARCH';
 
@@ -23,7 +24,8 @@ let initialState = {
 	},
 	isTellents:true,
 	isJobs:false,
-	searchData: null
+	tellentsData: null,
+	jobsData: null
 	
 }
 
@@ -36,10 +38,19 @@ let initialState = {
       };
 		}
 		
-  export function getSearchData(value) {
+  export function getJobsData(value) {
       return dispatch => {
         dispatch({
-          type: GET_DATA, 
+          type: GET_JOBS_DATA, 
+          payload: value
+        });
+      };
+		}
+		
+  export function getTellentsData(value) {
+      return dispatch => {
+        dispatch({
+          type: GET_TELLENTS_DATA, 
           payload: value
         });
       };
@@ -63,10 +74,16 @@ const actionsMap = {
 					config: state.config
 		}
 	},   
-	[GET_DATA]: (state, action) => {
+	[GET_TELLENTS_DATA]: (state, action) => {
 			return {
 					...state, 
-					searchData: action.payload
+					tellentsData: action.payload
+		}
+	},   
+	[GET_JOBS_DATA]: (state, action) => {
+			return {
+					...state, 
+					jobsData: action.payload
 		}
 	},   
 	[DATA_TOGGLER]: (state, action) => {

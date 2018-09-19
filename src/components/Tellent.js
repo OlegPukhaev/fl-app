@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getData } from '../functions/api';
 import '../../node_modules/toastr/build/toastr.css';
 import {arrForUpdate} from './../functions/function';
-import {getSearchData} from './../reducers/search';
+import {getTellentsData, getJobsData} from './../reducers/search';
 
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
@@ -27,10 +27,12 @@ class Tellent extends React.Component {
 			q: JSON.stringify(this.props.search.config)
 		});
 		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-				// Reactotron.log('Get Data',apiData);
-				this.props.getSearchData(apiData.data);
-			});
-		}
+			this.props.getTellentsData(apiData.data);
+		});
+		getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+			this.props.getJobsData(apiData.data);
+		});
+	}
 
     render() {
 		Reactotron.log('Get Data', this.props.search);
@@ -123,7 +125,9 @@ class Tellent extends React.Component {
  												<span class="icon icon-plus-button"></span>
  											</li>
  										</ul>
- 									</div> */}
+									 </div> */}
+									 
+
  									<div class="sort-nav">
  										<span class="sort-nav-title">Sort By</span>
  										<button type="button" class="btn">
@@ -174,6 +178,8 @@ class Tellent extends React.Component {
  											<span class="sort-result-numb">25</span>
  										</span>
  									</div>
+
+									 
  								</nav>
  							</div>
  						</div>
@@ -195,8 +201,8 @@ class Tellent extends React.Component {
 
 									{/* <NoResultJobs /> */}
 
-									<JobBoxTellent data={this.props.search.searchData} />
-									<JobBoxJobs />
+									{this.props.search.isTellents === true ? <JobBoxTellent data={this.props.search.tellentsData}/> : <JobBoxJobs />}
+									
 
  								</div>
 
@@ -253,7 +259,8 @@ class Tellent extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-				getSearchData
+				getTellentsData,
+				getJobsData
 			},
 			dispatch
 		);

@@ -3,7 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { getData } from '../functions/api';
-import {inputSearch, getSearchData} from '../../reducers/search';
+import {inputSearch, getTellentsData, getJobsData} from '../../reducers/search';
 import {getData} from '../../functions/api';
 const queryString = require('query-string');
 
@@ -20,13 +20,25 @@ class SearchForm extends React.Component {
 	}
 
 	onClickGetData = () => {
-		var StringifyQ = queryString.stringify({
-			q: JSON.stringify(this.props.search.config)
-		});
-		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-			// Reactotron.log(this.props.search.config.p, apiData);
-			this.props.getSearchData(apiData.data);
-		});
+		switch (this.props.search.isTellents) {
+			case true:
+				var StringifyQ = queryString.stringify({
+					q: JSON.stringify(this.props.search.config)
+				});
+				getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+					// Reactotron.log(this.props.search.config.p, apiData);
+					this.props.getTellentsData(apiData.data);
+				});
+				
+			case false:
+				var StringifyQ = queryString.stringify({
+					q: JSON.stringify(this.props.search.config)
+				});
+				getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+					// Reactotron.log(this.props.search.config.p, apiData);
+					this.props.getJobsData(apiData.data);
+				});
+		}
 	}
 
   render() { 
@@ -58,11 +70,12 @@ class SearchForm extends React.Component {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
-        {
-			inputSearch,
-			getSearchData
-        },
-        dispatch
+			{
+				inputSearch,
+				getTellentsData,
+				getJobsData
+			},
+			dispatch
     );
  };
 
