@@ -3,7 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { getData } from '../functions/api';
-import {inputSearch} from '../../reducers/search';
+import {inputSearch, getSearchData} from '../../reducers/search';
 import {getData} from '../../functions/api';
 const queryString = require('query-string');
 
@@ -24,13 +24,13 @@ class SearchForm extends React.Component {
 			q: JSON.stringify(this.props.search.config)
 		});
 		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-			Reactotron.log(this.props.search.config.p, apiData);
-
+			// Reactotron.log(this.props.search.config.p, apiData);
+			this.props.getSearchData(apiData.data);
 		});
 	}
 
   render() { 
-		Reactotron.log(this.props.search.config.q);
+		// Reactotron.log(this.props.search.config.);
     return (
 			<div class="search-form">
 			<form class="my-search-form" role="search">
@@ -59,7 +59,8 @@ class SearchForm extends React.Component {
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
         {
-            inputSearch
+			inputSearch,
+			getSearchData
         },
         dispatch
     );

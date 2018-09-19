@@ -22,7 +22,8 @@ let initialState = {
     // ds:""
 	},
 	isTellents:true,
-	isJobs:false
+	isJobs:false,
+	searchData: null
 	
 }
 
@@ -35,7 +36,7 @@ let initialState = {
       };
 		}
 		
-  export function getData(value) {
+  export function getSearchData(value) {
       return dispatch => {
         dispatch({
           type: GET_DATA, 

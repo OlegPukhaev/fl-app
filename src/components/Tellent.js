@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getData } from '../functions/api';
 import '../../node_modules/toastr/build/toastr.css';
 import {arrForUpdate} from './../functions/function';
+import {getSearchData} from './../reducers/search';
 
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
@@ -22,19 +23,17 @@ class Tellent extends React.Component {
 	}
 
 	componentDidMount = () => {
-		// Reactotron.warn(queryString.stringify(this.props.search.config));
 		var StringifyQ = queryString.stringify({
 			q: JSON.stringify(this.props.search.config)
 		});
-
-		Reactotron.warn("Mydata" , StringifyQ);
-
 		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-				Reactotron.log(apiData);
+				// Reactotron.log('Get Data',apiData);
+				this.props.getSearchData(apiData.data);
 			});
 		}
 
     render() {
+		Reactotron.log('Get Data', this.props.search);
       return (
          <div class="wrapper">
      		<nav class="main-top-nav flexbox justify-space-between">
@@ -196,7 +195,7 @@ class Tellent extends React.Component {
 
 									{/* <NoResultJobs /> */}
 
-									<JobBoxTellent />
+									<JobBoxTellent data={this.props.search.searchData} />
 									<JobBoxJobs />
 
  								</div>
@@ -254,6 +253,7 @@ class Tellent extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
+				getSearchData
 			},
 			dispatch
 		);
