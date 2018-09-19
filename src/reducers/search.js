@@ -4,6 +4,7 @@ const
 		GET_TELLENTS_DATA = 'GET_TELLENTS_DATA',
 		GET_JOBS_DATA = 'GET_JOBS_DATA',
 		DATA_TOGGLER = 'DATA_TOGGLER',
+		GET_LANGUAGE = 'GET_LANGUAGE',
 		INPUT_SEARCH = 'INPUT_SEARCH';
 
 
@@ -76,6 +77,69 @@ let initialState = {
 						name: "< 4"
 					}
 				],
+		rate:[	
+					{
+						id: "i_5",
+						selected : false,
+						name: "Best (5)"
+					},
+					{
+						id:"i_5_4",
+						selected: false,
+						name: "5-4.8"
+					},
+					{
+						id:"i_4",
+						selected: false,
+						name: "4.8-4.5" 
+					},
+					{
+						id:"l_4",
+						selected: false,
+						name: "< 4.5"
+					}
+				],
+		avl:[	
+					{
+						id: "per_week_up_to_20",
+						selected : false,
+						name: "< 20h"
+					},
+					{
+						id:"per_week_30",
+						selected: false,
+						name: "30h"
+					},
+					{
+						id:"per_week_more_than_30",
+						selected: false,
+						name: "> 30h" 
+					},
+					{
+						id:"per_week_full_time",
+						selected: false,
+						name: "Full Time"
+					}
+				],
+		place:[	
+					{
+						id: "online",
+						selected : false,
+						name: "On-Line"
+					},
+					{
+						id:"onsite",
+						selected: false,
+						name: "On-Site"
+					}
+				],
+		lang:[	
+					{
+						id: "online",
+						selected : false,
+						name: "On-Line"
+					},
+				],
 	},
 	isTellents:true,
 	isJobs:false,
@@ -84,6 +148,15 @@ let initialState = {
 	
 }
 
+  export function getLanguage(value) {
+      return dispatch => {
+        dispatch({
+          type: GET_LANGUAGE, 
+          payload: value
+        });
+      };
+		}
+		
   export function inputSearch(value) {
       return dispatch => {
         dispatch({
@@ -124,6 +197,13 @@ const actionsMap = {
 	[INPUT_SEARCH]: (state, action) => {
 			state.config.q = action.payload;
 			// alert(state.config.q);
+			return {
+					...state, 
+					config: state.config
+		}
+	},   
+	[GET_LANGUAGE]: (state, action) => {
+		state.config.lang = action.payload.languages;
 			return {
 					...state, 
 					config: state.config

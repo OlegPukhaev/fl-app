@@ -19,20 +19,6 @@ class LeftSideBarFilters extends React.Component {
 			</div>	
 		);		
 	}
-
-	// dsList  = (item) => {
-	// 	return (  
-	// 		<div class="checkbox-block">
-	// 			<input type="checkbox" id={item.id} cheked={item.selected}/>
-	// 			<label for={item.id}>
-	// 				<span class="filter-checkbox">
-	// 					<span class="icon icon-check-mark"></span>
-	// 				</span>
-	// 				<span class="checkbox-text">{item.name}</span>
-	// 			</label>
-	// 		</div>
-	// 	);
-	// }
 	 
   render() { 
     return (
@@ -62,6 +48,127 @@ class LeftSideBarFilters extends React.Component {
 								{this.props.data.skill.map(this.checkerList)}
             </div>
         </div>
+        <div class="filter-block">
+            <div class="filter-title">
+						Freelancer Rate:
+            </div>
+            <div class="checkbox-list-block clearfix">
+								{this.props.data.rate.map(this.checkerList)}
+            </div>
+        </div>
+        <div class="filter-block">
+            <div class="filter-title">
+						Availability:
+            </div>
+            <div class="checkbox-list-block clearfix">
+								{this.props.data.avl.map(this.checkerList)}
+            </div>
+        </div>
+        <div class="filter-block">
+            <div class="filter-title">
+						Place of Work:
+            </div>
+            <div class="checkbox-list-block clearfix">
+								{this.props.data.place.map(this.checkerList)}
+            </div>
+        </div>
+
+				<div class="filter-block">
+				<div class="filter-title">
+						Languages:
+				</div>
+				<div class="filter-dropdown-block clearfix">
+						<button type="button" class="btn btn-default dropdown-toggle">
+								<div class="flexbox justify-space-between">
+										<span class="text">Languages</span>
+										<span class="icon icon-down-arrow"></span>
+								</div>
+						</button>
+						<div class="dropdown-list">
+								<div class="caret-block">
+										<span class="caret-top"></span>
+								</div>
+								<div class="dropdown-list-wrapper">
+										<div class="checkbox-list-block">
+												<div class="checkbox-block">
+														<input type="checkbox" id="checkbox-5.1" />
+														<label for="checkbox-5.1">
+																<span class="filter-checkbox">
+																		<span class="icon icon-check-mark"></span>
+																</span>
+																<span class="checkbox-text">English</span>
+														</label>
+												</div>
+												<div class="checkbox-block">
+														<input type="checkbox" id="checkbox-5.2" />
+														<label for="checkbox-5.2">
+																<span class="filter-checkbox">
+																		<span class="icon icon-check-mark"></span>
+																</span>
+																<span class="checkbox-text">Russian</span>
+														</label>
+												</div>
+												<div class="checkbox-block">
+														<input type="checkbox" id="checkbox-5.3" />
+														<label for="checkbox-5.3">
+																<span class="filter-checkbox">
+																		<span class="icon icon-check-mark"></span>
+																</span>
+																<span class="checkbox-text">Poland</span>
+														</label>
+												</div>
+												<div class="checkbox-block">
+														<input type="checkbox" id="checkbox-5.4" />
+														<label for="checkbox-5.4">
+																<span class="filter-checkbox">
+																		<span class="icon icon-check-mark"></span>
+																</span>
+																<span class="checkbox-text">Italia</span>
+														</label>
+												</div>
+												<div class="checkbox-block">
+														<input type="checkbox" id="checkbox-5.5" />
+														<label for="checkbox-5.5">
+																<span class="filter-checkbox">
+																		<span class="icon icon-check-mark"></span>
+																</span>
+																<span class="checkbox-text">Franch</span>
+														</label>
+												</div>
+												<div class="checkbox-block">
+														<input type="checkbox" id="checkbox-5.6" />
+														<label for="checkbox-5.6">
+																<span class="filter-checkbox">
+																		<span class="icon icon-check-mark"></span>
+																</span>
+																<span class="checkbox-text">Ukrainien</span>
+														</label>
+												</div>
+												<div class="checkbox-block">
+														<input type="checkbox" id="checkbox-5.7" />
+														<label for="checkbox-5.7">
+																<span class="filter-checkbox">
+																		<span class="icon icon-check-mark"></span>
+																</span>
+																<span class="checkbox-text">Turkey</span>
+														</label>
+												</div>
+												<div class="checkbox-block">
+														<input type="checkbox" id="checkbox-5.8" />
+														<label for="checkbox-5.8">
+																<span class="filter-checkbox">
+																		<span class="icon icon-check-mark"></span>
+																</span>
+																<span class="checkbox-text">Italien</span>
+														</label>
+												</div>
+										</div>
+								</div>
+								
+						</div>
+					</div>
+				</div>
+				
 
 
 
@@ -255,7 +362,9 @@ class LeftSideBarFilters extends React.Component {
                     
                 </div>
             </div>
-        </div>
+				</div>
+				
+
         <div class="filter-block">
             <div class="filter-title">
                 Languages:
@@ -350,7 +459,9 @@ class LeftSideBarFilters extends React.Component {
                     
                 </div>
             </div>
-        </div>
+				</div>
+				
+
         <div class="filter-block">
             <div class="filter-title">
                 Availability:
