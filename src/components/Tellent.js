@@ -201,7 +201,7 @@ class Tellent extends React.Component {
 
 									{/* <NoResultJobs /> */}
 
-									{this.props.search.isTellents === true ? <JobBoxTellent data={this.props.search.tellentsData}/> : <JobBoxJobs />}
+									{this.props.search.isTellents === true ? <JobBoxTellent data={this.props.search.tellentsData}/> : <JobBoxJobs data={this.props.search.jobsData}/>}
 									
 
  								</div>
