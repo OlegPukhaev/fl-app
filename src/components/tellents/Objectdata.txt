@@ -1,0 +1,14 @@
+q: {
+    "q":"iv",
+    "exp":"intern,junior,senior,expert",
+    "avl":"per_week_up_to_20,per_week_30,per_week_full_time,per_week_more_than_30",
+    "lang":"Albanian",  -- тоже много
+    "loc":"Andorra", -- тоже много
+    "skill":"i_5",
+    "rate":"i_5",
+    "place":"online,onsite",
+    "ds":"l_85"
+    }
+
+
+    q: {"q":"iv","exp":"intern,junior,senior,expert","avl":"per_week_up_to_20,per_week_30,per_week_full_time,per_week_more_than_30","lang":"Albanian,Armenian,Basque,Bengali","loc":"Andorra,Afghanistan,Antigua and Barbuda","skill":"i_5","rate":"i_5","place":"online,onsite","ds":"l_85"}

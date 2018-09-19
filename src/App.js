@@ -2,9 +2,9 @@ import Reactotron from 'reactotron-react-js';
 import React, { Component } from 'react';
 
 import './App.css';
-import './bootstrap/css/bootstrap.min.css';
-import './styles/styles.css';
-import './styles/media.css';
+// import './bootstrap/css/bootstrap.min.css';
+// import './styles/styles.css';
+// import './styles/media.css';
 
 import createStore from './reducers/createStore';
 import {Provider} from 'react-redux';

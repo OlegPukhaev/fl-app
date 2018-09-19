@@ -8,7 +8,7 @@ const
 
 let initialState = {
 	config : {
-		q: "ivan",
+		q:"",
 		// exp:"intern,junior"
     // avl:"",
     // lang:[],
@@ -56,7 +56,7 @@ let initialState = {
 const actionsMap = {
 	[INPUT_SEARCH]: (state, action) => {
 			state.config.q = action.payload;
-			alert(state.config.q);
+			// alert(state.config.q);
 			return {
 					...state, 
 					config: state.config

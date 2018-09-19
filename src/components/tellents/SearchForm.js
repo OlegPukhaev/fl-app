@@ -4,7 +4,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { getData } from '../functions/api';
 import {inputSearch} from '../../reducers/search';
-import {searchData} from '../../functions/api';
+import {getData} from '../../functions/api';
+const queryString = require('query-string');
 
 class SearchForm extends React.Component {
 	constructor () {
@@ -19,8 +20,10 @@ class SearchForm extends React.Component {
 	}
 
 	onClickGetData = () => {
-		alert('fff '+this.props.search.config.q);
-		searchData('/api/v1/tellents/search').then(apiData => {
+		var StringifyQ = queryString.stringify({
+			q: JSON.stringify(this.props.search.config)
+		});
+		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
 			Reactotron.log(this.props.search.config.p, apiData);
 
 		});

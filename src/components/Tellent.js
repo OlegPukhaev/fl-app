@@ -21,7 +21,7 @@ class Tellent extends React.Component {
 		super(props)
 	}
 
-	componentWillMount = () => {
+	componentDidMount = () => {
 		// Reactotron.warn(queryString.stringify(this.props.search.config));
 		var StringifyQ = queryString.stringify({
 			q: JSON.stringify(this.props.search.config)
