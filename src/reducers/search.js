@@ -208,6 +208,7 @@ const actionsMap = {
 		}
 	},   
 	[GET_LANGUAGE]: (state, action) => {
+
 		state.config.lang = action.payload.languages;
 			return {
 					...state, 

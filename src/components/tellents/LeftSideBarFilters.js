@@ -74,102 +74,54 @@ class LeftSideBarFilters extends React.Component {
         </div>
 
 				<div class="filter-block">
-				<div class="filter-title">
-						Languages:
-				</div>
-				<div class="filter-dropdown-block clearfix">
-						<button type="button" class="btn btn-default dropdown-toggle">
-								<div class="flexbox justify-space-between">
-										<span class="text">Languages</span>
-										<span class="icon icon-down-arrow"></span>
-								</div>
-						</button>
-						<div class="dropdown-list">
-								<div class="caret-block">
-										<span class="caret-top"></span>
-								</div>
-								<div class="dropdown-list-wrapper">
-										<div class="checkbox-list-block">
-												<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.1" />
-														<label for="checkbox-5.1">
-																<span class="filter-checkbox">
-																		<span class="icon icon-check-mark"></span>
-																</span>
-																<span class="checkbox-text">English</span>
-														</label>
-												</div>
-												<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.2" />
-														<label for="checkbox-5.2">
-																<span class="filter-checkbox">
-																		<span class="icon icon-check-mark"></span>
-																</span>
-																<span class="checkbox-text">Russian</span>
-														</label>
-												</div>
-												<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.3" />
-														<label for="checkbox-5.3">
-																<span class="filter-checkbox">
-																		<span class="icon icon-check-mark"></span>
-																</span>
-																<span class="checkbox-text">Poland</span>
-														</label>
-												</div>
-												<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.4" />
-														<label for="checkbox-5.4">
-																<span class="filter-checkbox">
-																		<span class="icon icon-check-mark"></span>
-																</span>
-																<span class="checkbox-text">Italia</span>
-														</label>
-												</div>
-												<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.5" />
-														<label for="checkbox-5.5">
-																<span class="filter-checkbox">
-																		<span class="icon icon-check-mark"></span>
-																</span>
-																<span class="checkbox-text">Franch</span>
-														</label>
-												</div>
-												<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.6" />
-														<label for="checkbox-5.6">
-																<span class="filter-checkbox">
-																		<span class="icon icon-check-mark"></span>
-																</span>
-																<span class="checkbox-text">Ukrainien</span>
-														</label>
-												</div>
-												<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.7" />
-														<label for="checkbox-5.7">
-																<span class="filter-checkbox">
-																		<span class="icon icon-check-mark"></span>
-																</span>
-																<span class="checkbox-text">Turkey</span>
-														</label>
-												</div>
-												<div class="checkbox-block">
-														<input type="checkbox" id="checkbox-5.8" />
-														<label for="checkbox-5.8">
-																<span class="filter-checkbox">
-																		<span class="icon icon-check-mark"></span>
-																</span>
-																<span class="checkbox-text">Italien</span>
-														</label>
-												</div>
-										</div>
-								</div>
-								
-						</div>
+					<div class="filter-title">
+							Languages:
 					</div>
+					<div class="filter-dropdown-block clearfix">
+							<button type="button" class="btn btn-default dropdown-toggle">
+									<div class="flexbox justify-space-between">
+											<span class="text">Languages</span>
+											<span class="icon icon-down-arrow"></span>
+									</div>
+							</button>
+							<div class="dropdown-list">
+									<div class="caret-block">
+											<span class="caret-top"></span>
+									</div>
+									<div class="dropdown-list-wrapper">
+											<div class="checkbox-list-block">
+														{this.props.data.lang.map(this.checkerList)}
+											</div>
+									</div>
+							</div>
+						</div>
 				</div>
 				
-
+				
+        <div class="filter-block">
+            <div class="filter-title">
+                Location:
+            </div>
+            <div class="filter-dropdown-block clearfix">
+                <button type="button" class="btn btn-default dropdown-toggle">
+                    <div class="flexbox justify-space-between">
+                        <span class="text">Country</span>
+                        <span class="icon icon-down-arrow"></span>
+                    </div>
+                </button>
+                <div class="dropdown-list">
+                    <div class="caret-block">
+                        <span class="caret-top"></span>
+                    </div>
+                    <div class="dropdown-list-wrapper">
+                        <div class="checkbox-list-block">
+													{this.props.data.loc.map(this.checkerList)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+				</div>
+				
 
 
 {/* 				
@@ -240,10 +192,11 @@ class LeftSideBarFilters extends React.Component {
                     </label>
                 </div>
             </div>
-        </div>
+				</div>
+				
         <div class="filter-block">
             <div class="filter-title">
-                Loocation:
+                Location:
             </div>
             <div class="filter-dropdown-block clearfix">
                 <button type="button" class="btn btn-default dropdown-toggle">
