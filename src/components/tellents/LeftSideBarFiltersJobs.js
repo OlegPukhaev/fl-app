@@ -1,7 +1,7 @@
 import React from 'react';
 // import '../../App.css';
 
-class LeftSideBarFilters extends React.Component {
+class LeftSideBarFiltersJobs extends React.Component {
 	constructor (){
 		super();
 	}
@@ -126,4 +126,4 @@ class LeftSideBarFilters extends React.Component {
   }
 }
 
-export default LeftSideBarFilters;
+export default LeftSideBarFiltersJobs;

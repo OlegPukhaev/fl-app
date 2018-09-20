@@ -14,6 +14,7 @@ import LeftSideBarFilters from './tellents/LeftSideBarFilters';
 import SearchForm from './tellents/SearchForm';
 import JobBoxTellent from './tellents/JobBoxTellent';
 import JobBoxJobs from './tellents/JobBoxJobs';
+import LeftSideBarFiltersJobs from './tellents/LeftSideBarFiltersJobs';
 const queryString = require('query-string');
 // import queryString fro
 
@@ -195,7 +196,7 @@ class Tellent extends React.Component {
  					<div class="row main-content flexbox">
  						<div class="col-xs-2 left-sidebar">
 
-                   			<LeftSideBarFilters data={this.props.search.config}/>
+                   			{this.props.search.isTellents === true ? <LeftSideBarFilters data={this.props.search.config}/> : <LeftSideBarFiltersJobs data={this.props.search.configJobs}/>}
 							
  						</div>{/* <!--col-xs-2 End--> */}
 
