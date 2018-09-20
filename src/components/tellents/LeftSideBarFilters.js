@@ -8,17 +8,19 @@ import {selectExp} from './../../reducers/search'
 class LeftSideBarFilters extends React.Component {
 	constructor (props){
 		super(props);
+
+		this.state = {name:""};
 	}
 
     onClickSelect = (event) => {
         this.props.selectExp(event.target.id);
-        Reactotron.log(event.target);
+        alert(event.target.name);
     }
 
 	checkerList = (item, index) => {
 		return (
 			<div class="checkbox-block">
-				<input type="checkbox" key={item.id} id={index} cheked={item.selected} onClick={this.onClickSelect}/>
+				<input type="checkbox" name={this.state.name} key={item.id} id={index} cheked={item.selected} onClick={this.onClickSelect}/>
 				<label for={index}>
 					<span class="filter-checkbox">
 						<span class="icon icon-check-mark"></span>
@@ -107,7 +109,7 @@ class LeftSideBarFilters extends React.Component {
                     </div>
                     <div class="dropdown-list-wrapper">
                         <div class="checkbox-list-block">
-													{this.props.data.loc.map(this.checkerList)}
+                            {this.props.data.loc.map(this.checkerList)}
                         </div>
                     </div>
                 </div>
@@ -139,7 +141,6 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators(
         {
             selectExp,
-            // selectDs
         },
         dispatch
     );
