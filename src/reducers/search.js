@@ -210,27 +210,44 @@ let initialState = {
 						name: "None"
 					}
 				],
-		rate:[	
+		payment:[	
 					{
-						id: "i_5",
+						id: "fixed_price",
 						selected : false,
-						name: "Best (5)"
+						name: "Fixed Price"
 					},
 					{
-						id:"i_5_4",
+						id:"hourly",
 						selected: false,
-						name: "5-4.8"
-					},
-					{
-						id:"i_4",
-						selected: false,
-						name: "4.8-4.5" 
-					},
-					{
-						id:"l_4",
-						selected: false,
-						name: "< 4.5"
+						name: "Hourly"
 					}
+				],
+		bud:[	
+					{
+						name: "$0 - $100",
+						selected : false,
+						id: "i0_100"
+					},
+					{
+						name:"$100 - $300",
+						selected: false,
+						id: "i100_300"
+					},
+					{
+						name:"$300 - $1000",
+						selected: false,
+						id: "i300_1000"
+					},
+					{
+						name:"> $1000",
+						selected: false,
+						id: "more_1000"
+					},
+					{
+						id:"undefined",
+						selected: false,
+						name: "Not defined (Empty)"
+					},
 				],
 		avl:[	
 					{
