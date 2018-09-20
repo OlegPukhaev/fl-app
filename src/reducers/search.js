@@ -1,12 +1,14 @@
 import Reactotron from 'reactotron-react-js';
 
 const 
-		GET_TELLENTS_DATA = 'GET_TELLENTS_DATA',
-		GET_JOBS_DATA = 'GET_JOBS_DATA',
-		DATA_TOGGLER = 'DATA_TOGGLER',
-		GET_LANGUAGE = 'GET_LANGUAGE',
-		GET_COUNTRIES = 'GET_COUNTRIES',
-		INPUT_SEARCH = 'INPUT_SEARCH';
+	GET_TELLENTS_DATA = 'GET_TELLENTS_DATA',
+	GET_JOBS_DATA = 'GET_JOBS_DATA',
+	DATA_TOGGLER = 'DATA_TOGGLER',
+	GET_LANGUAGE = 'GET_LANGUAGE',
+	GET_COUNTRIES = 'GET_COUNTRIES',
+	INPUT_SEARCH = 'INPUT_SEARCH';
+
+const	SELECT_EXP = 'SELECT_EXP';
 
 
 let initialState = {
@@ -261,9 +263,9 @@ let initialState = {
 						name: "> 20h"
 					},
 					{
-						id:"Full-Time",
+						name:"Full-Time",
 						selected: false,
-						name: "per_week_more_than_30" 
+						id: "per_week_more_than_30" 
 					},
 					{
 						id:"decide_later",
@@ -292,6 +294,15 @@ let initialState = {
 	jobsData: null
 	
 }
+
+  export function selectExp(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_EXP, 
+				payload: id
+			});
+		};
+	}
 
   export function getCountries(value) {
       return dispatch => {
@@ -348,6 +359,17 @@ let initialState = {
     }
 
 const actionsMap = {
+  
+	[SELECT_EXP]: (state, action) => {
+		var copyObj = Object.assign({}, state.config)	
+		if(copyObj.exp[action.payload].selected === true) {
+			copyObj.exp[action.payload].selected = false;
+		}	else copyObj.exp[action.payload].selected = true;
+		return {
+					...state, 
+					config: copyObj
+		}
+	},   
 	[INPUT_SEARCH]: (state, action) => {
 			state.config.q = action.payload;
 			// alert(state.config.q);
@@ -359,16 +381,20 @@ const actionsMap = {
 	[GET_LANGUAGE]: (state, action) => {
 
 		state.config.lang = action.payload.languages;
+		state.configJobs.lang = action.payload.languages;
 			return {
 					...state, 
-					config: state.config
+					config: state.config,
+					configJobs: state.configJobs
 		}
 	},   
 	[GET_COUNTRIES]: (state, action) => {
 		state.config.loc = action.payload;
+		state.configJobs.loc = action.payload;
 			return {
 					...state, 
-					config: state.config
+					config: state.config,
+					configJobs: state.configJobs
 		}
 	},   
 	[GET_TELLENTS_DATA]: (state, action) => {

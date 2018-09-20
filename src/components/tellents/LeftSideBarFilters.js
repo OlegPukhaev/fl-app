@@ -1,16 +1,25 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import {selectExp} from './../../reducers/search'
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
-	constructor (){
-		super();
+	constructor (props){
+		super(props);
 	}
 
-	checkerList = (item) => {
+    onClickSelect = (event) => {
+        this.props.selectExp(event.target.id);
+        Reactotron.log(event.target);
+    }
+
+	checkerList = (item, index) => {
 		return (
 			<div class="checkbox-block">
-				<input type="checkbox" id={item.id} cheked={item.selected}/>
-				<label for={item.id}>
+				<input type="checkbox" key={item.id} id={index} cheked={item.selected} onClick={this.onClickSelect}/>
+				<label for={index}>
 					<span class="filter-checkbox">
 						<span class="icon icon-check-mark"></span>
 					</span>
@@ -126,4 +135,20 @@ class LeftSideBarFilters extends React.Component {
   }
 }
 
-export default LeftSideBarFilters;
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators(
+        {
+            selectExp,
+            // selectDs
+        },
+        dispatch
+    );
+ };
+
+function mapStateToProps (state) {
+    return  {
+        search:state.search
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (LeftSideBarFilters);
