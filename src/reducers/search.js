@@ -161,48 +161,53 @@ let initialState = {
 						name: "Expert"
 					}
 				],
-		ds:[
+		post:[
 					{
-						id: "i_100",
+						id: "i24",
 						selected : false,
-						name: "100%"
+						name: "24h"
 					},
 					{
-						id:"m_95",
+						id:"i3d",
 						selected: false,
-						name: "> 95%"
+						name: "3d"
 					},
 					{
-						id:"i_85_95",
+						id:"i1w",
 						selected: false,
-						name: "85-95%" 
+						name: "1w" 
 					},
 					{
-						id:"l_85",
+						id:"m_1w",
 						selected: false,
-						name: "< 85%"
+						name: "> 1w"
 					}
 				],
-		skill:[
+		prop:[
 					{
-						id: "i_5",
+						id: "i0_5",
 						selected : false,
-						name: "Best (5)"
+						name: "0 - 5"
 					},
 					{
-						id:"i_5_4",
+						id:"i5_10",
 						selected: false,
-						name: "5-4.6"
+						name: "5 - 10"
 					},
 					{
-						id:"i_4",
+						id:"i10_20",
 						selected: false,
-						name: "4.6-4" 
+						name: "10 - 20" 
 					},
 					{
-						id:"l_4",
+						id:"m_20",
 						selected: false,
-						name: "< 4"
+						name: "> 20"
+					},
+					{
+						id:"undefined",
+						selected: false,
+						name: "None"
 					}
 				],
 		rate:[	
@@ -229,24 +234,24 @@ let initialState = {
 				],
 		avl:[	
 					{
-						id: "per_week_up_to_20",
+						id: "per_week_10",
 						selected : false,
 						name: "< 20h"
 					},
 					{
-						id:"per_week_30",
+						id:"per_week_up_to_30",
 						selected: false,
-						name: "30h"
+						name: "> 20h"
 					},
 					{
-						id:"per_week_more_than_30",
+						id:"Full-Time",
 						selected: false,
-						name: "> 30h" 
+						name: "per_week_more_than_30" 
 					},
 					{
-						id:"per_week_full_time",
+						id:"decide_later",
 						selected: false,
-						name: "Full Time"
+						name: "Undefined"
 					}
 				],
 		place:[	

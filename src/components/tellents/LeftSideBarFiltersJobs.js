@@ -34,30 +34,20 @@ class LeftSideBarFiltersJobs extends React.Component {
         </div>
         <div class="filter-block">
             <div class="filter-title">
-						Job Done Success:
+				Posted:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.data.ds.map(this.checkerList)}
+								{this.props.data.post.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
             <div class="filter-title">
-						Skill Test Score:
+                Place of Work:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.data.skill.map(this.checkerList)}
+                {this.props.data.place.map(this.checkerList)}
             </div>
         </div>
-        <div class="filter-block">
-            <div class="filter-title">
-						Freelancer Rate:
-            </div>
-            <div class="checkbox-list-block clearfix">
-								{this.props.data.rate.map(this.checkerList)}
-            </div>
-        </div>
-
-
         <div class="filter-block">
 					<div class="filter-title">
 							Languages:
@@ -80,7 +70,7 @@ class LeftSideBarFiltersJobs extends React.Component {
 								</div>
 						</div>
 					</div>
-				</div>
+				</div>				
         <div class="filter-block">
             <div class="filter-title">
                 Location:
@@ -98,14 +88,13 @@ class LeftSideBarFiltersJobs extends React.Component {
                     </div>
                     <div class="dropdown-list-wrapper">
                         <div class="checkbox-list-block">
-													{this.props.data.loc.map(this.checkerList)}
+                            {this.props.data.loc.map(this.checkerList)}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="filter-block">
+				<div class="filter-block">
             <div class="filter-title">
                 Availability:
             </div>
@@ -115,12 +104,21 @@ class LeftSideBarFiltersJobs extends React.Component {
         </div>
         <div class="filter-block">
             <div class="filter-title">
-                Place of Work:
+						Proposals:
             </div>
             <div class="checkbox-list-block clearfix">
-                {this.props.data.place.map(this.checkerList)}
+								{this.props.data.prop.map(this.checkerList)}
             </div>
         </div>
+
+        <div class="filter-block">
+            <div class="filter-title">
+							Job Delivery:
+            <div class="checkbox-list-block clearfix">
+								{this.props.data.rate.map(this.checkerList)}
+            </div>
+        	</div>
+			</div>
     </div>
     );
   }
