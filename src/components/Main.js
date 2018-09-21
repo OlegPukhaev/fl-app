@@ -5,23 +5,23 @@ import {connect} from 'react-redux';
 // import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
 // import Home from './Home';
 import Skills from './Skills';
-import Tellent from './Tellent';
-import axios from 'axios';
+// import Tellent from './Tellent';
+// import axios from 'axios';
 // import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-import User from './User';
-import LinkPage from './LinkPage';
-import {getToken} from '../functions/config'
+// import User from './User';
+// import LinkPage from './LinkPage';
+// import {getToken} from '../functions/config'
 import {setUserStatus} from '../reducers/getUser';
 import { bindActionCreators } from 'redux';
 
-var Auth = require('../../node_modules/j-toker/src/j-toker.js'),
-    PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
-    toastr = require('../../node_modules/toastr/toastr');
+var Auth = require('../../node_modules/j-toker/src/j-toker.js');
+    // PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
+    // toastr = require('../../node_modules/toastr/toastr');
 
 Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
 
-var configapi = getToken();
+// var configapi = getToken();
 
 class Main extends React.Component {
 
@@ -37,7 +37,7 @@ class Main extends React.Component {
 	}
 
   render() {
-		Reactotron.log(this.props.user);
+		// Reactotron.log(this.props.user);
     return (
       <div class="wrapper">
         <nav class="main-top-nav flexbox justify-space-between">
@@ -92,7 +92,7 @@ class Main extends React.Component {
 	    				</div>
 	    				<div class="user-box-nav dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span class="caret"></span></a>
-							{Reactotron.log(this.props.user)}
+							{/* {Reactotron.log(this.props.user)} */}
 							 <ul class="dropdown-menu">
 								<li><a href="" onClick={this.onClickSignOut}>Logout</a></li>
 							  </ul>

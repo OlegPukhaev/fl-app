@@ -34,10 +34,10 @@ componentDidMount = () => {
             {/* <Link to="/Tellent">| Tellent </Link> */}
             
             <Switch>
-              <Route path="/User" component={User} />
+              <Route exact path="/User" component={User} />
               <Route exact path="/home" component={Main} />
-              <Route path="/Main" component={Main} />
-              <Route path="/tellent" component={Tellent} />
+              <Route exact path="/Main" component={Main} />
+              <Route exact path="/tellent" component={Tellent} />
             </Switch>
           </div>
         </BrowserRouter>

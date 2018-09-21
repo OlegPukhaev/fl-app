@@ -7,11 +7,9 @@ import {getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
-	constructor (props){
-		super(props);
-
-		this.state = {name:""};
-	}
+	// constructor (props){
+	// 	super(props);
+	// }
 
   componentDidMount() {
     getData('/api/v1/misc/countries').then(apiData => {
