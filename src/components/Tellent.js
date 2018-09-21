@@ -19,27 +19,22 @@ const queryString = require('query-string');
 // import queryString fro
 
 class Tellent extends React.Component {
-	constructor (props) {
-		super(props)
-	}
+	// constructor (props) {
+	// 	super(props)
+	// }
 
 	componentDidMount = () => {
 		var StringifyQ = queryString.stringify({
 			// q: JSON.stringify(this.props.search.config)//открыть после создания редьюсера чобы все было пучком
 			q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
 		});
-		getData('/api/v1/misc/countries').then(apiData => {
-			this.props.getCountries(apiData.data);
-		});
-		getData('/api/v1/misc/get_languages').then(apiData => {
-			this.props.getLanguage(apiData.data);
-		});
+
 		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
 			this.props.getTellentsData(apiData.data);
 		});
-		getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-			this.props.getJobsData(apiData.data);
-		});
+		// getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+		// 	this.props.getJobsData(apiData.data);
+		// });
 	}
 
     render() {

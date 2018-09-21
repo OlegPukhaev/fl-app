@@ -15,6 +15,7 @@ const	SELECT_SKILL = 'SELECT_SKILL';
 const	SELECT_RATE = 'SELECT_RATE';
 const	SELECT_AVL = 'SELECT_AVL';
 const	SELECT_LANG = 'SELECT_LANG';
+const	SELECT_LOC = 'SELECT_LOC';
 
 
 let initialState = {
@@ -348,6 +349,14 @@ let initialState = {
 			});
 		};
 	}
+  export function selectLoc(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_LOC, 
+				payload: id
+			});
+		};
+	}
   export function selectSkill(id) {
 		return dispatch => {
 			dispatch({
@@ -503,6 +512,20 @@ const actionsMap = {
 					config: copyObj
 		}
 	},   
+	[SELECT_LOC]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.loc.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					config: copyObj
+		}
+	},   
 	[SELECT_AVL]: (state, action) => {//checker
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.avl.map(item => {
@@ -556,11 +579,16 @@ const actionsMap = {
 	},   
 	[GET_COUNTRIES]: (state, action) => {
 		state.config.loc = action.payload;
-		state.configJobs.loc = action.payload;
+		var objCopy = Object.assign({}, state.config);
+		objCopy.loc.map(item => {
+			item.filter = "loc";
+			item.selected = false;
+			item.id = "loc"+item.id;
+
+		});
 			return {
 					...state, 
 					config: state.config
-					// configJobs: state.configJobs
 		}
 	},   
 	[GET_TELLENTS_DATA]: (state, action) => {

@@ -15,7 +15,7 @@ constructor (props) {
     super(props);
 }
 
-componentWillMount = () => {
+componentDidMount = () => {
   if (getToken()) {
     this.props.setUserStatus(true);
   }

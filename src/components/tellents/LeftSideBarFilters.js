@@ -2,7 +2,8 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang} from './../../reducers/search'
+import {getData} from './../../functions/api'
+import {getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
@@ -11,6 +12,15 @@ class LeftSideBarFilters extends React.Component {
 
 		this.state = {name:""};
 	}
+
+  componentDidMount() {
+    getData('/api/v1/misc/countries').then(apiData => {
+			this.props.getCountries(apiData.data);
+		});
+		getData('/api/v1/misc/get_languages').then(apiData => {
+			this.props.getLanguage(apiData.data);
+		});
+  }
 
   onClickSelect = (event) => {
       switch (event.target.name){
@@ -26,12 +36,15 @@ class LeftSideBarFilters extends React.Component {
               this.props.selectRate(event.target.id);
             case 'lang':
               this.props.selectLang(event.target.id);
-          case 'loc':
+              case 'loc':
+              this.props.selectLoc(event.target.id);
           case 'avl':
               this.props.selectAvl(event.target.id);
           Reactotron.log(event.target.value);
       }
   }
+
+
 
 	checkerList = (item, index) => {
     return (
@@ -125,7 +138,7 @@ class LeftSideBarFilters extends React.Component {
                     </div>
                     <div class="dropdown-list-wrapper">
                         <div class="checkbox-list-block">
-                            {this.props.data.loc.map(this.checkerList)}
+                            {this.props.search.config.loc.map(this.checkerList)}
                         </div>
                     </div>
                 </div>
@@ -162,7 +175,9 @@ const mapDispatchToProps = dispatch => {
             selectSkill,
             selectRate,
             selectAvl,
-            selectLang
+            selectLang,
+            selectLoc,
+            getCountries, getLanguage,
         },
         dispatch
     );
