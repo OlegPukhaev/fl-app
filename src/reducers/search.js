@@ -13,6 +13,7 @@ const	SELECT_DS = 'SELECT_DS';
 const	SELECT_PLACE = 'SELECT_PLACE';
 const	SELECT_SKILL = 'SELECT_SKILL';
 const	SELECT_RATE = 'SELECT_RATE';
+const	SELECT_AVL = 'SELECT_AVL';
 
 
 let initialState = {
@@ -322,6 +323,15 @@ let initialState = {
 	
 }
 
+  export function selectAvl(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_AVL, 
+				payload: id
+			});
+		};
+	}
+
   export function selectExp(id) {
 		return dispatch => {
 			dispatch({
@@ -423,7 +433,7 @@ let initialState = {
 
 const actionsMap = {
   
-	[SELECT_RATE]: (state, action) => {
+	[SELECT_RATE]: (state, action) => {//radio
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.rate.map(item => {
 
@@ -438,7 +448,7 @@ const actionsMap = {
 			config: copyObj
 	}
 	},
-	[SELECT_SKILL]: (state, action) => {
+	[SELECT_SKILL]: (state, action) => {//radio
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.skill.map(item => {
 
@@ -453,7 +463,7 @@ const actionsMap = {
 			config: copyObj
 	}
 	},
-	[SELECT_DS]: (state, action) => {
+	[SELECT_DS]: (state, action) => {//radio
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.ds.map(item => {
 
@@ -468,7 +478,7 @@ const actionsMap = {
 			config: copyObj
 	}
 	},
-	[SELECT_EXP]: (state, action) => {
+	[SELECT_EXP]: (state, action) => {//checker
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.exp.map(item => {
 			if (item.id === action.payload) {
@@ -482,7 +492,21 @@ const actionsMap = {
 					config: copyObj
 		}
 	},   
-	[SELECT_PLACE]: (state, action) => {
+	[SELECT_AVL]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.avl.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					config: copyObj
+		}
+	},   
+	[SELECT_PLACE]: (state, action) => {//checker
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.place.map(item => {
 			if (item.id === action.payload) {

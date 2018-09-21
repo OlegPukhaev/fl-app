@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectExp, selectDs, selectPlace, selectSkill, selectRate} from './../../reducers/search'
+import {selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl} from './../../reducers/search'
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
@@ -20,13 +20,14 @@ class LeftSideBarFilters extends React.Component {
                 this.props.selectDs(event.target.id);
             case 'place':
                 this.props.selectPlace(event.target.id);
-                case 'skill':
+            case 'skill':
                 this.props.selectSkill(event.target.id);
-                case 'rate':
+            case 'rate':
                 this.props.selectRate(event.target.id);
-            case 'avl':
             case 'lang':
             case 'loc':
+            case 'avl':
+                this.props.selectAvl(event.target.id);
             Reactotron.log(event.target.value);
         }
     }
@@ -98,7 +99,7 @@ class LeftSideBarFilters extends React.Component {
 								</div>
 								<div class="dropdown-list-wrapper">
 										<div class="checkbox-list-block">
-													{this.props.data.lang.map(this.checkerList)}
+													{this.props.search.config.lang.map(this.checkerList)}
 										</div>
 								</div>
 						</div>
@@ -121,7 +122,7 @@ class LeftSideBarFilters extends React.Component {
                     </div>
                     <div class="dropdown-list-wrapper">
                         <div class="checkbox-list-block">
-                            {this.props.data.loc.map(this.checkerList)}
+                            {this.props.search.config.loc.map(this.checkerList)}
                         </div>
                     </div>
                 </div>
@@ -132,7 +133,7 @@ class LeftSideBarFilters extends React.Component {
                 Availability:
             </div>
             <div class="checkbox-list-block clearfix">
-                {this.props.data.avl.map(this.checkerList)}
+                {this.props.search.config.avl.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -155,7 +156,8 @@ const mapDispatchToProps = dispatch => {
             selectDs,
             selectPlace,
             selectSkill,
-            selectRate
+            selectRate,
+            selectAvl
         },
         dispatch
     );
