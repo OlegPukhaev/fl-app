@@ -18,21 +18,26 @@ let initialState = {
 						{
 						id: "intern",
 						selected : false,
+						filterName: "exp",
 						name: "Intern"
+
 					},
 					{
 						id:"junior",
 						selected: false,
+						filterName: "exp",
 						name: "Junior"
 					},
 					{
 						id:"senior",
 						selected: false,
+						filterName: "exp",
 						name: "Senior" 
 					},
 					{
 						id:"expert",
 						selected: false,
+						filterName: "exp",
 						name: "Expert"
 					}
 				],
@@ -40,21 +45,25 @@ let initialState = {
 					{
 						id: "i_100",
 						selected : false,
+						filterName: "ds",
 						name: "100%"
 					},
 					{
 						id:"m_95",
 						selected: false,
+						filterName: "ds",
 						name: "> 95%"
 					},
 					{
 						id:"i_85_95",
 						selected: false,
+						filterName: "ds",
 						name: "85-95%" 
 					},
 					{
 						id:"l_85",
 						selected: false,
+						filterName: "ds",
 						name: "< 85%"
 					}
 				],
@@ -62,21 +71,25 @@ let initialState = {
 					{
 						id: "i_5",
 						selected : false,
+						filterName: "skill",
 						name: "Best (5)"
 					},
 					{
 						id:"i_5_4",
 						selected: false,
+						filterName: "skill",
 						name: "5-4.6"
 					},
 					{
 						id:"i_4",
 						selected: false,
+						filterName: "skill",
 						name: "4.6-4" 
 					},
 					{
 						id:"l_4",
 						selected: false,
+						filterName: "skill",
 						name: "< 4"
 					}
 				],
@@ -84,21 +97,25 @@ let initialState = {
 					{
 						id: "i_5",
 						selected : false,
+						filterName: "rate",
 						name: "Best (5)"
 					},
 					{
 						id:"i_5_4",
 						selected: false,
+						filterName: "rate",
 						name: "5-4.8"
 					},
 					{
 						id:"i_4",
 						selected: false,
+						filterName: "rate",
 						name: "4.8-4.5" 
 					},
 					{
 						id:"l_4",
 						selected: false,
+						filterName: "rate",
 						name: "< 4.5"
 					}
 				],
@@ -106,21 +123,25 @@ let initialState = {
 					{
 						id: "per_week_up_to_20",
 						selected : false,
+						filterName: "avl",
 						name: "< 20h"
 					},
 					{
 						id:"per_week_30",
 						selected: false,
+						filterName: "avl",
 						name: "30h"
 					},
 					{
 						id:"per_week_more_than_30",
 						selected: false,
+						filterName: "avl",
 						name: "> 30h" 
 					},
 					{
 						id:"per_week_full_time",
 						selected: false,
+						filterName: "avl",
 						name: "Full Time"
 					}
 				],
@@ -128,11 +149,13 @@ let initialState = {
 					{
 						id: "online",
 						selected : false,
+						filterName: "place",
 						name: "On-Line"
 					},
 					{
 						id:"onsite",
 						selected: false,
+						filterName: "place",
 						name: "On-Site"
 					}
 				],
@@ -288,8 +311,8 @@ let initialState = {
 		lang:[],
 		loc:[],
 	},
-	isTellents:true,
-	isJobs:false,
+	isTellents:false,
+	isJobs:true,
 	tellentsData: null,
 	jobsData: null
 	
