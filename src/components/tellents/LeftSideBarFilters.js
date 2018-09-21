@@ -21,6 +21,7 @@ class LeftSideBarFilters extends React.Component {
   }
 
   onClickSelect = (event) => {
+    Reactotron.log(event.target.id, event.target.name);
       switch (event.target.name){
           case 'exp':
               this.props.selectExp(event.target.id);
