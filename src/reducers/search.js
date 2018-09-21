@@ -11,6 +11,8 @@ const
 const	SELECT_EXP = 'SELECT_EXP';
 const	SELECT_DS = 'SELECT_DS';
 const	SELECT_PLACE = 'SELECT_PLACE';
+const	SELECT_SKILL = 'SELECT_SKILL';
+const	SELECT_RATE = 'SELECT_RATE';
 
 
 let initialState = {
@@ -97,25 +99,25 @@ let initialState = {
 				],
 		rate:[	
 					{
-						id: "i_5",
+						id: "ri_5",
 						selected : false,
 						filter: "rate",
 						name: "Best (5)"
 					},
 					{
-						id:"i_5_4",
+						id:"ri_5_4",
 						selected: false,
 						filter: "rate",
 						name: "5-4.8"
 					},
 					{
-						id:"i_4",
+						id:"ri_4",
 						selected: false,
 						filter: "rate",
 						name: "4.8-4.5" 
 					},
 					{
-						id:"l_4",
+						id:"rl_4",
 						selected: false,
 						filter: "rate",
 						name: "< 4.5"
@@ -329,6 +331,24 @@ let initialState = {
 		};
 	}
 
+  export function selectSkill(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_SKILL, 
+				payload: id
+			});
+		};
+	}
+
+  export function selectRate(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_RATE,
+				payload: id
+			});
+		};
+	}
+
   export function selectDs(id) {
 		return dispatch => {
 			dispatch({
@@ -403,6 +423,36 @@ let initialState = {
 
 const actionsMap = {
   
+	[SELECT_RATE]: (state, action) => {
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.rate.map(item => {
+
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+			...state, 
+			config: copyObj
+	}
+	},
+	[SELECT_SKILL]: (state, action) => {
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.skill.map(item => {
+
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+			...state, 
+			config: copyObj
+	}
+	},
 	[SELECT_DS]: (state, action) => {
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.ds.map(item => {

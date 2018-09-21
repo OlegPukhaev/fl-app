@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectExp, selectDs, selectPlace} from './../../reducers/search'
+import {selectExp, selectDs, selectPlace, selectSkill, selectRate} from './../../reducers/search'
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
@@ -20,8 +20,10 @@ class LeftSideBarFilters extends React.Component {
                 this.props.selectDs(event.target.id);
             case 'place':
                 this.props.selectPlace(event.target.id);
-            case 'skill':
-            case 'rate':
+                case 'skill':
+                this.props.selectSkill(event.target.id);
+                case 'rate':
+                this.props.selectRate(event.target.id);
             case 'avl':
             case 'lang':
             case 'loc':
@@ -68,7 +70,7 @@ class LeftSideBarFilters extends React.Component {
 						Skill Test Score:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.data.skill.map(this.checkerList)}
+								{this.props.search.config.skill.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -76,7 +78,7 @@ class LeftSideBarFilters extends React.Component {
 						Freelancer Rate:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.data.rate.map(this.checkerList)}
+								{this.props.search.config.rate.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -151,7 +153,9 @@ const mapDispatchToProps = dispatch => {
         {
             selectExp,
             selectDs,
-            selectPlace
+            selectPlace,
+            selectSkill,
+            selectRate
         },
         dispatch
     );
