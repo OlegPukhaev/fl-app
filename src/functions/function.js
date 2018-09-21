@@ -12,6 +12,8 @@ export function getObject(obj){
         return returnObj;
 }
 
+// export function getStr
+
 export function arrForUpdate (value){
 // array convert to api congig format
     function getSkillCats(value) {
