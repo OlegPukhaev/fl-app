@@ -14,6 +14,7 @@ const	SELECT_PLACE = 'SELECT_PLACE';
 const	SELECT_SKILL = 'SELECT_SKILL';
 const	SELECT_RATE = 'SELECT_RATE';
 const	SELECT_AVL = 'SELECT_AVL';
+const	SELECT_LANG = 'SELECT_LANG';
 
 
 let initialState = {
@@ -316,8 +317,8 @@ let initialState = {
 		lang:[],
 		loc:[],
 	},
-	isTellents:false,
-	isJobs:true,
+	isTellents:true,
+	isJobs:false,
 	tellentsData: null,
 	jobsData: null
 	
@@ -331,7 +332,6 @@ let initialState = {
 			});
 		};
 	}
-
   export function selectExp(id) {
 		return dispatch => {
 			dispatch({
@@ -340,7 +340,14 @@ let initialState = {
 			});
 		};
 	}
-
+  export function selectLang(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_LANG, 
+				payload: id
+			});
+		};
+	}
   export function selectSkill(id) {
 		return dispatch => {
 			dispatch({
@@ -349,7 +356,6 @@ let initialState = {
 			});
 		};
 	}
-
   export function selectRate(id) {
 		return dispatch => {
 			dispatch({
@@ -358,7 +364,6 @@ let initialState = {
 			});
 		};
 	}
-
   export function selectDs(id) {
 		return dispatch => {
 			dispatch({
@@ -367,7 +372,6 @@ let initialState = {
 			});
 		};
 	}
-
   export function selectPlace(id) {
 		return dispatch => {
 			dispatch({
@@ -376,7 +380,6 @@ let initialState = {
 			});
 		};
 	}
-
   export function getCountries(value) {
       return dispatch => {
         dispatch({
@@ -385,7 +388,6 @@ let initialState = {
         });
       };
 		}
-
   export function getLanguage(value) {
       return dispatch => {
         dispatch({
@@ -394,7 +396,6 @@ let initialState = {
         });
       };
 		}
-		
   export function inputSearch(value) {
       return dispatch => {
         dispatch({
@@ -403,7 +404,6 @@ let initialState = {
         });
       };
 		}
-		
   export function getJobsData(value) {
       return dispatch => {
         dispatch({
@@ -412,7 +412,6 @@ let initialState = {
         });
       };
 		}
-		
   export function getTellentsData(value) {
       return dispatch => {
         dispatch({
@@ -421,7 +420,6 @@ let initialState = {
         });
       };
     }
-
   export function dataToggler(value) {
       return dispatch => {
         dispatch({
@@ -432,7 +430,6 @@ let initialState = {
     }
 
 const actionsMap = {
-  
 	[SELECT_RATE]: (state, action) => {//radio
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.rate.map(item => {
@@ -492,6 +489,20 @@ const actionsMap = {
 					config: copyObj
 		}
 	},   
+	[SELECT_LANG]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.lang.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					config: copyObj
+		}
+	},   
 	[SELECT_AVL]: (state, action) => {//checker
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.avl.map(item => {
@@ -531,11 +542,16 @@ const actionsMap = {
 	[GET_LANGUAGE]: (state, action) => {
 
 		state.config.lang = action.payload.languages;
-		state.configJobs.lang = action.payload.languages;
+		var objCopy = Object.assign({}, state.config);
+		objCopy.lang.map(item => {
+			item.filter = "lang";
+			item.selected = false;
+			item.id = "lang"+item.language_id;
+
+		});
 			return {
 					...state, 
 					config: state.config,
-					configJobs: state.configJobs
 		}
 	},   
 	[GET_COUNTRIES]: (state, action) => {
@@ -543,8 +559,8 @@ const actionsMap = {
 		state.configJobs.loc = action.payload;
 			return {
 					...state, 
-					config: state.config,
-					configJobs: state.configJobs
+					config: state.config
+					// configJobs: state.configJobs
 		}
 	},   
 	[GET_TELLENTS_DATA]: (state, action) => {
@@ -585,7 +601,6 @@ const actionsMap = {
 						isJobs: val2
 				}
 	}  
-
 }
 
 export default function search(state = initialState, action) {

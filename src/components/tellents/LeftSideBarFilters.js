@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl} from './../../reducers/search'
+import {selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang} from './../../reducers/search'
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
@@ -12,25 +12,26 @@ class LeftSideBarFilters extends React.Component {
 		this.state = {name:""};
 	}
 
-    onClickSelect = (event) => {
-        switch (event.target.name){
-            case 'exp':
-                this.props.selectExp(event.target.id);
-            case 'ds':
-                this.props.selectDs(event.target.id);
-            case 'place':
-                this.props.selectPlace(event.target.id);
-            case 'skill':
-                this.props.selectSkill(event.target.id);
-            case 'rate':
-                this.props.selectRate(event.target.id);
+  onClickSelect = (event) => {
+      switch (event.target.name){
+          case 'exp':
+              this.props.selectExp(event.target.id);
+          case 'ds':
+              this.props.selectDs(event.target.id);
+          case 'place':
+              this.props.selectPlace(event.target.id);
+          case 'skill':
+              this.props.selectSkill(event.target.id);
+          case 'rate':
+              this.props.selectRate(event.target.id);
             case 'lang':
-            case 'loc':
-            case 'avl':
-                this.props.selectAvl(event.target.id);
-            Reactotron.log(event.target.value);
-        }
-    }
+              this.props.selectLang(event.target.id);
+          case 'loc':
+          case 'avl':
+              this.props.selectAvl(event.target.id);
+          Reactotron.log(event.target.value);
+      }
+  }
 
 	checkerList = (item, index) => {
     return (
@@ -44,8 +45,8 @@ class LeftSideBarFilters extends React.Component {
 				</label>
 			</div>	
 		);		
-    }
-    
+  }
+
   render() { 
     return (
 			<div class="panel panel-default">
@@ -82,6 +83,7 @@ class LeftSideBarFilters extends React.Component {
 								{this.props.search.config.rate.map(this.checkerList)}
             </div>
         </div>
+
         <div class="filter-block">
 					<div class="filter-title">
 							Languages:
@@ -104,7 +106,8 @@ class LeftSideBarFilters extends React.Component {
 								</div>
 						</div>
 					</div>
-				</div>
+        </div>
+        
         <div class="filter-block">
             <div class="filter-title">
                 Location:
@@ -122,12 +125,13 @@ class LeftSideBarFilters extends React.Component {
                     </div>
                     <div class="dropdown-list-wrapper">
                         <div class="checkbox-list-block">
-                            {this.props.search.config.loc.map(this.checkerList)}
+                            {this.props.data.loc.map(this.checkerList)}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="filter-block">
             <div class="filter-title">
                 Availability:
@@ -157,7 +161,8 @@ const mapDispatchToProps = dispatch => {
             selectPlace,
             selectSkill,
             selectRate,
-            selectAvl
+            selectAvl,
+            selectLang
         },
         dispatch
     );
