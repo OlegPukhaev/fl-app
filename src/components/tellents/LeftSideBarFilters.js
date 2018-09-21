@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectExp, selectDs} from './../../reducers/search'
+import {selectExp, selectDs, selectPlace} from './../../reducers/search'
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
@@ -18,10 +18,11 @@ class LeftSideBarFilters extends React.Component {
                 this.props.selectExp(event.target.id);
             case 'ds':
                 this.props.selectDs(event.target.id);
+            case 'place':
+                this.props.selectPlace(event.target.id);
             case 'skill':
             case 'rate':
             case 'avl':
-            case 'place':
             case 'lang':
             case 'loc':
             Reactotron.log(event.target.value);
@@ -29,8 +30,8 @@ class LeftSideBarFilters extends React.Component {
     }
 
 	checkerList = (item, index) => {
-        return (
-            <div class="checkbox-block">
+    return (
+        <div class="checkbox-block">
 				<input type="checkbox" name={item.filter} key={item.id} id={item.id} checked={item.selected} onClick={this.onClickSelect}/>
 				<label for={item.id}>
 					<span class="filter-checkbox">
@@ -78,8 +79,6 @@ class LeftSideBarFilters extends React.Component {
 								{this.props.data.rate.map(this.checkerList)}
             </div>
         </div>
-
-
         <div class="filter-block">
 					<div class="filter-title">
 							Languages:
@@ -126,7 +125,6 @@ class LeftSideBarFilters extends React.Component {
                 </div>
             </div>
         </div>
-
         <div class="filter-block">
             <div class="filter-title">
                 Availability:
@@ -140,7 +138,7 @@ class LeftSideBarFilters extends React.Component {
                 Place of Work:
             </div>
             <div class="checkbox-list-block clearfix">
-                {this.props.data.place.map(this.checkerList)}
+                {this.props.search.config.place.map(this.checkerList)}
             </div>
         </div>
     </div>
@@ -152,7 +150,8 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators(
         {
             selectExp,
-            selectDs
+            selectDs,
+            selectPlace
         },
         dispatch
     );

@@ -10,6 +10,7 @@ const
 
 const	SELECT_EXP = 'SELECT_EXP';
 const	SELECT_DS = 'SELECT_DS';
+const	SELECT_PLACE = 'SELECT_PLACE';
 
 
 let initialState = {
@@ -150,13 +151,13 @@ let initialState = {
 					{
 						id: "online",
 						selected : false,
-						filterName: "place",
+						filter: "place",
 						name: "On-Line"
 					},
 					{
 						id:"onsite",
 						selected: false,
-						filterName: "place",
+						filter: "place",
 						name: "On-Site"
 					}
 				],
@@ -337,6 +338,15 @@ let initialState = {
 		};
 	}
 
+  export function selectPlace(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_PLACE, 
+				payload: id
+			});
+		};
+	}
+
   export function getCountries(value) {
       return dispatch => {
         dispatch({
@@ -411,6 +421,20 @@ const actionsMap = {
 	[SELECT_EXP]: (state, action) => {
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.exp.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					config: copyObj
+		}
+	},   
+	[SELECT_PLACE]: (state, action) => {
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.place.map(item => {
 			if (item.id === action.payload) {
 						if(item.selected === true) {
 						item.selected = false;
