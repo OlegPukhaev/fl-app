@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectChecked} from './../../reducers/search'
+import {selectExp, selectDs} from './../../reducers/search'
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
@@ -13,25 +13,42 @@ class LeftSideBarFilters extends React.Component {
 	}
 
     onClickSelect = (event) => {
-        
-            this.props.selectExp(event.target.id);
-            Reactotron.log(event.target.name);
+        switch (event.target.name){
+            case 'exp':
+                this.props.selectExp(event.target.id);
+            case 'ds':
+                this.props.selectDs(event.target.id);
+            case 'skill':
+            case 'rate':
+            case 'avl':
+            case 'place':
+            case 'lang':
+            case 'loc':
+            Reactotron.log(event.target.value);
+        }
     }
 
 	checkerList = (item, index) => {
-		return (
-			<div class="checkbox-block">
-				<input type="checkbox" name={item.filter} key={item.id} id={item.id} cheked={item.selected} onClick={this.onClickSelect}/>
-				<label for={item.id}>
-					<span class="filter-checkbox">
-						<span class="icon icon-check-mark"></span>
+        return (
+            <div  id={item.id} class="checkbox-block">
+                <input 
+                    type="checkbox" 
+                    name={item.filter} 
+                    key={item.id} 
+                    id={item.id}
+                    cheked={item.selected} 
+                    onClick={this.onClickSelect}
+            />
+				<label id={item.id} for={item.id}>
+					<span id={item.id} class="filter-checkbox">
+						<span id={item.id} class="icon icon-check-mark"></span>
 					</span>
-					<span class="checkbox-text">{item.name}</span>
+					<span id={item.id} class="checkbox-text">{item.name}</span>
 				</label>
 			</div>	
 		);		
-	}
-	 
+    }
+    
   render() { 
     return (
 			<div class="panel panel-default">
@@ -41,7 +58,7 @@ class LeftSideBarFilters extends React.Component {
                 Experience:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.data.exp.map(this.checkerList)}
+								{this.props.search.config.exp.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -49,7 +66,7 @@ class LeftSideBarFilters extends React.Component {
 						Job Done Success:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.data.ds.map(this.checkerList)}
+								{this.props.search.config.ds.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -141,7 +158,8 @@ class LeftSideBarFilters extends React.Component {
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
         {
-            selectChecked
+            selectExp,
+            selectDs
         },
         dispatch
     );

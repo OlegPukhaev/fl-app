@@ -9,6 +9,7 @@ const
 	INPUT_SEARCH = 'INPUT_SEARCH';
 
 const	SELECT_EXP = 'SELECT_EXP';
+const	SELECT_DS = 'SELECT_DS';
 
 
 let initialState = {
@@ -318,10 +319,19 @@ let initialState = {
 	
 }
 
-  export function selectChecked(id) {
+  export function selectExp(id) {
 		return dispatch => {
 			dispatch({
 				type: SELECT_EXP, 
+				payload: id
+			});
+		};
+	}
+
+  export function selectDs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_DS, 
 				payload: id
 			});
 		};
@@ -383,25 +393,30 @@ let initialState = {
 
 const actionsMap = {
   
+	[SELECT_DS]: (state, action) => {
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.ds.map(item => {
+
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+			...state, 
+			config: copyObj
+	}
+	},
 	[SELECT_EXP]: (state, action) => {
 		var copyObj = Object.assign({}, state.config)	
-		
-
 		copyObj.exp.map(item => {
 			if (item.id === action.payload) {
-				// item.selected = true;
 						if(item.selected === true) {
 						item.selected = false;
 						}	else item.selected = true;
 			}
 		});
-	
-
-
-	
-		// if(copyObj.exp[action.payload].selected === true) {
-		// 	copyObj.exp[action.payload].selected = false;
-		// }	else copyObj.exp[action.payload].selected = true;
 		return {
 					...state, 
 					config: copyObj
