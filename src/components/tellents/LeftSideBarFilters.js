@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectExp} from './../../reducers/search'
+import {selectChecked} from './../../reducers/search'
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
@@ -13,15 +13,16 @@ class LeftSideBarFilters extends React.Component {
 	}
 
     onClickSelect = (event) => {
-        this.props.selectExp(event.target.id);
-        alert(event.target.name);
+        
+            this.props.selectExp(event.target.id);
+            Reactotron.log(event.target.name);
     }
 
 	checkerList = (item, index) => {
 		return (
 			<div class="checkbox-block">
-				<input type="checkbox" name={item.filterName} key={item.id} id={index} cheked={item.selected} onClick={this.onClickSelect}/>
-				<label for={index}>
+				<input type="checkbox" name={item.filter} key={item.id} id={item.id} cheked={item.selected} onClick={this.onClickSelect}/>
+				<label for={item.id}>
 					<span class="filter-checkbox">
 						<span class="icon icon-check-mark"></span>
 					</span>
@@ -140,7 +141,7 @@ class LeftSideBarFilters extends React.Component {
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
         {
-            selectExp,
+            selectChecked
         },
         dispatch
     );

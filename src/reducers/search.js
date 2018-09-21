@@ -18,26 +18,26 @@ let initialState = {
 						{
 						id: "intern",
 						selected : false,
-						filterName: "exp",
+						filter: "exp",
 						name: "Intern"
 
 					},
 					{
 						id:"junior",
 						selected: false,
-						filterName: "exp",
+						filter: "exp",
 						name: "Junior"
 					},
 					{
 						id:"senior",
 						selected: false,
-						filterName: "exp",
+						filter: "exp",
 						name: "Senior" 
 					},
 					{
 						id:"expert",
 						selected: false,
-						filterName: "exp",
+						filter: "exp",
 						name: "Expert"
 					}
 				],
@@ -45,25 +45,25 @@ let initialState = {
 					{
 						id: "i_100",
 						selected : false,
-						filterName: "ds",
+						filter: "ds",
 						name: "100%"
 					},
 					{
 						id:"m_95",
 						selected: false,
-						filterName: "ds",
+						filter: "ds",
 						name: "> 95%"
 					},
 					{
 						id:"i_85_95",
 						selected: false,
-						filterName: "ds",
+						filter: "ds",
 						name: "85-95%" 
 					},
 					{
 						id:"l_85",
 						selected: false,
-						filterName: "ds",
+						filter: "ds",
 						name: "< 85%"
 					}
 				],
@@ -71,25 +71,25 @@ let initialState = {
 					{
 						id: "i_5",
 						selected : false,
-						filterName: "skill",
+						filter: "skill",
 						name: "Best (5)"
 					},
 					{
 						id:"i_5_4",
 						selected: false,
-						filterName: "skill",
+						filter: "skill",
 						name: "5-4.6"
 					},
 					{
 						id:"i_4",
 						selected: false,
-						filterName: "skill",
+						filter: "skill",
 						name: "4.6-4" 
 					},
 					{
 						id:"l_4",
 						selected: false,
-						filterName: "skill",
+						filter: "skill",
 						name: "< 4"
 					}
 				],
@@ -97,25 +97,25 @@ let initialState = {
 					{
 						id: "i_5",
 						selected : false,
-						filterName: "rate",
+						filter: "rate",
 						name: "Best (5)"
 					},
 					{
 						id:"i_5_4",
 						selected: false,
-						filterName: "rate",
+						filter: "rate",
 						name: "5-4.8"
 					},
 					{
 						id:"i_4",
 						selected: false,
-						filterName: "rate",
+						filter: "rate",
 						name: "4.8-4.5" 
 					},
 					{
 						id:"l_4",
 						selected: false,
-						filterName: "rate",
+						filter: "rate",
 						name: "< 4.5"
 					}
 				],
@@ -123,25 +123,25 @@ let initialState = {
 					{
 						id: "per_week_up_to_20",
 						selected : false,
-						filterName: "avl",
+						filter: "avl",
 						name: "< 20h"
 					},
 					{
 						id:"per_week_30",
 						selected: false,
-						filterName: "avl",
+						filter: "avl",
 						name: "30h"
 					},
 					{
 						id:"per_week_more_than_30",
 						selected: false,
-						filterName: "avl",
+						filter: "avl",
 						name: "> 30h" 
 					},
 					{
 						id:"per_week_full_time",
 						selected: false,
-						filterName: "avl",
+						filter: "avl",
 						name: "Full Time"
 					}
 				],
@@ -318,7 +318,7 @@ let initialState = {
 	
 }
 
-  export function selectExp(id) {
+  export function selectChecked(id) {
 		return dispatch => {
 			dispatch({
 				type: SELECT_EXP, 
@@ -385,9 +385,23 @@ const actionsMap = {
   
 	[SELECT_EXP]: (state, action) => {
 		var copyObj = Object.assign({}, state.config)	
-		if(copyObj.exp[action.payload].selected === true) {
-			copyObj.exp[action.payload].selected = false;
-		}	else copyObj.exp[action.payload].selected = true;
+		
+
+		copyObj.exp.map(item => {
+			if (item.id === action.payload) {
+				// item.selected = true;
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+	
+
+
+	
+		// if(copyObj.exp[action.payload].selected === true) {
+		// 	copyObj.exp[action.payload].selected = false;
+		// }	else copyObj.exp[action.payload].selected = true;
 		return {
 					...state, 
 					config: copyObj
