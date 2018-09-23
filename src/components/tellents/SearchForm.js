@@ -19,27 +19,27 @@ class SearchForm extends React.Component {
 		// this.setState({searchText:event.target.value});
 	}
 
-	onClickGetData = () => {
-		switch (this.props.search.isTellents) {
-			case true:
-				var StringifyQ = queryString.stringify({
-					q: JSON.stringify(this.props.search.config)
-				});
-				getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-					// Reactotron.log(this.props.search.config.p, apiData);
-					this.props.getTellentsData(apiData.data);
-				});
+	// onClickGetData = () => {
+	// 	switch (this.props.search.isTellents) {
+	// 		case true:
+	// 			var StringifyQ = queryString.stringify({
+	// 				q: JSON.stringify(this.props.search.config)
+	// 			});
+	// 			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+	// 				// Reactotron.log(this.props.search.config.p, apiData);
+	// 				this.props.getTellentsData(apiData.data);
+	// 			});
 				
-			case false:
-				var StringifyQ = queryString.stringify({
-					q: JSON.stringify(this.props.search.config)
-				});
-				getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-					// Reactotron.log(this.props.search.config.p, apiData);
-					this.props.getJobsData(apiData.data);
-				});
-		}
-	}
+	// 		case false:
+	// 			var StringifyQ = queryString.stringify({
+	// 				q: JSON.stringify(this.props.search.config)
+	// 			});
+	// 			getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+	// 				// Reactotron.log(this.props.search.config.p, apiData);
+	// 				this.props.getJobsData(apiData.data);
+	// 			});
+	// 	}
+	// }
 
   render() { 
 		// Reactotron.log(this.props.search.config.);

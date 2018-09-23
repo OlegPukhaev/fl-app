@@ -12,7 +12,19 @@ export function getObject(obj){
         return returnObj;
 }
 
-// export function getStr
+export function returnRequestObj(filter,value) {
+    var requestFilter = value.filter(item => {
+        if (item.selected === true ) {
+            return item;
+        };
+    });
+
+    var objectId = requestFilter.map(item => {
+        if(item.selected === true) return item.id;
+    });
+    return {"exp" : objectId.join(",")};
+
+}
 
 export function arrForUpdate (value){
 // array convert to api congig format
