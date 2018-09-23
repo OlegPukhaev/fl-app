@@ -12,7 +12,7 @@ class LeftSideBarFilters extends React.Component {
 	// }
 
   componentDidMount() {
-    getData('/api/v1/misc/countries').then(apiData => {
+        getData('/api/v1/misc/countries').then(apiData => {
 			this.props.getCountries(apiData.data);
 		});
 		getData('/api/v1/misc/get_languages').then(apiData => {

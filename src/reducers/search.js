@@ -169,155 +169,181 @@ let initialState = {
 		lang:[],
 		loc:[],
 	},
-	// configJobs : {
-	// 	q:"",
-	// 	exp:[
-	// 					{
-	// 					id: "intern",
-	// 					selected : false,
-	// 					name: "Intern"
-	// 				},
-	// 				{
-	// 					id:"junior",
-	// 					selected: false,
-	// 					name: "Junior"
-	// 				},
-	// 				{
-	// 					id:"senior",
-	// 					selected: false,
-	// 					name: "Senior" 
-	// 				},
-	// 				{
-	// 					id:"expert",
-	// 					selected: false,
-	// 					name: "Expert"
-	// 				}
-	// 			],
-	// 	post:[
-	// 				{
-	// 					id: "i24",
-	// 					selected : false,
-	// 					name: "24h"
-	// 				},
-	// 				{
-	// 					id:"i3d",
-	// 					selected: false,
-	// 					name: "3d"
-	// 				},
-	// 				{
-	// 					id:"i1w",
-	// 					selected: false,
-	// 					name: "1w" 
-	// 				},
-	// 				{
-	// 					id:"m_1w",
-	// 					selected: false,
-	// 					name: "> 1w"
-	// 				}
-	// 			],
-	// 	prop:[
-	// 				{
-	// 					id: "i0_5",
-	// 					selected : false,
-	// 					name: "0 - 5"
-	// 				},
-	// 				{
-	// 					id:"i5_10",
-	// 					selected: false,
-	// 					name: "5 - 10"
-	// 				},
-	// 				{
-	// 					id:"i10_20",
-	// 					selected: false,
-	// 					name: "10 - 20" 
-	// 				},
-	// 				{
-	// 					id:"m_20",
-	// 					selected: false,
-	// 					name: "> 20"
-	// 				},
-	// 				{
-	// 					id:"undefined",
-	// 					selected: false,
-	// 					name: "None"
-	// 				}
-	// 			],
-	// 	payment:[	
-	// 				{
-	// 					id: "fixed_price",
-	// 					selected : false,
-	// 					name: "Fixed Price"
-	// 				},
-	// 				{
-	// 					id:"hourly",
-	// 					selected: false,
-	// 					name: "Hourly"
-	// 				}
-	// 			],
-	// 	bud:[	
-	// 				{
-	// 					name: "$0 - $100",
-	// 					selected : false,
-	// 					id: "i0_100"
-	// 				},
-	// 				{
-	// 					name:"$100 - $300",
-	// 					selected: false,
-	// 					id: "i100_300"
-	// 				},
-	// 				{
-	// 					name:"$300 - $1000",
-	// 					selected: false,
-	// 					id: "i300_1000"
-	// 				},
-	// 				{
-	// 					name:"> $1000",
-	// 					selected: false,
-	// 					id: "more_1000"
-	// 				},
-	// 				{
-	// 					id:"undefined",
-	// 					selected: false,
-	// 					name: "Not defined (Empty)"
-	// 				},
-	// 			],
-	// 	avl:[	
-	// 				{
-	// 					id: "per_week_10",
-	// 					selected : false,
-	// 					name: "< 20h"
-	// 				},
-	// 				{
-	// 					id:"per_week_up_to_30",
-	// 					selected: false,
-	// 					name: "> 20h"
-	// 				},
-	// 				{
-	// 					name:"Full-Time",
-	// 					selected: false,
-	// 					id: "per_week_more_than_30" 
-	// 				},
-	// 				{
-	// 					id:"decide_later",
-	// 					selected: false,
-	// 					name: "Undefined"
-	// 				}
-	// 			],
-	// 	place:[	
-	// 				{
-	// 					id: "online",
-	// 					selected : false,
-	// 					name: "On-Line"
-	// 				},
-	// 				{
-	// 					id:"onsite",
-	// 					selected: false,
-	// 					name: "On-Site"
-	// 				}
-	// 			],
-	// 	lang:[],
-	// 	loc:[],
-	// },
+	configJobs : {
+		q:"",
+		exp:[
+						{
+						id: "intern",
+						selected : false,
+						filter: "exp",
+						name: "Intern"
+					},
+					{
+						id:"junior",
+						selected: false,
+						filter: "exp",
+						name: "Junior"
+					},
+					{
+						id:"senior",
+						selected: false,
+						filter: "exp",
+						name: "Senior" 
+					},
+					{
+						id:"expert",
+						selected: false,
+						filter: "exp",
+						name: "Expert"
+					}
+				],
+		post:[
+					{
+						id: "i24",
+						selected : false,
+						filter: "post",
+						name: "24h"
+					},
+					{
+						id:"i3d",
+						selected: false,
+						filter: "post",
+						name: "3d"
+					},
+					{
+						id:"i1w",
+						selected: false,
+						filter: "post",
+						name: "1w" 
+					},
+					{
+						id:"m_1w",
+						selected: false,
+						filter: "post",
+						name: "> 1w"
+					}
+				],
+		prop:[
+					{
+						id: "i0_5",
+						selected : false,
+						filter: "prop",
+						name: "0 - 5"
+					},
+					{
+						id:"i5_10",
+						selected: false,
+						filter: "prop",
+						name: "5 - 10"
+					},
+					{
+						id:"i10_20",
+						selected: false,
+						filter: "prop",
+						name: "10 - 20" 
+					},
+					{
+						id:"m_20",
+						selected: false,
+						filter: "prop",
+						name: "> 20"
+					},
+					{
+						id:"undefined",
+						selected: false,
+						filter: "prop",
+						name: "None"
+					}
+				],
+		payment:[	
+					{
+						id: "fixed_price",
+						selected : false,
+						filter: "payment",
+						name: "Fixed Price"
+					},
+					{
+						id:"hourly",
+						selected: false,
+						filter: "payment",
+						name: "Hourly"
+					}
+				],
+		bud:[	
+					{
+						name: "$0 - $100",
+						selected : false,
+						filter: "bud",
+						id: "i0_100"
+					},
+					{
+						name:"$100 - $300",
+						filter: "bud",
+						selected: false,
+						id: "i100_300"
+					},
+					{
+						name:"$300 - $1000",
+						selected: false,
+						filter: "bud",
+						id: "i300_1000"
+					},
+					{
+						name:"> $1000",
+						selected: false,
+						filter: "bud",
+						id: "more_1000"
+					},
+					{
+						id:"undefined",
+						selected: false,
+						filter: "bud",
+						name: "Not defined (Empty)"
+					},
+				],
+		avl:[	
+					{
+						id: "per_week_10",
+						selected : false,
+						filter: "avl",
+						name: "< 20h"
+					},
+					{
+						id:"per_week_up_to_30",
+						filter: "avl",
+						selected: false,
+						name: "> 20h"
+					},
+					{
+						name:"Full-Time",
+						selected: false,
+						filter: "avl",
+						id: "per_week_more_than_30" 
+					},
+					{
+						id:"decide_later",
+						selected: false,
+						filter: "avl",
+						name: "Undefined"
+					}
+				],
+		place:[	
+					{
+						id: "online",
+						selected : false,
+						filter: "place",
+						name: "On-Line"
+					},
+					{
+						id:"onsite",
+						selected: false,
+						filter: "place",
+						name: "On-Site"
+					}
+				],
+		lang:[],
+		loc:[],
+	},
 	isTellents:true,
 	isJobs:false,
 	tellentsData: null,
@@ -575,6 +601,7 @@ const actionsMap = {
 			return {
 					...state, 
 					config: state.config,
+					configJobs: state.configJobs
 		}
 	},   
 	[GET_COUNTRIES]: (state, action) => {
@@ -588,7 +615,8 @@ const actionsMap = {
 		});
 			return {
 					...state, 
-					config: state.config
+					config: state.config,
+					configJobs: state.configJobs
 		}
 	},   
 	[GET_TELLENTS_DATA]: (state, action) => {
@@ -621,6 +649,7 @@ const actionsMap = {
 						val1=true;
 						val2=false;
 					}
+
 			}
 		
 				return {

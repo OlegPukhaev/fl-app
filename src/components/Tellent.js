@@ -32,9 +32,9 @@ class Tellent extends React.Component {
 		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
 			this.props.getTellentsData(apiData.data);
 		});
-		// getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-		// 	this.props.getJobsData(apiData.data);
-		// });
+		getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+			this.props.getJobsData(apiData.data);
+		});
 	}
 
     render() {
@@ -204,7 +204,8 @@ class Tellent extends React.Component {
 
 									{/* <NoResultJobs /> */}
 
-									{this.props.search.isTellents === true ? <JobBoxTellent data={this.props.search.tellentsData}/> : <JobBoxJobs data={this.props.search.jobsData}/>}
+									{this.props.search.isTellents === true && <JobBoxTellent data={this.props.search.tellentsData}/>}
+									{this.props.search.isJobs === true && <JobBoxJobs data={this.props.search.jobsData}/>}
 									
 
  								</div>
