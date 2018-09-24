@@ -9,23 +9,6 @@ const queryString = require('query-string');
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
-	// constructor (props){
-	// 	super(props);
-	// }
-
-    // componentWillReceiveProps () {
-    //         var requestObj = getRequest(this.props.search.config);
-    //         Reactotron.log("new state here!!!!", requestObj );
-
-    //         var StringifyQ = queryString.stringify({
-    //             q: JSON.stringify(requestObj)
-    //         });
-    //         getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-    //             this.props.getTellentsData(apiData.data);
-    //             Reactotron.log("from server", apiData.data);
-    //         });
-    //     }
-
   componentDidMount() {
         getData('/api/v1/misc/countries').then(apiData => {
 			this.props.getCountries(apiData.data);
@@ -34,8 +17,6 @@ class LeftSideBarFilters extends React.Component {
 			this.props.getLanguage(apiData.data);
 		});
   }
-
-
 
   onClickSelect = (event) => {
     Reactotron.log(event.target.id, event.target.name);
@@ -56,21 +37,15 @@ class LeftSideBarFilters extends React.Component {
               this.props.selectLoc(event.target.id);
           case 'avl':
               this.props.selectAvl(event.target.id);
-        //   Reactotron.log(event.target.value);
 			}
 			
-			var requestObj = getRequest(this.props.search.config);
-			Reactotron.log("new state here!!!!", requestObj );
-
 			var StringifyQ = queryString.stringify({
-					q: JSON.stringify(requestObj)
+					q: JSON.stringify(getRequest(this.props.search.config))
 			});
 			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
 					this.props.getTellentsData(apiData.data);
 					Reactotron.log("from server", apiData.data);
 			});
-
-
   }
 
 	checkerList = (item, index) => {

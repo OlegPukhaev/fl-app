@@ -17,24 +17,19 @@ class SearchForm extends React.Component {
 
 	onChangeSearchText = (event) => {
 		this.props.inputSearch(event.target.value);
-		// this.setState({searchText:event.target.value});
 	}
 
 	onClickGetData = () => {
-		var requestObj = getRequest(this.props.search.config);
-		Reactotron.log("new state here!!!!", requestObj );
-
 		var StringifyQ = queryString.stringify({
-				q: JSON.stringify(requestObj)
+				q: JSON.stringify(getRequest(this.props.search.config))
 		});
 		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-				this.props.getTellentsData(apiData.data);
+				if (this.props.search.isTellents === true) this.props.getTellentsData(apiData.data);
 				Reactotron.log("from server", apiData.data);
 		});
 	}
 
   render() { 
-		// Reactotron.log(this.props.search.config.);
     return (
 			<div class="search-form">
 			<form class="my-search-form" role="search">

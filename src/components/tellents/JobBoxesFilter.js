@@ -12,7 +12,6 @@ class JobBoxesFilter extends React.Component {
 
   onClickToggle = (event) => {
       this.props.dataToggler(event.target.id);
-      // Reactotron.log(this.props.search.isTellents,this.props.search.isJobs, event.target.id);
   }
 
   render() { 

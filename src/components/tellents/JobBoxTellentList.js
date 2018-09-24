@@ -1,4 +1,6 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import Reactotron from 'reactotron-react-js';
 
 class JobBoxTellentList extends React.Component {
@@ -53,7 +55,8 @@ class JobBoxTellentList extends React.Component {
                 </div>
                 <div class="job-box-deskr">
                     <div class="text">
-                        Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus ...
+                        {this.props.data.profession !== null && this.props.data.profession.description}
+                        {/* Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus ... */}
                     </div>
                     <div class="skill-tags-block clearfix">
                         <div class="skill-tag">Math</div>
@@ -259,4 +262,18 @@ class JobBoxTellentList extends React.Component {
   }
 }
 
-export default JobBoxTellentList;
+const mapDispatchToProps = dispatch => {
+	return bindActionCreators(
+			{
+			},
+			dispatch
+	);
+};
+
+function mapStateToProps (state) {
+	return  {
+			search:state.search
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (JobBoxTellentList);

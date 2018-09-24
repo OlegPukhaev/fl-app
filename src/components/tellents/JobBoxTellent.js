@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getTellentsData} from './../../reducers/search'
 import JobBoxTellentList from './JobBoxTellentList';
-import { returnRequestObj } from '../../functions/function';
 const queryString = require('query-string');
 
 class JobBoxTellent extends React.Component {
@@ -16,9 +15,7 @@ class JobBoxTellent extends React.Component {
 
 	componentDidMount = () => {
 		var requestObj = getRequest(this.props.search.config);
-		// Reactotron.log("new state here!!!!", requestObj );
 		var StringifyQ = queryString.stringify({
-			// q: JSON.stringify(this.props.search.config)
 			q: JSON.stringify(requestObj)
 		});
 		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
@@ -35,9 +32,7 @@ class JobBoxTellent extends React.Component {
 		Reactotron.warn(this.props.data);
     return (
     <div class="job-boxes-wrapper job-boxes-wrapper--talents flexbox justify-space-between flex-wrap">
-      {/* {this.props.data !== null && this.props.data.users.map(this.eachUser)} */}
       {this.props.data !== null && this.props.search.tellentsData.users.map(this.eachUser)}
-			{/* <JobBoxTellentList /> */}
     </div>
     );
   }
