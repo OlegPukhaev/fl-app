@@ -4,7 +4,7 @@ import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getData} from './../../functions/api'
-import {getJobsData, getCountries, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLoc} from './../../reducers/search'
+import {getJobsData, getCountriesJobs, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs} from './../../reducers/search'
 const queryString = require('query-string');
 
 // import '../../App.css';
@@ -15,7 +15,7 @@ class LeftSideBarFiltersJobs extends React.Component {
 	// }
   componentDidMount() {
 		getData('/api/v1/misc/countries').then(apiData => {
-			this.props.getCountries(apiData.data);
+			this.props.getCountriesJobs(apiData.data);
 		});
 		getData('/api/v1/misc/get_languages').then(apiData => {
 			this.props.getLanguageJobs(apiData.data);
@@ -33,7 +33,7 @@ class LeftSideBarFiltersJobs extends React.Component {
                 case 'lang':
                   this.props.selectLangJobs(event.target.id);
                   case 'loc':
-                  this.props.selectLoc(event.target.id);
+                  this.props.selectLocJobs(event.target.id);
               case 'avl':
                   this.props.selectAvlJobs(event.target.id);
                 }
@@ -159,8 +159,8 @@ const mapDispatchToProps = dispatch => {
 					selectPlaceJobs,
 					selectAvlJobs,
 					selectLangJobs,
-					selectLoc,
-					getCountries, getLanguageJobs,
+					selectLocJobs,
+					getCountriesJobs, getLanguageJobs,
         },
         dispatch
     );

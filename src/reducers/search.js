@@ -23,6 +23,8 @@ const	SELECT_PLACE_JOBS = 'SELECT_PLACE_JOBS';
 const	SELECT_AVL_JOBS = 'SELECT_AVL_JOBS';
 const	SELECT_LANG_JOBS = 'SELECT_LANG_JOBS';
 const	GET_LANGUAGE_JOBS = 'GET_LANGUAGE_JOBS';
+const	GET_COUNTRIES_JOBS = 'GET_COUNTRIES_JOBS';
+const	SELECT_LOC_JOBS = 'SELECT_LOC_JOBS';
 
 let initialState = {
 	config : {
@@ -497,7 +499,14 @@ let initialState = {
       };
     }
 
-
+	export function getCountriesJobs(value) {
+		return dispatch => {
+			dispatch({
+				type: GET_COUNTRIES_JOBS, 
+				payload: value
+			});
+		};
+	}
 	export function getLanguageJobs(value) {
 		return dispatch => {
 			dispatch({
@@ -542,6 +551,14 @@ let initialState = {
 		return dispatch => {
 			dispatch({
 				type: SELECT_LANG_JOBS, 
+				payload: id
+			});
+		};
+	}
+	export function selectLocJobs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_LOC_JOBS, 
 				payload: id
 			});
 		};
@@ -825,7 +842,38 @@ const actionsMap = {
 					configJobs: objCopyJobs
 		}
 	},  
+	[GET_COUNTRIES_JOBS]: (state, action) => {
+		state.configJobs.loc = action.payload;
+		var objCopy = Object.assign({}, state.configJobs);
+		objCopy.loc.map(item => {
+			item.filter = "loc";
+			item.selected = false;
+			item.id = "j"+item.name;
+			item.request = item.name;
+		});
+			return {
+					...state, 
+					config: state.config,
+					configJobs: state.configJobs
+		}
+	}, 
+	[SELECT_LOC_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.loc.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	}, 
+
 }
+
 
 export default function search(state = initialState, action) {
     const reduceFn = actionsMap[action.type];
