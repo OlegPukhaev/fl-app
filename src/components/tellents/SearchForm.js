@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // import { getData } from '../functions/api';
 import {inputSearch, getTellentsData, getJobsData} from '../../reducers/search';
 import {getData} from '../../functions/api';
+import {getRequest} from '../../functions/function'
 const queryString = require('query-string');
 
 class SearchForm extends React.Component {
@@ -19,27 +20,18 @@ class SearchForm extends React.Component {
 		// this.setState({searchText:event.target.value});
 	}
 
-	// onClickGetData = () => {
-	// 	switch (this.props.search.isTellents) {
-	// 		case true:
-	// 			var StringifyQ = queryString.stringify({
-	// 				q: JSON.stringify(this.props.search.config)
-	// 			});
-	// 			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-	// 				// Reactotron.log(this.props.search.config.p, apiData);
-	// 				this.props.getTellentsData(apiData.data);
-	// 			});
-				
-	// 		case false:
-	// 			var StringifyQ = queryString.stringify({
-	// 				q: JSON.stringify(this.props.search.config)
-	// 			});
-	// 			getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-	// 				// Reactotron.log(this.props.search.config.p, apiData);
-	// 				this.props.getJobsData(apiData.data);
-	// 			});
-	// 	}
-	// }
+	onClickGetData = () => {
+		var requestObj = getRequest(this.props.search.config);
+		Reactotron.log("new state here!!!!", requestObj );
+
+		var StringifyQ = queryString.stringify({
+				q: JSON.stringify(requestObj)
+		});
+		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+				this.props.getTellentsData(apiData.data);
+				Reactotron.log("from server", apiData.data);
+		});
+	}
 
   render() { 
 		// Reactotron.log(this.props.search.config.);

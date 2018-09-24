@@ -1,15 +1,30 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
+import {getRequest} from './../../functions/function';
 import { connect } from 'react-redux';
 import {getData} from './../../functions/api'
-import {getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
+import {getTellentsData, getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
+const queryString = require('query-string');
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
 	// constructor (props){
 	// 	super(props);
 	// }
+
+    // componentWillReceiveProps () {
+    //         var requestObj = getRequest(this.props.search.config);
+    //         Reactotron.log("new state here!!!!", requestObj );
+
+    //         var StringifyQ = queryString.stringify({
+    //             q: JSON.stringify(requestObj)
+    //         });
+    //         getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+    //             this.props.getTellentsData(apiData.data);
+    //             Reactotron.log("from server", apiData.data);
+    //         });
+    //     }
 
   componentDidMount() {
         getData('/api/v1/misc/countries').then(apiData => {
@@ -19,6 +34,8 @@ class LeftSideBarFilters extends React.Component {
 			this.props.getLanguage(apiData.data);
 		});
   }
+
+
 
   onClickSelect = (event) => {
     Reactotron.log(event.target.id, event.target.name);
@@ -40,7 +57,20 @@ class LeftSideBarFilters extends React.Component {
           case 'avl':
               this.props.selectAvl(event.target.id);
         //   Reactotron.log(event.target.value);
-      }
+			}
+			
+			var requestObj = getRequest(this.props.search.config);
+			Reactotron.log("new state here!!!!", requestObj );
+
+			var StringifyQ = queryString.stringify({
+					q: JSON.stringify(requestObj)
+			});
+			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+					this.props.getTellentsData(apiData.data);
+					Reactotron.log("from server", apiData.data);
+			});
+
+
   }
 
 	checkerList = (item, index) => {
@@ -174,7 +204,8 @@ const mapDispatchToProps = dispatch => {
             selectAvl,
             selectLang,
             selectLoc,
-            getCountries, getLanguage,
+						getCountries, getLanguage,
+						getTellentsData
         },
         dispatch
     );
