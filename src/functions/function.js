@@ -45,9 +45,10 @@ export function getRequestJobs (value) {
     var obj = {
         q:value.q,
         exp: returnRequestObj(value.exp),
-        ds: returnRequestObj(value.ds),
-        skill: returnRequestObj(value.skill),
-        rate: returnRequestObj(value.rate),
+        post: returnRequestObj(value.post),
+        prop: returnRequestObj(value.prop),
+        payment: returnRequestObj(value.payment),
+        bud: returnRequestObj(value.bud),
         avl: returnRequestObj(value.avl),
         place: returnRequestObj(value.place),
         lang: returnRequestObj(value.lang),

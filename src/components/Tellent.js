@@ -191,8 +191,8 @@ class Tellent extends React.Component {
  					<div class="row main-content flexbox">
  						<div class="col-xs-2 left-sidebar">
 
-                   			{this.props.search.isTellents === true && <LeftSideBarFilters/>}
-                   			{this.props.search.isJobs === true && <LeftSideBarFiltersJobs/>}
+                   			<LeftSideBarFilters/>
+                   			<LeftSideBarFiltersJobs/>
 							{Reactotron.log(this.props.search.isJobs)}
  						</div>{/* <!--col-xs-2 End--> */}
 

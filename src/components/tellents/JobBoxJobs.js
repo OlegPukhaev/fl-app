@@ -14,14 +14,14 @@ class JobBoxJobs extends React.Component {
 	}
 
 	componentDidMount = () => {
-		// // var requestObj = ;
-		// var StringifyQ = queryString.stringify({
-		// 	q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
-		// });
-		// getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-		// 	this.props.getJobsData(apiData.data);
-		// 	Reactotron.log("from server", apiData.data);
-		// });
+		// var requestObj = ;
+		var StringifyQ = queryString.stringify({
+			q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
+		});
+		getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+			this.props.getJobsData(apiData.data);
+			Reactotron.log("from server", apiData.data);
+		});
 	}
 
 	eachJob = (item, index) => {
