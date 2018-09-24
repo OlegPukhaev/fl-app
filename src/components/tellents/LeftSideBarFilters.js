@@ -39,11 +39,9 @@ class LeftSideBarFilters extends React.Component {
               this.props.selectLoc(event.target.id);
           case 'avl':
               this.props.selectAvl(event.target.id);
-          Reactotron.log(event.target.value);
+        //   Reactotron.log(event.target.value);
       }
   }
-
-
 
 	checkerList = (item, index) => {
     return (

@@ -12,23 +12,35 @@ export function getObject(obj){
         return returnObj;
 }
 
-export function returnRequestObj( name,value ) {
-
+export function returnRequestObj(value) {
+    
     var requestFilter = value.filter(item => {
         if (item.selected === true ) {
             return item;
         };
     });
-
     var objectId = requestFilter.map(item => {
         if(item.selected === true) return item.id;
     });
-    var retobj = {
-        name : objectId.join(",")
-    }
-    return retobj;
 
+    return objectId.join(",");
 }
+
+export function getRequest (value) {
+    var obj = {
+        q:value.q,
+        exp: returnRequestObj(value.exp),
+        ds: returnRequestObj(value.ds),
+        skill: returnRequestObj(value.skill),
+        rate: returnRequestObj(value.rate),
+        avl: returnRequestObj(value.avl),
+        place: returnRequestObj(value.place),
+        lang: returnRequestObj(value.lang),
+        loc: returnRequestObj(value.loc),
+    }	
+    return obj;
+}
+
 
 export function arrForUpdate (value){
 // array convert to api congig format

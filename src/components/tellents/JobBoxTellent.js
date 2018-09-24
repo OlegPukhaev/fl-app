@@ -1,8 +1,10 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {getData} from '../../functions/api';
+import {getRequest} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import {getTellentsData} from './../../reducers/search'
 import JobBoxTellentList from './JobBoxTellentList';
 import { returnRequestObj } from '../../functions/function';
 const queryString = require('query-string');
@@ -14,9 +16,23 @@ class JobBoxTellent extends React.Component {
 		super(props);
 	}
 
-	componentWillReceiveProps () {
+	// getRequest = () => {
+	// 	var obj = {
+	// 		q:this.props.search.config.q,
+	// 		exp: returnRequestObj(this.props.search.config.exp),
+	// 		ds: returnRequestObj(this.props.search.config.ds),
+	// 		skill: returnRequestObj(this.props.search.config.skill),
+	// 		rate: returnRequestObj(this.props.search.config.rate),
+	// 		avl: returnRequestObj(this.props.search.config.avl),
+	// 		place: returnRequestObj(this.props.search.config.place),
+	// 		lang: returnRequestObj(this.props.search.config.lang),
+	// 		loc: returnRequestObj(this.props.search.config.loc),
+	// 	}	
+	// 	return obj;
+	// }
 
-		var requestObj = returnRequestObj("exp",this.props.search.config.exp);
+	componentWillReceiveProps () {
+		var requestObj = getRequest(this.props.search.config);
 		Reactotron.log("new state here!!!!", requestObj );
 
 		var StringifyQ = queryString.stringify({
@@ -48,7 +64,7 @@ class JobBoxTellent extends React.Component {
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
 			{
-
+				getTellentsData
 			},
 			dispatch
 	);
