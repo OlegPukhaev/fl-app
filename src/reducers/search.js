@@ -17,6 +17,8 @@ const	SELECT_AVL = 'SELECT_AVL';
 const	SELECT_LANG = 'SELECT_LANG';
 const	SELECT_LOC = 'SELECT_LOC';
 
+const	SELECT_EXP_JOBS = 'SELECT_EXP_JOBS';
+
 let initialState = {
 	config : {
 		q:"",
@@ -171,177 +173,181 @@ let initialState = {
 	configJobs : {
 		q:"",
 		exp:[
-						{
-						id: "intern",
-						selected : false,
-						filter: "exp",
-						name: "Intern"
-					},
 					{
-						id:"junior",
-						selected: false,
-						filter: "exp",
-						name: "Junior"
-					},
-					{
-						id:"senior",
-						selected: false,
-						filter: "exp",
-						name: "Senior" 
-					},
-					{
-						id:"expert",
-						selected: false,
-						filter: "exp",
-						name: "Expert"
-					}
-				],
-		post:[
-					{
-						id: "i24",
-						selected : false,
-						filter: "post",
-						name: "24h"
-					},
-					{
-						id:"i3d",
-						selected: false,
-						filter: "post",
-						name: "3d"
-					},
-					{
-						id:"i1w",
-						selected: false,
-						filter: "post",
-						name: "1w" 
-					},
-					{
-						id:"m_1w",
-						selected: false,
-						filter: "post",
-						name: "> 1w"
-					}
-				],
-		prop:[
-					{
-						id: "i0_5",
-						selected : false,
-						filter: "prop",
-						name: "0 - 5"
-					},
-					{
-						id:"i5_10",
-						selected: false,
-						filter: "prop",
-						name: "5 - 10"
-					},
-					{
-						id:"i10_20",
-						selected: false,
-						filter: "prop",
-						name: "10 - 20" 
-					},
-					{
-						id:"m_20",
-						selected: false,
-						filter: "prop",
-						name: "> 20"
-					},
-					{
-						id:"undefined",
-						selected: false,
-						filter: "prop",
-						name: "None"
-					}
-				],
-		payment:[	
-					{
-						id: "fixed_price",
-						selected : false,
-						filter: "payment",
-						name: "Fixed Price"
-					},
-					{
-						id:"hourly",
-						selected: false,
-						filter: "payment",
-						name: "Hourly"
-					}
-				],
-		bud:[	
-					{
-						name: "$0 - $100",
-						selected : false,
-						filter: "bud",
-						id: "i0_100"
-					},
-					{
-						name:"$100 - $300",
-						filter: "bud",
-						selected: false,
-						id: "i100_300"
-					},
-					{
-						name:"$300 - $1000",
-						selected: false,
-						filter: "bud",
-						id: "i300_1000"
-					},
-					{
-						name:"> $1000",
-						selected: false,
-						filter: "bud",
-						id: "more_1000"
-					},
-					{
-						id:"undefined",
-						selected: false,
-						filter: "bud",
-						name: "Not defined (Empty)"
-					},
-				],
-		avl:[	
-					{
-						id: "per_week_10",
-						selected : false,
-						filter: "avl",
-						name: "< 20h"
-					},
-					{
-						id:"per_week_up_to_30",
-						filter: "avl",
-						selected: false,
-						name: "> 20h"
-					},
-					{
-						name:"Full-Time",
-						selected: false,
-						filter: "avl",
-						id: "per_week_more_than_30" 
-					},
-					{
-						id:"decide_later",
-						selected: false,
-						filter: "avl",
-						name: "Undefined"
-					}
-				],
-		place:[	
-					{
-						id: "online",
-						selected : false,
-						filter: "place",
-						name: "On-Line"
-					},
-					{
-						id:"onsite",
-						selected: false,
-						filter: "place",
-						name: "On-Site"
-					}
-				],
-		lang:[],
-		loc:[],
+					id: "jintern",
+					request: "intern",
+					selected : false,
+					filter: "exp",
+					name: "Intern"
+				},
+				{
+					id:"jjunior",
+					request:"junior",
+					selected: false,
+					filter: "exp",
+					name: "Junior"
+				},
+				{
+					id:"jsenior",
+					request:"senior",
+					selected: false,
+					filter: "exp",
+					name: "Senior" 
+				},
+				{
+					id:"jexpert",
+					request:"expert",
+					selected: false,
+					filter: "exp",
+					name: "Expert"
+				}
+			],
+	post:[
+				{
+					id: "i24",
+					selected : false,
+					filter: "post",
+					name: "24h"
+				},
+				{
+					id:"i3d",
+					selected: false,
+					filter: "post",
+					name: "3d"
+				},
+				{
+					id:"i1w",
+					selected: false,
+					filter: "post",
+					name: "1w" 
+				},
+				{
+					id:"m_1w",
+					selected: false,
+					filter: "post",
+					name: "> 1w"
+				}
+			],
+	prop:[
+				{
+					id: "i0_5",
+					selected : false,
+					filter: "prop",
+					name: "0 - 5"
+				},
+				{
+					id:"i5_10",
+					selected: false,
+					filter: "prop",
+					name: "5 - 10"
+				},
+				{
+					id:"i10_20",
+					selected: false,
+					filter: "prop",
+					name: "10 - 20" 
+				},
+				{
+					id:"m_20",
+					selected: false,
+					filter: "prop",
+					name: "> 20"
+				},
+				{
+					id:"undefined",
+					selected: false,
+					filter: "prop",
+					name: "None"
+				}
+			],
+	payment:[	
+				{
+					id: "fixed_price",
+					selected : false,
+					filter: "payment",
+					name: "Fixed Price"
+				},
+				{
+					id:"hourly",
+					selected: false,
+					filter: "payment",
+					name: "Hourly"
+				}
+			],
+	bud:[	
+				{
+					name: "$0 - $100",
+					selected : false,
+					filter: "bud",
+					id: "i0_100"
+				},
+				{
+					name:"$100 - $300",
+					filter: "bud",
+					selected: false,
+					id: "i100_300"
+				},
+				{
+					name:"$300 - $1000",
+					selected: false,
+					filter: "bud",
+					id: "i300_1000"
+				},
+				{
+					name:"> $1000",
+					selected: false,
+					filter: "bud",
+					id: "more_1000"
+				},
+				{
+					id:"undefined",
+					selected: false,
+					filter: "bud",
+					name: "Not defined (Empty)"
+				},
+			],
+	avl:[	
+				{
+					id: "per_week_10",
+					selected : false,
+					filter: "avl",
+					name: "< 20h"
+				},
+				{
+					id:"per_week_up_to_30",
+					filter: "avl",
+					selected: false,
+					name: "> 20h"
+				},
+				{
+					name:"Full-Time",
+					selected: false,
+					filter: "avl",
+					id: "per_week_more_than_30" 
+				},
+				{
+					id:"decide_later",
+					selected: false,
+					filter: "avl",
+					name: "Undefined"
+				}
+			],
+	place:[	
+				{
+					id: "online",
+					selected : false,
+					filter: "place",
+					name: "On-Line"
+				},
+				{
+					id:"onsite",
+					selected: false,
+					filter: "place",
+					name: "On-Site"
+				}
+			],
+	lang:[],
+	loc:[],
 	},
 	requestTellents : {
 		q:"",
@@ -475,6 +481,16 @@ let initialState = {
         });
       };
     }
+
+
+	export function selectExpJobs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_EXP_JOBS, 
+				payload: id
+			});
+		};
+	}
 
 const actionsMap = {
 	[SELECT_RATE]: (state, action) => {//radio
@@ -670,7 +686,21 @@ const actionsMap = {
 						isTellents: val1,
 						isJobs: val2
 				}
-	}  
+	},
+	[SELECT_EXP_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.exp.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	},   
 }
 
 export default function search(state = initialState, action) {

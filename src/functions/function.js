@@ -20,7 +20,7 @@ export function returnRequestObj(value) {
         };
     });
     var objectId = requestFilter.map(item => {
-        if(item.selected === true) return item.id;
+        if(item.selected === true) return item.request;
     });
 
     return objectId.join(",");

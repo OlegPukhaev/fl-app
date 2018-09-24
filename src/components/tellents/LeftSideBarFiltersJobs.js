@@ -1,8 +1,11 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
+import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getData} from './../../functions/api'
-import {getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
+import {getJobsData, getCountries, getLanguage, selectExpJobs, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
+const queryString = require('query-string');
 
 // import '../../App.css';
 
@@ -11,10 +14,41 @@ class LeftSideBarFiltersJobs extends React.Component {
 	// 	super();
 	// }
 
+    onClickSelectJobs = (event) => {
+        Reactotron.log(event.target.id, event.target.name);
+          switch (event.target.name){
+              case 'exp':
+                  this.props.selectExpJobs(event.target.id);
+              case 'ds':
+                  this.props.selectDs(event.target.id);
+              case 'place':
+                  this.props.selectPlace(event.target.id);
+              case 'skill':
+                  this.props.selectSkill(event.target.id);
+              case 'rate':
+                  this.props.selectRate(event.target.id);
+                case 'lang':
+                  this.props.selectLang(event.target.id);
+                  case 'loc':
+                  this.props.selectLoc(event.target.id);
+              case 'avl':
+                  this.props.selectAvl(event.target.id);
+                }
+                
+                var StringifyQ = queryString.stringify({
+                        q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
+								});
+								
+                getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+									this.props.getJobsData(apiData.data);
+									Reactotron.log("from server", apiData.data);
+                });
+      }
+
 	checkerList = (item) => {
 		return (
 			<div class="checkbox-block">
-				<input type="checkbox" id={item.id} cheked={item.selected}/>
+				<input type="checkbox" name={item.filter} key={item.id} id={item.id} checked={item.selected} onClick={this.onClickSelectJobs}/>
 				<label for={item.id}>
 					<span class="filter-checkbox">
 						<span class="icon icon-check-mark"></span>
@@ -116,7 +150,8 @@ class LeftSideBarFiltersJobs extends React.Component {
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
         {
-            selectExp,
+					getJobsData,
+					selectExpJobs,
             selectDs,
             selectPlace,
             selectSkill,
