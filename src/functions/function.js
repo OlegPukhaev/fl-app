@@ -41,6 +41,21 @@ export function getRequest (value) {
     return obj;
 }
 
+export function getRequestJobs (value) {
+    var obj = {
+        q:value.q,
+        exp: returnRequestObj(value.exp),
+        ds: returnRequestObj(value.ds),
+        skill: returnRequestObj(value.skill),
+        rate: returnRequestObj(value.rate),
+        avl: returnRequestObj(value.avl),
+        place: returnRequestObj(value.place),
+        lang: returnRequestObj(value.lang),
+        loc: returnRequestObj(value.loc),
+    }	
+    return obj;
+}
+
 
 export function arrForUpdate (value){
 // array convert to api congig format

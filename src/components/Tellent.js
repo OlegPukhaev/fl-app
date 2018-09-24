@@ -23,19 +23,19 @@ class Tellent extends React.Component {
 	// 	super(props)
 	// }
 
-	componentDidMount = () => {
-		var StringifyQ = queryString.stringify({
-			// q: JSON.stringify(this.props.search.config)//открыть после создания редьюсера чобы все было пучком
-			q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
-		});
+	// componentDidMount = () => {
+	// 	var StringifyQ = queryString.stringify({
+	// 		// q: JSON.stringify(this.props.search.config)//открыть после создания редьюсера чобы все было пучком
+	// 		q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
+	// 	});
 
-		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-			this.props.getTellentsData(apiData.data);
-		});
-		getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-			this.props.getJobsData(apiData.data);
-		});
-	}
+	// 	getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+	// 		this.props.getTellentsData(apiData.data);
+	// 	});
+	// 	getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+	// 		this.props.getJobsData(apiData.data);
+	// 	});
+	// }
 
     render() {
 		Reactotron.log('Get Data', this.props.search);
@@ -192,8 +192,8 @@ class Tellent extends React.Component {
  						<div class="col-xs-2 left-sidebar">
 
                    			{this.props.search.isTellents === true && <LeftSideBarFilters/>}
-                   			{this.props.search.isJobss === true && <LeftSideBarFiltersJobs/>}
-							
+                   			{this.props.search.isJobs === true && <LeftSideBarFiltersJobs/>}
+							{Reactotron.log(this.props.search.isJobs)}
  						</div>{/* <!--col-xs-2 End--> */}
 
 						

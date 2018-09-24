@@ -4,7 +4,7 @@ import {getData} from '../../functions/api';
 import {getRequest} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getTellentsData} from './../../reducers/search'
+import {getTellentsData} from './../../reducers/search';
 import JobBoxTellentList from './JobBoxTellentList';
 const queryString = require('query-string');
 
@@ -14,13 +14,13 @@ class JobBoxTellent extends React.Component {
 	}
 
 	componentDidMount = () => {
-		var requestObj = getRequest(this.props.search.config);
+		// var requestObj = ;
 		var StringifyQ = queryString.stringify({
-			q: JSON.stringify(requestObj)
+			q: JSON.stringify(getRequest(this.props.search.config))
 		});
 		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
 			this.props.getTellentsData(apiData.data);
-			Reactotron.log("from server", apiData.data);
+			// Reactotron.log("from server", apiData.data);
 		});
 	}
 

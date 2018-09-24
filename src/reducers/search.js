@@ -354,8 +354,8 @@ let initialState = {
 		lang:{},
 		loc:{},
 	},
-	isTellents:true,
-	isJobs:false,
+	isTellents:false,
+	isJobs:true,
 	tellentsData: null,
 	jobsData: null
 	
