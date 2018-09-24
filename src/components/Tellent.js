@@ -193,7 +193,7 @@ class Tellent extends React.Component {
 
                    			<LeftSideBarFilters/>
                    			<LeftSideBarFiltersJobs/>
-							{Reactotron.log(this.props.search.isJobs)}
+							{Reactotron.log(this.props.search.isJobs, this.props.search.isTellents)}
  						</div>{/* <!--col-xs-2 End--> */}
 
 						

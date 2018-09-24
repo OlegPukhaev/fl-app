@@ -4,7 +4,7 @@ import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getData} from './../../functions/api'
-import {getJobsData, getCountries, getLanguage, selectExpJobs, selectPostJobs, selectPlaceJobs, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
+import {getJobsData, getCountries, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLoc} from './../../reducers/search'
 const queryString = require('query-string');
 
 // import '../../App.css';
@@ -13,7 +13,14 @@ class LeftSideBarFiltersJobs extends React.Component {
 	// constructor (){
 	// 	super();
 	// }
-
+  componentDidMount() {
+		getData('/api/v1/misc/countries').then(apiData => {
+			this.props.getCountries(apiData.data);
+		});
+		getData('/api/v1/misc/get_languages').then(apiData => {
+			this.props.getLanguageJobs(apiData.data);
+		});
+		}
     onClickSelectJobs = (event) => {
         Reactotron.log(event.target.id, event.target.name);
           switch (event.target.name){
@@ -23,16 +30,12 @@ class LeftSideBarFiltersJobs extends React.Component {
                   this.props.selectPostJobs(event.target.id);
               case 'place':
                   this.props.selectPlaceJobs(event.target.id);
-              case 'skill':
-                  this.props.selectSkill(event.target.id);
-              case 'rate':
-                  this.props.selectRate(event.target.id);
                 case 'lang':
-                  this.props.selectLang(event.target.id);
+                  this.props.selectLangJobs(event.target.id);
                   case 'loc':
                   this.props.selectLoc(event.target.id);
               case 'avl':
-                  this.props.selectAvl(event.target.id);
+                  this.props.selectAvlJobs(event.target.id);
                 }
                 
                 var StringifyQ = queryString.stringify({
@@ -152,14 +155,12 @@ const mapDispatchToProps = dispatch => {
         {
 					getJobsData,
 					selectExpJobs,
-            selectPostJobs,
-            selectPlaceJobs,
-            selectSkill,
-            selectRate,
-            selectAvl,
-            selectLang,
-            selectLoc,
-            getCountries, getLanguage,
+					selectPostJobs,
+					selectPlaceJobs,
+					selectAvlJobs,
+					selectLangJobs,
+					selectLoc,
+					getCountries, getLanguageJobs,
         },
         dispatch
     );

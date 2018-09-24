@@ -18,8 +18,11 @@ const	SELECT_LANG = 'SELECT_LANG';
 const	SELECT_LOC = 'SELECT_LOC';
 
 const	SELECT_EXP_JOBS = 'SELECT_EXP_JOBS';
-const	SELECT_POSTED_JOBS = 'SELECT_POSTED_JOBS';
+const	SELECT_POST_JOBS = 'SELECT_POST_JOBS';
 const	SELECT_PLACE_JOBS = 'SELECT_PLACE_JOBS';
+const	SELECT_AVL_JOBS = 'SELECT_AVL_JOBS';
+const	SELECT_LANG_JOBS = 'SELECT_LANG_JOBS';
+const	GET_LANGUAGE_JOBS = 'GET_LANGUAGE_JOBS';
 
 let initialState = {
 	config : {
@@ -314,13 +317,15 @@ let initialState = {
 			],
 	avl:[	
 				{
-					id: "per_week_10",
+					id: "jper_week_10",
+					request: "per_week_10",
 					selected : false,
 					filter: "avl",
 					name: "< 20h"
 				},
 				{
-					id:"per_week_up_to_30",
+					id:"jper_week_up_to_30",
+					request:"per_week_up_to_30",
 					filter: "avl",
 					selected: false,
 					name: "> 20h"
@@ -329,10 +334,12 @@ let initialState = {
 					name:"Full-Time",
 					selected: false,
 					filter: "avl",
-					id: "per_week_more_than_30" 
+					id: "jper_week_more_than_30" ,
+					request: "per_week_more_than_30" 
 				},
 				{
-					id:"decide_later",
+					id:"jdecide_later",
+					request:"decide_later",
 					selected: false,
 					filter: "avl",
 					name: "Undefined"
@@ -491,6 +498,14 @@ let initialState = {
     }
 
 
+	export function getLanguageJobs(value) {
+		return dispatch => {
+			dispatch({
+				type: GET_LANGUAGE_JOBS, 
+				payload: value
+			});
+		};
+	}		
 	export function selectExpJobs(id) {
 		return dispatch => {
 			dispatch({
@@ -502,7 +517,7 @@ let initialState = {
 	export function selectPostJobs(id) {
 		return dispatch => {
 			dispatch({
-				type: SELECT_POSTED_JOBS, 
+				type: SELECT_POST_JOBS, 
 				payload: id
 			});
 		};
@@ -511,6 +526,22 @@ let initialState = {
 		return dispatch => {
 			dispatch({
 				type: SELECT_PLACE_JOBS, 
+				payload: id
+			});
+		};
+	}
+	export function selectAvlJobs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_AVL_JOBS, 
+				payload: id
+			});
+		};
+	}
+	export function selectLangJobs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_LANG_JOBS, 
 				payload: id
 			});
 		};
@@ -641,7 +672,6 @@ const actionsMap = {
 		}
 	},   
 	[GET_LANGUAGE]: (state, action) => {
-
 		state.config.lang = action.payload.languages;
 		var objCopy = Object.assign({}, state.config);
 		objCopy.lang.map(item => {
@@ -649,12 +679,11 @@ const actionsMap = {
 			item.selected = false;
 			// item.id = "lang"+item.language_id;
 			item.id = item.name;
-
 		});
+
 			return {
 					...state, 
 					config: state.config,
-					configJobs: state.configJobs
 		}
 	},   
 	[GET_COUNTRIES]: (state, action) => {
@@ -725,7 +754,7 @@ const actionsMap = {
 					configJobs: copyObj
 		}
 	},  
-	[SELECT_POSTED_JOBS]: (state, action) => {//radio
+	[SELECT_POST_JOBS]: (state, action) => {//radio
 		var copyObj = Object.assign({}, state.configJobs)	
 		copyObj.post.map(item => {
 
@@ -754,6 +783,48 @@ const actionsMap = {
 					configJobs: copyObj
 		}
 	}, 
+	[SELECT_AVL_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.avl.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	}, 
+	[SELECT_LANG_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.lang.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	}, 
+	[GET_LANGUAGE_JOBS]: (state, action) => {
+		state.configJobs.lang = action.payload.languages;
+		var objCopyJobs = Object.assign({}, state.configJobs);
+		objCopyJobs.lang.map(item => {
+			item.filter = "lang";
+			item.selected = false;
+			item.id = "j"+item.language_id;
+			item.request = item.name;
+		});
+			return {
+					...state, 
+					configJobs: objCopyJobs
+		}
+	},  
 }
 
 export default function search(state = initialState, action) {

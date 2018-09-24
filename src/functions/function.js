@@ -20,6 +20,20 @@ export function returnRequestObj(value) {
         };
     });
     var objectId = requestFilter.map(item => {
+        if(item.selected === true) return item.id;
+    });
+
+    return objectId.join(",");
+}
+
+export function returnRequestObjJobs(value) {
+    
+    var requestFilter = value.filter(item => {
+        if (item.selected === true ) {
+            return item;
+        };
+    });
+    var objectId = requestFilter.map(item => {
         if(item.selected === true) return item.request;
     });
 
@@ -44,15 +58,15 @@ export function getRequest (value) {
 export function getRequestJobs (value) {
     var obj = {
         q:value.q,
-        exp: returnRequestObj(value.exp),
-        post: returnRequestObj(value.post),
-        prop: returnRequestObj(value.prop),
-        payment: returnRequestObj(value.payment),
-        bud: returnRequestObj(value.bud),
-        avl: returnRequestObj(value.avl),
-        place: returnRequestObj(value.place),
-        lang: returnRequestObj(value.lang),
-        loc: returnRequestObj(value.loc),
+        exp: returnRequestObjJobs(value.exp),
+        post: returnRequestObjJobs(value.post),
+        // prop: returnRequestObjJobs(value.prop),
+        // payment: returnRequestObjJobs(value.payment),
+        // bud: returnRequestObjJobs(value.bud),
+        avl: returnRequestObjJobs(value.avl),
+        place: returnRequestObjJobs(value.place),
+        lang: returnRequestObjJobs(value.lang),
+        loc: returnRequestObjJobs(value.loc),
     }	
     return obj;
 }
