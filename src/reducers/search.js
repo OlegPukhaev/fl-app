@@ -18,6 +18,8 @@ const	SELECT_LANG = 'SELECT_LANG';
 const	SELECT_LOC = 'SELECT_LOC';
 
 const	SELECT_EXP_JOBS = 'SELECT_EXP_JOBS';
+const	SELECT_POSTED_JOBS = 'SELECT_POSTED_JOBS';
+const	SELECT_PLACE_JOBS = 'SELECT_PLACE_JOBS';
 
 let initialState = {
 	config : {
@@ -202,33 +204,37 @@ let initialState = {
 					name: "Expert"
 				}
 			],
-	post:[
+		post:[
 				{
-					id: "i24",
+					id: "ji24",
+					request: "i24",
 					selected : false,
 					filter: "post",
 					name: "24h"
 				},
 				{
-					id:"i3d",
+					id:"ji3d",
+					request:"i3d",
 					selected: false,
 					filter: "post",
 					name: "3d"
 				},
 				{
-					id:"i1w",
+					id:"ji1w",
+					request:"i1w",
 					selected: false,
 					filter: "post",
 					name: "1w" 
 				},
 				{
-					id:"m_1w",
+					id:"jm_1w",
+					request:"m_1w",
 					selected: false,
 					filter: "post",
 					name: "> 1w"
 				}
 			],
-	prop:[
+		prop:[
 				{
 					id: "i0_5",
 					selected : false,
@@ -334,13 +340,15 @@ let initialState = {
 			],
 	place:[	
 				{
-					id: "online",
+					id: "jonline",
+					request: "online",
 					selected : false,
 					filter: "place",
 					name: "On-Line"
 				},
 				{
-					id:"onsite",
+					id:"jonsite",
+					request:"onsite",
 					selected: false,
 					filter: "place",
 					name: "On-Site"
@@ -487,6 +495,22 @@ let initialState = {
 		return dispatch => {
 			dispatch({
 				type: SELECT_EXP_JOBS, 
+				payload: id
+			});
+		};
+	}
+	export function selectPostJobs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_POSTED_JOBS, 
+				payload: id
+			});
+		};
+	}
+	export function selectPlaceJobs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_PLACE_JOBS, 
 				payload: id
 			});
 		};
@@ -700,7 +724,36 @@ const actionsMap = {
 					...state, 
 					configJobs: copyObj
 		}
-	},   
+	},  
+	[SELECT_POSTED_JOBS]: (state, action) => {//radio
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.post.map(item => {
+
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+			...state, 
+			configJobs: copyObj
+	}
+	}, 
+	[SELECT_PLACE_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.place.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	}, 
 }
 
 export default function search(state = initialState, action) {

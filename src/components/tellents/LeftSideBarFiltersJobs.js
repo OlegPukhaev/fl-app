@@ -4,7 +4,7 @@ import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getData} from './../../functions/api'
-import {getJobsData, getCountries, getLanguage, selectExpJobs, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
+import {getJobsData, getCountries, getLanguage, selectExpJobs, selectPostJobs, selectPlaceJobs, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
 const queryString = require('query-string');
 
 // import '../../App.css';
@@ -19,10 +19,10 @@ class LeftSideBarFiltersJobs extends React.Component {
           switch (event.target.name){
               case 'exp':
                   this.props.selectExpJobs(event.target.id);
-              case 'ds':
-                  this.props.selectDs(event.target.id);
+              case 'post':
+                  this.props.selectPostJobs(event.target.id);
               case 'place':
-                  this.props.selectPlace(event.target.id);
+                  this.props.selectPlaceJobs(event.target.id);
               case 'skill':
                   this.props.selectSkill(event.target.id);
               case 'rate':
@@ -152,8 +152,8 @@ const mapDispatchToProps = dispatch => {
         {
 					getJobsData,
 					selectExpJobs,
-            selectDs,
-            selectPlace,
+            selectPostJobs,
+            selectPlaceJobs,
             selectSkill,
             selectRate,
             selectAvl,
