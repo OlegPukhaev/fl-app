@@ -18,6 +18,175 @@ const	SELECT_LANG = 'SELECT_LANG';
 const	SELECT_LOC = 'SELECT_LOC';
 
 
+// let initialState = {
+// 	config : [
+// 		{
+// 			exp:[
+// 				{
+// 				id: "intern",
+// 				selected : false,
+// 				filter: "exp",
+// 				name: "Intern"
+
+// 			},
+// 			{
+// 				id:"junior",
+// 				selected: false,
+// 				filter: "exp",
+// 				name: "Junior"
+// 			},
+// 			{
+// 				id:"senior",
+// 				selected: false,
+// 				filter: "exp",
+// 				name: "Senior" 
+// 			},
+// 			{
+// 				id:"expert",
+// 				selected: false,
+// 				filter: "exp",
+// 				name: "Expert"
+// 			}
+// 		],
+// 		},
+// 		{
+// 			ds:[
+// 				{
+// 					id: "i_100",
+// 					selected : false,
+// 					filter: "ds",
+// 					name: "100%"
+// 				},
+// 				{
+// 					id:"m_95",
+// 					selected: false,
+// 					filter: "ds",
+// 					name: "> 95%"
+// 				},
+// 				{
+// 					id:"i_85_95",
+// 					selected: false,
+// 					filter: "ds",
+// 					name: "85-95%" 
+// 				},
+// 				{
+// 					id:"l_85",
+// 					selected: false,
+// 					filter: "ds",
+// 					name: "< 85%"
+// 				}
+// 			],
+// 		},
+// 		{
+// 			skill:[
+// 				{
+// 					id: "i_5",
+// 					selected : false,
+// 					filter: "skill",
+// 					name: "Best (5)"
+// 				},
+// 				{
+// 					id:"i_5_4",
+// 					selected: false,
+// 					filter: "skill",
+// 					name: "5-4.6"
+// 				},
+// 				{
+// 					id:"i_4",
+// 					selected: false,
+// 					filter: "skill",
+// 					name: "4.6-4" 
+// 				},
+// 				{
+// 					id:"l_4",
+// 					selected: false,
+// 					filter: "skill",
+// 					name: "< 4"
+// 				}
+// 			],
+// 		},
+// 		{
+// 			rate:[	
+// 				{
+// 					id: "ri_5",
+// 					selected : false,
+// 					filter: "rate",
+// 					name: "Best (5)"
+// 				},
+// 				{
+// 					id:"ri_5_4",
+// 					selected: false,
+// 					filter: "rate",
+// 					name: "5-4.8"
+// 				},
+// 				{
+// 					id:"ri_4",
+// 					selected: false,
+// 					filter: "rate",
+// 					name: "4.8-4.5" 
+// 				},
+// 				{
+// 					id:"rl_4",
+// 					selected: false,
+// 					filter: "rate",
+// 					name: "< 4.5"
+// 				}
+// 			],
+// 		},
+// 		{
+// 			avl:[	
+// 				{
+// 					id: "per_week_up_to_20",
+// 					selected : false,
+// 					filter: "avl",
+// 					name: "< 20h"
+// 				},
+// 				{
+// 					id:"per_week_30",
+// 					selected: false,
+// 					filter: "avl",
+// 					name: "30h"
+// 				},
+// 				{
+// 					id:"per_week_more_than_30",
+// 					selected: false,
+// 					filter: "avl",
+// 					name: "> 30h" 
+// 				},
+// 				{
+// 					id:"per_week_full_time",
+// 					selected: false,
+// 					filter: "avl",
+// 					name: "Full Time"
+// 				}
+// 			],
+// 		},
+// 		{
+// 			place:[	
+// 				{
+// 					id: "online",
+// 					selected : false,
+// 					filter: "place",
+// 					name: "On-Line"
+// 				},
+// 				{
+// 					id:"onsite",
+// 					selected: false,
+// 					filter: "place",
+// 					name: "On-Site"
+// 				}
+// 			],
+// 		},
+// 		{
+// 			lang:[],
+// 		},
+// 		{
+// 			loc:[],
+// 		},
+// 	]
+// }
+
+
 let initialState = {
 	config : {
 		q:"",
@@ -350,6 +519,8 @@ let initialState = {
 	jobsData: null
 	
 }
+
+
 
   export function selectAvl(id) {
 		return dispatch => {

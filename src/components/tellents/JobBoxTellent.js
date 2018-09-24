@@ -18,8 +18,6 @@ class JobBoxTellent extends React.Component {
 
 		var requestObj = returnRequestObj("exp",this.props.search.config.exp);
 		Reactotron.log("new state here!!!!", requestObj );
-		
-		// var obj = {"exp":requestObj.join(",")};
 
 		var StringifyQ = queryString.stringify({
 			// q: JSON.stringify(this.props.search.config)

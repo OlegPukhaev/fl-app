@@ -12,7 +12,8 @@ export function getObject(obj){
         return returnObj;
 }
 
-export function returnRequestObj(filter,value) {
+export function returnRequestObj( name,value ) {
+
     var requestFilter = value.filter(item => {
         if (item.selected === true ) {
             return item;
@@ -22,7 +23,10 @@ export function returnRequestObj(filter,value) {
     var objectId = requestFilter.map(item => {
         if(item.selected === true) return item.id;
     });
-    return {"exp" : objectId.join(",")};
+    var retobj = {
+        name : objectId.join(",")
+    }
+    return retobj;
 
 }
 
