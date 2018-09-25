@@ -18,15 +18,9 @@ class LeftSideBarFilters extends React.Component {
 		});
   }
 
-<<<<<<< HEAD
   getRequestTellent = () => {
     var StringifyQ = queryString.stringify({
             q: JSON.stringify(getRequest(this.props.search.config))
-=======
-  getRequest = () => {
-    var StringifyQ = queryString.stringify({
-        q: JSON.stringify(getRequest(this.props.search.config))
->>>>>>> 93dd04b3674c6ce4991140939fab207914112c64
     });
     getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
             this.props.getTellentsData(apiData.data);
@@ -39,7 +33,6 @@ class LeftSideBarFilters extends React.Component {
       switch (event.target.name){
           case 'exp':
               this.props.selectExp(event.target.id);
-<<<<<<< HEAD
               this.getRequestTellent();
               return;
           case 'ds':
@@ -72,39 +65,6 @@ class LeftSideBarFilters extends React.Component {
               return;
 
         }
-=======
-              this.getRequest();
-              return;
-          case 'ds':
-              this.props.selectDs(event.target.id);
-              this.getRequest();
-              return;
-          case 'place':
-              this.props.selectPlace(event.target.id);
-              this.getRequest();
-              return;
-          case 'skill':
-              this.props.selectSkill(event.target.id);
-              this.getRequest();
-              return;
-          case 'rate':
-              this.props.selectRate(event.target.id);
-              this.getRequest();
-              return;
-            case 'lang':
-              this.props.selectLang(event.target.id);
-              this.getRequest();
-              return;
-              case 'loc':
-              this.props.selectLoc(event.target.id);
-              this.getRequest();
-              return;
-          case 'avl':
-              this.props.selectAvl(event.target.id);
-              this.getRequest();
-              return;
-			}
->>>>>>> 93dd04b3674c6ce4991140939fab207914112c64
 			
 
   }

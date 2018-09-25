@@ -779,10 +779,6 @@ const actionsMap = {
 				}
 	},
 	[SELECT_EXP_JOBS]: (state, action) => {//checker
-<<<<<<< HEAD
-=======
-		alert("kkk");
->>>>>>> 93dd04b3674c6ce4991140939fab207914112c64
 		var copyObj = Object.assign({}, state.configJobs)	
 		copyObj.exp.map(item => {
 			if (item.id === action.payload) {
@@ -897,10 +893,6 @@ const actionsMap = {
 		}
 	}, 
 	[SELECT_PROP_JOBS]: (state, action) => {//radio
-<<<<<<< HEAD
-=======
-		alert("fff");
->>>>>>> 93dd04b3674c6ce4991140939fab207914112c64
 		var copyObj = Object.assign({}, state.configJobs)	
 		copyObj.prop.map(item => {
 			if (item.id === action.payload) {
