@@ -409,7 +409,7 @@ let initialState = {
 		return dispatch => {
 			dispatch({
 				type: SELECT_EXP, 
-				payload: id
+				expId: id
 			});
 		};
 	}
@@ -622,25 +622,28 @@ const actionsMap = {
 				if(item.selected === true) {
 					item.selected = false;
 					}	else item.selected = true;
+			// } else item.selected = false;
 			} else item.selected = false;
 		});
 		return {
 			...state, 
-			config: copyObj
+			config: state.config
 	}
 	},
 	[SELECT_EXP]: (state, action) => {//checker
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.exp.map(item => {
-			if (item.id === action.payload) {
+			if (item.id === action.expId) {
 						if(item.selected === true) {
 						item.selected = false;
-						}	else item.selected = true;
+						}	else { 
+							item.selected = true;
+						}
 			}
 		});
 		return {
 					...state, 
-					config: copyObj
+					config: state.config
 		}
 	},   
 	[SELECT_LANG]: (state, action) => {//checker
@@ -733,7 +736,7 @@ const actionsMap = {
 			return {
 					...state, 
 					config: state.config,
-					configJobs: state.configJobs
+					// configJobs: state.configJobs
 		}
 	},   
 	[GET_TELLENTS_DATA]: (state, action) => {
@@ -776,6 +779,10 @@ const actionsMap = {
 				}
 	},
 	[SELECT_EXP_JOBS]: (state, action) => {//checker
+<<<<<<< HEAD
+=======
+		alert("kkk");
+>>>>>>> 93dd04b3674c6ce4991140939fab207914112c64
 		var copyObj = Object.assign({}, state.configJobs)	
 		copyObj.exp.map(item => {
 			if (item.id === action.payload) {
@@ -890,6 +897,10 @@ const actionsMap = {
 		}
 	}, 
 	[SELECT_PROP_JOBS]: (state, action) => {//radio
+<<<<<<< HEAD
+=======
+		alert("fff");
+>>>>>>> 93dd04b3674c6ce4991140939fab207914112c64
 		var copyObj = Object.assign({}, state.configJobs)	
 		copyObj.prop.map(item => {
 			if (item.id === action.payload) {

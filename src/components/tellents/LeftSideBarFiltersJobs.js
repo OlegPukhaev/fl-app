@@ -20,8 +20,23 @@ class LeftSideBarFiltersJobs extends React.Component {
 		getData('/api/v1/misc/get_languages').then(apiData => {
 			this.props.getLanguageJobs(apiData.data);
 		});
+<<<<<<< HEAD
+  }
+
+  getRequest = () => {
+    var StringifyQ = queryString.stringify({
+      q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
+    });
+
+    getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+      this.props.getJobsData(apiData.data);
+      Reactotron.log("from server", apiData.data);
+    });
+  }
+=======
     }
     
+<<<<<<< HEAD
     getRequestJobs = () => {
       var StringifyQ = queryString.stringify({
         q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
@@ -32,12 +47,16 @@ class LeftSideBarFiltersJobs extends React.Component {
       });      
     }
 
+=======
+>>>>>>> 63fb90a1b844fe0ba0c73485701c19f01fab5b8c
+>>>>>>> 93dd04b3674c6ce4991140939fab207914112c64
     onClickSelectJobs = (event) => {
       Reactotron.log(event.target.id, event.target.name);
 
           switch (event.target.name){
               case 'exp1':
                   this.props.selectExpJobs(event.target.id);
+<<<<<<< HEAD
                   this.getRequestJobs();
                   return;
               case 'post':
@@ -60,11 +79,43 @@ class LeftSideBarFiltersJobs extends React.Component {
                   this.props.selectAvlJobs(event.target.id);
                   this.getRequestJobs();
                   return;
+=======
+                  this.getRequest();
+                  return;
+              case 'post':
+                  this.props.selectPostJobs(event.target.id);
+                  this.getRequest();
+                  return;
+              case 'place':
+                  this.props.selectPlaceJobs(event.target.id);
+<<<<<<< HEAD
+                  this.getRequest();
+                  return;
+=======
+                  Reactotron.log(event.target.id, event.target.name);
+>>>>>>> 63fb90a1b844fe0ba0c73485701c19f01fab5b8c
+                case 'lang':
+                  this.props.selectLangJobs(event.target.id);
+                  this.getRequest();
+                  return;
+                case 'loc':
+                  this.props.selectLocJobs(event.target.id);
+                  this.getRequest();
+                  return;
+              case 'avl':
+                  this.props.selectAvlJobs(event.target.id);
+<<<<<<< HEAD
+                  this.getRequest();
+                  return;
+                }
+=======
+>>>>>>> 93dd04b3674c6ce4991140939fab207914112c64
               case 'prop':
                   this.props.selectPropJobs(event.target.id);
                   this.getRequestJobs();
                   return;
           }
+>>>>>>> 63fb90a1b844fe0ba0c73485701c19f01fab5b8c
                 
 
       }
