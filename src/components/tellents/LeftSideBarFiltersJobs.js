@@ -20,32 +20,48 @@ class LeftSideBarFiltersJobs extends React.Component {
 		getData('/api/v1/misc/get_languages').then(apiData => {
 			this.props.getLanguageJobs(apiData.data);
 		});
-		}
+  }
+
+  getRequest = () => {
+    var StringifyQ = queryString.stringify({
+      q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
+    });
+
+    getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+      this.props.getJobsData(apiData.data);
+      Reactotron.log("from server", apiData.data);
+    });
+  }
     onClickSelectJobs = (event) => {
         Reactotron.log(event.target.id, event.target.name);
           switch (event.target.name){
               case 'exp':
                   this.props.selectExpJobs(event.target.id);
+                  this.getRequest();
+                  return;
               case 'post':
                   this.props.selectPostJobs(event.target.id);
+                  this.getRequest();
+                  return;
               case 'place':
                   this.props.selectPlaceJobs(event.target.id);
+                  this.getRequest();
+                  return;
                 case 'lang':
                   this.props.selectLangJobs(event.target.id);
-                  case 'loc':
+                  this.getRequest();
+                  return;
+                case 'loc':
                   this.props.selectLocJobs(event.target.id);
+                  this.getRequest();
+                  return;
               case 'avl':
                   this.props.selectAvlJobs(event.target.id);
+                  this.getRequest();
+                  return;
                 }
                 
-                var StringifyQ = queryString.stringify({
-                        q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
-								});
-								
-                getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-									this.props.getJobsData(apiData.data);
-									Reactotron.log("from server", apiData.data);
-                });
+
       }
 
 	checkerList = (item) => {

@@ -366,19 +366,8 @@ let initialState = {
 	lang:[],
 	loc:[],
 	},
-	requestTellents : {
-		q:"",
-		exp:{},
-		ds:{},
-		skill:{},
-		rate:{},
-		avl:{},
-		place:{},
-		lang:{},
-		loc:{},
-	},
-	isTellents:false,
-	isJobs:true,
+	isTellents:true,
+	isJobs:false,
 	tellentsData: null,
 	jobsData: null
 	
@@ -398,7 +387,7 @@ let initialState = {
 		return dispatch => {
 			dispatch({
 				type: SELECT_EXP, 
-				payload: id
+				expId: id
 			});
 		};
 	}
@@ -603,25 +592,28 @@ const actionsMap = {
 				if(item.selected === true) {
 					item.selected = false;
 					}	else item.selected = true;
+			// } else item.selected = false;
 			} else item.selected = false;
 		});
 		return {
 			...state, 
-			config: copyObj
+			config: state.config
 	}
 	},
 	[SELECT_EXP]: (state, action) => {//checker
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.exp.map(item => {
-			if (item.id === action.payload) {
+			if (item.id === action.expId) {
 						if(item.selected === true) {
 						item.selected = false;
-						}	else item.selected = true;
+						}	else { 
+							item.selected = true;
+						}
 			}
 		});
 		return {
 					...state, 
-					config: copyObj
+					config: state.config
 		}
 	},   
 	[SELECT_LANG]: (state, action) => {//checker
@@ -715,7 +707,7 @@ const actionsMap = {
 			return {
 					...state, 
 					config: state.config,
-					configJobs: state.configJobs
+					// configJobs: state.configJobs
 		}
 	},   
 	[GET_TELLENTS_DATA]: (state, action) => {
