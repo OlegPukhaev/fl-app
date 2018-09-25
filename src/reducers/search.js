@@ -6,7 +6,8 @@ const
 	DATA_TOGGLER = 'DATA_TOGGLER',
 	GET_LANGUAGE = 'GET_LANGUAGE',
 	GET_COUNTRIES = 'GET_COUNTRIES',
-	INPUT_SEARCH = 'INPUT_SEARCH';
+	INPUT_SEARCH = 'INPUT_SEARCH',
+	INPUT_SEARCH_JOBS = 'INPUT_SEARCH_JOBS';
 
 const	SELECT_EXP = 'SELECT_EXP';
 const	SELECT_DS = 'SELECT_DS';
@@ -26,6 +27,8 @@ const	GET_LANGUAGE_JOBS = 'GET_LANGUAGE_JOBS';
 const	GET_COUNTRIES_JOBS = 'GET_COUNTRIES_JOBS';
 const	SELECT_LOC_JOBS = 'SELECT_LOC_JOBS';
 const	SELECT_PROP_JOBS = 'SELECT_PROP_JOBS';
+const	SELECT_BUD_JOBS = 'SELECT_BUD_JOBS';
+const	SELECT_PAYMENT_JOBS = 'SELECT_PAYMENT_JOBS';
 
 let initialState = {
 	config : {
@@ -391,7 +394,9 @@ let initialState = {
 			loc:{},
 		},
 		isTellents:false,
+		showTellents:"hide",
 		isJobs:true,
+		showJobs:"show",
 		tellentsData: null,
 		jobsData: null
 	
@@ -484,7 +489,15 @@ let initialState = {
           payload: value
         });
       };
-		}
+	}
+  export function inputSearchJobs(value) {
+      return dispatch => {
+        dispatch({
+          type: INPUT_SEARCH_JOBS, 
+          payload: value
+        });
+      };
+	}
   export function getJobsData(value) {
       return dispatch => {
         dispatch({
@@ -578,6 +591,24 @@ let initialState = {
 		return dispatch => {
 			dispatch({
 				type: SELECT_PROP_JOBS, 
+				payload: id
+			});
+		};
+	}
+
+	export function selectBudJobs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_BUD_JOBS, 
+				payload: id
+			});
+		};
+	}
+
+	export function selectPaymentJobs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_PAYMENT_JOBS, 
 				payload: id
 			});
 		};
@@ -709,6 +740,13 @@ const actionsMap = {
 					config: state.config
 		}
 	},   
+	[INPUT_SEARCH_JOBS]: (state, action) => {
+			state.configJobs.q = action.payload;
+			return {
+					...state, 
+					configJobs: state.configJobs
+		}
+	},   
 	[GET_LANGUAGE]: (state, action) => {
 		state.config.lang = action.payload.languages;
 		var objCopy = Object.assign({}, state.config);
@@ -753,29 +791,25 @@ const actionsMap = {
 	},   
 	[DATA_TOGGLER]: (state, action) => {
 			Reactotron.log(state.isTellents, state.isJobs);
-			var val1, val2;
-			switch (action.payload){
-				case 'jobs-filter-2':
+			var val1, val2, val3, val4;
+				if(action.payload === "jobs-filter-2") {
 					val1=false;
-					val2=true;
-				case 'talents-filter-2':
+					val2=true;	
+					val3="hide";
+					val4="";
+				} else {
 					val1=true;
 					val2=false;
-				case 'toggle-id':
-					if (state.isTellents === true){
-						val1=false;
-						val2=true;
-					} else {
-						val1=true;
-						val2=false;
-					}
+					val3="";
+					val4="hide";
+				}
 
-			}
-		
 				return {
 						...state, 
 						isTellents: val1,
-						isJobs: val2
+						showTellents: val3,
+						isJobs: val2,
+						showJobs: val4,
 				}
 	},
 	[SELECT_EXP_JOBS]: (state, action) => {//checker
@@ -878,6 +912,20 @@ const actionsMap = {
 					configJobs: state.configJobs
 		}
 	}, 
+	[SELECT_PAYMENT_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.payment.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	}, 
 	[SELECT_LOC_JOBS]: (state, action) => {//checker
 		var copyObj = Object.assign({}, state.configJobs)	
 		copyObj.loc.map(item => {
@@ -892,6 +940,20 @@ const actionsMap = {
 					configJobs: copyObj
 		}
 	}, 
+	[SELECT_BUD_JOBS]: (state, action) => {//radio
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.bud.map(item => {
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+			...state, 
+			configJobs: copyObj
+		}
+	},
 	[SELECT_PROP_JOBS]: (state, action) => {//radio
 		var copyObj = Object.assign({}, state.configJobs)	
 		copyObj.prop.map(item => {

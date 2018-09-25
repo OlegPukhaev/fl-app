@@ -3,9 +3,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { getData } from '../functions/api';
-import {inputSearch, getTellentsData, getJobsData} from '../../reducers/search';
+import {inputSearch, inputSearchJobs, getTellentsData, getJobsData} from '../../reducers/search';
 import {getData} from '../../functions/api';
-import {getRequest} from '../../functions/function'
+import {getRequest, getRequestJobs} from '../../functions/function'
 const queryString = require('query-string');
 
 class SearchForm extends React.Component {
@@ -16,17 +16,30 @@ class SearchForm extends React.Component {
 	}
 
 	onChangeSearchText = (event) => {
-		this.props.inputSearch(event.target.value);
+		if (this.props.search.isTellents === true) this.props.inputSearch(event.target.value);
+		if (this.props.search.isJobs === true) this.props.inputSearchJobs(event.target.value);
 	}
 
 	onClickGetData = () => {
+		if (this.props.search.isTellents === true) var reqObj = getRequest(this.props.search.config);
+		if (this.props.search.isJobs === true) var reqObj = getRequestJobs(this.props.search.configJobs);
+
+		Reactotron.log("request", reqObj);
 		var StringifyQ = queryString.stringify({
-				q: JSON.stringify(getRequest(this.props.search.config))
+				q: JSON.stringify(reqObj)
 		});
-		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-				if (this.props.search.isTellents === true) this.props.getTellentsData(apiData.data);
+
+		if (this.props.search.isTellents === true) {
+			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+				this.props.getTellentsData(apiData.data);
 				Reactotron.log("from server", apiData.data);
-		});
+			});
+		}
+		if (this.props.search.isJobs === true) 
+			getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+				this.props.getJobsData(apiData.data);
+				Reactotron.log("from server", apiData.data);
+			});
 	}
 
   render() { 
@@ -59,8 +72,9 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators(
 			{
 				inputSearch,
+				inputSearchJobs,
 				getTellentsData,
-				getJobsData
+				getJobsData,
 			},
 			dispatch
     );

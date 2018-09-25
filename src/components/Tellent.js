@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getData } from '../functions/api';
 import '../../node_modules/toastr/build/toastr.css';
 import {arrForUpdate} from './../functions/function';
-import {getTellentsData, getJobsData, getLanguage, getCountries} from './../reducers/search';
+import {getTellentsData, getJobsData, getLanguage, getCountries, getCountriesJobs, getLanguageJobs} from './../reducers/search';
 
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
@@ -23,18 +23,23 @@ class Tellent extends React.Component {
 	// 	super(props)
 	// }
 
-	// componentDidMount = () => {
-	// 	var StringifyQ = queryString.stringify({
-	// 		// q: JSON.stringify(this.props.search.config)//открыть после создания редьюсера чобы все было пучком
-	// 		q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
-	// 	});
+	componentDidMount = () => {
+		var StringifyQ = queryString.stringify({
+			// q: JSON.stringify(this.props.search.config)//открыть после создания редьюсера чобы все было пучком
+			q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
+		});
 
-	// 	getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-	// 		this.props.getTellentsData(apiData.data);
-	// 	});
-	// 	getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-	// 		this.props.getJobsData(apiData.data);
-	// 	});
+		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+			this.props.getTellentsData(apiData.data);
+		});
+		getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+			this.props.getJobsData(apiData.data);
+		});
+		
+	}
+	
+	
+	
 	// }
 
     render() {
@@ -178,7 +183,20 @@ class Tellent extends React.Component {
  										</button>
  										<span class="sort-result">
  											Result: 
- 											<span class="sort-result-numb">25</span>
+											 <span class="sort-result-numb">
+{/* 											 
+												 {this.props.search.isTellents === true ? 
+													this.props.search.tellentsData.meta.total_count :
+														this.props.search.jobsData.meta.total_count} */}
+													{Reactotron.log("trrrrr",this.props.search.jobsData)}
+
+													{this.props.search.jobsData!==null ? this.props.search.jobsData.meta.total_count : "No Data"}
+													
+											 
+											 
+											 
+											 
+											 </span>
  										</span>
  									</div>
 
@@ -192,7 +210,12 @@ class Tellent extends React.Component {
  						<div class="col-xs-2 left-sidebar">
 
                    			<LeftSideBarFilters/>
-                   			<LeftSideBarFiltersJobs/>
+							   <LeftSideBarFiltersJobs/>
+							   
+                   			{/* {this.props.search.isTellents === true && <LeftSideBarFilters/>}
+							{this.props.search.isJobs === true && <LeftSideBarFiltersJobs/>} */}
+							   
+							   
 							{/* {Reactotron.log(this.props.search.isJobs, this.props.search.isTellents)} */}
  						</div>{/* <!--col-xs-2 End--> */}
 
@@ -267,7 +290,8 @@ class Tellent extends React.Component {
 				getTellentsData,
 				getJobsData,
 				getLanguage,
-				getCountries
+				getCountries,
+				getCountriesJobs, getLanguageJobs
 			},
 			dispatch
 		);

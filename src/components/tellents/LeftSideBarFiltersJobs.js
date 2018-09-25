@@ -4,7 +4,7 @@ import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getData} from './../../functions/api'
-import {getJobsData, selectPropJobs, getCountriesJobs, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs} from './../../reducers/search'
+import {getJobsData, selectPaymentJobs, selectBudJobs, selectPropJobs, getCountriesJobs, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs} from './../../reducers/search'
 const queryString = require('query-string');
 
 // import '../../App.css';
@@ -62,6 +62,14 @@ class LeftSideBarFiltersJobs extends React.Component {
                   this.props.selectPropJobs(event.target.id);
                   this.getRequestJobs();
                   return;
+            case 'bud':
+                  this.props.selectBudJobs(event.target.id);
+                  this.getRequestJobs();
+                  return;
+            case 'payment':
+                  this.props.selectPaymentJobs(event.target.id);
+                  this.getRequestJobs();
+                  return;
             }
     }
 
@@ -81,7 +89,7 @@ class LeftSideBarFiltersJobs extends React.Component {
 	 
   render() { 
     return (
-		<div class="panel panel-default">
+    <div class="panel panel-default" class={this.props.search.showJobs}>
         <button class="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
         <div class="filter-block">
             <div class="filter-title">
@@ -216,15 +224,17 @@ class LeftSideBarFiltersJobs extends React.Component {
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
         {
-					getJobsData,
-					selectExpJobs,
-					selectPostJobs,
-					selectPlaceJobs,
-					selectAvlJobs,
-					selectLangJobs,
-          selectLocJobs,
-          selectPropJobs,
-					getCountriesJobs, getLanguageJobs,
+            getJobsData,
+            selectExpJobs,
+            selectPostJobs,
+            selectPlaceJobs,
+            selectAvlJobs,
+            selectLangJobs,
+            selectLocJobs,
+            selectPropJobs,
+            getCountriesJobs, getLanguageJobs,
+            selectBudJobs,
+            selectPaymentJobs
         },
         dispatch
     );
