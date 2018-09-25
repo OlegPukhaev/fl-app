@@ -392,8 +392,6 @@ let initialState = {
 	
 }
 
-
-
   export function selectAvl(id) {
 		return dispatch => {
 			dispatch({
@@ -582,7 +580,6 @@ let initialState = {
 
 const actionsMap = {
 	[SELECT_RATE]: (state, action) => {//radio
-		// alert("rate");
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.rate.map(item => {
 
@@ -628,7 +625,6 @@ const actionsMap = {
 	}
 	},
 	[SELECT_EXP]: (state, action) => {//checker
-		// alert("exp");
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.exp.map(item => {
 			if (item.id === action.payload) {
@@ -700,7 +696,6 @@ const actionsMap = {
 	},   
 	[INPUT_SEARCH]: (state, action) => {
 			state.config.q = action.payload;
-			// alert(state.config.q);
 			return {
 					...state, 
 					config: state.config
@@ -775,136 +770,134 @@ const actionsMap = {
 						isJobs: val2
 				}
 	},
-	// [SELECT_EXP_JOBS]: (state, action) => {//checker
-	// 	alert("kkk");
-	// 	var copyObj = Object.assign({}, state.configJobs)	
-	// 	copyObj.exp.map(item => {
-	// 		if (item.id === action.payload) {
-	// 					if(item.selected === true) {
-	// 					item.selected = false;
-	// 					}	else item.selected = true;
-	// 		}
-	// 	});
-	// 	return {
-	// 				...state, 
-	// 				configJobs: copyObj
-	// 	}
-	// },  
-	// [SELECT_POST_JOBS]: (state, action) => {//radio
-	// 	var copyObj = Object.assign({}, state.configJobs)	
-	// 	copyObj.post.map(item => {
+	[SELECT_EXP_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.exp.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	},  
+	[SELECT_POST_JOBS]: (state, action) => {//radio
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.post.map(item => {
 
-	// 		if (item.id === action.payload) {
-	// 			if(item.selected === true) {
-	// 				item.selected = false;
-	// 				}	else item.selected = true;
-	// 		} else item.selected = false;
-	// 	});
-	// 	return {
-	// 		...state, 
-	// 		configJobs: copyObj
-	// }
-	// }, 
-	// [SELECT_PLACE_JOBS]: (state, action) => {//checker
-	// 	var copyObj = Object.assign({}, state.configJobs)	
-	// 	copyObj.place.map(item => {
-	// 		if (item.id === action.payload) {
-	// 					if(item.selected === true) {
-	// 					item.selected = false;
-	// 					}	else item.selected = true;
-	// 		}
-	// 	});
-	// 	return {
-	// 				...state, 
-	// 				configJobs: copyObj
-	// 	}
-	// }, 
-	// [SELECT_AVL_JOBS]: (state, action) => {//checker
-	// 	var copyObj = Object.assign({}, state.configJobs)	
-	// 	copyObj.avl.map(item => {
-	// 		if (item.id === action.payload) {
-	// 					if(item.selected === true) {
-	// 					item.selected = false;
-	// 					}	else item.selected = true;
-	// 		}
-	// 	});
-	// 	return {
-	// 				...state, 
-	// 				configJobs: copyObj
-	// 	}
-	// }, 
-	// [SELECT_LANG_JOBS]: (state, action) => {//checker
-	// 	var copyObj = Object.assign({}, state.configJobs)	
-	// 	copyObj.lang.map(item => {
-	// 		if (item.id === action.payload) {
-	// 					if(item.selected === true) {
-	// 					item.selected = false;
-	// 					}	else item.selected = true;
-	// 		}
-	// 	});
-	// 	return {
-	// 				...state, 
-	// 				configJobs: copyObj
-	// 	}
-	// }, 
-	// [GET_LANGUAGE_JOBS]: (state, action) => {
-	// 	state.configJobs.lang = action.payload.languages;
-	// 	var objCopyJobs = Object.assign({}, state.configJobs);
-	// 	objCopyJobs.lang.map(item => {
-	// 		item.filter = "lang";
-	// 		item.selected = false;
-	// 		item.id = "j"+item.language_id;
-	// 		item.request = item.name;
-	// 	});
-	// 		return {
-	// 				...state, 
-	// 				configJobs: objCopyJobs
-	// 	}
-	// },  
-	// [GET_COUNTRIES_JOBS]: (state, action) => {
-	// 	state.configJobs.loc = action.payload;
-	// 	var objCopy = Object.assign({}, state.configJobs);
-	// 	objCopy.loc.map(item => {
-	// 		item.filter = "loc";
-	// 		item.selected = false;
-	// 		item.id = "j"+item.name;
-	// 		item.request = item.name;
-	// 	});
-	// 		return {
-	// 				...state, 
-	// 				config: state.config,
-	// 				configJobs: state.configJobs
-	// 	}
-	// }, 
-	// [SELECT_LOC_JOBS]: (state, action) => {//checker
-	// 	var copyObj = Object.assign({}, state.configJobs)	
-	// 	copyObj.loc.map(item => {
-	// 		if (item.id === action.payload) {
-	// 					if(item.selected === true) {
-	// 					item.selected = false;
-	// 					}	else item.selected = true;
-	// 		}
-	// 	});
-	// 	return {
-	// 				...state, 
-	// 				configJobs: copyObj
-	// 	}
-	// }, 
-	// [SELECT_PROP_JOBS]: (state, action) => {//radio
-	// 	alert("fff");
-	// 	var copyObj = Object.assign({}, state.configJobs)	
-	// 	copyObj.prop.map(item => {
-	// 		if (item.id === action.payload) {
-	// 			if(item.selected === true) {
-	// 				item.selected = false;
-	// 				}	else item.selected = true;
-	// 		} else item.selected = false;
-	// 	});
-	// 	return {
-	// 		...state, 
-	// 		configJobs: copyObj
-	// 	}
-	// }
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+			...state, 
+			configJobs: copyObj
+	}
+	}, 
+	[SELECT_PLACE_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.place.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	}, 
+	[SELECT_AVL_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.avl.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	}, 
+	[SELECT_LANG_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.lang.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	}, 
+	[GET_LANGUAGE_JOBS]: (state, action) => {
+		state.configJobs.lang = action.payload.languages;
+		var objCopyJobs = Object.assign({}, state.configJobs);
+		objCopyJobs.lang.map(item => {
+			item.filter = "lang";
+			item.selected = false;
+			item.id = "j"+item.language_id;
+			item.request = item.name;
+		});
+			return {
+					...state, 
+					configJobs: objCopyJobs
+		}
+	},  
+	[GET_COUNTRIES_JOBS]: (state, action) => {
+		state.configJobs.loc = action.payload;
+		var objCopy = Object.assign({}, state.configJobs);
+		objCopy.loc.map(item => {
+			item.filter = "loc";
+			item.selected = false;
+			item.id = "j"+item.name;
+			item.request = item.name;
+		});
+			return {
+					...state, 
+					config: state.config,
+					configJobs: state.configJobs
+		}
+	}, 
+	[SELECT_LOC_JOBS]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.loc.map(item => {
+			if (item.id === action.payload) {
+						if(item.selected === true) {
+						item.selected = false;
+						}	else item.selected = true;
+			}
+		});
+		return {
+					...state, 
+					configJobs: copyObj
+		}
+	}, 
+	[SELECT_PROP_JOBS]: (state, action) => {//radio
+		var copyObj = Object.assign({}, state.configJobs)	
+		copyObj.prop.map(item => {
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+			...state, 
+			configJobs: copyObj
+		}
+	}
 }
 
 
