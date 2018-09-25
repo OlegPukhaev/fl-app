@@ -18,34 +18,55 @@ class LeftSideBarFilters extends React.Component {
 		});
   }
 
+  getRequestTellent = () => {
+    var StringifyQ = queryString.stringify({
+            q: JSON.stringify(getRequest(this.props.search.config))
+    });
+    getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+            this.props.getTellentsData(apiData.data);
+            Reactotron.log("from server", apiData.data);
+    });
+  }
+
   onClickSelect = (event) => {
     Reactotron.log(event.target.id, event.target.name);
       switch (event.target.name){
           case 'exp':
               this.props.selectExp(event.target.id);
+              this.getRequestTellent();
+              return;
           case 'ds':
               this.props.selectDs(event.target.id);
+              this.getRequestTellent();
+              return;
           case 'place':
               this.props.selectPlace(event.target.id);
+              this.getRequestTellent();
+              return;
           case 'skill':
               this.props.selectSkill(event.target.id);
+              this.getRequestTellent();
+              return;
           case 'rate':
               this.props.selectRate(event.target.id);
+              this.getRequestTellent();
+              return;
             case 'lang':
               this.props.selectLang(event.target.id);
-              case 'loc':
+              this.getRequestTellent();
+              return;
+            case 'loc':
               this.props.selectLoc(event.target.id);
-          case 'avl':
+              this.getRequestTellent();
+              return;
+            case 'avl':
               this.props.selectAvl(event.target.id);
-			}
+              this.getRequestTellent();
+              return;
+
+        }
 			
-			var StringifyQ = queryString.stringify({
-					q: JSON.stringify(getRequest(this.props.search.config))
-			});
-			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-					this.props.getTellentsData(apiData.data);
-					Reactotron.log("from server", apiData.data);
-			});
+
   }
 
 	checkerList = (item, index) => {

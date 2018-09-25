@@ -242,31 +242,36 @@ let initialState = {
 			],
 		prop:[
 				{
-					id: "i0_5",
+					id: "ji0_5",
 					selected : false,
 					filter: "prop",
+					request: "i0_5",
 					name: "0 - 5"
 				},
 				{
-					id:"i5_10",
+					id:"ji5_10",
 					selected: false,
 					filter: "prop",
+					request: "i5_10",
 					name: "5 - 10"
 				},
 				{
-					id:"i10_20",
+					id:"ji10_20",
+					request:"i10_20",
 					selected: false,
 					filter: "prop",
 					name: "10 - 20" 
 				},
 				{
-					id:"m_20",
+					id:"jm_20",
+					request:"m_20",
 					selected: false,
 					filter: "prop",
 					name: "> 20"
 				},
 				{
-					id:"undefined",
+					id:"jundefined",
+					request:"undefined",
 					selected: false,
 					filter: "prop",
 					name: "None"

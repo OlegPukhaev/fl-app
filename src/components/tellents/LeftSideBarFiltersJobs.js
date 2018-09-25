@@ -22,38 +22,51 @@ class LeftSideBarFiltersJobs extends React.Component {
 		});
     }
     
+    getRequestJobs = () => {
+      var StringifyQ = queryString.stringify({
+        q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
+      });
+      getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+              this.props.getJobsData(apiData.data);
+              Reactotron.log("from server", apiData.data);
+      });      
+    }
+
     onClickSelectJobs = (event) => {
       Reactotron.log(event.target.id, event.target.name);
 
           switch (event.target.name){
               case 'exp1':
                   this.props.selectExpJobs(event.target.id);
+                  this.getRequestJobs();
+                  return;
               case 'post':
                   this.props.selectPostJobs(event.target.id);
+                  this.getRequestJobs();
+                  return;
               case 'place':
                   this.props.selectPlaceJobs(event.target.id);
-                  Reactotron.log(event.target.id, event.target.name);
+                  this.getRequestJobs();
+                  return;
                 case 'lang':
                   this.props.selectLangJobs(event.target.id);
-                  case 'loc':
+                  this.getRequestJobs();
+                  return;
+                case 'loc':
                   this.props.selectLocJobs(event.target.id);
+                  this.getRequestJobs();
+                  return;
               case 'avl':
                   this.props.selectAvlJobs(event.target.id);
+                  this.getRequestJobs();
+                  return;
               case 'prop':
                   this.props.selectPropJobs(event.target.id);
-
-
-
+                  this.getRequestJobs();
+                  return;
           }
                 
-                var StringifyQ = queryString.stringify({
-                        q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
-								});
-								
-                getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-									this.props.getJobsData(apiData.data);
-									Reactotron.log("from server", apiData.data);
-                });
+
       }
 
 	checkerList = (item) => {
