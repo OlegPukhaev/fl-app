@@ -25,6 +25,7 @@ const	SELECT_LANG_JOBS = 'SELECT_LANG_JOBS';
 const	GET_LANGUAGE_JOBS = 'GET_LANGUAGE_JOBS';
 const	GET_COUNTRIES_JOBS = 'GET_COUNTRIES_JOBS';
 const	SELECT_LOC_JOBS = 'SELECT_LOC_JOBS';
+const	SELECT_PROP_JOBS = 'SELECT_PROP_JOBS';
 
 let initialState = {
 	config : {
@@ -184,28 +185,28 @@ let initialState = {
 					id: "jintern",
 					request: "intern",
 					selected : false,
-					filter: "exp",
+					filter: "exp1",
 					name: "Intern"
 				},
 				{
 					id:"jjunior",
 					request:"junior",
 					selected: false,
-					filter: "exp",
+					filter: "exp1",
 					name: "Junior"
 				},
 				{
 					id:"jsenior",
 					request:"senior",
 					selected: false,
-					filter: "exp",
+					filter: "exp1",
 					name: "Senior" 
 				},
 				{
 					id:"jexpert",
 					request:"expert",
 					selected: false,
-					filter: "exp",
+					filter: "exp1",
 					name: "Expert"
 				}
 			],
@@ -271,123 +272,123 @@ let initialState = {
 					name: "None"
 				}
 			],
-	payment:[	
-				{
-					id: "fixed_price",
-					selected : false,
-					filter: "payment",
-					request: "fixed_price", 
-					name: "Fixed Price"
-				},
-				{
-					id:"hourly",
-					selected: false,
-					filter: "payment",
-					request: "hourly", 
-					name: "Hourly"
-				}
-			],
-	bud:[	
-				{
-					name: "$0 - $100",
-					selected : false,
-					filter: "bud",
-					request: "i0_100",
-					id: "i0_100"
-				},
-				{
-					name:"$100 - $300",
-					filter: "bud",
-					selected: false,
-					request: "i100_300",
-					id: "i100_300"
-				},
-				{
-					name:"$300 - $1000",
-					selected: false,
-					filter: "bud",
-					request: "i300_1000",
-					id: "i300_1000"
-				},
-				{
-					name:"> $1000",
-					selected: false,
-					filter: "bud",
-					request: "more_1000",
-					id: "more_1000"
-				},
-				{
-					id:"undefined",
-					selected: false,
-					filter: "bud",
-					request: "undefined",
-					name: "Not defined (Empty)"
-				},
-			],
-	avl:[	
-				{
-					id: "jper_week_10",
-					request: "per_week_10",
-					selected : false,
-					filter: "avl",
-					name: "< 20h"
-				},
-				{
-					id:"jper_week_up_to_30",
-					request:"per_week_up_to_30",
-					filter: "avl",
-					selected: false,
-					name: "> 20h"
-				},
-				{
-					name:"Full-Time",
-					selected: false,
-					filter: "avl",
-					id: "jper_week_more_than_30" ,
-					request: "per_week_more_than_30" 
-				},
-				{
-					id:"jdecide_later",
-					request:"decide_later",
-					selected: false,
-					filter: "avl",
-					name: "Undefined"
-				}
-			],
-	place:[	
-				{
-					id: "jonline",
-					request: "online",
-					selected : false,
-					filter: "place",
-					name: "On-Line"
-				},
-				{
-					id:"jonsite",
-					request:"onsite",
-					selected: false,
-					filter: "place",
-					name: "On-Site"
-				}
-			],
-	lang:[],
-	loc:[],
-	},
-	requestTellents : {
-		q:"",
-		exp:{},
-		ds:{},
-		skill:{},
-		rate:{},
-		avl:{},
-		place:{},
-		lang:{},
-		loc:{},
-	},
-	isTellents:false,
-	isJobs:true,
-	tellentsData: null,
-	jobsData: null
+		payment:[	
+					{
+						id: "fixed_price",
+						selected : false,
+						filter: "payment",
+						request: "fixed_price", 
+						name: "Fixed Price"
+					},
+					{
+						id:"hourly",
+						selected: false,
+						filter: "payment",
+						request: "hourly", 
+						name: "Hourly"
+					}
+				],
+		bud:[	
+					{
+						name: "$0 - $100",
+						selected : false,
+						filter: "bud",
+						request: "i0_100",
+						id: "i0_100"
+					},
+					{
+						name:"$100 - $300",
+						filter: "bud",
+						selected: false,
+						request: "i100_300",
+						id: "i100_300"
+					},
+					{
+						name:"$300 - $1000",
+						selected: false,
+						filter: "bud",
+						request: "i300_1000",
+						id: "i300_1000"
+					},
+					{
+						name:"> $1000",
+						selected: false,
+						filter: "bud",
+						request: "more_1000",
+						id: "more_1000"
+					},
+					{
+						id:"undefined",
+						selected: false,
+						filter: "bud",
+						request: "undefined",
+						name: "Not defined (Empty)"
+					},
+				],
+		avl:[	
+					{
+						id: "jper_week_10",
+						request: "per_week_10",
+						selected : false,
+						filter: "avl",
+						name: "< 20h"
+					},
+					{
+						id:"jper_week_up_to_30",
+						request:"per_week_up_to_30",
+						filter: "avl",
+						selected: false,
+						name: "> 20h"
+					},
+					{
+						name:"Full-Time",
+						selected: false,
+						filter: "avl",
+						id: "jper_week_more_than_30" ,
+						request: "per_week_more_than_30" 
+					},
+					{
+						id:"jdecide_later",
+						request:"decide_later",
+						selected: false,
+						filter: "avl",
+						name: "Undefined"
+					}
+				],
+		place:[	
+					{
+						id: "jonline",
+						request: "online",
+						selected : false,
+						filter: "place",
+						name: "On-Line"
+					},
+					{
+						id:"jonsite",
+						request:"onsite",
+						selected: false,
+						filter: "place",
+						name: "On-Site"
+					}
+				],
+		lang:[],
+		loc:[],
+		},
+		requestTellents : {
+			q:"",
+			exp:{},
+			ds:{},
+			skill:{},
+			rate:{},
+			avl:{},
+			place:{},
+			lang:{},
+			loc:{},
+		},
+		isTellents:false,
+		isJobs:true,
+		tellentsData: null,
+		jobsData: null
 	
 }
 
@@ -570,9 +571,18 @@ let initialState = {
 			});
 		};
 	}
+	export function selectPropJobs(id) {
+		return dispatch => {
+			dispatch({
+				type: SELECT_PROP_JOBS, 
+				payload: id
+			});
+		};
+	}
 
 const actionsMap = {
 	[SELECT_RATE]: (state, action) => {//radio
+		// alert("rate");
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.rate.map(item => {
 
@@ -618,6 +628,7 @@ const actionsMap = {
 	}
 	},
 	[SELECT_EXP]: (state, action) => {//checker
+		// alert("exp");
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.exp.map(item => {
 			if (item.id === action.payload) {
@@ -764,121 +775,136 @@ const actionsMap = {
 						isJobs: val2
 				}
 	},
-	[SELECT_EXP_JOBS]: (state, action) => {//checker
-		var copyObj = Object.assign({}, state.configJobs)	
-		copyObj.exp.map(item => {
-			if (item.id === action.payload) {
-						if(item.selected === true) {
-						item.selected = false;
-						}	else item.selected = true;
-			}
-		});
-		return {
-					...state, 
-					configJobs: copyObj
-		}
-	},  
-	[SELECT_POST_JOBS]: (state, action) => {//radio
-		var copyObj = Object.assign({}, state.configJobs)	
-		copyObj.post.map(item => {
+	// [SELECT_EXP_JOBS]: (state, action) => {//checker
+	// 	alert("kkk");
+	// 	var copyObj = Object.assign({}, state.configJobs)	
+	// 	copyObj.exp.map(item => {
+	// 		if (item.id === action.payload) {
+	// 					if(item.selected === true) {
+	// 					item.selected = false;
+	// 					}	else item.selected = true;
+	// 		}
+	// 	});
+	// 	return {
+	// 				...state, 
+	// 				configJobs: copyObj
+	// 	}
+	// },  
+	// [SELECT_POST_JOBS]: (state, action) => {//radio
+	// 	var copyObj = Object.assign({}, state.configJobs)	
+	// 	copyObj.post.map(item => {
 
-			if (item.id === action.payload) {
-				if(item.selected === true) {
-					item.selected = false;
-					}	else item.selected = true;
-			} else item.selected = false;
-		});
-		return {
-			...state, 
-			configJobs: copyObj
-	}
-	}, 
-	[SELECT_PLACE_JOBS]: (state, action) => {//checker
-		var copyObj = Object.assign({}, state.configJobs)	
-		copyObj.place.map(item => {
-			if (item.id === action.payload) {
-						if(item.selected === true) {
-						item.selected = false;
-						}	else item.selected = true;
-			}
-		});
-		return {
-					...state, 
-					configJobs: copyObj
-		}
-	}, 
-	[SELECT_AVL_JOBS]: (state, action) => {//checker
-		var copyObj = Object.assign({}, state.configJobs)	
-		copyObj.avl.map(item => {
-			if (item.id === action.payload) {
-						if(item.selected === true) {
-						item.selected = false;
-						}	else item.selected = true;
-			}
-		});
-		return {
-					...state, 
-					configJobs: copyObj
-		}
-	}, 
-	[SELECT_LANG_JOBS]: (state, action) => {//checker
-		var copyObj = Object.assign({}, state.configJobs)	
-		copyObj.lang.map(item => {
-			if (item.id === action.payload) {
-						if(item.selected === true) {
-						item.selected = false;
-						}	else item.selected = true;
-			}
-		});
-		return {
-					...state, 
-					configJobs: copyObj
-		}
-	}, 
-	[GET_LANGUAGE_JOBS]: (state, action) => {
-		state.configJobs.lang = action.payload.languages;
-		var objCopyJobs = Object.assign({}, state.configJobs);
-		objCopyJobs.lang.map(item => {
-			item.filter = "lang";
-			item.selected = false;
-			item.id = "j"+item.language_id;
-			item.request = item.name;
-		});
-			return {
-					...state, 
-					configJobs: objCopyJobs
-		}
-	},  
-	[GET_COUNTRIES_JOBS]: (state, action) => {
-		state.configJobs.loc = action.payload;
-		var objCopy = Object.assign({}, state.configJobs);
-		objCopy.loc.map(item => {
-			item.filter = "loc";
-			item.selected = false;
-			item.id = "j"+item.name;
-			item.request = item.name;
-		});
-			return {
-					...state, 
-					config: state.config,
-					configJobs: state.configJobs
-		}
-	}, 
-	[SELECT_LOC_JOBS]: (state, action) => {//checker
-		var copyObj = Object.assign({}, state.configJobs)	
-		copyObj.loc.map(item => {
-			if (item.id === action.payload) {
-						if(item.selected === true) {
-						item.selected = false;
-						}	else item.selected = true;
-			}
-		});
-		return {
-					...state, 
-					configJobs: copyObj
-		}
-	}, 
-
+	// 		if (item.id === action.payload) {
+	// 			if(item.selected === true) {
+	// 				item.selected = false;
+	// 				}	else item.selected = true;
+	// 		} else item.selected = false;
+	// 	});
+	// 	return {
+	// 		...state, 
+	// 		configJobs: copyObj
+	// }
+	// }, 
+	// [SELECT_PLACE_JOBS]: (state, action) => {//checker
+	// 	var copyObj = Object.assign({}, state.configJobs)	
+	// 	copyObj.place.map(item => {
+	// 		if (item.id === action.payload) {
+	// 					if(item.selected === true) {
+	// 					item.selected = false;
+	// 					}	else item.selected = true;
+	// 		}
+	// 	});
+	// 	return {
+	// 				...state, 
+	// 				configJobs: copyObj
+	// 	}
+	// }, 
+	// [SELECT_AVL_JOBS]: (state, action) => {//checker
+	// 	var copyObj = Object.assign({}, state.configJobs)	
+	// 	copyObj.avl.map(item => {
+	// 		if (item.id === action.payload) {
+	// 					if(item.selected === true) {
+	// 					item.selected = false;
+	// 					}	else item.selected = true;
+	// 		}
+	// 	});
+	// 	return {
+	// 				...state, 
+	// 				configJobs: copyObj
+	// 	}
+	// }, 
+	// [SELECT_LANG_JOBS]: (state, action) => {//checker
+	// 	var copyObj = Object.assign({}, state.configJobs)	
+	// 	copyObj.lang.map(item => {
+	// 		if (item.id === action.payload) {
+	// 					if(item.selected === true) {
+	// 					item.selected = false;
+	// 					}	else item.selected = true;
+	// 		}
+	// 	});
+	// 	return {
+	// 				...state, 
+	// 				configJobs: copyObj
+	// 	}
+	// }, 
+	// [GET_LANGUAGE_JOBS]: (state, action) => {
+	// 	state.configJobs.lang = action.payload.languages;
+	// 	var objCopyJobs = Object.assign({}, state.configJobs);
+	// 	objCopyJobs.lang.map(item => {
+	// 		item.filter = "lang";
+	// 		item.selected = false;
+	// 		item.id = "j"+item.language_id;
+	// 		item.request = item.name;
+	// 	});
+	// 		return {
+	// 				...state, 
+	// 				configJobs: objCopyJobs
+	// 	}
+	// },  
+	// [GET_COUNTRIES_JOBS]: (state, action) => {
+	// 	state.configJobs.loc = action.payload;
+	// 	var objCopy = Object.assign({}, state.configJobs);
+	// 	objCopy.loc.map(item => {
+	// 		item.filter = "loc";
+	// 		item.selected = false;
+	// 		item.id = "j"+item.name;
+	// 		item.request = item.name;
+	// 	});
+	// 		return {
+	// 				...state, 
+	// 				config: state.config,
+	// 				configJobs: state.configJobs
+	// 	}
+	// }, 
+	// [SELECT_LOC_JOBS]: (state, action) => {//checker
+	// 	var copyObj = Object.assign({}, state.configJobs)	
+	// 	copyObj.loc.map(item => {
+	// 		if (item.id === action.payload) {
+	// 					if(item.selected === true) {
+	// 					item.selected = false;
+	// 					}	else item.selected = true;
+	// 		}
+	// 	});
+	// 	return {
+	// 				...state, 
+	// 				configJobs: copyObj
+	// 	}
+	// }, 
+	// [SELECT_PROP_JOBS]: (state, action) => {//radio
+	// 	alert("fff");
+	// 	var copyObj = Object.assign({}, state.configJobs)	
+	// 	copyObj.prop.map(item => {
+	// 		if (item.id === action.payload) {
+	// 			if(item.selected === true) {
+	// 				item.selected = false;
+	// 				}	else item.selected = true;
+	// 		} else item.selected = false;
+	// 	});
+	// 	return {
+	// 		...state, 
+	// 		configJobs: copyObj
+	// 	}
+	// }
 }
 
 

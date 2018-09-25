@@ -4,7 +4,7 @@ import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getData} from './../../functions/api'
-import {getJobsData, getCountriesJobs, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs} from './../../reducers/search'
+import {getJobsData, selectPropJobs, getCountriesJobs, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs} from './../../reducers/search'
 const queryString = require('query-string');
 
 // import '../../App.css';
@@ -20,23 +20,31 @@ class LeftSideBarFiltersJobs extends React.Component {
 		getData('/api/v1/misc/get_languages').then(apiData => {
 			this.props.getLanguageJobs(apiData.data);
 		});
-		}
+    }
+    
     onClickSelectJobs = (event) => {
-        Reactotron.log(event.target.id, event.target.name);
+      Reactotron.log(event.target.id, event.target.name);
+
           switch (event.target.name){
-              case 'exp':
+              case 'exp1':
                   this.props.selectExpJobs(event.target.id);
               case 'post':
                   this.props.selectPostJobs(event.target.id);
               case 'place':
                   this.props.selectPlaceJobs(event.target.id);
+                  Reactotron.log(event.target.id, event.target.name);
                 case 'lang':
                   this.props.selectLangJobs(event.target.id);
                   case 'loc':
                   this.props.selectLocJobs(event.target.id);
               case 'avl':
                   this.props.selectAvlJobs(event.target.id);
-                }
+              case 'prop':
+                  this.props.selectPropJobs(event.target.id);
+
+
+
+          }
                 
                 var StringifyQ = queryString.stringify({
                         q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
@@ -191,14 +199,15 @@ class LeftSideBarFiltersJobs extends React.Component {
                 {this.props.search.configJobs.prop.map(this.checkerList)}
             </div>
         </div>
-        <div class="filter-block">
+
+        {/* <div class="filter-block">
             <div class="filter-title">
                 Job Delivery::
             </div>
             <div class="checkbox-list-block clearfix">
                 {this.props.search.configJobs.prop.map(this.checkerList)}
             </div>
-        </div>
+        </div> */}
     </div>
     );
   }
@@ -213,7 +222,8 @@ const mapDispatchToProps = dispatch => {
 					selectPlaceJobs,
 					selectAvlJobs,
 					selectLangJobs,
-					selectLocJobs,
+          selectLocJobs,
+          selectPropJobs,
 					getCountriesJobs, getLanguageJobs,
         },
         dispatch
