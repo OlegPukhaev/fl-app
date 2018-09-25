@@ -4,7 +4,7 @@ import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getData} from './../../functions/api'
-import {getJobsData, getCountriesJobs, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs} from './../../reducers/search'
+import {getJobsData, selectPropJobs, getCountriesJobs, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs} from './../../reducers/search'
 const queryString = require('query-string');
 
 // import '../../App.css';
@@ -20,6 +20,7 @@ class LeftSideBarFiltersJobs extends React.Component {
 		getData('/api/v1/misc/get_languages').then(apiData => {
 			this.props.getLanguageJobs(apiData.data);
 		});
+<<<<<<< HEAD
   }
 
   getRequest = () => {
@@ -32,10 +33,15 @@ class LeftSideBarFiltersJobs extends React.Component {
       Reactotron.log("from server", apiData.data);
     });
   }
+=======
+    }
+    
+>>>>>>> 63fb90a1b844fe0ba0c73485701c19f01fab5b8c
     onClickSelectJobs = (event) => {
-        Reactotron.log(event.target.id, event.target.name);
+      Reactotron.log(event.target.id, event.target.name);
+
           switch (event.target.name){
-              case 'exp':
+              case 'exp1':
                   this.props.selectExpJobs(event.target.id);
                   this.getRequest();
                   return;
@@ -45,8 +51,12 @@ class LeftSideBarFiltersJobs extends React.Component {
                   return;
               case 'place':
                   this.props.selectPlaceJobs(event.target.id);
+<<<<<<< HEAD
                   this.getRequest();
                   return;
+=======
+                  Reactotron.log(event.target.id, event.target.name);
+>>>>>>> 63fb90a1b844fe0ba0c73485701c19f01fab5b8c
                 case 'lang':
                   this.props.selectLangJobs(event.target.id);
                   this.getRequest();
@@ -57,9 +67,18 @@ class LeftSideBarFiltersJobs extends React.Component {
                   return;
               case 'avl':
                   this.props.selectAvlJobs(event.target.id);
+<<<<<<< HEAD
                   this.getRequest();
                   return;
                 }
+=======
+              case 'prop':
+                  this.props.selectPropJobs(event.target.id);
+
+
+
+          }
+>>>>>>> 63fb90a1b844fe0ba0c73485701c19f01fab5b8c
                 
 
       }
@@ -152,7 +171,7 @@ class LeftSideBarFiltersJobs extends React.Component {
                 </div>
             </div>
         </div>
-				<div class="filter-block">
+        <div class="filter-block">
             <div class="filter-title">
                 Availability:
             </div>
@@ -161,6 +180,61 @@ class LeftSideBarFiltersJobs extends React.Component {
             </div>
         </div>
 
+        <div class="filter-block">
+            <div class="filter-title">
+              Payment:
+            </div>
+            <div class="checkbox-list-block clearfix">
+                {this.props.search.configJobs.payment.map(this.checkerList)}
+            </div>
+            <div class="filter-inputs flexbox justify-space-between">
+              <input type="text" value="0" class="form-control" /> 
+              <span>to</span>
+              <input type="text" value="$20" class="form-control" />
+            </div>
+        </div>
+        
+        <div class="filter-block">
+            <div class="filter-title">
+                Budget:
+            </div>
+            <div class="filter-dropdown-block clearfix">
+                <button type="button" class="btn btn-default dropdown-toggle">
+                    <div class="flexbox justify-space-between">
+                        <span class="text">Budget</span>
+                        <span class="icon icon-down-arrow"></span>
+                    </div>
+                </button>
+                <div class="dropdown-list">
+                    <div class="caret-block">
+                        <span class="caret-top"></span>
+                    </div>
+                    <div class="dropdown-list-wrapper">
+                        <div class="checkbox-list-block">
+                            {this.props.search.configJobs.bud.map(this.checkerList)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        
+        <div class="filter-block">
+            <div class="filter-title">
+                Proposals:
+            </div>
+            <div class="checkbox-list-block clearfix">
+                {this.props.search.configJobs.prop.map(this.checkerList)}
+            </div>
+        </div>
+
+        {/* <div class="filter-block">
+            <div class="filter-title">
+                Job Delivery::
+            </div>
+            <div class="checkbox-list-block clearfix">
+                {this.props.search.configJobs.prop.map(this.checkerList)}
+            </div>
+        </div> */}
     </div>
     );
   }
@@ -175,7 +249,8 @@ const mapDispatchToProps = dispatch => {
 					selectPlaceJobs,
 					selectAvlJobs,
 					selectLangJobs,
-					selectLocJobs,
+          selectLocJobs,
+          selectPropJobs,
 					getCountriesJobs, getLanguageJobs,
         },
         dispatch
