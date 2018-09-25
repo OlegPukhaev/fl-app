@@ -29,6 +29,8 @@ const	SELECT_LOC_JOBS = 'SELECT_LOC_JOBS';
 const	SELECT_PROP_JOBS = 'SELECT_PROP_JOBS';
 const	SELECT_BUD_JOBS = 'SELECT_BUD_JOBS';
 const	SELECT_PAYMENT_JOBS = 'SELECT_PAYMENT_JOBS';
+const	INPUT_PAYMENT_FROM = 'INPUT_PAYMENT_FROM';
+const	INPUT_PAYMENT_TO = 'INPUT_PAYMENT_TO';
 
 let initialState = {
 	config : {
@@ -296,6 +298,10 @@ let initialState = {
 						name: "Hourly"
 					}
 				],
+		p_from: "0",
+		p_to: "1000",
+
+				
 		bud:[	
 					{
 						name: "$0 - $100",
@@ -610,6 +616,23 @@ let initialState = {
 			dispatch({
 				type: SELECT_PAYMENT_JOBS, 
 				payload: id
+			});
+		};
+	}
+
+	export function inputPaymentFrom(value) {
+		return dispatch => {
+			dispatch({
+				type: INPUT_PAYMENT_FROM, 
+				payload: value
+			});
+		};
+	}
+	export function inputPaymentTo(value) {
+		return dispatch => {
+			dispatch({
+				type: INPUT_PAYMENT_TO, 
+				payload: value
 			});
 		};
 	}
@@ -966,6 +989,20 @@ const actionsMap = {
 		return {
 			...state, 
 			configJobs: copyObj
+		}
+	},
+	[INPUT_PAYMENT_FROM]: (state, action) => {
+		state.configJobs.p_from = action.payload; 
+		return {
+			...state, 
+			configJobs: state.configJobs
+		}
+	},
+	[INPUT_PAYMENT_TO]: (state, action) => {
+		state.configJobs.p_to = action.payload; 
+		return {
+			...state, 
+			configJobs: state.configJobs
 		}
 	}
 }

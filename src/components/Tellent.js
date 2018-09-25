@@ -19,13 +19,9 @@ const queryString = require('query-string');
 // import queryString fro
 
 class Tellent extends React.Component {
-	// constructor (props) {
-	// 	super(props)
-	// }
 
 	componentDidMount = () => {
 		var StringifyQ = queryString.stringify({
-			// q: JSON.stringify(this.props.search.config)//открыть после создания редьюсера чобы все было пучком
 			q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
 		});
 
@@ -35,12 +31,7 @@ class Tellent extends React.Component {
 		getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
 			this.props.getJobsData(apiData.data);
 		});
-		
 	}
-	
-	
-	
-	// }
 
     render() {
 		Reactotron.log('Get Data', this.props.search);

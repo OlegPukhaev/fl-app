@@ -55,13 +55,15 @@ export function getRequest (value) {
     return obj;
 }
 
-export function getRequestJobs (value) {
+export function getRequestJobs (value, p_from="", p_to="") {
     var obj = {
         q:value.q,
         exp: returnRequestObjJobs(value.exp),
         post: returnRequestObjJobs(value.post),
         prop: returnRequestObjJobs(value.prop),
         payment: returnRequestObjJobs(value.payment),
+        p_from: value.p_from,
+        p_to: value.p_to,
         bud: returnRequestObjJobs(value.bud),
         avl: returnRequestObjJobs(value.avl),
         place: returnRequestObjJobs(value.place),

@@ -4,15 +4,14 @@ import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getData} from './../../functions/api'
-import {getJobsData, selectPaymentJobs, selectBudJobs, selectPropJobs, getCountriesJobs, getLanguageJobs, selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs} from './../../reducers/search'
+import {getJobsData, selectPaymentJobs, selectBudJobs, selectPropJobs, getCountriesJobs, getLanguageJobs, 
+  selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs,
+  inputPaymentFrom, inputPaymentTo} from './../../reducers/search'
+
 const queryString = require('query-string');
 
-// import '../../App.css';
-
 class LeftSideBarFiltersJobs extends React.Component {
-	// constructor (){
-	// 	super();
-	// }
+
   componentDidMount() {
 		getData('/api/v1/misc/countries').then(apiData => {
 			this.props.getCountriesJobs(apiData.data);
@@ -86,7 +85,20 @@ class LeftSideBarFiltersJobs extends React.Component {
 			</div>	
 		);		
 	}
-	 
+   
+  inputFrom = (event) =>{
+    // Reactotron.log(event.target.value);
+    this.props.inputPaymentFrom(event.target.value);
+  }
+  inputTo = (event) =>{
+    this.props.inputPaymentTo(event.target.value);
+    // Reactotron.log(event.target.value);
+  }
+  sendPayment = (event) => {
+    // this.props.selectPaymentJobs(event.target.id,this.props.search.configJobs.p_from, this.props.search.configJobs.p_to);
+    this.getRequestJobs(event.target.id,this.props.search.configJobs.p_from, this.props.search.configJobs.p_to);
+  }
+
   render() { 
     return (
     <div class="panel panel-default" class={this.props.search.showJobs}>
@@ -178,10 +190,11 @@ class LeftSideBarFiltersJobs extends React.Component {
                 {this.props.search.configJobs.payment.map(this.checkerList)}
             </div>
             <div class="filter-inputs flexbox justify-space-between">
-              <input type="text" value="0" class="form-control" /> 
+              <input type="text" id="p_from"  class="form-control" onChange={this.inputFrom}/> 
               <span>to</span>
-              <input type="text" value="$20" class="form-control" />
+              <input type="text" id="p_to"  class="form-control" onChange={this.inputTo}/>
             </div>
+              <button id="send_p_from_p_to" class="btn" onClick={this.sendPayment}>Search</button>
         </div>
         
         <div class="filter-block">
@@ -234,7 +247,9 @@ const mapDispatchToProps = dispatch => {
             selectPropJobs,
             getCountriesJobs, getLanguageJobs,
             selectBudJobs,
-            selectPaymentJobs
+            selectPaymentJobs,
+            inputPaymentFrom,
+            inputPaymentTo
         },
         dispatch
     );
