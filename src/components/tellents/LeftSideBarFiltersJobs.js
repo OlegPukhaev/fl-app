@@ -22,18 +22,6 @@ class LeftSideBarFiltersJobs extends React.Component {
 		});
   }
 
-//   getRequest = () => {
-//     var StringifyQ = queryString.stringify({
-//       q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
-//     });
-
-//     getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-//       this.props.getJobsData(apiData.data);
-//       Reactotron.log("from server", apiData.data);
-//     });
-//   }
-//     }
-    
     getRequestJobs = () => {
       var StringifyQ = queryString.stringify({
         q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
@@ -215,15 +203,6 @@ class LeftSideBarFiltersJobs extends React.Component {
         <div class="filter-block">
             <div class="filter-title">
                 Proposals:
-            </div>
-            <div class="checkbox-list-block clearfix">
-                {this.props.search.configJobs.prop.map(this.checkerList)}
-            </div>
-        </div>
-
-        <div class="filter-block">
-            <div class="filter-title">
-                Job Delivery::
             </div>
             <div class="checkbox-list-block clearfix">
                 {this.props.search.configJobs.prop.map(this.checkerList)}
