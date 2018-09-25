@@ -136,7 +136,7 @@ class LeftSideBarFiltersJobs extends React.Component {
                 </div>
             </div>
         </div>
-				<div class="filter-block">
+        <div class="filter-block">
             <div class="filter-title">
                 Availability:
             </div>
@@ -145,6 +145,60 @@ class LeftSideBarFiltersJobs extends React.Component {
             </div>
         </div>
 
+        <div class="filter-block">
+            <div class="filter-title">
+              Payment:
+            </div>
+            <div class="checkbox-list-block clearfix">
+                {this.props.search.configJobs.payment.map(this.checkerList)}
+            </div>
+            <div class="filter-inputs flexbox justify-space-between">
+              <input type="text" value="0" class="form-control" /> 
+              <span>to</span>
+              <input type="text" value="$20" class="form-control" />
+            </div>
+        </div>
+        
+        <div class="filter-block">
+            <div class="filter-title">
+                Budget:
+            </div>
+            <div class="filter-dropdown-block clearfix">
+                <button type="button" class="btn btn-default dropdown-toggle">
+                    <div class="flexbox justify-space-between">
+                        <span class="text">Budget</span>
+                        <span class="icon icon-down-arrow"></span>
+                    </div>
+                </button>
+                <div class="dropdown-list">
+                    <div class="caret-block">
+                        <span class="caret-top"></span>
+                    </div>
+                    <div class="dropdown-list-wrapper">
+                        <div class="checkbox-list-block">
+                            {this.props.search.configJobs.bud.map(this.checkerList)}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        
+        <div class="filter-block">
+            <div class="filter-title">
+                Proposals:
+            </div>
+            <div class="checkbox-list-block clearfix">
+                {this.props.search.configJobs.prop.map(this.checkerList)}
+            </div>
+        </div>
+        <div class="filter-block">
+            <div class="filter-title">
+                Job Delivery::
+            </div>
+            <div class="checkbox-list-block clearfix">
+                {this.props.search.configJobs.prop.map(this.checkerList)}
+            </div>
+        </div>
     </div>
     );
   }

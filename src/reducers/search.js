@@ -276,12 +276,14 @@ let initialState = {
 					id: "fixed_price",
 					selected : false,
 					filter: "payment",
+					request: "fixed_price", 
 					name: "Fixed Price"
 				},
 				{
 					id:"hourly",
 					selected: false,
 					filter: "payment",
+					request: "hourly", 
 					name: "Hourly"
 				}
 			],
@@ -290,30 +292,35 @@ let initialState = {
 					name: "$0 - $100",
 					selected : false,
 					filter: "bud",
+					request: "i0_100",
 					id: "i0_100"
 				},
 				{
 					name:"$100 - $300",
 					filter: "bud",
 					selected: false,
+					request: "i100_300",
 					id: "i100_300"
 				},
 				{
 					name:"$300 - $1000",
 					selected: false,
 					filter: "bud",
+					request: "i300_1000",
 					id: "i300_1000"
 				},
 				{
 					name:"> $1000",
 					selected: false,
 					filter: "bud",
+					request: "more_1000",
 					id: "more_1000"
 				},
 				{
 					id:"undefined",
 					selected: false,
 					filter: "bud",
+					request: "undefined",
 					name: "Not defined (Empty)"
 				},
 			],
