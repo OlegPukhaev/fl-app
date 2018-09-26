@@ -13,7 +13,6 @@ export function getObject(obj){
 }
 
 export function returnRequestObj(value) {
-    
     var requestFilter = value.filter(item => {
         if (item.selected === true ) {
             return item;
@@ -22,12 +21,10 @@ export function returnRequestObj(value) {
     var objectId = requestFilter.map(item => {
         if(item.selected === true) return item.id;
     });
-
     return objectId.join(",");
 }
 
 export function returnRequestObjJobs(value) {
-    
     var requestFilter = value.filter(item => {
         if (item.selected === true ) {
             return item;
@@ -36,7 +33,6 @@ export function returnRequestObjJobs(value) {
     var objectId = requestFilter.map(item => {
         if(item.selected === true) return item.request;
     });
-
     return objectId.join(",");
 }
 

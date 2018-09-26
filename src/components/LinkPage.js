@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Main from './Main';
 import User from './User';
+import Home from './Home';
 import Tellent from './Tellent';
 import {getToken} from '../functions/config';
 import {setUserStatus} from './../reducers/getUser';
@@ -16,9 +17,9 @@ constructor (props) {
 }
 
 componentDidMount = () => {
-  if (getToken()) {
+  // if (getToken()) {
     this.props.setUserStatus(true);
-  }
+  // }
 }
 
   render() {
@@ -35,7 +36,7 @@ componentDidMount = () => {
             
             <Switch>
               <Route exact path="/User" component={User} />
-              <Route exact path="/home" component={Main} />
+              <Route exact path="/" component={Home} />
               <Route exact path="/Main" component={Main} />
               <Route exact path="/tellent" component={Tellent} />
             </Switch>
