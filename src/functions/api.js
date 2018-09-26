@@ -1,18 +1,22 @@
 import Reactotron from 'reactotron-react-js';
-import {getToken} from '../functions/config';
 import axios from 'axios';
-// var configapi = getToken();
-import queryString from 'query-string';
-// const queryString = require('query-string');
+export const queryString = require('query-string');
+export const API_SERVER_URL = "https://floating-atoll-63112.herokuapp.com";
+export const API_URL = `${API_SERVER_URL}/api/v1/`;
+if (document.cookie) {
+	var cookies = document.cookie
+}
 
-axios.defaults.headers.common = tokobj;
-axios.defaults.baseURL = 'https://floating-atoll-63112.herokuapp.com';
+if (document.cookie) {
+	var TOKEN_COOKIES = queryString.parse(document.cookie);
+	var TOKEN_CONFIG = JSON.parse(TOKEN_COOKIES.authHeaders);
+	axios.defaults.headers.common = TOKEN_CONFIG;
+	axios.defaults.baseURL = `${API_SERVER_URL}`;
+}
 
-var token = queryString.parse(document.cookie);
-var tokenParsed = JSON.parse(token.authHeaders);
-
-const tokobj = tokenParsed;
-
+// Reactotron.log("какое значение у куки", document.cookies);
+// var tokenParsed = JSON.parse(token.authHeaders);
+// const tokobj = tokenParsed;
 
 
 

@@ -298,8 +298,8 @@ let initialState = {
 						name: "Hourly"
 					}
 				],
-		p_from: "0",
-		p_to: "1000",
+		p_from: "",
+		p_to: "",
 
 				
 		bud:[	

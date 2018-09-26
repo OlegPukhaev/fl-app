@@ -1,20 +1,19 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
-import {getToken} from './../functions/config';
+// import {getToken} from './../functions/config';
 import { bindActionCreators } from 'redux';
-import {CONFIG} from '../functions/api';
+import {fetchUserLogin} from '../functions/auth';
 import '../App.css';
 import {getUser,setUserStatus} from '../reducers/getUser';
-import axios from 'axios';
+// import axios from 'axios';
 import '../../node_modules/toastr/build/toastr.css';
 var toastr = require('../../node_modules/toastr/toastr');
-var Auth = require('../../node_modules/j-toker/src/j-toker.js');
+// var Auth = require('../../node_modules/j-toker/src/j-toker.js');
 const queryString = require('query-string');
 
-Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
-storage : 'localStorage'
-});
+// Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
+// });
 
 class User extends React.Component {
 
@@ -28,20 +27,20 @@ class User extends React.Component {
     } 
   }
 
-  userRegistr = ()  => {
-    if ((this.state.first_name !== "") && (this.state.last_name !== "") && (this.state.email !== "") && (this.state.password !== "")){
-      Auth.emailSignUp({
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        email: this.state.email,
-        password: this.state.password
-      }).then((response) => {
-        toastr.success('Register successfull');
-      }).catch(()=>{
-        toastr.warning('Warning, please try again');
-      });
-    } 
-  }
+  // userRegistr = ()  => {
+  //   if ((this.state.first_name !== "") && (this.state.last_name !== "") && (this.state.email !== "") && (this.state.password !== "")){
+  //     Auth.emailSignUp({
+  //       first_name: this.state.first_name,
+  //       last_name: this.state.last_name,
+  //       email: this.state.email,
+  //       password: this.state.password
+  //     }).then((response) => {
+  //       toastr.success('Register successfull');
+  //     }).catch(()=>{
+  //       toastr.warning('Warning, please try again');
+  //     });
+  //   } 
+  // }
 
   onChangeReg = (event) => {
     switch (event.target.id) {
@@ -72,30 +71,40 @@ class User extends React.Component {
   }
 
   setUserStates () {
-    this.addUser(Auth.user);
+    // this.addUser(Auth.user);
     this.userValid(true);
   }
 
   userLogin = () => {
-      Auth.emailSignIn({
-        email: this.state.email,
-        password: this.state.password
-      }).then((response) => {
-        var a = queryString.parse(document.cookie);
-        console.log(a.authHeaders);
-        Reactotron.log(queryString.parse(document.cookie));
+    fetchUserLogin(this.state.email, this.state.password).then(response => {
+        // toastr.success(response);
         this.props.setUserStatus(true);
         this.props.history.push('/');
-      }).catch(()=>{
-        toastr.warning('Incorrect Login please try again');
-      });
+      }).catch( error => {
+        toastr.warning(error);
+        this.props.history.push('/User');
+      }
+    );
+    
+      // Auth.emailSignIn({
+      //   email: this.state.email,
+      //   password: this.state.password
+      // }).then((response) => {
+      //   var a = queryString.parse(document.cookie);
+      //   console.log(a.authHeaders);
+      //   // Reactotron.log(queryString.parse(document.cookie));
+      //   this.props.setUserStatus(true);
+      //   this.props.history.push('/');
+      // }).catch(()=>{
+      //   toastr.warning('Incorrect Login please try again');
+      // });
   }
 
   render() {
     return (
       <div id="userform">
-        {this.props.user.userinfo.full_name}
-        {this.props.user.uservalid}
+        {/* {this.props.user.userinfo.full_name}
+        {this.props.user.uservalid} */}
         <div id="user-reg">
           <h3>Registration</h3>
           First Name :

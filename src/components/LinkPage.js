@@ -6,20 +6,31 @@ import Main from './Main';
 import User from './User';
 import Home from './Home';
 import Tellent from './Tellent';
-import {getToken} from '../functions/config';
+// import {getToken} from '../functions/config';
 import {setUserStatus} from './../reducers/getUser';
+import {fetchValidateToken} from './../functions/auth';
 // import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
+var toastr = require('../../node_modules/toastr/toastr');
 
 class LinkPage extends React.Component {
 constructor (props) {
     super(props);
 }
 
-componentDidMount = () => {
-  // if (getToken()) {
-    this.props.setUserStatus(true);
-  // }
+componentWillMount = () => {
+  if (document.cookie) {
+
+    fetchValidateToken().then(response => {
+      toastr.success(`Урраааа валидация ф кармане : ${response.full_name}`);
+      this.props.setUserStatus(true);
+    }).catch(error => {
+      // toastr.success(error);
+      toastr.warning(`Ошибке : ${error}`);
+      this.props.history.push('/User');
+    }) 
+
+  } else this.props.setUserStatus(false);
 }
 
   render() {

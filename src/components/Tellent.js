@@ -200,7 +200,7 @@ class Tellent extends React.Component {
  					<div class="row main-content flexbox">
  						<div class="col-xs-2 left-sidebar">
 
-                   			<LeftSideBarFilters/>
+                  <LeftSideBarFilters/>
 							   <LeftSideBarFiltersJobs/>
 							   
                    			{/* {this.props.search.isTellents === true && <LeftSideBarFilters/>}
