@@ -45,11 +45,7 @@ class Main extends React.Component {
 			fetchValidateToken().then(response => {
 				toastr.success(`Урраааа валидация ф кармане : ${response.full_name}`);
 				this.props.setUserStatus(true);
-			}).catch(error => {
-				// toastr.success(error);
-				toastr.warning(`Ошибке : ${error}`);
-				this.props.history.push('/User');
-			}) 
+			})
 	
 		} else this.props.setUserStatus(false);
 	}

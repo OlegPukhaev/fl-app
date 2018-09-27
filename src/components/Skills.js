@@ -10,6 +10,7 @@ import SkillsStepTwo from './SkillsStepTwo';
 import {getSkills, setActiveWin, getMenuSkills} from '../reducers/userSkills';
 import {arrForUpdate} from './../functions/function';
 import axios from 'axios';
+import {fetchUserSkills} from './../functions/api';
 
 class Skills extends React.Component {
 constructor () {
@@ -18,13 +19,13 @@ constructor () {
 
 componentDidMount = () => {
 
-
-  getData('/api/v1/profile/skills/user').then(apiData => {
-    this.props.getSkills(apiData.data.profession_categories);
-    this.props.getMenuSkills(apiData.data.profession_categories);
+  fetchUserSkills().then(response => {
+    if (response !== false) {
+      this.props.getSkills(response.data.profession_categories);
+      this.props.getMenuSkills(response.data.profession_categories);
+    }
+    // alert(response);
   });
-
-  
 };
 
 allSkills = (item, index) => {

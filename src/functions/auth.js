@@ -2,7 +2,7 @@ import {successMessage, warningMessage} from './function';
 var Auth = require('./../../node_modules/j-toker/src/j-toker');
 
 Auth.configure({
-	apiUrl:"https://floating-atoll-63112.herokuapp.com/api/",
+	apiUrl:"https://floating-atoll-63112.herokuapp.com/api",
 	storage:'cookies',
 });
 

@@ -69,7 +69,7 @@ class User extends React.Component {
         // toastr.success("Добро пожаловать ", response.data.full_name);
         this.props.setUserStatus(response);
         if ( response === true ) {
-          this.props.history.push('/');
+          this.props.history.push('/main');
         } else this.props.history.push('/user');
       });
   }

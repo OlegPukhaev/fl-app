@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Redirect, Link, Switch} from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Main from './Main';
@@ -40,16 +40,16 @@ componentWillMount = () => {
           <div>
             <h1>Menu</h1>
             {this.props.user.isUserLogin == false && <Link to="/user"> Login | </Link>} 
-            <Link to="/">Home </Link>
-            {this.props.user.isUserLogin === true && <Link to="/main">| Main </Link>}
+            {/* <Link to="/">Home </Link> */}
+            {this.props.user.isUserLogin === true && <Link to="/skills">| Skills </Link>}
             {this.props.user.isUserLogin == true && <Link to="/tellent">| Tellent </Link>}
             {/* <Link to="/Tellent">| Tellent </Link> */}
             
             <Switch>
-              <Route exact path="/user" component={User} />
-              <Route exact path="/" component={Home} />
-              <Route exact path="/main" component={Main} />
-              <Route exact path="/tellent" component={Tellent} />
+              <Route  path="/user" component={User} />
+              {/* <Route exact path="/" component={Home} /> */}
+              <Route  path="/skills" component={Main} />
+              <Route  path="/tellent" component={Tellent} />
             </Switch>
           </div>
         </BrowserRouter>
