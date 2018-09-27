@@ -20,22 +20,20 @@ const queryString = require('query-string');
 
 class Tellent extends React.Component {
 
-	componentWillMount = () => {
+	componentDidMount = () => {
 		if (this.props.search.isUserLogin === true) {
 
-			var StringifyQ = queryString.stringify({
-				q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
-			});
+					var StringifyQ = queryString.stringify({
+						q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
+					});
 			
-			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-				this.props.getTellentsData(apiData.data);
-			});
-			getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-				this.props.getJobsData(apiData.data);
-			});
-		} else {
-			this.props.history.push('/User');	
-		}
+					getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+						this.props.getTellentsData(apiData.data);
+					});
+					getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+						this.props.getJobsData(apiData.data);
+					});
+		} 
 	}
 
     render() {
@@ -205,8 +203,8 @@ class Tellent extends React.Component {
  					<div class="row main-content flexbox">
  						<div class="col-xs-2 left-sidebar">
 
-                  {this.props.search.isUserLogin === true && <LeftSideBarFilters/>}
-							   {this.props.search.isUserLogin === true && <LeftSideBarFiltersJobs/>}
+                  {this.props.user.isUserLogin === true && <LeftSideBarFilters/>}
+							   {this.props.user.isUserLogin === true && <LeftSideBarFiltersJobs/>}
 							   
                    			{/* {this.props.search.isTellents === true && <LeftSideBarFilters/>}
 							{this.props.search.isJobs === true && <LeftSideBarFiltersJobs/>} */}
@@ -224,9 +222,9 @@ class Tellent extends React.Component {
 
 									{/* <NoResultJobs /> */}
 
-										{this.props.search.isUserLogin === true && (<JobBoxTellent data={this.props.search.tellentsData}/>) 
-										(<JobBoxJobs data={this.props.search.jobsData}/>)}
-									}
+										{this.props.user.isUserLogin === true && <JobBoxTellent data={this.props.search.tellentsData}/>}
+										{this.props.user.isUserLogin === true && <JobBoxJobs data={this.props.search.jobsData}/>}
+									{/* } */}
 									
 
  								</div>
@@ -296,6 +294,7 @@ class Tellent extends React.Component {
 	
 	function mapStateToProps (state) {
 		return  {
+			user:state.user,
 			search:state.search
 		}
 	}

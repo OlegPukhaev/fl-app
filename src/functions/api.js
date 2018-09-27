@@ -14,13 +14,6 @@ if (document.cookie) {
 	axios.defaults.baseURL = `${API_SERVER_URL}`;
 }
 
-// Reactotron.log("какое значение у куки", document.cookies);
-// var tokenParsed = JSON.parse(token.authHeaders);
-// const tokobj = tokenParsed;
-
-
-
-
 export function getData(urlApi) {
     // console.log("fff"+token.authHeaders);
     return axios.get(urlApi)

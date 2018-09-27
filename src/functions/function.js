@@ -1,3 +1,6 @@
+import '../../node_modules/toastr/build/toastr.css';
+var toastr = require('../../node_modules/toastr/toastr');
+
 export function getToken(){
     const returnObj = JSON.parse(localStorage.getItem('authHeaders'));
     if (returnObj) {
@@ -89,4 +92,11 @@ export function arrForUpdate (value){
         })
     });
     return obj;
+}
+
+export function successMessage(value) {
+    toastr.success(value);
+}
+export function warningMessage(value) {
+    toastr.warning(value);
 }

@@ -1,19 +1,13 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
-// import {getToken} from './../functions/config';
 import { bindActionCreators } from 'redux';
 import {fetchUserLogin, fetchUserRegistration} from '../functions/auth';
 import '../App.css';
 import {getUser,setUserStatus} from '../reducers/getUser';
-// import axios from 'axios';
 import '../../node_modules/toastr/build/toastr.css';
 var toastr = require('../../node_modules/toastr/toastr');
-// var Auth = require('../../node_modules/j-toker/src/j-toker.js');
-const queryString = require('query-string');
-
-// Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api',
-// });
+// const queryString = require('query-string');
 
 class User extends React.Component {
 
@@ -27,27 +21,12 @@ class User extends React.Component {
     } 
   }
 
-  // userRegistr = ()  => {
-  //   if ((this.state.first_name !== "") && (this.state.last_name !== "") && (this.state.email !== "") && (this.state.password !== "")){
-  //     Auth.emailSignUp({
-  //       first_name: this.state.first_name,
-  //       last_name: this.state.last_name,
-  //       email: this.state.email,
-  //       password: this.state.password
-  //     }).then((response) => {
-  //       toastr.success('Register successfull');
-  //     }).catch(()=>{
-  //       toastr.warning('Warning, please try again');
-  //     });
-  //   } 
-  // }
-
   userReg = () => {
     if ((this.state.first_name !== "") && (this.state.last_name !== "") && (this.state.email !== "") && (this.state.password !== "")){
       fetchUserRegistration(
         this.state.first_name, this.state.last_name, this.state.email, this.state.password
       ).then(response => {
-       
+        toastr.success(`Registration successfully ${response.data.full_name}`);  
       }).then().
         catch (error => {
         toastr.warning(`Registration Fail!!!`);  
@@ -85,35 +64,14 @@ class User extends React.Component {
       }
   }
 
-  setUserStates () {
-    // this.addUser(Auth.user);
-    this.userValid(true);
-  }
-
   userLogin = () => {
     fetchUserLogin(this.state.email, this.state.password).then(response => {
-        
-        // toastr.success(response);
-        // this.props.setUserStatus(true);
-        // this.props.history.push('/');
-      }).catch( error => {
-        toastr.warning(error);
-        this.props.history.push('/User');
-      }
-    );
-    
-      // Auth.emailSignIn({
-      //   email: this.state.email,
-      //   password: this.state.password
-      // }).then((response) => {
-      //   var a = queryString.parse(document.cookie);
-      //   console.log(a.authHeaders);
-      //   // Reactotron.log(queryString.parse(document.cookie));
-      //   this.props.setUserStatus(true);
-      //   this.props.history.push('/');
-      // }).catch(()=>{
-      //   toastr.warning('Incorrect Login please try again');
-      // });
+        // toastr.success("Добро пожаловать ", response.data.full_name);
+        this.props.setUserStatus(response);
+        if ( response === true ) {
+          this.props.history.push('/');
+        } else this.props.history.push('/user');
+      });
   }
 
   render() {

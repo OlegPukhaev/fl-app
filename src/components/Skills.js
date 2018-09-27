@@ -3,7 +3,6 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getData } from '../functions/api';
-// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
@@ -17,11 +16,15 @@ constructor () {
   super()
 }
 
-componentWillMount = () => {
+componentDidMount = () => {
+
+
   getData('/api/v1/profile/skills/user').then(apiData => {
     this.props.getSkills(apiData.data.profession_categories);
     this.props.getMenuSkills(apiData.data.profession_categories);
   });
+
+  
 };
 
 allSkills = (item, index) => {
@@ -71,9 +74,9 @@ onClickBack = () => {
           </div>
         </div>
 
-        {this.props.skills.activeWin === "step-1-open" && <SkillsStepOne />}
-        {this.props.skills.activeWin === "step-2-open" && <SkillsStepTwo />}
-        {this.props.skills.activeWin === "step-3-open" && <SkillsStepThree skills={this.props.skills}/>}
+          {this.props.skills.activeWin === "step-1-open" && <SkillsStepOne />}
+          {this.props.skills.activeWin === "step-2-open" && <SkillsStepTwo />}
+          {this.props.skills.activeWin === "step-3-open" && <SkillsStepThree skills={this.props.skills}/>}
 
       </div>
     </div>   
