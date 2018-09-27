@@ -1,6 +1,7 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
+import {fetchValidateToken} from './../functions/auth';
 // import {BrowserRouter, Route, Link} from 'react-router-dom';
 // import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
 // import Home from './Home';
@@ -14,6 +15,8 @@ import '../../node_modules/toastr/build/toastr.css';
 // import {getToken} from '../functions/config'
 import {setUserStatus} from '../reducers/getUser';
 import { bindActionCreators } from 'redux';
+import '../../node_modules/toastr/build/toastr.css';
+var toastr = require('../../node_modules/toastr/toastr');
 
 var Auth = require('../../node_modules/j-toker/src/j-toker.js');
     // PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
@@ -34,6 +37,21 @@ class Main extends React.Component {
 		Auth.signOut();
 		this.props.setUserStatus(false);
 		this.props.history.push('/User');
+	}
+
+	componentWillMount = () => {
+		if (document.cookie) {
+	
+			fetchValidateToken().then(response => {
+				toastr.success(`Урраааа валидация ф кармане : ${response.full_name}`);
+				this.props.setUserStatus(true);
+			}).catch(error => {
+				// toastr.success(error);
+				toastr.warning(`Ошибке : ${error}`);
+				this.props.history.push('/User');
+			}) 
+	
+		} else this.props.setUserStatus(false);
 	}
 
   render() {
@@ -171,7 +189,7 @@ class Main extends React.Component {
 																	<div class="tab-content my-central-info">
 																		{/* <!--Skills page START --> */}
 
-																		<Skills />
+																		{this.props.user.isUserLogin === true && <Skills />}
 																		
 																	</div>
 															</div>

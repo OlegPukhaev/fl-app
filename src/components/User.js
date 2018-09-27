@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 // import {getToken} from './../functions/config';
 import { bindActionCreators } from 'redux';
-import {fetchUserLogin} from '../functions/auth';
+import {fetchUserLogin, fetchUserRegistration} from '../functions/auth';
 import '../App.css';
 import {getUser,setUserStatus} from '../reducers/getUser';
 // import axios from 'axios';
@@ -42,6 +42,21 @@ class User extends React.Component {
   //   } 
   // }
 
+  userReg = () => {
+    if ((this.state.first_name !== "") && (this.state.last_name !== "") && (this.state.email !== "") && (this.state.password !== "")){
+      fetchUserRegistration(
+        this.state.first_name, this.state.last_name, this.state.email, this.state.password
+      ).then(response => {
+       
+      }).then().
+        catch (error => {
+        toastr.warning(`Registration Fail!!!`);  
+      })
+      
+      
+    }
+  }
+
   onChangeReg = (event) => {
     switch (event.target.id) {
       case "first_name":
@@ -77,9 +92,10 @@ class User extends React.Component {
 
   userLogin = () => {
     fetchUserLogin(this.state.email, this.state.password).then(response => {
+        
         // toastr.success(response);
-        this.props.setUserStatus(true);
-        this.props.history.push('/');
+        // this.props.setUserStatus(true);
+        // this.props.history.push('/');
       }).catch( error => {
         toastr.warning(error);
         this.props.history.push('/User');
@@ -115,7 +131,7 @@ class User extends React.Component {
           <input type="email" id="email" placeholder="Email"  onChange={this.onChangeReg}/><br></br>
           Password :
           <input type="password" id="password" placeholder="Password"  onChange={this.onChangeReg}/><br></br>
-          <br></br><button type="submit" onClick={this.userRegistr}>Sign up</button>
+          <br></br><button type="submit" onClick={this.userReg}>Sign up</button>
         </div>
 
         <div id="user-log">

@@ -20,17 +20,22 @@ const queryString = require('query-string');
 
 class Tellent extends React.Component {
 
-	componentDidMount = () => {
-		var StringifyQ = queryString.stringify({
-			q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
-		});
+	componentWillMount = () => {
+		if (this.props.search.isUserLogin === true) {
 
-		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-			this.props.getTellentsData(apiData.data);
-		});
-		getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-			this.props.getJobsData(apiData.data);
-		});
+			var StringifyQ = queryString.stringify({
+				q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
+			});
+			
+			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+				this.props.getTellentsData(apiData.data);
+			});
+			getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+				this.props.getJobsData(apiData.data);
+			});
+		} else {
+			this.props.history.push('/User');	
+		}
 	}
 
     render() {
@@ -200,8 +205,8 @@ class Tellent extends React.Component {
  					<div class="row main-content flexbox">
  						<div class="col-xs-2 left-sidebar">
 
-                  <LeftSideBarFilters/>
-							   <LeftSideBarFiltersJobs/>
+                  {this.props.search.isUserLogin === true && <LeftSideBarFilters/>}
+							   {this.props.search.isUserLogin === true && <LeftSideBarFiltersJobs/>}
 							   
                    			{/* {this.props.search.isTellents === true && <LeftSideBarFilters/>}
 							{this.props.search.isJobs === true && <LeftSideBarFiltersJobs/>} */}
@@ -219,8 +224,9 @@ class Tellent extends React.Component {
 
 									{/* <NoResultJobs /> */}
 
-									{this.props.search.isTellents === true && <JobBoxTellent data={this.props.search.tellentsData}/>}
-									{this.props.search.isJobs === true && <JobBoxJobs data={this.props.search.jobsData}/>}
+										{this.props.search.isUserLogin === true && (<JobBoxTellent data={this.props.search.tellentsData}/>) 
+										(<JobBoxJobs data={this.props.search.jobsData}/>)}
+									}
 									
 
  								</div>
