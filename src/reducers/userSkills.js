@@ -143,10 +143,9 @@ const actionsMap = {
     return {
       ...state, 
       skillsdata: action.payload,
-      categories: action.payload.filter(item => {
-        if (item.selected === true) return item;
-      })
-      // addCategories: action.payload
+      // categories: action.payload.filter(item => {
+      //   if (item.selected === true) return item;
+      // })
     }
 	},
 	[REMOVE_SKILL]: (state, action) => {

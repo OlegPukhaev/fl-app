@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {removeSkill, setActiveWin, skillBackWindow} from './../reducers/userSkills';
+import {getActiveCategories, getSkillData} from './../selectors/index';
 // import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 import {CONFIG} from '../functions/api';
@@ -26,7 +27,7 @@ class SkillSubcat extends React.Component {
 
   onClickDeleteSkills = (event) => {
     this.props.removeSkill(event.target.id);
-    var delObj = this.props.skills.categories.filter(item => item.id != event.target.id);
+    var delObj = this.props.getActiveCategories;
     this.updateApiData(arrForUpdate(delObj));
   }
 
@@ -99,7 +100,7 @@ class SkillSubcat extends React.Component {
     return (
       <div class="step-3">
           {
-            this.props.skills.skillsdata.map(this.allSkills)
+            this.props.getSkillData.map(this.allSkills)
           }
       </div>
     );
@@ -119,7 +120,11 @@ const mapDispatchToProps = dispatch => {
   
   function mapStateToProps (state) {
     return  {
-      skills: state.skills
+      skills: state.skills,
+      getActiveCategories: getActiveCategories(state),
+      getSkillData: getSkillData(state)
+
+
     }
   }
   
