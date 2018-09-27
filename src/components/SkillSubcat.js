@@ -4,10 +4,8 @@ import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {removeSkill, setActiveWin, skillBackWindow} from './../reducers/userSkills';
 import {getActiveCategories, getSkillData} from './../selectors/index';
-// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-import {CONFIG} from '../functions/api';
-import axios from 'axios';
+import {fetchSkillCategories} from '../functions/api';
 import {arrForUpdate} from './../functions/function';
 
 class SkillSubcat extends React.Component {
@@ -15,20 +13,10 @@ class SkillSubcat extends React.Component {
     super(props);
   }
 
-  updateApiData = (value) => {
-    axios({
-        method: 'post',
-        url: 'https://floating-atoll-63112.herokuapp.com/api/v1/profile/skills',
-        data: {
-            categories : value
-        }
-      });
-  }
-
   onClickDeleteSkills = (event) => {
     this.props.removeSkill(event.target.id);
     var delObj = this.props.getActiveCategories;
-    this.updateApiData(arrForUpdate(delObj));
+    fetchSkillCategories(arrForUpdate(delObj));
   }
 
   skillBlockList = (item) => {
@@ -53,13 +41,12 @@ class SkillSubcat extends React.Component {
   }
 
   onClickEditSkill = (event) => {
-    // alert(event.target.id);
     this.props.setActiveWin("step-2-open", event.target.id);
     this.props.skillBackWindow("step-3-open");
   }
 
   allSkills = (item) => {
-    if (item.selected !== false) {
+    // if (item.selected !== false) {
       
       return (
         <div class="skill-subcat skill-subcat--item" key={item.id}>
@@ -93,7 +80,7 @@ class SkillSubcat extends React.Component {
            </div>
         </div> 
       );
-    }
+    // }
   }
 
   render() { 
@@ -123,8 +110,6 @@ const mapDispatchToProps = dispatch => {
       skills: state.skills,
       getActiveCategories: getActiveCategories(state),
       getSkillData: getSkillData(state)
-
-
     }
   }
   

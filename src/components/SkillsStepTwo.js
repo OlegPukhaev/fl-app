@@ -1,10 +1,9 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
-import { bindActionCreators } from 'redux';
+import {addSkillId, getAllSkillData} from './../selectors';
 import SkillBlock from './SkillBlock';
 import SkillTags from './SkillTags';
-// import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
 
 class SkillsStepTwo extends React.Component {
@@ -17,11 +16,11 @@ class SkillsStepTwo extends React.Component {
         <div class="skill-subcat">
             <div class="flexbox justify-space-between">
               <SkillBlock 
-                id={this.props.skills.addSkillId} 
-                data={this.props.skills.skillsdata[this.props.skills.addSkillId]}
+                id={this.props.addSkillId} 
+                data={this.props.getAllSkillData[this.props.addSkillId]}
               />
 
-              <SkillTags id={this.props.skills.addSkillId}/>
+              <SkillTags id={this.props.addSkillId}/>
 
             </div>
         </div>
@@ -30,18 +29,12 @@ class SkillsStepTwo extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-    },
-    dispatch
-  );
- };
-
 function mapStateToProps (state) {
   return  {
-    skills: state.skills
+    // skills: state.skills,
+    getAllSkillData: getAllSkillData(state),
+    addSkillId: addSkillId(state)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SkillsStepTwo);
+export default connect(mapStateToProps)(SkillsStepTwo);

@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {addSkill, setActiveWin, skillBackWindow, getMenuSkills} from './../reducers/userSkills';
-// import '../App.css';
+import {addCategories} from './../selectors';
 import '../../node_modules/toastr/build/toastr.css';
 var toastr = require('../../node_modules/toastr/toastr');
 
@@ -59,13 +59,14 @@ class SkillsStepOne extends React.Component {
 
   componentWillMount = () => {
     var obj = [];
-    this.props.skills.addCategories.map(item => {
+    this.props.addCategories.map(item => {
       obj.push({"selected":false});
     });
     this.setState({selectedID:obj});
   }
 
   render() { 
+    Reactotron.log(this.props.addCategories);
     return (
       <div class="step-1">
         <div class="skill-block skill-cat">
@@ -73,7 +74,7 @@ class SkillsStepOne extends React.Component {
           <div class="skill-block-list">
             <form>
               { 
-                this.props.skills.addCategories.map(this.skillBlockList)
+                this.props.addCategories.map(this.skillBlockList)
               }
             </form>
           </div>
@@ -98,7 +99,8 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
   return  {
-    skills: state.skills
+    // skills: state.skills,
+    addCategories:addCategories(state)
   }
 }
 

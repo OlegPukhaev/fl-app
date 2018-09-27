@@ -2,7 +2,6 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import { getData } from '../functions/api';
 import '../../node_modules/toastr/build/toastr.css';
 import SkillsStepThree from './SkillsStepThree';
 import SkillsStepOne from './SkillsStepOne';
@@ -10,7 +9,6 @@ import SkillsStepTwo from './SkillsStepTwo';
 import {getSkills, setActiveWin, getMenuSkills} from '../reducers/userSkills';
 import {activeWin, backWindow, getActiveCategories} from './../selectors';
 import {arrForUpdate} from './../functions/function';
-// import axios from 'axios';
 import {fetchUserSkills, fetchSkillCategories} from './../functions/api';
 
 class Skills extends React.Component {
@@ -43,7 +41,7 @@ onClickAddSkills = () => {
 onClickUpdateCategories = () => {
   this.props.setActiveWin("step-3-open", null)
   var updateObj = this.props.getActiveCategories;
-  Reactotron.log(updateObj);
+  // Reactotron.log(updateObj);
   fetchSkillCategories(arrForUpdate(updateObj));
 }
 
