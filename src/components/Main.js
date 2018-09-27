@@ -6,6 +6,7 @@ import {fetchValidateToken} from './../functions/auth';
 // import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
 // import Home from './Home';
 import Skills from './Skills';
+import {fetchSignOut} from './../functions/auth';
 // import Tellent from './Tellent';
 // import axios from 'axios';
 // import '../App.css';
@@ -18,11 +19,11 @@ import { bindActionCreators } from 'redux';
 import '../../node_modules/toastr/build/toastr.css';
 var toastr = require('../../node_modules/toastr/toastr');
 
-var Auth = require('../../node_modules/j-toker/src/j-toker.js');
+// var Auth = require('../../node_modules/j-toker/src/j-toker.js');
     // PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
     // toastr = require('../../node_modules/toastr/toastr');
 
-Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
+// Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
 
 // var configapi = getToken();
 
@@ -33,11 +34,12 @@ class Main extends React.Component {
 	}
 
 	onClickSignOut = () => {
-		localStorage.clear();
-		Auth.signOut();
-		this.props.setUserStatus(false);
-		this.props.history.push('/User');
+		fetchSignOut().then(response => {
+				alert (response);
+			
+		});
 	}
+
 
 	componentWillMount = () => {
 		if (document.cookie) {

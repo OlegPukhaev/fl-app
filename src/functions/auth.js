@@ -2,8 +2,8 @@ import {successMessage, warningMessage} from './function';
 var Auth = require('./../../node_modules/j-toker/src/j-toker');
 
 Auth.configure({
-	apiUrl:"https://floating-atoll-63112.herokuapp.com/api",
-	storage:'cookies',
+	apiUrl:"https://floating-atoll-63112.herokuapp.com/api"
+	// storage:'cookies',
 });
 
 export function fetchUserLogin(email, password) {
@@ -14,7 +14,7 @@ export function fetchUserLogin(email, password) {
 		successMessage(`Добро пожаловать ${response.data.full_name}`);
 		return true;
 	}).catch( error => {
-		warningMessage(`Ошибка логина попробуй еще дружище!`);
+		warningMessage(`Ошибка логина попробуй еще дружище!`); 
 		return false;
 	});
 }
@@ -25,6 +25,10 @@ export function fetchValidateToken () {
   .catch(error => {
 		return error;
 	});
+}
+
+export function fetchSignOut () {
+	Auth.signOut();
 }
 
 export function fetchUserRegistration (first_name, last_name, email, password) {

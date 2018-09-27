@@ -35,25 +35,24 @@ componentWillMount = () => {
 
   render() {
     return (
-      <div>
+      
         <BrowserRouter>
           <div>
             <h1>Menu</h1>
             {this.props.user.isUserLogin == false && <Link to="/user"> Login | </Link>} 
-            {/* <Link to="/">Home </Link> */}
-            {this.props.user.isUserLogin === true && <Link to="/skills">| Skills </Link>}
-            {this.props.user.isUserLogin == true && <Link to="/tellent">| Tellent </Link>}
+            <Link to="/">Home </Link>
+            {this.props.user.isUserLogin === true && <Link to="/skills"> Skills | </Link>}
+            {this.props.user.isUserLogin == true && <Link to="/tellent"> Tellent </Link>}
             {/* <Link to="/Tellent">| Tellent </Link> */}
             
             <Switch>
-              <Route  path="/user" component={User} />
-              {/* <Route exact path="/" component={Home} /> */}
-              <Route  path="/skills" component={Main} />
-              <Route  path="/tellent" component={Tellent} />
+              <Route exact path="/user" component={User} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/skills" component={Main} />
+              <Route exact path="/tellent" component={Tellent} />
             </Switch>
           </div>
         </BrowserRouter>
-      </div>
     );
   }
 }
