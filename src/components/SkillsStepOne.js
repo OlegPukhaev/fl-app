@@ -66,7 +66,6 @@ class SkillsStepOne extends React.Component {
   }
 
   render() { 
-    Reactotron.log(this.props.addCategories);
     return (
       <div class="step-1">
         <div class="skill-block skill-cat">
@@ -99,7 +98,6 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
   return  {
-    // skills: state.skills,
     addCategories:addCategories(state)
   }
 }
