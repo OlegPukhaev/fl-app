@@ -19,7 +19,10 @@ const queryString = require('query-string');
 // import queryString fro
 
 class Tellent extends React.Component {
-
+  constructor (props) {
+    super(props);
+	} 
+	
 	componentDidMount = () => {
 		if (this.props.search.isUserLogin === true) {
 

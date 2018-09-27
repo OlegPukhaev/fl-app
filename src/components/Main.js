@@ -2,26 +2,15 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchValidateToken} from './../functions/auth';
-// import {BrowserRouter, Route, Link} from 'react-router-dom';
-// import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
 import {isUserLogin} from './../selectors'
-// import Home from './Home';
-import Skills from './Skills';
 import {fetchSignOut} from './../functions/auth';
-// import Tellent from './Tellent';
-// import axios from 'axios';
-// import '../App.css';
+import Skills from './Skills';
 import '../../node_modules/toastr/build/toastr.css';
-// import User from './User';
-// import LinkPage from './LinkPage';
-// import {getToken} from '../functions/config'
 import {setUserStatus} from '../reducers/getUser';
 import { bindActionCreators } from 'redux';
 import '../../node_modules/toastr/build/toastr.css';
-var toastr = require('../../node_modules/toastr/toastr');
 
 class Main extends React.Component {
-
   constructor (props) {
     super(props);
 	}

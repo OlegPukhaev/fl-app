@@ -5,20 +5,8 @@ export const queryString = require('query-string');
 export const API_SERVER_URL = "https://floating-atoll-63112.herokuapp.com";
 export const API_URL = `${API_SERVER_URL}/api/v1`;
 
-// if (document.cookie) {
-	// var TOKEN_CONFIG = JSON.parse(TOKEN_COOKIES.authHeaders);
-	// TOKEN_CONFIG = JSON.parse(TOKEN_COOKIES.authHeaders);
 	axios.defaults.headers.common = getCookies();
-	// axios.defaults.headers.common = {
-	// 	"access-token": "Qf94aUklyCtSxI6mxjrvdg",
-	// 	"client": "Iurys7MAi6X5MYaMiislyw",
-	// 	"expiry": "1539251530",
-	// 	"token-type": "Bearer",
-	// 	"uid": "nuba818400@gmail.com"
-	// }
-	console.log("Кукеш",getCookies());
 	axios.defaults.baseURL = `${API_SERVER_URL}`;
-// }
 
 export function fetchUserSkills() {
 	return axios.get(`${API_URL}/profile/skills/user`)
@@ -30,6 +18,16 @@ export function fetchUserSkills() {
 			warningMessage('Ошибка сервера нету API данных');
 			return false;
 		});   
+}
+
+export function fetchSkillCategories (value) {
+	return axios({
+		method: 'post',
+		url: `${API_URL}/profile/skills`,
+		data: {
+				categories : value
+		}
+	});
 }
 
 export function getCookies() {

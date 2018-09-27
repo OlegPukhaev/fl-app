@@ -10,7 +10,7 @@ import SkillsStepTwo from './SkillsStepTwo';
 import {getSkills, setActiveWin, getMenuSkills} from '../reducers/userSkills';
 import {arrForUpdate} from './../functions/function';
 import axios from 'axios';
-import {fetchUserSkills} from './../functions/api';
+import {fetchUserSkills, fetchSkillCategories} from './../functions/api';
 
 class Skills extends React.Component {
 constructor () {
@@ -24,7 +24,6 @@ componentDidMount = () => {
       this.props.getSkills(response.data.profession_categories);
       this.props.getMenuSkills(response.data.profession_categories);
     }
-    // alert(response);
   });
 };
 
@@ -40,20 +39,20 @@ onClickAddSkills = () => {
   this.props.setActiveWin("step-1-open", null);  
 }
 
-updateApiData = (value) => {
-  axios({
-      method: 'post',
-      url: 'https://floating-atoll-63112.herokuapp.com/api/v1/profile/skills',
-      data: {
-          categories : value
-      }
-    });
-}
+// updateApiData = (value) => {
+//   axios({
+//       method: 'post',
+//       url: 'https://floating-atoll-63112.herokuapp.com/api/v1/profile/skills',
+//       data: {
+//           categories : value
+//       }
+//     });
+// }
 
-onClickSendApi = () => {
+onClickUpdateCategories = () => {
   this.props.setActiveWin("step-3-open", null)
   var updateObj = this.props.skills.categories;
-  this.updateApiData(arrForUpdate(updateObj));
+  fetchSkillCategories(arrForUpdate(updateObj));
 }
 
 onClickBack = () => {
@@ -69,7 +68,7 @@ onClickBack = () => {
           <div class="steps-nav-btn">
             <div class="btn-group step-2-btn clearfix">
               <button type="button" class="btn btn-blue-border btn-bold step-1-toggler step-toggler" onClick={this.onClickBack}>Back</button>
-              <button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler" onClick={this.onClickSendApi}>Done</button>
+              <button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler" onClick={this.onClickUpdateCategories}>Done</button>
             </div>
             <button type="button" class="btn btn-blue btn-bold step-3-btn step-1-toggler step-toggler" onClick={this.onClickAddSkills}>Add</button>
           </div>
