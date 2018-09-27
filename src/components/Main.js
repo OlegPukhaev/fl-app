@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {fetchValidateToken} from './../functions/auth';
 // import {BrowserRouter, Route, Link} from 'react-router-dom';
 // import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
+import {isUserLogin} from './../selectors'
 // import Home from './Home';
 import Skills from './Skills';
 import {fetchSignOut} from './../functions/auth';
@@ -19,14 +20,6 @@ import { bindActionCreators } from 'redux';
 import '../../node_modules/toastr/build/toastr.css';
 var toastr = require('../../node_modules/toastr/toastr');
 
-// var Auth = require('../../node_modules/j-toker/src/j-toker.js');
-    // PubSub = require('../../node_modules/pubsub-js/src/pubsub.js'),
-    // toastr = require('../../node_modules/toastr/toastr');
-
-// Auth.configure({apiUrl:'https://floating-atoll-63112.herokuapp.com/api'});
-
-// var configapi = getToken();
-
 class Main extends React.Component {
 
   constructor (props) {
@@ -34,26 +27,19 @@ class Main extends React.Component {
 	}
 
 	onClickSignOut = () => {
-		fetchSignOut().then(response => {
-				alert (response);
-			
-		});
+		fetchSignOut();
 	}
 
 
 	componentWillMount = () => {
 		if (document.cookie) {
-	
 			fetchValidateToken().then(response => {
-				toastr.success(`Урраааа валидация ф кармане : ${response.full_name}`);
 				this.props.setUserStatus(true);
 			})
-	
 		} else this.props.setUserStatus(false);
 	}
 
   render() {
-		// Reactotron.log(this.props.user);
     return (
       <div class="wrapper">
         <nav class="main-top-nav flexbox justify-space-between">
@@ -187,7 +173,7 @@ class Main extends React.Component {
 																	<div class="tab-content my-central-info">
 																		{/* <!--Skills page START --> */}
 
-																		{this.props.user.isUserLogin === true && <Skills />}
+																		{this.props.isUserLogin === true && <Skills />}
 																		
 																	</div>
 															</div>
@@ -214,10 +200,10 @@ const mapDispatchToProps = dispatch => {
   );
  };
 
-function mapStateToProps (state) {
-  return  {
-    user: state.user
-  }
-}
+const mapStateToProps = state => {
+  return {
+		isUserLogin: isUserLogin(state),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

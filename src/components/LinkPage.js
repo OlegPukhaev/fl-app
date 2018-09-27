@@ -35,7 +35,8 @@ componentWillMount = () => {
 
   render() {
     return (
-      
+
+        // <Main />
         <BrowserRouter>
           <div>
             <h1>Menu</h1>

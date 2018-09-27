@@ -101,7 +101,7 @@ class LeftSideBarFiltersJobs extends React.Component {
 
   render() { 
     return (
-    <div class="panel panel-default" class={this.props.search.showJobs}>
+    <div class="panel panel-default">
         <button class="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
         <div class="filter-block">
             <div class="filter-title">
