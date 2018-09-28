@@ -4,7 +4,7 @@ import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {fetchCountries, fetchLanguage, fetchJobsData} from './../../functions/api';
-import {configJobs} from './../../selectors';
+import {configJobs,showJobs} from './../../selectors';
 import {getJobsData, selectPaymentJobs, selectBudJobs, selectPropJobs, getCountriesJobs, getLanguageJobs, 
   selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs,
   inputPaymentFrom, inputPaymentTo} from './../../reducers/search'
@@ -88,12 +88,10 @@ class LeftSideBarFiltersJobs extends React.Component {
 	}
    
   inputFrom = (event) =>{
-    // Reactotron.log(event.target.value);
     this.props.inputPaymentFrom(event.target.value);
   }
   inputTo = (event) =>{
     this.props.inputPaymentTo(event.target.value);
-    // Reactotron.log(event.target.value);
   }
   sendPayment = (event) => {
     this.getRequestJobs(event.target.id,this.props.configJobs.p_from, this.props.configJobs.p_to);
@@ -258,7 +256,8 @@ const mapDispatchToProps = dispatch => {
 function mapStateToProps (state) {
     return  {
         search:state.search,
-        configJobs: configJobs(state)
+        configJobs: configJobs(state),
+        showJobs:showJobs(state)
     }
 }
 

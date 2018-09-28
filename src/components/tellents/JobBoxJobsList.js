@@ -13,7 +13,7 @@ class JobBoxJobs extends React.Component {
                 <div class="job-box-header flexbox justify-space-between">
                     <div class="job-box-title">
                         <div class="post-date">6 days ago</div>
-                        <div class="job-title">{this.props.data.promotion_description}</div>
+                        <div class="job-title">{this.props.data.promotion_title}</div>
                     </div>
                     <div class="panel panel-default">
                         <div class="flexbox justify-space-between">
@@ -30,7 +30,7 @@ class JobBoxJobs extends React.Component {
                                 <span class="rate-result">5.8</span>
                             </div>
                         </div>
-                        <div class="blue-color">Clifford Love</div>
+                        <div class="blue-color">{this.props.data.user.full_name}</div>
                     </div>
                 </div>
                 <div class="job-box-body">
@@ -59,6 +59,7 @@ class JobBoxJobs extends React.Component {
                     </div>
                     <div class="job-box-deskr">
                         <div class="text">
+                        {this.props.data.promotion_description}
                             Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks...
                         </div>
                         <div class="skill-tags-block clearfix">

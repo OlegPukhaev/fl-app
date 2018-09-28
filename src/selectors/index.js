@@ -19,4 +19,6 @@ export const isTellents = state => state.search.isTellents;
 export const isJobs = state => state.search.isJobs;
 export const configTellents = state => state.search.config;
 export const configJobs = state => state.search.configJobs;
+export const showJobs = state => state.search.showJobs;
+export const showTellents = state => state.search.showTellents;
 

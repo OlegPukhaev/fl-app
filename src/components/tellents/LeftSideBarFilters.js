@@ -3,7 +3,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import {getRequest} from './../../functions/function';
-import {configTellents} from './../../selectors';
+import {configTellents,showTellents} from './../../selectors';
 import { connect } from 'react-redux';
 import {getData, fetchCountries, fetchLanguage, fetchTellentsData} from './../../functions/api'
 import {getTellentsData, getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
@@ -88,7 +88,7 @@ class LeftSideBarFilters extends React.Component {
 
   render() { 
     return (
-    <div  class={`panel panel-default ${this.props.search.showTellents}`}>
+    <div  class={`panel panel-default ${this.props.showTellents}`}>
         <button class="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
         <div class="filter-block">
             <div class="filter-title">
@@ -213,7 +213,8 @@ const mapDispatchToProps = dispatch => {
 function mapStateToProps (state) {
     return  {
 				search:state.search,
-				configTellents: configTellents(state)
+				configTellents: configTellents(state),
+				showTellents:showTellents(state)
     }
 }
 
