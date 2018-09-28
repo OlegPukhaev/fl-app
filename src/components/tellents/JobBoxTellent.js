@@ -20,7 +20,6 @@ class JobBoxTellent extends React.Component {
 			q: JSON.stringify(getRequest(this.props.configTellents))
 		});
 		fetchTellentsData(StringifyQ).then(response => {
-			Reactotron.log('stringify',response);
 			this.props.getTellentsData(response.data);	
 		});
 	}
