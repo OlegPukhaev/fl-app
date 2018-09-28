@@ -8,7 +8,7 @@ import '../../node_modules/toastr/build/toastr.css';
 // import axios from 'axios';
 import {searchSkillTagWin, removeSkillTags, setInputEmpty} from './../reducers/userSkills';
 import { fetchSkillTags } from '../functions/api';
-import {getShowSkillTagWin, getAllSkillData, emptyInput} from './../selectors';
+import {getShowSkillTagWin, getAllSkillData, emptyInput} from './../selectors'; 
 
 class SkillTags extends React.Component {
   constructor(props){

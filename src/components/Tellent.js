@@ -6,7 +6,7 @@ import { getData } from '../functions/api';
 import '../../node_modules/toastr/build/toastr.css';
 import {arrForUpdate} from './../functions/function';
 import {getTellentsData, getJobsData, getLanguage, getCountries, getCountriesJobs, getLanguageJobs} from './../reducers/search';
-
+import {jobsData, tellentsData} from './../selectors';
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
 import JobBoxesFilter from './tellents/JobBoxesFilter';
@@ -19,25 +19,23 @@ const queryString = require('query-string');
 // import queryString fro
 
 class Tellent extends React.Component {
-  constructor (props) {
-    super(props);
-	} 
 	
-	componentDidMount = () => {
-		if (this.props.search.isUserLogin === true) {
+	// componentDidMount = () => {
+	// 	// if (this.props.search.isUserLogin === true) {
 
-					var StringifyQ = queryString.stringify({
-						q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
-					});
+	// 	// 			var StringifyQ = queryString.stringify({
+	// 	// 				q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
+	// 	// 			});
 			
-					getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-						this.props.getTellentsData(apiData.data);
-					});
-					getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-						this.props.getJobsData(apiData.data);
-					});
-		} 
-	}
+	// 	// 			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+	// 	// 				this.props.getTellentsData(apiData.data);
+	// 	// 			});
+	// 	// 			getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+	// 	// 				this.props.getJobsData(apiData.data);
+	// 	// 			});
+	// 	// } 
+	// }
+
 
     render() {
 		Reactotron.log('Get Data', this.props.search);
@@ -54,7 +52,7 @@ class Tellent extends React.Component {
      				<section class="nav-tablet flexbox justify-space-center">
 
               			<SearchForm />
-										{this.props.search.toggler}
+										{/* {this.props.search.toggler} */}
 
  		    			<div class="nav-list">
  		    				<ul class="flexbox justify-space-between">
@@ -181,19 +179,9 @@ class Tellent extends React.Component {
  										<span class="sort-result">
  											Result: 
 											 <span class="sort-result-numb">
-{/* 											 
-												 {this.props.search.isTellents === true ? 
-													this.props.search.tellentsData.meta.total_count :
-														this.props.search.jobsData.meta.total_count} */}
-													{Reactotron.log("trrrrr",this.props.search.jobsData)}
-
-													{this.props.search.jobsData!==null ? this.props.search.jobsData.meta.total_count : "No Data"}
-													
-											 
-											 
-											 
-											 
+													{this.props.jobsData!==null ? this.props.jobsData.meta.total_count : "No Data"}
 											 </span>
+
  										</span>
  									</div>
 
@@ -206,8 +194,8 @@ class Tellent extends React.Component {
  					<div class="row main-content flexbox">
  						<div class="col-xs-2 left-sidebar">
 
-                  {this.props.user.isUserLogin === true && <LeftSideBarFilters/>}
-							   {this.props.user.isUserLogin === true && <LeftSideBarFiltersJobs/>}
+                  <LeftSideBarFilters/>
+							   <LeftSideBarFiltersJobs/>
 							   
                    			{/* {this.props.search.isTellents === true && <LeftSideBarFilters/>}
 							{this.props.search.isJobs === true && <LeftSideBarFiltersJobs/>} */}
@@ -225,8 +213,10 @@ class Tellent extends React.Component {
 
 									{/* <NoResultJobs /> */}
 
-										{this.props.user.isUserLogin === true && <JobBoxTellent data={this.props.search.tellentsData}/>}
-										{this.props.user.isUserLogin === true && <JobBoxJobs data={this.props.search.jobsData}/>}
+										<JobBoxJobs/>
+										<JobBoxTellent/>
+										{/* {this.props.user.isUserLogin === true && <JobBoxTellent data={this.props.search.tellentsData}/>}
+										{this.props.user.isUserLogin === true && <JobBoxJobs data={this.props.search.jobsData}/>} */}
 									{/* } */}
 									
 
@@ -298,7 +288,12 @@ class Tellent extends React.Component {
 	function mapStateToProps (state) {
 		return  {
 			user:state.user,
-			search:state.search
+			search:state.search,
+			jobsData:jobsData(state),
+			// totalJobsCount:totalJobsCount(state),
+			tellentsData:tellentsData(state),
+			// totalTellentsCount:totalTellentsCount(state),
+
 		}
 	}
 	

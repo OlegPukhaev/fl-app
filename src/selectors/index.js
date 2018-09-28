@@ -10,4 +10,6 @@ export const emptyInput = state => state.skills.emptyInput;
 export const getShowSkillTagWin = state => state.skills.showSkillTagWin;
 export const getSkillData = state => state.skills.skillsdata.filter(item => item.selected);
 export const getActiveCategories = state => state.skills.skillsdata.filter(item => item.selected);
-        //  (v => !v.sent);
+//  (v => !v.sent);
+export const jobsData = state => state.search.jobsData;
+export const tellentsData = state => state.search.tellentsData;

@@ -32,7 +32,8 @@ class JobBoxJobs extends React.Component {
     return (
     	<div class="job-boxes-wrapper job-boxes-wrapper--jobs flexbox justify-space-between flex-wrap">								
 				{this.props.search.jobsData !== null && this.props.search.jobsData.jobs.map(this.eachJob)}
-				{/* <JobBoxJobsList /> */}
+				{/* {this.props.search.jobsData.jobs.map(this.eachJob)} */}
+				{/* <JobBoxJobsList data={this.props.search.jobsData}/> */}
     	</div>
     );
   }

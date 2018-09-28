@@ -29,10 +29,10 @@ class JobBoxTellent extends React.Component {
 	}
 
   render() { 
-		Reactotron.warn(this.props.data);
+		// Reactotron.warn(this.props.data);
     return (
     <div class="job-boxes-wrapper job-boxes-wrapper--talents flexbox justify-space-between flex-wrap">
-      {this.props.data !== null && this.props.search.tellentsData.users.map(this.eachUser)}
+      {this.props.search.tellentsData !== null && this.props.search.tellentsData.users.map(this.eachUser)}
     </div>
     );
   }

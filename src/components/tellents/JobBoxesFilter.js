@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 import {inputSearch, dataToggler} from '../../reducers/search';
 
 class JobBoxesFilter extends React.Component {
-  constructor (props) {
-    super(props);
-  }
 
   onClickToggle = (event) => {
       this.props.dataToggler(event.target.id);

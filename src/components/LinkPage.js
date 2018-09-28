@@ -1,3 +1,4 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {BrowserRouter, Route, Redirect, Link, Switch} from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -34,6 +35,7 @@ componentWillMount = () => {
 }
 
   render() {
+    Reactotron.log("User", this.props.user.isUserLogin);
     return (
 
         // <Main />
