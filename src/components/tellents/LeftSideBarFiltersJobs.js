@@ -3,7 +3,7 @@ import React from 'react';
 import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getData} from './../../functions/api'
+import {getData, fetchCountries, fetchLanguage, fetchJobsData} from './../../functions/api'
 import {getJobsData, selectPaymentJobs, selectBudJobs, selectPropJobs, getCountriesJobs, getLanguageJobs, 
   selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs,
   inputPaymentFrom, inputPaymentTo} from './../../reducers/search'
@@ -13,10 +13,10 @@ const queryString = require('query-string');
 class LeftSideBarFiltersJobs extends React.Component {
 
   componentDidMount() {
-		getData('/api/v1/misc/countries').then(apiData => {
+        fetchCountries().then(apiData => {
 			this.props.getCountriesJobs(apiData.data);
 		});
-		getData('/api/v1/misc/get_languages').then(apiData => {
+        fetchLanguage().then(apiData => {
 			this.props.getLanguageJobs(apiData.data);
 		});
   }
@@ -25,7 +25,7 @@ class LeftSideBarFiltersJobs extends React.Component {
       var StringifyQ = queryString.stringify({
         q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
       });
-      getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
+      fetchJobsData(StringifyQ).then(apiData => {
               this.props.getJobsData(apiData.data);
               Reactotron.log("from server", apiData.data);
       });      

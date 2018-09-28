@@ -3,26 +3,28 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import {getRequest} from './../../functions/function';
 import { connect } from 'react-redux';
-import {getData} from './../../functions/api'
+import {getData, fetchCountries, fetchLanguage, fetchTellentsData} from './../../functions/api'
 import {getTellentsData, getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
 const queryString = require('query-string');
 // import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
+
   componentDidMount() {
-        getData('/api/v1/misc/countries').then(apiData => {
-			this.props.getCountries(apiData.data);
+    fetchCountries().then(apiData => {
+        this.props.getCountries(apiData.data);
 		});
-		getData('/api/v1/misc/get_languages').then(apiData => {
-			this.props.getLanguage(apiData.data);
-		});
+		
+    fetchLanguage().then(apiData => {
+        this.props.getLanguage(apiData.data);
+    });
   }
 
   getRequestTellent = () => {
     var StringifyQ = queryString.stringify({
             q: JSON.stringify(getRequest(this.props.search.config))
     });
-    getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+		fetchTellentsData(StringifyQ).then(apiData => {
             this.props.getTellentsData(apiData.data);
             Reactotron.log("from server", apiData.data);
     });

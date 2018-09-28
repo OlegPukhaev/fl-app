@@ -8,6 +8,21 @@ export const API_URL = `${API_SERVER_URL}/api/v1`;
 axios.defaults.headers.common = getCookies();
 axios.defaults.baseURL = `${API_SERVER_URL}`;
 
+export function fetchCountries(){
+    return axios.get(`${API_URL}/misc/countries`)
+    .then(response => {
+        let dataObj = Object.assign({}, response);
+        return dataObj
+    });  
+}  
+
+export function fetchLanguage(){
+    return axios.get(`${API_URL}/misc/get_languages`)
+    .then(response => {
+        let dataObj = Object.assign({}, response);
+        return dataObj
+    });  
+}  
 
 export function fetchSkillTags(value){
     return axios.get(`${API_URL}/profile/skills/search?q=${value}`)
