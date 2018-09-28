@@ -3,7 +3,8 @@ import React from 'react';
 import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getData, fetchCountries, fetchLanguage, fetchJobsData} from './../../functions/api'
+import {getData, fetchCountries, fetchLanguage, fetchJobsData} from './../../functions/api';
+import {configJobs} from './../../selectors';
 import {getJobsData, selectPaymentJobs, selectBudJobs, selectPropJobs, getCountriesJobs, getLanguageJobs, 
   selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs,
   inputPaymentFrom, inputPaymentTo} from './../../reducers/search'
@@ -23,7 +24,7 @@ class LeftSideBarFiltersJobs extends React.Component {
 
     getRequestJobs = () => {
       var StringifyQ = queryString.stringify({
-        q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
+        q: JSON.stringify(getRequestJobs(this.props.configJobs))
       });
       fetchJobsData(StringifyQ).then(apiData => {
               this.props.getJobsData(apiData.data);
@@ -96,7 +97,7 @@ class LeftSideBarFiltersJobs extends React.Component {
   }
   sendPayment = (event) => {
     // this.props.selectPaymentJobs(event.target.id,this.props.search.configJobs.p_from, this.props.search.configJobs.p_to);
-    this.getRequestJobs(event.target.id,this.props.search.configJobs.p_from, this.props.search.configJobs.p_to);
+    this.getRequestJobs(event.target.id,this.props.configJobs.p_from, this.props.configJobs.p_to);
   }
 
   render() { 
@@ -116,7 +117,7 @@ class LeftSideBarFiltersJobs extends React.Component {
 				Posted:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.search.configJobs.post.map(this.checkerList)}
+								{this.props.configJobs.post.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -124,7 +125,7 @@ class LeftSideBarFiltersJobs extends React.Component {
                 Place of Work:
             </div>
             <div class="checkbox-list-block clearfix">
-                {this.props.search.configJobs.place.map(this.checkerList)}
+                {this.props.configJobs.place.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -187,7 +188,7 @@ class LeftSideBarFiltersJobs extends React.Component {
               Payment:
             </div>
             <div class="checkbox-list-block clearfix">
-                {this.props.search.configJobs.payment.map(this.checkerList)}
+                {this.props.configJobs.payment.map(this.checkerList)}
             </div>
             <div class="filter-inputs flexbox justify-space-between">
               <input type="text" id="p_from"  class="form-control" onChange={this.inputFrom}/> 
@@ -257,7 +258,8 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
     return  {
-        search:state.search
+        search:state.search,
+        configJobs: configJobs(state)
     }
 }
 

@@ -2,6 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import {getRequest} from './../../functions/function';
+import {configTellents} from './../../selectors';
 import { connect } from 'react-redux';
 import {getData, fetchCountries, fetchLanguage, fetchTellentsData} from './../../functions/api'
 import {getTellentsData, getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
@@ -22,7 +23,7 @@ class LeftSideBarFilters extends React.Component {
 
   getRequestTellent = () => {
     var StringifyQ = queryString.stringify({
-            q: JSON.stringify(getRequest(this.props.search.config))
+            q: JSON.stringify(getRequest(this.props.configTellents))
     });
 		fetchTellentsData(StringifyQ).then(apiData => {
             this.props.getTellentsData(apiData.data);
@@ -95,7 +96,7 @@ class LeftSideBarFilters extends React.Component {
                 Experience:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.search.config.exp.map(this.checkerList)}
+								{this.props.configTellents.exp.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -103,7 +104,7 @@ class LeftSideBarFilters extends React.Component {
 						Job Done Success:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.search.config.ds.map(this.checkerList)}
+								{this.props.configTellents.ds.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -111,7 +112,7 @@ class LeftSideBarFilters extends React.Component {
 						Skill Test Score:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.search.config.skill.map(this.checkerList)}
+								{this.props.configTellents.skill.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -119,7 +120,7 @@ class LeftSideBarFilters extends React.Component {
 						Freelancer Rate:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.search.config.rate.map(this.checkerList)}
+								{this.props.configTellents.rate.map(this.checkerList)}
             </div>
         </div>
 
@@ -140,7 +141,7 @@ class LeftSideBarFilters extends React.Component {
 								</div>
 								<div class="dropdown-list-wrapper">
 										<div class="checkbox-list-block">
-													{this.props.search.config.lang.map(this.checkerList)}
+													{this.props.configTellents.lang.map(this.checkerList)}
 										</div>
 								</div>
 						</div>
@@ -164,7 +165,7 @@ class LeftSideBarFilters extends React.Component {
                     </div>
                     <div class="dropdown-list-wrapper">
                         <div class="checkbox-list-block">
-                            {this.props.search.config.loc.map(this.checkerList)}
+                            {this.props.configTellents.loc.map(this.checkerList)}
                         </div>
                     </div>
                 </div>
@@ -176,7 +177,7 @@ class LeftSideBarFilters extends React.Component {
                 Availability:
             </div>
             <div class="checkbox-list-block clearfix">
-                {this.props.search.config.avl.map(this.checkerList)}
+                {this.props.configTellents.avl.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -184,7 +185,7 @@ class LeftSideBarFilters extends React.Component {
                 Place of Work:
             </div>
             <div class="checkbox-list-block clearfix">
-                {this.props.search.config.place.map(this.checkerList)}
+                {this.props.configTellents.place.map(this.checkerList)}
             </div>
         </div>
     </div>
@@ -212,7 +213,8 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
     return  {
-        search:state.search
+				search:state.search,
+				configTellents: configTellents(state)
     }
 }
 
