@@ -16,7 +16,7 @@ export const jobsData = state => state.search.jobsData;
 export const tellentsData = state => state.search.tellentsData;
 export const totalCount = state => state.search.totalCount;
 export const isTellents = state => state.search.isTellents;
-export const isJobs = state => state.search.isJobss;
+export const isJobs = state => state.search.isJobs;
 export const configTellents = state => state.search.config;
 export const configJobs = state => state.search.configJobs;
 

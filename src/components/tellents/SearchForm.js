@@ -30,12 +30,12 @@ class SearchForm extends React.Component {
 				q: JSON.stringify(reqObj)
 		});
 
-		if (this.props.search.isTellents === true) {
+		if (this.props.isTellents === true) {
 			fetchTellentsData(StringifyQ).then(response => {
 				this.props.getTellentsData(response.data);	
 			});
 		}
-		if (this.props.search.isJobs === true) 
+		if (this.props.isJobs === true) 
 			fetchJobsData(StringifyQ).then(response => {
 				this.props.getJobsData(response.data);	
 			});
@@ -81,11 +81,11 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
     return  {
-				search:state.search,
+				// search:state.search,
 				isJobs:isJobs(state),
 				isTellents:isTellents(state),
 				configJobs: configJobs(state),
-				configTellents: configTellents(state),
+				configTellents: configTellents(state)
 
     }
 }
