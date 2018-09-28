@@ -32,6 +32,16 @@ export function fetchTellentsData(value){
       });  
 }
 
+export function fetchJobsData(value){
+    return axios.get(`${API_URL}/jobs/search?${value}`)
+    .then(response => {
+        let dataObj = Object.assign({}, response);
+        return dataObj;
+    }).catch(error => {
+        console.log('my errors' , error);
+      });  
+}
+
 export function fetchUserSkills(value) {
 	return axios.get(`${API_URL}/profile/skills/user?=${value}`)
 		.then(response => {
