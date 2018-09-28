@@ -5,8 +5,10 @@ import { bindActionCreators } from 'redux';
 import SkillSearchList from './SkillSearchList';
 // import '../App.css';
 import '../../node_modules/toastr/build/toastr.css';
-import axios from 'axios';
+// import axios from 'axios';
 import {searchSkillTagWin, removeSkillTags, setInputEmpty} from './../reducers/userSkills';
+import { fetchSkillTags } from '../functions/api';
+import {getShowSkillTagWin, getAllSkillData, emptyInput} from './../selectors';
 
 class SkillTags extends React.Component {
   constructor(props){
@@ -29,38 +31,32 @@ class SkillTags extends React.Component {
   }
 
   onChangeGetTag = (event) => {
-      this.props.setInputEmpty(event.target.value);
-      axios.get('/api/v1/profile/skills/search?q='+event.target.value)
-      .then(response => {
-        var size = Object.keys(response.data.skills).length;
-        if (size > 0){
-          this.setState({
+    this.props.setInputEmpty(event.target.value);
+      fetchSkillTags(event.target.value).then(response => {
+        this.setState({
             tags: response
           });
-          this.props.searchSkillTagWin(true);
+        this.props.searchSkillTagWin(true);
         }
-      })
-      .catch(error => {
-        console.log('my errors' , error);
-      })
-      .then(function () {
-      });
+      );
   }
 
   render() { 
+    Reactotron.log(this.state.tags);
     return (
       <div class="skill-sub-block">
       
-        {this.props.skills.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.id}/>}
+        {this.props.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.id}/>}
         <form class="form-group">
-          <input type="text" class="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag} value={this.props.skills.emptyInput}/>
+          <input type="text" class="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag} value={this.props.emptyInput}/>
           <button class="add-btn btn btn-blue">
             <span class="icon icon-add"></span>
           </button>
         </form>
         <div class="skill-tags-block clearfix">
           {
-            this.props.skills.skillsdata[this.props.id].skill_tags.map(this.skillTags)
+            this.props.skillsdata[this.props.id].skill_tags.map(this.skillTags)
+            // this.props.skills.skillsdata[this.props.id].skill_tags.map(this.skillTags)
           }
         </div>
       </div>
@@ -82,7 +78,10 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
   return  {
-    skills: state.skills
+    skills: state.skills,
+    showSkillTagWin: getShowSkillTagWin(state),
+    skillsdata: getAllSkillData(state),
+    emptyInput: emptyInput(state)
   }
 }
 

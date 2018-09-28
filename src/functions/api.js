@@ -8,6 +8,20 @@ export const API_URL = `${API_SERVER_URL}/api/v1`;
 	axios.defaults.headers.common = getCookies();
 	axios.defaults.baseURL = `${API_SERVER_URL}`;
 
+
+export function fetchSkillTags(value){
+    return axios.get(`${API_URL}/profile/skills/search?q=${value}`)
+    .then(response => {
+      var size = Object.keys(response.data.skills).length;
+      if (size > 0){
+        return response;
+      }
+    })
+    .catch(error => {
+      console.log('my errors' , error);
+    });
+}    
+    
 export function fetchUserSkills() {
 	return axios.get(`${API_URL}/profile/skills/user`)
 		.then(response => {
