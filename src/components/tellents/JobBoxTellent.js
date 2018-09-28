@@ -1,11 +1,11 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
-import {getData} from '../../functions/api';
+import {fetchTellentsData} from '../../functions/api';
 import {getRequest} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getTellentsData, setTotalCount} from './../../reducers/search';
-import {tellentsData, isTellents, isJobs} from './../../selectors';
+import {tellentsData, isTellents, isJobs, configTellents} from './../../selectors';
 
 import JobBoxTellentList from './JobBoxTellentList';
 const queryString = require('query-string');
@@ -17,15 +17,12 @@ class JobBoxTellent extends React.Component {
 
 	componentDidMount = () => {
 		var StringifyQ = queryString.stringify({
-			q: JSON.stringify(getRequest(this.props.search.config))
+			q: JSON.stringify(getRequest(this.props.configTellents))
 		});
-
-		// getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-		// 	this.props.getTellentsData(apiData.data);
-		// });
-
-		this.props.getTellentsData(StringifyQ);
-
+		fetchTellentsData(StringifyQ).then(response => {
+			Reactotron.log('stringify',response);
+			this.props.getTellentsData(response.data);	
+		});
 	}
 
 	eachUser = (item, index) => {
@@ -55,6 +52,7 @@ const mapDispatchToProps = dispatch => {
 function mapStateToProps (state) {
 	return  {
 			search:state.search,
+			configTellents: configTellents(state),
 			tellentsData:tellentsData(state),
 			isTellents:isTellents(state), 
 			isJobs: isJobs(state)

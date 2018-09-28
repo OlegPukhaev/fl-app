@@ -5,8 +5,8 @@ export const queryString = require('query-string');
 export const API_SERVER_URL = "https://floating-atoll-63112.herokuapp.com";
 export const API_URL = `${API_SERVER_URL}/api/v1`;
 
-	axios.defaults.headers.common = getCookies();
-	axios.defaults.baseURL = `${API_SERVER_URL}`;
+axios.defaults.headers.common = getCookies();
+axios.defaults.baseURL = `${API_SERVER_URL}`;
 
 
 export function fetchSkillTags(value){
@@ -23,15 +23,17 @@ export function fetchSkillTags(value){
 }    
   
 export function fetchTellentsData(value){
-    return axios.get(`${API_URL}/api/v1/tellents/search?=${value}`)
+    return axios.get(`${API_URL}/tellents/search?${value}`)
     .then(response => {
         let dataObj = Object.assign({}, response);
-        return dataObj
-    });  
+        return dataObj;
+    }).catch(error => {
+        console.log('my errors' , error);
+      });  
 }
 
-export function fetchUserSkills() {
-	return axios.get(`${API_URL}/profile/skills/user`)
+export function fetchUserSkills(value) {
+	return axios.get(`${API_URL}/profile/skills/user?=${value}`)
 		.then(response => {
 			let dataObj = Object.assign({}, response);
 			return dataObj;
