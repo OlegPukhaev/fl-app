@@ -21,7 +21,15 @@ export function fetchSkillTags(value){
       console.log('my errors' , error);
     });
 }    
-    
+  
+export function fetchTellentsData(value){
+    return axios.get(`${API_URL}/api/v1/tellents/search?=${value}`)
+    .then(response => {
+        let dataObj = Object.assign({}, response);
+        return dataObj
+    });  
+}
+
 export function fetchUserSkills() {
 	return axios.get(`${API_URL}/profile/skills/user`)
 		.then(response => {

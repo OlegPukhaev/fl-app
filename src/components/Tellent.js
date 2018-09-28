@@ -292,11 +292,8 @@ class Tellent extends React.Component {
 			user:state.user,
 			search:state.search,
 			jobsData:jobsData(state),
-			// totalJobsCount:totalJobsCount(state),
 			tellentsData:tellentsData(state),
 			totalCount: totalCount(state)
-			// totalTellentsCount:totalTellentsCount(state),
-
 		}
 	}
 	

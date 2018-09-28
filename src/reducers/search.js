@@ -1,4 +1,5 @@
 import Reactotron from 'reactotron-react-js';
+import {fetchTellentsData} from './../functions/api';
 
 const 
 	GET_TELLENTS_DATA = 'GET_TELLENTS_DATA',
@@ -409,15 +410,15 @@ let initialState = {
 		showJobs:"show",
 		tellentsData: null,
 		jobsData: null,
-		totalCount:0
+		totalCount:"0"
 	
 }
 
-  export function setTotalCount(id) {
+  export function setTotalCount(value) {
 		return dispatch => {
 			dispatch({
 				type: TOTAL_COUNT, 
-				payload: id
+				payload: value
 			});
 		};
 	}
@@ -1019,6 +1020,7 @@ const actionsMap = {
 		}
 	},
 	[TOTAL_COUNT]: (state, action) => {
+		
 		return {
 			...state, 
 			totalCount: action.payload

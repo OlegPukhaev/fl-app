@@ -4,7 +4,8 @@ import {getData} from '../../functions/api';
 import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getJobsData} from './../../reducers/search';
+import {getJobsData, setTotalCount} from './../../reducers/search';
+import {jobsData, isTellents, isJobs} from './../../selectors';
 import JobBoxJobsList from './JobBoxJobsList';
 const queryString = require('query-string');
 
@@ -14,7 +15,6 @@ class JobBoxJobs extends React.Component {
 	}
 
 	componentDidMount = () => {
-		// var requestObj = ;
 		var StringifyQ = queryString.stringify({
 			q: JSON.stringify(getRequestJobs(this.props.search.configJobs))
 		});
@@ -31,9 +31,7 @@ class JobBoxJobs extends React.Component {
   render() { 
     return (
     	<div class="job-boxes-wrapper job-boxes-wrapper--jobs flexbox justify-space-between flex-wrap">								
-				{this.props.search.jobsData !== null && this.props.search.jobsData.jobs.map(this.eachJob)}
-				{/* {this.props.search.jobsData.jobs.map(this.eachJob)} */}
-				{/* <JobBoxJobsList data={this.props.search.jobsData}/> */}
+				{	this.props.jobsData !== null && this.props.jobsData.jobs.map(this.eachJob)}
     	</div>
     );
   }
@@ -42,7 +40,8 @@ class JobBoxJobs extends React.Component {
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
 			{
-				getJobsData
+				getJobsData,
+				setTotalCount
 			},
 			dispatch
 	);
@@ -50,7 +49,11 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
 	return  {
-			search:state.search
+			search:state.search,
+			jobsData:jobsData(state),
+			isTellents:isTellents(state), 
+			isJobs: isJobs(state)
+
 	}
 }
 

@@ -4,7 +4,9 @@ import {getData} from '../../functions/api';
 import {getRequest} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getTellentsData} from './../../reducers/search';
+import {getTellentsData, setTotalCount} from './../../reducers/search';
+import {tellentsData, isTellents, isJobs} from './../../selectors';
+
 import JobBoxTellentList from './JobBoxTellentList';
 const queryString = require('query-string');
 
@@ -14,14 +16,16 @@ class JobBoxTellent extends React.Component {
 	}
 
 	componentDidMount = () => {
-		// var requestObj = ;
 		var StringifyQ = queryString.stringify({
 			q: JSON.stringify(getRequest(this.props.search.config))
 		});
-		getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-			this.props.getTellentsData(apiData.data);
-			// Reactotron.log("from server", apiData.data);
-		});
+
+		// getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
+		// 	this.props.getTellentsData(apiData.data);
+		// });
+
+		this.props.getTellentsData(StringifyQ);
+
 	}
 
 	eachUser = (item, index) => {
@@ -32,7 +36,7 @@ class JobBoxTellent extends React.Component {
 		// Reactotron.warn(this.props.data);
     return (
     <div class="job-boxes-wrapper job-boxes-wrapper--talents flexbox justify-space-between flex-wrap">
-      {this.props.search.tellentsData !== null && this.props.search.tellentsData.users.map(this.eachUser)}
+      {this.props.tellentsData !== null && this.props.tellentsData.users.map(this.eachUser)}
     </div>
     );
   }
@@ -41,7 +45,8 @@ class JobBoxTellent extends React.Component {
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
 			{
-				getTellentsData
+				getTellentsData,
+				setTotalCount
 			},
 			dispatch
 	);
@@ -49,7 +54,10 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
 	return  {
-			search:state.search
+			search:state.search,
+			tellentsData:tellentsData(state),
+			isTellents:isTellents(state), 
+			isJobs: isJobs(state)
 	}
 }
 

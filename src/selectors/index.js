@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 
+
 export const isUserLogin = state => state.user.isUserLogin;
 export const activeWin = state => state.skills.activeWin;
 export const backWindow = state => state.skills.backWindow;
@@ -14,3 +15,6 @@ export const getActiveCategories = state => state.skills.skillsdata.filter(item 
 export const jobsData = state => state.search.jobsData;
 export const tellentsData = state => state.search.tellentsData;
 export const totalCount = state => state.search.totalCount;
+export const isTellents = state => state.search.isTellents;
+export const isJobs = state => state.search.isJobss;
+
