@@ -6,7 +6,7 @@ import { getData } from '../functions/api';
 import '../../node_modules/toastr/build/toastr.css';
 import {arrForUpdate} from './../functions/function';
 import {getTellentsData, getJobsData, getLanguage, getCountries, getCountriesJobs, getLanguageJobs} from './../reducers/search';
-import {jobsData, tellentsData, totalCount} from './../selectors';
+import {jobsData, tellentsData, totalCount, isTellents, isJobs} from './../selectors';
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
 import JobBoxesFilter from './tellents/JobBoxesFilter';
@@ -195,14 +195,9 @@ class Tellent extends React.Component {
  					<div class="row main-content flexbox">
  						<div class="col-xs-2 left-sidebar">
 
-                  <LeftSideBarFilters/>
-							   <LeftSideBarFiltersJobs/>
+            	 <LeftSideBarFilters/>
+							<LeftSideBarFiltersJobs/>
 							   
-                   			{/* {this.props.search.isTellents === true && <LeftSideBarFilters/>}
-							{this.props.search.isJobs === true && <LeftSideBarFiltersJobs/>} */}
-							   
-							   
-							{/* {Reactotron.log(this.props.search.isJobs, this.props.search.isTellents)} */}
  						</div>{/* <!--col-xs-2 End--> */}
 
 						
@@ -293,7 +288,9 @@ class Tellent extends React.Component {
 			search:state.search,
 			jobsData:jobsData(state),
 			tellentsData:tellentsData(state),
-			totalCount: totalCount(state)
+			totalCount: totalCount(state),
+			isTellents:isTellents(state),
+			isJobs:isJobs(state)
 		}
 	}
 	

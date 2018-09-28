@@ -101,7 +101,7 @@ class LeftSideBarFiltersJobs extends React.Component {
 
   render() { 
     return (
-    <div class="panel panel-default">
+    <div class={`panel panel-default ${this.props.search.showJobs}`}>
         <button class="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
         <div class="filter-block">
             <div class="filter-title">
@@ -257,7 +257,7 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
     return  {
-        // search:state.search,
+        search:state.search,
         configJobs: configJobs(state)
     }
 }

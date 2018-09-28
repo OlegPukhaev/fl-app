@@ -405,9 +405,9 @@ let initialState = {
 			loc:{},
 		},
 		isTellents:false,
-		showTellents:"hide",
+		showTellents:"hidemywin",
 		isJobs:true,
-		showJobs:"show",
+		showJobs:null,
 		tellentsData: null,
 		jobsData: null,
 		totalCount:"0"
@@ -832,13 +832,13 @@ const actionsMap = {
 				if(action.payload === "jobs-filter-2") {
 					val1=false;
 					val2=true;	
-					val3="hide";
-					val4="";
+					val3="hidemywin";
+					val4=null;
 				} else {
 					val1=true;
 					val2=false;
-					val3="";
-					val4="hide";
+					val3=null;
+					val4="hidemywin";
 				}
 
 				return {

@@ -1,3 +1,4 @@
+import '../../App.css';
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
@@ -7,7 +8,6 @@ import { connect } from 'react-redux';
 import {getData, fetchCountries, fetchLanguage, fetchTellentsData} from './../../functions/api'
 import {getTellentsData, getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
 const queryString = require('query-string');
-// import '../../App.css';
 
 class LeftSideBarFilters extends React.Component {
 
@@ -88,7 +88,7 @@ class LeftSideBarFilters extends React.Component {
 
   render() { 
     return (
-    <div class="panel panel-default" >
+    <div  class={`panel panel-default ${this.props.search.showTellents}`}>
         <button class="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
         <div class="filter-block">
             <div class="filter-title">
