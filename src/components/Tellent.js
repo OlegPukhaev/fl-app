@@ -6,7 +6,7 @@ import { getData } from '../functions/api';
 import '../../node_modules/toastr/build/toastr.css';
 import {arrForUpdate} from './../functions/function';
 import {getTellentsData, getJobsData, getLanguage, getCountries, getCountriesJobs, getLanguageJobs} from './../reducers/search';
-import {jobsData, tellentsData} from './../selectors';
+import {jobsData, tellentsData, totalCount} from './../selectors';
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
 import JobBoxesFilter from './tellents/JobBoxesFilter';
@@ -179,7 +179,8 @@ class Tellent extends React.Component {
  										<span class="sort-result">
  											Result: 
 											 <span class="sort-result-numb">
-													{this.props.jobsData!==null ? this.props.jobsData.meta.total_count : "No Data"}
+													{/* {this.props.jobsData!==null ? this.props.jobsData.meta.total_count : "No Data"} */}
+													{this.props.totalCount}
 											 </span>
 
  										</span>
@@ -279,7 +280,8 @@ class Tellent extends React.Component {
 				getJobsData,
 				getLanguage,
 				getCountries,
-				getCountriesJobs, getLanguageJobs
+				getCountriesJobs,
+				getLanguageJobs
 			},
 			dispatch
 		);
@@ -292,6 +294,7 @@ class Tellent extends React.Component {
 			jobsData:jobsData(state),
 			// totalJobsCount:totalJobsCount(state),
 			tellentsData:tellentsData(state),
+			totalCount: totalCount(state)
 			// totalTellentsCount:totalTellentsCount(state),
 
 		}

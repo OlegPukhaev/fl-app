@@ -31,6 +31,10 @@ const	SELECT_BUD_JOBS = 'SELECT_BUD_JOBS';
 const	SELECT_PAYMENT_JOBS = 'SELECT_PAYMENT_JOBS';
 const	INPUT_PAYMENT_FROM = 'INPUT_PAYMENT_FROM';
 const	INPUT_PAYMENT_TO = 'INPUT_PAYMENT_TO';
+// const	INPUT_PAYMENT_TO = 'INPUT_PAYMENT_TO';
+const	TOTAL_COUNT = 'TOTAL_COUNT';
+
+
 
 let initialState = {
 	config : {
@@ -404,10 +408,19 @@ let initialState = {
 		isJobs:true,
 		showJobs:"show",
 		tellentsData: null,
-		jobsData: null
+		jobsData: null,
+		totalCount:0
 	
 }
 
+  export function setTotalCount(id) {
+		return dispatch => {
+			dispatch({
+				type: TOTAL_COUNT, 
+				payload: id
+			});
+		};
+	}
   export function selectAvl(id) {
 		return dispatch => {
 			dispatch({
@@ -1003,6 +1016,12 @@ const actionsMap = {
 		return {
 			...state, 
 			configJobs: state.configJobs
+		}
+	},
+	[TOTAL_COUNT]: (state, action) => {
+		return {
+			...state, 
+			totalCount: action.payload
 		}
 	}
 }

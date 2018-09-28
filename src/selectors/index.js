@@ -13,3 +13,4 @@ export const getActiveCategories = state => state.skills.skillsdata.filter(item 
 //  (v => !v.sent);
 export const jobsData = state => state.search.jobsData;
 export const tellentsData = state => state.search.tellentsData;
+export const totalCount = state => state.search.totalCount;
