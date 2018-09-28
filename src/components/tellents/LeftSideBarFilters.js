@@ -88,7 +88,6 @@ class LeftSideBarFilters extends React.Component {
 
   render() { 
     return (
-        // class={this.props.search.showTellents}
     <div class="panel panel-default" >
         <button class="btn btn-bg-transparent close-btn icon-btn"><span class="glyphicon glyphicon-remove"></span></button>
         <div class="filter-block">

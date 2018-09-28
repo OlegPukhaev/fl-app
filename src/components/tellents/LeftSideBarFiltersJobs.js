@@ -3,7 +3,7 @@ import React from 'react';
 import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getData, fetchCountries, fetchLanguage, fetchJobsData} from './../../functions/api';
+import {fetchCountries, fetchLanguage, fetchJobsData} from './../../functions/api';
 import {configJobs} from './../../selectors';
 import {getJobsData, selectPaymentJobs, selectBudJobs, selectPropJobs, getCountriesJobs, getLanguageJobs, 
   selectExpJobs, selectPostJobs, selectPlaceJobs, selectAvlJobs, selectLangJobs, selectLocJobs,
@@ -96,7 +96,6 @@ class LeftSideBarFiltersJobs extends React.Component {
     // Reactotron.log(event.target.value);
   }
   sendPayment = (event) => {
-    // this.props.selectPaymentJobs(event.target.id,this.props.search.configJobs.p_from, this.props.search.configJobs.p_to);
     this.getRequestJobs(event.target.id,this.props.configJobs.p_from, this.props.configJobs.p_to);
   }
 
@@ -109,7 +108,7 @@ class LeftSideBarFiltersJobs extends React.Component {
                 Experience:
             </div>
             <div class="checkbox-list-block clearfix">
-								{this.props.search.configJobs.exp.map(this.checkerList)}
+								{this.props.configJobs.exp.map(this.checkerList)}
             </div>
         </div>
         <div class="filter-block">
@@ -145,7 +144,7 @@ class LeftSideBarFiltersJobs extends React.Component {
 								</div>
 								<div class="dropdown-list-wrapper">
 										<div class="checkbox-list-block">
-													{this.props.search.configJobs.lang.map(this.checkerList)}
+													{this.props.configJobs.lang.map(this.checkerList)}
 										</div>
 								</div>
 						</div>
@@ -168,7 +167,7 @@ class LeftSideBarFiltersJobs extends React.Component {
                     </div>
                     <div class="dropdown-list-wrapper">
                         <div class="checkbox-list-block">
-                            {this.props.search.configJobs.loc.map(this.checkerList)}
+                            {this.props.configJobs.loc.map(this.checkerList)}
                         </div>
                     </div>
                 </div>
@@ -179,7 +178,7 @@ class LeftSideBarFiltersJobs extends React.Component {
                 Availability:
             </div>
             <div class="checkbox-list-block clearfix">
-                {this.props.search.configJobs.avl.map(this.checkerList)}
+                {this.props.configJobs.avl.map(this.checkerList)}
             </div>
         </div>
 
@@ -215,7 +214,7 @@ class LeftSideBarFiltersJobs extends React.Component {
                     </div>
                     <div class="dropdown-list-wrapper">
                         <div class="checkbox-list-block">
-                            {this.props.search.configJobs.bud.map(this.checkerList)}
+                            {this.props.configJobs.bud.map(this.checkerList)}
                         </div>
                     </div>
                 </div>
@@ -227,7 +226,7 @@ class LeftSideBarFiltersJobs extends React.Component {
                 Proposals:
             </div>
             <div class="checkbox-list-block clearfix">
-                {this.props.search.configJobs.prop.map(this.checkerList)}
+                {this.props.configJobs.prop.map(this.checkerList)}
             </div>
         </div>
     </div>
@@ -258,7 +257,7 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
     return  {
-        search:state.search,
+        // search:state.search,
         configJobs: configJobs(state)
     }
 }
