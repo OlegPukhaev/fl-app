@@ -25,19 +25,22 @@ class JobBoxJobsList extends React.Component {
     }
 
     getNameById = id => {
-        // Reactotron.log("--->",id)
-        // if (this.props.configTellents.avl.id = id ) return 
-        
+                
         var valname = this.props.configJobs.avl.map(item => {
             if (item.request === id) {
                 return item.name;
                 // alert(item.name);
             }
         })
-
-        Reactotron.log("--->",valname.name)
         return valname;
     } 
+
+    toUppercaseStr = (value) => {
+        var str = value[0].toUpperCase() + value.substr(1);
+        return str.replace("_"," ");
+    }
+
+
 
   render() { 
     // {Reactotron.log("--->",this.props.data.skill_tags.length)}
@@ -48,13 +51,14 @@ class JobBoxJobsList extends React.Component {
                 <div class="job-box-header flexbox justify-space-between">
                     <div class="job-box-title">
                         <div class="post-date">{this.props.data.created_at}</div>
-                        <div class="job-title">{this.props.data.promotion_title}</div>
+                        <div class="job-title">{this.props.data.title}</div>
                     </div>
                     <div class="panel panel-default">
                         <div class="flexbox justify-space-between">
                             <div class="job-box-photo-block">
                                 <div class="job-box-photo bg-cover circul-shape">
-                                    <i class="notif"></i>
+                                    <img src={this.props.data.user.image.url} className="img-circle" width="38" height="38"/>
+                                    {/* <i class="notif"></i> */}
                                 </div>
                             </div>
                             <div class="award">
@@ -72,31 +76,36 @@ class JobBoxJobsList extends React.Component {
                     <div class="job-box-tips flexbox justify-space-between">
                         <div class="tip">
                             <span class="icon icon-location"></span>
-                            {/* <span class="text">{this.props.data.user.languages.map(this.getLanguage)}</span> */}
-                            <span class="text">{this.getLanguageCut(this.props.data.user.languages)}</span>
+                            <span class="text">{this.props.data.user.country !== null ? this.toUppercaseStr(this.props.data.user.country.substring(0,3)) : "N/A"}</span>
+                            {/* <span class="text">{this.props.data.user.languages.length >> 0 ? this.getLanguageCut(this.props.data.user.languages) : "N/A"}</span> */}
                         </div>
                         <div class="tip">
                             <span class="icon icon-clock-1"></span>
                             {/* <span class="text">{this.props.data.commitment}</span> */}
-                            <span class="text">{this.getNameById(this.props.data.commitment)}</span>
+                            <span class="text">{this.props.data.commitment !== null ? this.getNameById(this.props.data.commitment) :  "N/A"}</span>
                         </div>
                         <div class="tip">
                             <span class="icon icon-award"></span>
-                            <span class="text">Jun</span>
+                            <span class="text">{this.props.data.level !== null ? this.toUppercaseStr(this.props.data.level.substring(0,3)) : "N/A"}</span>
                         </div>
                         <div class="tip">
                             <span class="icon icon-timer"></span>
-                            <span class="text">110 h/2 J</span>
+                            {/* <span class="text">110 h/2 J</span> */}
+                            <span class="text">
+                                {this.props.data.period !== null && this.props.data.period}
+                                {this.props.data.period_type !== null &&  this.toUppercaseStr(this.props.data.period_type)}
+                                {this.props.data.period === null && "N/A"}
+                            </span>
                         </div>
                         
                         <div class="tip">
                             <span class="icon icon-wallet"></span>
-                            <span class="text">24$/h</span>
+                            <span class="text">{this.props.data.time_type !== null ? this.toUppercaseStr(this.props.data.time_type) : "N/A"}</span>
                         </div>
                     </div>
                     <div class="job-box-deskr">
                         <div class="text">
-                        {this.props.data.promotion_description}
+                        {this.props.data.description}
                             {/* Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks... */}
                         </div>
                         <div class="skill-tags-block clearfix">
@@ -124,6 +133,7 @@ class JobBoxJobsList extends React.Component {
                                         <span class="icon icon-badge-solid"></span>
                                     </div>
                                     <div class="job-box-photo bg-cover circul-shape">
+                                        <img src={this.props.data.user.image.url} />
                                     </div>
                                     <div class="job-box-rate">
                                         <span class="icon icon-star-full"></span>

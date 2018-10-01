@@ -9,13 +9,15 @@ class JobBoxTellentList extends React.Component {
 	}
 
   render() { 
+      Reactotron.log("ppp --- >",this.props.data.profession);
     return (
 			<div class="job-box-block">
         <div class="panel panel-default job-box awarded">
             <div class="job-box-header flexbox justify-space-between">
                 <div class="job-box-photo-block">
                     <div class="job-box-photo bg-cover circul-shape">
-                        <i class="notif"></i>
+                        {/* <i class="notif"></i> */}
+                        <img src={this.props.data.image.url} className="img-circle" width="55" height="55"/>
                         <i class="award">
                             <span class="icon icon-badge-flat"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span></span>
                         </i>
@@ -23,7 +25,11 @@ class JobBoxTellentList extends React.Component {
                 </div>
                 <div class="job-box-title">
                     <div class="job-box-name blue-color">{this.props.data.full_name}</div>
-                    <div class="job-box-prof">{this.props.data.experience} / UI Designer</div>
+                    <div class="job-box-prof">
+                    
+                    
+                        {this.props.data.experience !== null ? this.props.data.experience : "N/A"} / {this.props.data.profession !== null ? this.props.data.profession.title : "N/A"}
+                    </div>
                 </div>
                 <div class="job-box-rate">
                     <span class="icon icon-star-full"></span>
