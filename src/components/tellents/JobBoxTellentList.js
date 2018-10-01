@@ -1,6 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import {configTellents} from './../../selectors';
 import Reactotron from 'reactotron-react-js';
 
 class JobBoxTellentList extends React.Component {
@@ -13,8 +14,23 @@ class JobBoxTellentList extends React.Component {
         return str.replace("-"," ");
     }
 
+    getNameById = id => {
+        // Reactotron.log(id);
+        var valname = this.props.configTellents.avl.map(item => {
+            if (item.id === id) {
+                // alert(item.name);
+                return item.name;
+            }
+        })
+        return valname;
+    } 
+
+    skillTags =(item)=> {
+        return <div class="skill-tag">{item.name}</div>
+    }
+
   render() { 
-      Reactotron.log("ppp --- >",this.props.data.profession);
+    //   Reactotron.log("ppp --- >",this.props.data);
     return (
 			<div class="job-box-block">
         <div class="panel panel-default job-box awarded">
@@ -47,30 +63,36 @@ class JobBoxTellentList extends React.Component {
                       </div>
                       <div class="tip">
                           <span class="icon icon-jobs"></span>
-                          <span class="text">110 h/2 J</span>
+                          <span class="text">
+                            {this.props.data.total_hours !== null && this.props.data.total_hours} h/j {this.props.data.total_jobs !== null && this.props.data.total_jobs}  
+                          
+                          
+                          </span>
                       </div>
                       <div class="tip">
                           <span class="icon icon-location"></span>
-                          <span class="text">Aus..</span>
+                          <span class="text">{this.props.data.country !== null ? this.props.data.country: "N/A"}</span>
                       </div>
                       <div class="tip">
                           <span class="icon icon-clock-1"></span>
-                          <span class="text">&#62; 30h</span>
+                          <span class="text">{this.props.data.availability !== null ? this.getNameById(this.props.data.availability) : "N/A"}</span>
                       </div>
                       <div class="tip">
                           <span class="icon icon-wallet"></span>
-                          <span class="text">24$/h</span>
+                          <span class="text">{this.props.data.price !== null ? this.props.data.price+"$/h": "N/A"}</span>
                       </div>
                 </div>
                 <div class="job-box-deskr">
                     <div class="text">
-                        {this.props.data.profession !== null && this.props.data.profession.description}
+                        {this.props.data.profession !== null && this.props.data.profession.description.substring(0, 260)+"..."}
                         {/* Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus ... */}
                     </div>
                     <div class="skill-tags-block clearfix">
-                        <div class="skill-tag">Math</div>
+                        {/* <div class="skill-tag">Math</div>
                         <div class="skill-tag">Trigonometry</div>
-                        <div class="skill-tag">Calculus</div>
+                        <div class="skill-tag">Calculus</div> */}
+
+                         {this.props.data.skill_tags.map(this.skillTags)}
                     </div>
                 </div>
             </div>
@@ -281,7 +303,8 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
 	return  {
-			search:state.search
+        configTellents:configTellents(state),
+        // configJobs:configJobs(state),
 	}
 }
 

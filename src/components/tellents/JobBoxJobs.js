@@ -1,4 +1,5 @@
 import Reactotron from 'reactotron-react-js';
+
 import React from 'react';
 import {fetchJobsData} from '../../functions/api';
 import {getRequestJobs} from './../../functions/function';
@@ -27,6 +28,10 @@ class JobBoxJobs extends React.Component {
 		return <JobBoxJobsList data={item} id={index}/>
 	}
  
+	skillTags =(item)=> {
+		return <div class="skill-tag">{item.name}</div>
+	}
+
   render() { 
     return (
     	<div class="job-boxes-wrapper job-boxes-wrapper--jobs flexbox justify-space-between flex-wrap">								

@@ -44,14 +44,11 @@ class JobBoxJobsList extends React.Component {
 
 
   render() { 
-    // {Reactotron.log("--->",this.props.data.skill_tags.length)}
-
     return (
 			<div class="job-box-block">
 				<div class="panel panel-default job-box">
                 <div class="job-box-header flexbox justify-space-between">
                     <div class="job-box-title">
-                        {/* <div class="post-date">{this.props.data.created_at}</div> */}
                         <div class="post-date">{this.toUppercaseStr(moment(this.props.data.created_at).startOf('day').fromNow())}</div>
                         <div class="job-title">{this.props.data.title}</div>
                     </div>
