@@ -23,8 +23,8 @@ class SortNav extends React.Component {
   }
 
   onChangeSort = (event) => {
-    alert("fff");
-    this.props.sortFilter(event.target.id)
+    // alert(event.target.name);
+    this.props.sortFilter(event.target.name)
   }
 
   render() { 
@@ -45,28 +45,28 @@ class SortNav extends React.Component {
             </div>
             <div class="radio-block">
               <div class="radio">
-                <input type="radio" name="jobs-sort-option" id="jobs-sort-option-1" value="jobs-sort-option-1" checked="" onChange={this.onChangeSort}/>
+                <input type="radio" name="relevance" id="jobs-sort-option-1" value="jobs-sort-option-1" checked="" onChange={this.onChangeSort}/>
                 <label for="jobs-sort-option-1">
                   <span class="check-mark icon icon-check-mark"></span>
                   <span class="radio-text">Relevance</span>
                 </label>
               </div>
               <div class="radio">
-                <input type="radio" name="jobs-sort-option" id="jobs-sort-option-2" value="jobs-sort-option-2" />
+                <input type="radio" name="saved" id="jobs-sort-option-2" value="jobs-sort-option-2" onChange={this.onChangeSort}/>
                 <label for="jobs-sort-option-2">
                   <span class="check-mark icon icon-check-mark"></span>
                   <span class="radio-text">Date</span>
                 </label>
               </div>
               <div class="radio">
-                <input type="radio" name="jobs-sort-option" id="jobs-sort-option-3" value="jobs-sort-option-3" />
+                <input type="radio" name="rate" id="jobs-sort-option-3" value="jobs-sort-option-3" onChange={this.onChangeSort}/>
                 <label for="jobs-sort-option-3">
                   <span class="check-mark icon icon-check-mark"></span>
                   <span class="radio-text">Rate</span>
                 </label>
               </div>
               <div class="radio">
-                <input type="radio" name="jobs-sort-option" id="jobs-sort-option-4" value="jobs-sort-option-4" />
+                <input type="radio" name="hired" id="jobs-sort-option-4" value="jobs-sort-option-4" onChange={this.onChangeSort}/>
                 <label for="jobs-sort-option-4">
                   <span class="check-mark icon icon-check-mark"></span>
                   <span class="radio-text">Alfabet</span>
