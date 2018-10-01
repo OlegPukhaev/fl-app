@@ -50,8 +50,8 @@ function mapStateToProps (state) {
 	return  {
 			// search:state.search,
 			jobsData:jobsData(state),
-			isTellents:isTellents(state), 
 			isJobs: isJobs(state),
+			isTellents:isTellents(state), 
 			configJobs: configJobs(state)
 
 	}

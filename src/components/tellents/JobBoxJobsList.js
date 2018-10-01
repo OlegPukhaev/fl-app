@@ -1,12 +1,22 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
-import JobBoxJobsList from './JobBoxJobsList';
+import { bindActionCreators } from 'redux';
+import {jobsData, isTellents, isJobs, configJobs} from './../../selectors';
+import { connect } from 'react-redux';
+// import JobBoxJobsList from './JobBoxJobsList';
 
-class JobBoxJobs extends React.Component {
+class JobBoxJobsList extends React.Component {
 	constructor (props) {
 		super(props)
-	}
+    }
+    
+    skillTags =( item )=> {
+        return <div class="skill-tag">{item.name}</div>
+    }
+
   render() { 
+    // {Reactotron.log("--->",this.props.data.skill_tags.length)}
+
     return (
 			<div class="job-box-block">
 				<div class="panel panel-default job-box">
@@ -60,13 +70,12 @@ class JobBoxJobs extends React.Component {
                     <div class="job-box-deskr">
                         <div class="text">
                         {this.props.data.promotion_description}
-                            Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks...
+                            {/* Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks... */}
                         </div>
                         <div class="skill-tags-block clearfix">
-                            <div class="skill-tag">HTML5</div>
-                            <div class="skill-tag">Node.js</div>
-                            <div class="skill-tag">CSS3</div>
-                            <div class="skill-tag">PHP</div>
+                            {/* {this.props.data.skill_tags.length !== 0 && */}
+                                {this.props.data.skill_tags.map(this.skillTags)}
+                            {/* } */}
                         </div>
                     </div>
                 </div>
@@ -210,4 +219,4 @@ class JobBoxJobs extends React.Component {
   }
 }
 
-export default JobBoxJobs;
+export default JobBoxJobsList;
