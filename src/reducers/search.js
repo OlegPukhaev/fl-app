@@ -40,6 +40,33 @@ const	TOTAL_COUNT = 'TOTAL_COUNT';
 let initialState = {
 	config : {
 		q:"",
+		sort:[
+						{
+						id: "relevance",
+						selected : false,
+						filter: "sort",
+						name: "Relevance"
+
+					},
+					{
+						id:"saved",
+						selected: false,
+						filter: "sort",
+						name: "Saved"
+					},
+					{
+						id:"rate",
+						selected: false,
+						filter: "sort",
+						name: "Rate" 
+					},
+					{
+						id:"hired",
+						selected: false,
+						filter: "sort",
+						name: "Most Hired"
+					}
+				],
 		exp:[
 						{
 						id: "intern",
@@ -192,6 +219,33 @@ let initialState = {
 	},
 	configJobs : {
 		q:"",
+		sort:[
+			{
+			id: "relevance",
+			selected : false,
+			filter: "sort",
+			name: "Relevance"
+
+		},
+		{
+			id:"saved",
+			selected: false,
+			filter: "sort",
+			name: "Saved"
+		},
+		{
+			id:"rate",
+			selected: false,
+			filter: "sort",
+			name: "Rate" 
+		},
+		{
+			id:"hired",
+			selected: false,
+			filter: "sort",
+			name: "Most Hired"
+		}
+	],
 		exp:[
 					{
 					id: "jintern",

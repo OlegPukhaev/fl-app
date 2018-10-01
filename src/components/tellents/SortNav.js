@@ -4,12 +4,23 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { getData } from '../functions/api';
 import {inputSearch, inputSearchJobs, getTellentsData, getJobsData} from '../../reducers/search';
-import { isJobs, isTellents, configJobs, configTellents } from "./../../selectors";
+import { isJobs, isTellents, configJobs, configTellents, jobsData, tellentsData } from "./../../selectors";
 import {fetchTellentsData,fetchJobsData} from '../../functions/api';
 import {getRequest, getRequestJobs} from '../../functions/function'
 const queryString = require('query-string');
 
 class SortNav extends React.Component {
+
+  getTotalCount = () => {
+    if ((this.props.isJobs  === true) && (this.props.jobsData !== null)) {
+        return this.props.jobsData.meta.total_count;
+    }
+    if ((this.props.isTellents  === true) && (this.props.tellentsData !== null)) {
+        return this.props.tellentsData.meta.total_count;
+    }
+
+    
+  }
 
   render() { 
     return (
@@ -64,7 +75,7 @@ class SortNav extends React.Component {
         Result: 
         <span class="sort-result-numb">
            {/* {this.props.jobsData!==null ? this.props.jobsData.meta.total_count : "No Data"} */}
-           {this.props.totalCount}
+           {this.getTotalCount()}
         </span>
 
       </span>
@@ -93,7 +104,9 @@ function mapStateToProps (state) {
 				isJobs:isJobs(state),
 				isTellents:isTellents(state),
 				configJobs: configJobs(state),
-				configTellents: configTellents(state)
+        configTellents: configTellents(state),
+        jobsData:jobsData(state),
+        tellentsData:tellentsData(state)
 
     }
 }

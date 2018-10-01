@@ -130,11 +130,7 @@ class Tellent extends React.Component {
  											</li>
  										</ul>
 									 </div> */}
-									 
-
- 								
 									<SortNav />
-									 
  								</nav>
  							</div>
  						</div>
