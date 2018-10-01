@@ -18,13 +18,33 @@ class SortNav extends React.Component {
     if ((this.props.isTellents  === true) && (this.props.tellentsData !== null)) {
         return this.props.tellentsData.meta.total_count;
     }
+  }
 
-    
+  getRequestTellent = () => {
+    var StringifyQ = queryString.stringify({
+            q: JSON.stringify(getRequest(this.props.configTellents))
+    });
+		fetchTellentsData(StringifyQ).then(apiData => {
+            this.props.getTellentsData(apiData.data);
+            Reactotron.log("from server", apiData.data);
+    });
+  }
+
+  getRequestJobs = () => {
+    var StringifyQ = queryString.stringify({
+      q: JSON.stringify(getRequestJobs(this.props.configJobs))
+    });
+    fetchJobsData(StringifyQ).then(apiData => {
+            this.props.getJobsData(apiData.data);
+            Reactotron.log("from server", apiData.data);
+    });      
   }
 
   onChangeSort = (event) => {
     // alert(event.target.name);
     this.props.sortFilter(event.target.name)
+    if (this.props.isJobs) this.getRequestJobs()
+      else this.getRequestTellents()
   }
 
   render() { 
