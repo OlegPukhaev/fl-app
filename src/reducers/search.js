@@ -410,7 +410,8 @@ let initialState = {
 		showJobs:null,
 		tellentsData: null,
 		jobsData: null,
-		totalCount:"0"
+		totalTellentsCount:0,
+		totalJobssCount:0
 	
 }
 

@@ -28,10 +28,6 @@ class JobBoxJobs extends React.Component {
 		return <JobBoxJobsList data={item} id={index}/>
 	}
  
-	skillTags =(item)=> {
-		return <div class="skill-tag">{item.name}</div>
-	}
-
   render() { 
     return (
     	<div class="job-boxes-wrapper job-boxes-wrapper--jobs flexbox justify-space-between flex-wrap">								
