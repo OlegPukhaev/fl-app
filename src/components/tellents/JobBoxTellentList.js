@@ -8,6 +8,11 @@ class JobBoxTellentList extends React.Component {
 		super(props);
 	}
 
+    toUppercaseStr = (value) => {
+        var str = value[0].toUpperCase() + value.substr(1);
+        return str.replace("-"," ");
+    }
+
   render() { 
       Reactotron.log("ppp --- >",this.props.data.profession);
     return (
@@ -26,14 +31,12 @@ class JobBoxTellentList extends React.Component {
                 <div class="job-box-title">
                     <div class="job-box-name blue-color">{this.props.data.full_name}</div>
                     <div class="job-box-prof">
-                    
-                    
-                        {this.props.data.experience !== null ? this.props.data.experience : "N/A"} / {this.props.data.profession !== null ? this.props.data.profession.title : "N/A"}
+                         {this.props.data.profession !== null ? this.toUppercaseStr(this.props.data.profession.title) : "N/A"}
                     </div>
                 </div>
                 <div class="job-box-rate">
                     <span class="icon icon-star-full"></span>
-                    <span class="rate-result">5.8</span>
+                    <span class="rate-result">{this.props.data.profession !== null ? this.props.data.total_rate : "N/A"}</span>
                 </div>
             </div>
             <div class="job-box-body flexbox justify-space-between">
