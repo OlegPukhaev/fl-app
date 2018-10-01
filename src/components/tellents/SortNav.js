@@ -3,7 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import { getData } from '../functions/api';
-import {inputSearch, inputSearchJobs, getTellentsData, getJobsData} from '../../reducers/search';
+import {inputSearch, inputSearchJobs, getTellentsData, getJobsData, sortFilter} from '../../reducers/search';
 import { isJobs, isTellents, configJobs, configTellents, jobsData, tellentsData } from "./../../selectors";
 import {fetchTellentsData,fetchJobsData} from '../../functions/api';
 import {getRequest, getRequestJobs} from '../../functions/function'
@@ -20,6 +20,11 @@ class SortNav extends React.Component {
     }
 
     
+  }
+
+  onChangeSort = (event) => {
+    alert("fff");
+    this.props.sortFilter(event.target.id)
   }
 
   render() { 
@@ -40,7 +45,7 @@ class SortNav extends React.Component {
             </div>
             <div class="radio-block">
               <div class="radio">
-                <input type="radio" name="jobs-sort-option" id="jobs-sort-option-1" value="jobs-sort-option-1" checked="" />
+                <input type="radio" name="jobs-sort-option" id="jobs-sort-option-1" value="jobs-sort-option-1" checked="" onChange={this.onChangeSort}/>
                 <label for="jobs-sort-option-1">
                   <span class="check-mark icon icon-check-mark"></span>
                   <span class="radio-text">Relevance</span>
@@ -92,7 +97,8 @@ const mapDispatchToProps = dispatch => {
 				inputSearch,
 				inputSearchJobs,
 				getTellentsData,
-				getJobsData,
+        getJobsData,
+        sortFilter
 			},
 			dispatch
     );

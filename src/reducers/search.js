@@ -34,6 +34,7 @@ const	INPUT_PAYMENT_FROM = 'INPUT_PAYMENT_FROM';
 const	INPUT_PAYMENT_TO = 'INPUT_PAYMENT_TO';
 // const	INPUT_PAYMENT_TO = 'INPUT_PAYMENT_TO';
 const	TOTAL_COUNT = 'TOTAL_COUNT';
+const	SORT_FILTER = 'SORT_FILTER';
 
 
 
@@ -485,6 +486,14 @@ let initialState = {
 			});
 		};
 	}
+  export function sortFilter(id) {
+		return dispatch => {
+			dispatch({
+				type: SORT_FILTER, 
+				payload: id
+			});
+		};
+	}
   export function selectExp(id) {
 		return dispatch => {
 			dispatch({
@@ -720,6 +729,32 @@ const actionsMap = {
 		return {
 			...state, 
 			config: copyObj
+	}
+	},
+	[SORT_FILTER]: (state, action) => {//radio
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.sort.map(item => {
+
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		var copyJobs = Object.assign({}, state.configJobs)	
+		copyJobs.sort.map(item => {
+
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+
+		return {
+			...state, 
+			config: copyObj,
+			configJobs: copyJobs
 	}
 	},
 	[SELECT_SKILL]: (state, action) => {//radio
