@@ -1,5 +1,6 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
+import moment from 'moment';
 import { bindActionCreators } from 'redux';
 // import {jobsData, isTellents, isJobs, configJobs} from './../../selectors';
 import {configTellents,configJobs} from './../../selectors';
@@ -50,7 +51,8 @@ class JobBoxJobsList extends React.Component {
 				<div class="panel panel-default job-box">
                 <div class="job-box-header flexbox justify-space-between">
                     <div class="job-box-title">
-                        <div class="post-date">{this.props.data.created_at}</div>
+                        {/* <div class="post-date">{this.props.data.created_at}</div> */}
+                        <div class="post-date">{this.toUppercaseStr(moment(this.props.data.created_at).startOf('day').fromNow())}</div>
                         <div class="job-title">{this.props.data.title}</div>
                     </div>
                     <div class="panel panel-default">
