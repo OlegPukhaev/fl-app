@@ -147,10 +147,12 @@ let initialState = {
 				],
 		avl:[	
 					{
-						id: "per_week_up_to_20",
+						id: "per_week_up_to_30",
+						// id: "per_week_up_to_20",
 						selected : false,
 						filter: "avl",
-						name: "< 20h"
+						name: "< 30h"
+						// name: "< 20h"
 					},
 					{
 						id:"per_week_30",
@@ -305,8 +307,6 @@ let initialState = {
 				],
 		p_from: "",
 		p_to: "",
-
-				
 		bud:[	
 					{
 						name: "$0 - $100",
@@ -357,7 +357,7 @@ let initialState = {
 						request:"per_week_up_to_30",
 						filter: "avl",
 						selected: false,
-						name: "> 20h"
+						name: "> 30h"
 					},
 					{
 						name:"Full-Time",

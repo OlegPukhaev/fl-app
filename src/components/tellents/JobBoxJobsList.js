@@ -1,7 +1,9 @@
 import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
-import {jobsData, isTellents, isJobs, configJobs} from './../../selectors';
+// import {jobsData, isTellents, isJobs, configJobs} from './../../selectors';
+import {configTellents,configJobs} from './../../selectors';
+
 import { connect } from 'react-redux';
 // import JobBoxJobsList from './JobBoxJobsList';
 
@@ -21,6 +23,21 @@ class JobBoxJobsList extends React.Component {
         // Reactotron.log("--->",lang);
         return lang.substring(0,3)+"...";
     }
+
+    getNameById = id => {
+        // Reactotron.log("--->",id)
+        // if (this.props.configTellents.avl.id = id ) return 
+        
+        var valname = this.props.configJobs.avl.map(item => {
+            if (item.request === id) {
+                return item.name;
+                // alert(item.name);
+            }
+        })
+
+        Reactotron.log("--->",valname.name)
+        return valname;
+    } 
 
   render() { 
     // {Reactotron.log("--->",this.props.data.skill_tags.length)}
@@ -60,7 +77,8 @@ class JobBoxJobsList extends React.Component {
                         </div>
                         <div class="tip">
                             <span class="icon icon-clock-1"></span>
-                            <span class="text">{this.props.data.commitment}</span>
+                            {/* <span class="text">{this.props.data.commitment}</span> */}
+                            <span class="text">{this.getNameById(this.props.data.commitment)}</span>
                         </div>
                         <div class="tip">
                             <span class="icon icon-award"></span>
@@ -228,4 +246,11 @@ class JobBoxJobsList extends React.Component {
   }
 }
 
-export default JobBoxJobsList;
+function mapStateToProps (state) {
+	return  {
+        configTellents:configTellents(state),
+        configJobs:configJobs(state),
+	}
+}
+
+export default connect(mapStateToProps)(JobBoxJobsList);
