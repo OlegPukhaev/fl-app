@@ -10,8 +10,16 @@ class JobBoxJobsList extends React.Component {
 		super(props)
     }
     
-    skillTags =( item )=> {
+    skillTags =(item)=> {
         return <div class="skill-tag">{item.name}</div>
+    }
+
+    getLanguageCut = (value) => {
+        var lang;
+        lang = value.map(item => item.name);
+        lang = lang.join(",");
+        // Reactotron.log("--->",lang);
+        return lang.substring(0,3)+"...";
     }
 
   render() { 
@@ -22,7 +30,7 @@ class JobBoxJobsList extends React.Component {
 				<div class="panel panel-default job-box">
                 <div class="job-box-header flexbox justify-space-between">
                     <div class="job-box-title">
-                        <div class="post-date">6 days ago</div>
+                        <div class="post-date">{this.props.data.created_at}</div>
                         <div class="job-title">{this.props.data.promotion_title}</div>
                     </div>
                     <div class="panel panel-default">
@@ -37,7 +45,7 @@ class JobBoxJobsList extends React.Component {
                             </div>
                             <div class="job-box-rate">
                                 <span class="icon icon-star-full"></span>
-                                <span class="rate-result">5.8</span>
+                                <span class="rate-result">{this.props.data.user.total_rate}</span>
                             </div>
                         </div>
                         <div class="blue-color">{this.props.data.user.full_name}</div>
@@ -47,11 +55,12 @@ class JobBoxJobsList extends React.Component {
                     <div class="job-box-tips flexbox justify-space-between">
                         <div class="tip">
                             <span class="icon icon-location"></span>
-                            <span class="text">Aus..</span>
+                            {/* <span class="text">{this.props.data.user.languages.map(this.getLanguage)}</span> */}
+                            <span class="text">{this.getLanguageCut(this.props.data.user.languages)}</span>
                         </div>
                         <div class="tip">
                             <span class="icon icon-clock-1"></span>
-                            <span class="text">&#62; 30h</span>
+                            <span class="text">{this.props.data.commitment}</span>
                         </div>
                         <div class="tip">
                             <span class="icon icon-award"></span>
@@ -80,7 +89,7 @@ class JobBoxJobsList extends React.Component {
                     </div>
                 </div>
                 <div class="job-box-footer flexbox justify-space-between">
-                    <div class="additional-info blue-color">Math  Home Tutoring</div>
+                    <div class="additional-info blue-color">{this.props.data.promotion_title}</div>
                     <button class="btn btn-blue btn-bold">Free</button>
                 </div>
             </div>{/* <!--job-box End--> */}
