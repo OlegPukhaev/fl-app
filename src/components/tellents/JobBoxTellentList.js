@@ -85,13 +85,8 @@ class JobBoxTellentList extends React.Component {
                 <div class="job-box-deskr">
                     <div class="text">
                         {this.props.data.profession !== null && this.props.data.profession.description.substring(0, 260)+"..."}
-                        {/* Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus ... */}
                     </div>
                     <div class="skill-tags-block clearfix">
-                        {/* <div class="skill-tag">Math</div>
-                        <div class="skill-tag">Trigonometry</div>
-                        <div class="skill-tag">Calculus</div> */}
-
                          {this.props.data.skill_tags.map(this.skillTags)}
                     </div>
                 </div>
