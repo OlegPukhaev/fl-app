@@ -23,10 +23,8 @@ componentWillMount = () => {
   if (document.cookie) {
 
     fetchValidateToken().then(response => {
-      toastr.success(`Урраааа валидация ф кармане : ${response.full_name}`);
       this.props.setUserStatus(true);
     }).catch(error => {
-      // toastr.success(error);
       toastr.warning(`Ошибке : ${error}`);
       this.props.history.push('/User');
     }) 
@@ -37,25 +35,21 @@ componentWillMount = () => {
   render() {
     Reactotron.log("User", this.props.user.isUserLogin);
     return (
-
-        // <Main />
-        <BrowserRouter>
-          <div>
-            <h1>Menu</h1>
-            {this.props.user.isUserLogin == false && <Link to="/user"> Login  </Link>} 
-            <Link to="/">Home </Link>
-            {this.props.user.isUserLogin === true && <Link to="/skills"> | Skills | </Link>}
-            {this.props.user.isUserLogin == true && <Link to="/tellent"> Tellent </Link>}
-            {/* <Link to="/Tellent">| Tellent </Link> */}
-            
-            <Switch>
-              <Route exact path="/user" component={User} />
-              <Route exact path="/" component={Home} />
-              <Route exact path="/skills" component={Main} />
-              <Route exact path="/tellent" component={Tellent} />
-            </Switch>
-          </div>
-        </BrowserRouter>
+      <BrowserRouter>
+        <div>
+          <h1>Menu</h1>
+          {this.props.user.isUserLogin == false && <Link to="/user"> Login  </Link>} 
+          <Link to="/">Home </Link>
+          {this.props.user.isUserLogin === true && <Link to="/skills"> | Skills | </Link>}
+          {this.props.user.isUserLogin == true && <Link to="/tellent"> Tellent </Link>}
+          <Switch>
+            <Route exact path="/user" component={User} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/skills" component={Main} />
+            <Route exact path="/tellent" component={Tellent} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }

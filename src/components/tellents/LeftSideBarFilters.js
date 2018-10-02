@@ -5,71 +5,67 @@ import { bindActionCreators } from 'redux';
 import {getRequest} from './../../functions/function';
 import {configTellents,showTellents} from './../../selectors';
 import { connect } from 'react-redux';
-import {getData, fetchCountries, fetchLanguage, fetchTellentsData} from './../../functions/api'
-import {getTellentsData, getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search'
+import {fetchCountries, fetchLanguage, fetchTellentsData} from './../../functions/api';
+import {getTellentsData, getCountries, getLanguage, selectExp, selectDs, selectPlace, selectSkill, selectRate, selectAvl, selectLang, selectLoc} from './../../reducers/search';
 const queryString = require('query-string');
 
 class LeftSideBarFilters extends React.Component {
 
   componentDidMount() {
     fetchCountries().then(apiData => {
-        this.props.getCountries(apiData.data);
+			this.props.getCountries(apiData.data);
 		});
 		
     fetchLanguage().then(apiData => {
-        this.props.getLanguage(apiData.data);
+			this.props.getLanguage(apiData.data);
     });
   }
 
   getRequestTellent = () => {
     var StringifyQ = queryString.stringify({
-            q: JSON.stringify(getRequest(this.props.configTellents))
+			q: JSON.stringify(getRequest(this.props.configTellents))
     });
 		fetchTellentsData(StringifyQ).then(apiData => {
-            this.props.getTellentsData(apiData.data);
-            Reactotron.log("from server", apiData.data);
+			this.props.getTellentsData(apiData.data);
+			Reactotron.log("from server", apiData.data);
     });
   }
 
   onClickSelect = (event) => {
-    // Reactotron.log(event.target.id, event.target.name);
-      switch (event.target.name){
-          case 'exp':
-              this.props.selectExp(event.target.id);
-              this.getRequestTellent();
-              return;
-          case 'ds':
-              this.props.selectDs(event.target.id);
-              this.getRequestTellent();
-              return;
-          case 'place':
-              this.props.selectPlace(event.target.id);
-              this.getRequestTellent();
-              return;
-          case 'skill':
-              this.props.selectSkill(event.target.id);
-              this.getRequestTellent();
-              return;
-          case 'rate':
-              this.props.selectRate(event.target.id);
-              this.getRequestTellent();
-              return;
-            case 'lang':
-              this.props.selectLang(event.target.id);
-              this.getRequestTellent();
-              return;
-            case 'loc':
-              this.props.selectLoc(event.target.id);
-              this.getRequestTellent();
-              return;
-            case 'avl':
-              this.props.selectAvl(event.target.id);
-              this.getRequestTellent();
-              return;
-
-        }
-			
-
+		switch (event.target.name){
+			case 'exp':
+				this.props.selectExp(event.target.id);
+				this.getRequestTellent();
+				return;
+			case 'ds':
+				this.props.selectDs(event.target.id);
+				this.getRequestTellent();
+				return;
+			case 'place':
+				this.props.selectPlace(event.target.id);
+				this.getRequestTellent();
+				return;
+			case 'skill':
+				this.props.selectSkill(event.target.id);
+				this.getRequestTellent();
+				return;
+			case 'rate':
+				this.props.selectRate(event.target.id);
+				this.getRequestTellent();
+				return;
+			case 'lang':
+				this.props.selectLang(event.target.id);
+				this.getRequestTellent();
+				return;
+			case 'loc':
+				this.props.selectLoc(event.target.id);
+				this.getRequestTellent();
+				return;
+			case 'avl':
+				this.props.selectAvl(event.target.id);
+				this.getRequestTellent();
+				return;
+			}
   }
 
 	checkerList = (item, index) => {

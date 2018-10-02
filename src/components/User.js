@@ -66,7 +66,6 @@ class User extends React.Component {
 
   userLogin = () => {
     fetchUserLogin(this.state.email, this.state.password).then(response => {
-        // toastr.success("Добро пожаловать ", response.data.full_name);
         this.props.setUserStatus(response);
         if ( response === true ) {
           this.props.history.push('/main');
@@ -77,8 +76,6 @@ class User extends React.Component {
   render() {
     return (
       <div id="userform">
-        {/* {this.props.user.userinfo.full_name}
-        {this.props.user.uservalid} */}
         <div id="user-reg">
           <h3>Registration</h3>
           First Name :

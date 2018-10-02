@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getData } from '../functions/api';
+import {fetchSignOut} from './../functions/auth';
 import '../../node_modules/toastr/build/toastr.css';
 import {arrForUpdate} from './../functions/function';
 import {getTellentsData, getJobsData, getLanguage, getCountries, getCountriesJobs, getLanguageJobs} from './../reducers/search';
@@ -22,38 +22,9 @@ const queryString = require('query-string');
 
 class Tellent extends React.Component {
 	
-	// componentDidMount = () => {
-	// 	// if (this.props.search.isUserLogin === true) {
-
-	// 	// 			var StringifyQ = queryString.stringify({
-	// 	// 				q: JSON.stringify({})//временно для создания редьюсера, чобы было все норм
-	// 	// 			});
-			
-	// 	// 			getData('/api/v1/tellents/search?'+StringifyQ).then(apiData => {
-	// 	// 				this.props.getTellentsData(apiData.data);
-	// 	// 			});
-	// 	// 			getData('/api/v1/jobs/search?'+StringifyQ).then(apiData => {
-	// 	// 				this.props.getJobsData(apiData.data);
-	// 	// 			});
-	// 	// } 
-	// }
-
-	getButton = () => {
-		if (this.props.isTellents === true) {
-			if (this.props.tellentsData !== null) {
-				if (this.props.tellentsData.meta.next_page !== null) {
-					return <LoadMore />
-				}
-			}
-		}
-		if (this.props.isJobs ===  true) {
-			if (this.props.JobsData !== null){
-				if (this.props.JobsData.meta.next_page !== null){
-					return <LoadMore />
-				}
-			}
-		}
-
+	onClickSignOut = () => {
+		fetchSignOut();
+		this.props.history.push('/user');
 	}
 
     render() {
@@ -98,10 +69,7 @@ class Tellent extends React.Component {
  	    				<div class="user-box-nav dropdown">
  							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span class="caret"></span></a>
  							 <ul class="dropdown-menu">
- 								<li><a href="#" data-toggle="modal" data-target="#sign-up-modal">Sign Up</a></li>
- 								<li><a href="#" data-toggle="modal" data-target="#massege-dialogs-modal">Messages</a></li>
- 								<li><a href="#">Something else here</a></li>
- 								<li><a href="#">One more separated link</a></li>
+ 								<li><a href="" onClick={this.onClickSignOut}>Logout</a></li>
  							  </ul>
  						</div>
  	    			</div>

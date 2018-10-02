@@ -1,124 +1,107 @@
-import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import moment from 'moment';
-import { bindActionCreators } from 'redux';
-// import {jobsData, isTellents, isJobs, configJobs} from './../../selectors';
 import {configTellents,configJobs} from './../../selectors';
-
 import { connect } from 'react-redux';
-// import JobBoxJobsList from './JobBoxJobsList';
 
 class JobBoxJobsList extends React.Component {
 	constructor (props) {
 		super(props)
     }
     
-    skillTags =(item)=> {
-        return <div class="skill-tag">{item.name}</div>
-    }
+	skillTags =(item)=> {
+		return <div class="skill-tag">{item.name}</div>
+	}
 
-    getLanguageCut = (value) => {
-        var lang;
-        lang = value.map(item => item.name);
-        lang = lang.join(",");
-        // Reactotron.log("--->",lang);
-        return lang.substring(0,3)+"...";
-    }
+	getLanguageCut = (value) => {
+		var lang;
+		lang = value.map(item => item.name);
+		lang = lang.join(",");
+		return lang.substring(0,3)+"...";
+	}
 
-    getNameById = id => {
-                
-        var valname = this.props.configJobs.avl.map(item => {
-            if (item.request === id) {
-                return item.name;
-                // alert(item.name);
-            }
-        })
-        return valname;
-    } 
+	getNameById = id => {
+		var valname = this.props.configJobs.avl.map(item => {
+			if (item.request === id) {
+				return item.name;
+			}
+		})
+		return valname;
+	} 
 
-    toUppercaseStr = (value) => {
-        var str = value[0].toUpperCase() + value.substr(1);
-        return str.replace("_"," ");
-    }
-
-
+	toUppercaseStr = (value) => {
+		var str = value[0].toUpperCase() + value.substr(1);
+		return str.replace("_"," ");
+	}
 
   render() { 
     return (
 			<div class="job-box-block">
 				<div class="panel panel-default job-box">
-                <div class="job-box-header flexbox justify-space-between">
-                    <div class="job-box-title">
-                        <div class="post-date">{this.toUppercaseStr(moment(this.props.data.created_at).startOf('day').fromNow())}</div>
-                        <div class="job-title">{this.props.data.title}</div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="flexbox justify-space-between">
-                            <div class="job-box-photo-block">
-                                <div class="job-box-photo bg-cover circul-shape">
-                                    <img src={this.props.data.user.image.url} className="img-circle" width="38" height="38"/>
-                                    {/* <i class="notif"></i> */}
-                                </div>
-                            </div>
-                            <div class="award">
-                                <span class="icon icon-badge-flat"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span></span>
-                            </div>
-                            <div class="job-box-rate">
-                                <span class="icon icon-star-full"></span>
-                                <span class="rate-result">{this.props.data.user.total_rate}</span>
-                            </div>
-                        </div>
-                        <div class="blue-color">{this.props.data.user.full_name}</div>
-                    </div>
-                </div>
-                <div class="job-box-body">
-                    <div class="job-box-tips flexbox justify-space-between">
-                        <div class="tip">
-                            <span class="icon icon-location"></span>
-                            <span class="text">{this.props.data.user.country !== null ? this.toUppercaseStr(this.props.data.user.country.substring(0,3)) : "N/A"}</span>
-                            {/* <span class="text">{this.props.data.user.languages.length >> 0 ? this.getLanguageCut(this.props.data.user.languages) : "N/A"}</span> */}
-                        </div>
-                        <div class="tip">
-                            <span class="icon icon-clock-1"></span>
-                            {/* <span class="text">{this.props.data.commitment}</span> */}
-                            <span class="text">{this.props.data.commitment !== null ? this.getNameById(this.props.data.commitment) :  "N/A"}</span>
-                        </div>
-                        <div class="tip">
-                            <span class="icon icon-award"></span>
-                            <span class="text">{this.props.data.level !== null ? this.toUppercaseStr(this.props.data.level.substring(0,3)) : "N/A"}</span>
-                        </div>
-                        <div class="tip">
-                            <span class="icon icon-timer"></span>
-                            {/* <span class="text">110 h/2 J</span> */}
-                            <span class="text">
-                                {this.props.data.period !== null && this.props.data.period}
-                                {this.props.data.period_type !== null &&  this.toUppercaseStr(this.props.data.period_type)}
-                                {this.props.data.period === null && "N/A"}
-                            </span>
-                        </div>
-                        
-                        <div class="tip">
-                            <span class="icon icon-wallet"></span>
-                            <span class="text">{this.props.data.time_type !== null ? this.toUppercaseStr(this.props.data.time_type) : "N/A"}</span>
-                        </div>
-                    </div>
-                    <div class="job-box-deskr">
-                        <div class="text">
-                        {this.props.data.description}
-                            {/* Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks... */}
-                        </div>
-                        <div class="skill-tags-block clearfix">
-                            {/* {this.props.data.skill_tags.length !== 0 && */}
-                                {this.props.data.skill_tags.map(this.skillTags)}
-                            {/* } */}
-                        </div>
-                    </div>
-                </div>
-                <div class="job-box-footer flexbox justify-space-between">
-                    <div class="additional-info blue-color">{this.props.data.promotion_title}</div>
-                    <button class="btn btn-blue btn-bold">Free</button>
-                </div>
-            </div>{/* <!--job-box End--> */}
+					<div class="job-box-header flexbox justify-space-between">
+							<div class="job-box-title">
+								<div class="post-date">{this.toUppercaseStr(moment(this.props.data.created_at).startOf('day').fromNow())}</div>
+								<div class="job-title">{this.props.data.title}</div>
+							</div>
+							<div class="panel panel-default">
+									<div class="flexbox justify-space-between">
+											<div class="job-box-photo-block">
+													<div class="job-box-photo bg-cover circul-shape">
+															<img src={this.props.data.user.image.url} className="img-circle" width="38" height="38"/>
+													</div>
+											</div>
+											<div class="award">
+													<span class="icon icon-badge-flat"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span></span>
+											</div>
+											<div class="job-box-rate">
+													<span class="icon icon-star-full"></span>
+													<span class="rate-result">{this.props.data.user.total_rate}</span>
+											</div>
+									</div>
+									<div class="blue-color">{this.props.data.user.full_name}</div>
+							</div>
+					</div>
+					<div class="job-box-body">
+							<div class="job-box-tips flexbox justify-space-between">
+									<div class="tip">
+											<span class="icon icon-location"></span>
+											<span class="text">{this.props.data.user.country !== null ? this.toUppercaseStr(this.props.data.user.country.substring(0,3)) : "N/A"}</span>
+									</div>
+									<div class="tip">
+											<span class="icon icon-clock-1"></span>
+											<span class="text">{this.props.data.commitment !== null ? this.getNameById(this.props.data.commitment) :  "N/A"}</span>
+									</div>
+									<div class="tip">
+											<span class="icon icon-award"></span>
+											<span class="text">{this.props.data.level !== null ? this.toUppercaseStr(this.props.data.level.substring(0,3)) : "N/A"}</span>
+									</div>
+									<div class="tip">
+											<span class="icon icon-timer"></span>
+											<span class="text">
+													{this.props.data.period !== null && this.props.data.period}
+													{this.props.data.period_type !== null &&  this.toUppercaseStr(this.props.data.period_type)}
+													{this.props.data.period === null && "N/A"}
+											</span>
+									</div>
+									
+									<div class="tip">
+											<span class="icon icon-wallet"></span>
+											<span class="text">{this.props.data.time_type !== null ? this.toUppercaseStr(this.props.data.time_type) : "N/A"}</span>
+									</div>
+							</div>
+							<div class="job-box-deskr">
+									<div class="text">
+									{this.props.data.description}
+									</div>
+									<div class="skill-tags-block clearfix">
+													{this.props.data.skill_tags.map(this.skillTags)}
+									</div>
+							</div>
+					</div>
+					<div class="job-box-footer flexbox justify-space-between">
+							<div class="additional-info blue-color">{this.props.data.promotion_title}</div>
+							<button class="btn btn-blue btn-bold">Free</button>
+					</div>
+			</div>{/* <!--job-box End--> */}
 				<div class="caret-block">
                 <span class="caret-top"></span>
             </div>

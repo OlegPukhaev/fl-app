@@ -1,43 +1,39 @@
+import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {configTellents} from './../../selectors';
-import Reactotron from 'reactotron-react-js';
 
 class JobBoxTellentList extends React.Component {
 	constructor (props) {
 		super(props);
 	}
 
-    toUppercaseStr = (value) => {
-        var str = value[0].toUpperCase() + value.substr(1);
-        return str.replace("-"," ");
-    }
+	toUppercaseStr = (value) => {
+		var str = value[0].toUpperCase() + value.substr(1);
+		return str.replace("-"," ");
+	}
 
-    getNameById = id => {
-        // Reactotron.log(id);
-        var valname = this.props.configTellents.avl.map(item => {
-            if (item.id === id) {
-                // alert(item.name);
-                return item.name;
-            }
-        })
-        return valname;
-    } 
+	getNameById = id => {
+		var valname = this.props.configTellents.avl.map(item => {
+			if (item.id === id) {
+				return item.name;
+			}
+		})
+		return valname;
+	} 
 
-    skillTags =(item)=> {
-        return <div class="skill-tag">{item.name}</div>
-    }
+	skillTags =(item)=> {
+		return <div class="skill-tag">{item.name}</div>
+	}
 
   render() { 
-    //   Reactotron.log("ppp --- >",this.props.data);
     return (
 			<div class="job-box-block">
         <div class="panel panel-default job-box awarded">
             <div class="job-box-header flexbox justify-space-between">
                 <div class="job-box-photo-block">
                     <div class="job-box-photo bg-cover circul-shape">
-                        {/* <i class="notif"></i> */}
                         <img src={this.props.data.image.url} className="img-circle" width="55" height="55"/>
                         <i class="award">
                             <span class="icon icon-badge-flat"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span></span>
@@ -290,16 +286,15 @@ class JobBoxTellentList extends React.Component {
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
-			{
-			},
-			dispatch
+		{
+		},
+		dispatch
 	);
 };
 
 function mapStateToProps (state) {
 	return  {
-        configTellents:configTellents(state),
-        // configJobs:configJobs(state),
+		configTellents:configTellents(state),
 	}
 }
 

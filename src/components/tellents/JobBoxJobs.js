@@ -1,5 +1,4 @@
 import Reactotron from 'reactotron-react-js';
-
 import React from 'react';
 import {fetchJobsData} from '../../functions/api';
 import {getRequestJobs} from './../../functions/function';
@@ -11,11 +10,6 @@ import JobBoxJobsList from './JobBoxJobsList';
 const queryString = require('query-string');
 
 class JobBoxJobs extends React.Component {
-	// constructor (props) {
-	// 	super(props)
-	// }
-
-
 
 	componentDidMount = () => {
 		var StringifyQ = queryString.stringify({
@@ -52,12 +46,11 @@ const mapDispatchToProps = dispatch => {
 
 function mapStateToProps (state) {
 	return  {
-			// search:state.search,
-			jobsData:jobsData(state),
-			isJobs: isJobs(state),
-			isTellents:isTellents(state), 
-			configJobs: configJobs(state),
-			currentJobsPage: currentJobsPage(state)
+		jobsData:jobsData(state),
+		isJobs: isJobs(state),
+		isTellents:isTellents(state), 
+		configJobs: configJobs(state),
+		currentJobsPage: currentJobsPage(state)
 	}
 }
 

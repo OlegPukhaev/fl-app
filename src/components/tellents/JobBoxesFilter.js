@@ -2,7 +2,6 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import { getData } from '../functions/api';
 import {inputSearch, dataToggler} from '../../reducers/search';
 
 class JobBoxesFilter extends React.Component {
