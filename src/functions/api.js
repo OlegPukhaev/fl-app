@@ -37,8 +37,8 @@ export function fetchSkillTags(value){
     });
 }    
   
-export function fetchTellentsData(value){
-    return axios.get(`${API_URL}/tellents/search?${value}`)
+export function fetchTellentsData(value, page=1){
+    return axios.get(`${API_URL}/tellents/search?page=${page}&${value}`)
     .then(response => {
         let dataObj = Object.assign({}, response);
         return dataObj;
@@ -47,8 +47,8 @@ export function fetchTellentsData(value){
       });  
 }
 
-export function fetchJobsData(value){
-    return axios.get(`${API_URL}/jobs/search?${value}`)
+export function fetchJobsData(value, page=1){
+    return axios.get(`${API_URL}/jobs/search?page=${page}&${value}`)
     .then(response => {
         let dataObj = Object.assign({}, response);
         return dataObj;

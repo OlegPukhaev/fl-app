@@ -19,6 +19,7 @@ class JobBoxJobs extends React.Component {
 		var StringifyQ = queryString.stringify({
 			q: JSON.stringify(getRequestJobs(this.props.configJobs))
 		});
+		
 		fetchJobsData(StringifyQ).then(response => {
 			this.props.getJobsData(response.data);	
 		});

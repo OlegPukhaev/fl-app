@@ -14,10 +14,10 @@ class SortNav extends React.Component {
 
   getTotalCount = () => {
     if ((this.props.isJobs  === true) && (this.props.jobsData !== null)) {
-        return this.props.jobsData.meta.total_count;
+        return " "+this.props.jobsData.meta.total_count;
     }
     if ((this.props.isTellents  === true) && (this.props.tellentsData !== null)) {
-        return this.props.tellentsData.meta.total_count;
+        return " "+this.props.tellentsData.meta.total_count;
     }
   }
 
@@ -110,7 +110,6 @@ class SortNav extends React.Component {
       <span class="sort-result">
         Result: 
         <span class="sort-result-numb">
-           {/* {this.props.jobsData!==null ? this.props.jobsData.meta.total_count : "No Data"} */}
            {this.getTotalCount()}
         </span>
 
