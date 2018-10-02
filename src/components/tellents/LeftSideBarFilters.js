@@ -70,15 +70,15 @@ class LeftSideBarFilters extends React.Component {
 
 	checkerList = (item, index) => {
     return (
-        <div class="checkbox-block">
-				<input type="checkbox" name={item.filter} key={item.id} id={item.id} checked={item.selected} onClick={this.onClickSelect}/>
-				<label for={item.id}>
-					<span class="filter-checkbox">
-						<span class="icon icon-check-mark"></span>
-					</span>
-					<span class="checkbox-text">{item.name}</span>
-				</label>
-			</div>	
+			<div class="checkbox-block">
+			<input type="checkbox" name={item.filter} key={item.id} id={item.id} checked={item.selected} onClick={this.onClickSelect}/>
+			<label for={item.id}>
+				<span class="filter-checkbox">
+					<span class="icon icon-check-mark"></span>
+				</span>
+				<span class="checkbox-text">{item.name}</span>
+			</label>
+		</div>	
 		);		
   }
 

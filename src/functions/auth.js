@@ -1,3 +1,4 @@
+import Reactotron from 'reactotron-react-js';
 import {successMessage, warningMessage} from './function'; 
 var Auth = require('./../../node_modules/j-toker/src/j-toker');
 
@@ -32,16 +33,17 @@ export function fetchSignOut () {
 }
 
 export function fetchUserRegistration (first_name, last_name, email, password) {
+	Reactotron.log("registration login", first_name, last_name, email, password);
 	return Auth.emailSignUp({
 		first_name: first_name,
-		first_name: last_name,
+		last_name: last_name,
 		email: email,
 		password: password
 	}).then(response => {
-		alert("Successfuly");
-	}).then()
-		.catch(error => {
-			alert(`Error Registration + ${error}`);
-			return "Ошибка регистрации";
+		Reactotron.log("registration",response);
+		return response
+	}).catch(error => {
+		Reactotron.log("error",error);
+		return error;
 		});
 } 

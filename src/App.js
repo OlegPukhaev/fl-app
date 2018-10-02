@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-// import './bootstrap/css/bootstrap.min.css';
-// import './styles/styles.css';
-// import './styles/media.css';
+
 // import './bootstrap/js/jquery-2.1.1.min.js';
 // import './bootstrap/js/bootstrap.min.js';
 // import './js/main.js';
