@@ -17,8 +17,10 @@ class SearchForm extends React.Component {
 	}
 
 	onChangeSearchText = (event) => {
-		if (this.props.isTellents === true) this.props.inputSearch(event.target.value);
-		if (this.props.isJobs === true) this.props.inputSearchJobs(event.target.value);
+		// if (this.props.isTellents === true) this.props.inputSearch(event.target.value);
+		// if (this.props.isJobs === true) this.props.inputSearchJobs(event.target.value);
+		this.props.inputSearch(event.target.value);
+		this.props.inputSearchJobs(event.target.value);
 	}
 
 	onClickGetData = () => {
@@ -41,15 +43,17 @@ class SearchForm extends React.Component {
 			});
 	}
 
-	add = (event) => {
-		Reactotron.log("Keycode", event);
+	onKeyPressSearch = (event) => {
+		if (event.key === "Enter") {
+			this.onClickGetData();
+		}
 	}
 
   render() { 
     return (
 			<div class="search-form">
-			<form class="my-search-form" role="search">
-				<input type="text" class="form-control" placeholder="Search" onChange={this.onChangeSearchText} onKeyDown={this.add}/>
+			<div class="my-search-form" role="search">
+				<input type="text" class="form-control" placeholder="Search" onChange={this.onChangeSearchText} onKeyPress={this.onKeyPressSearch}/>
 				<div class="search-filter radio-block">
 					<div class="radio">
 						<input type="radio" name="optionsRadios" id="option-jobs" value="option1" checked={this.props.isJobs} />
@@ -64,8 +68,8 @@ class SearchForm extends React.Component {
 						</label>
 					</div>
 				</div>
-				<a href="#" type="submit" class="btn-search" onClick={this.onClickGetData}><i class="icon icon-loupe"></i></a>
-			</form>
+				<a type="submit" class="btn-search" onClick={this.onClickGetData}><i class="icon icon-loupe"></i></a>
+			</div>
     </div>
     );
   }

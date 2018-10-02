@@ -38,6 +38,23 @@ class Tellent extends React.Component {
 	// 	// } 
 	// }
 
+	getButton = () => {
+		if (this.props.isTellents === true) {
+			if (this.props.tellentsData !== null) {
+				if (this.props.tellentsData.meta.next_page !== null) {
+					return <LoadMore />
+				}
+			}
+		}
+		if (this.props.isJobs ===  true) {
+			if (this.props.JobsData !== null){
+				if (this.props.JobsData.meta.next_page !== null){
+					return <LoadMore />
+				}
+			}
+		}
+
+	}
 
     render() {
 		Reactotron.log('Get Data', this.props.search);
@@ -161,7 +178,10 @@ class Tellent extends React.Component {
 										{this.props.user.isUserLogin === true && <JobBoxJobs data={this.props.search.jobsData}/>} */}
 									{/* } */}
 									
-										<LoadMore />
+										
+										{/* {this.getButton()} */}
+										{(this.props.jobsData !== null && this.props.jobsData.meta.next_page !== null && this.props.isJobs === true) && <LoadMore />}
+										{(this.props.tellentsData !== null && this.props.tellentsData.meta.next_page !== null && this.props.isTellents === true) && <LoadMore />}
 
  								</div>
 
