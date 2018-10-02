@@ -4,6 +4,7 @@ import {fetchTellentsData} from './../functions/api';
 const 
 	GET_TELLENTS_DATA = 'GET_TELLENTS_DATA',
 	GET_JOBS_DATA = 'GET_JOBS_DATA',
+	GET_NEXT_JOBS_PAGE = 'GET_NEXT_JOBS_PAGE',
 	DATA_TOGGLER = 'DATA_TOGGLER',
 	GET_LANGUAGE = 'GET_LANGUAGE',
 	GET_COUNTRIES = 'GET_COUNTRIES',
@@ -609,6 +610,14 @@ let initialState = {
         });
       };
 	}
+  export function getNextJobsPage(value) {
+      return dispatch => {
+        dispatch({
+          type: GET_NEXT_JOBS_PAGE, 
+          payload: value
+        });
+      };
+		}
   export function getJobsData(value) {
       return dispatch => {
         dispatch({
@@ -935,6 +944,16 @@ const actionsMap = {
 			return {
 					...state, 
 					tellentsData: action.payload
+		}
+	},   
+	[GET_NEXT_JOBS_PAGE]: (state, action) => {
+		var copyObj = Object.assign({}, state.jobsData);
+		var addedJobsData = copyObj.jobs.concat(action.payload.jobs);
+		state.jobsData.jobs = addedJobsData;
+		state.jobsData.meta = action.payload.meta;
+			return {
+					...state, 
+					jobsData: state.jobsData
 		}
 	},   
 	[GET_JOBS_DATA]: (state, action) => {

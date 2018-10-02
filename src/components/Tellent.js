@@ -154,7 +154,8 @@ class Tellent extends React.Component {
 
 									{/* <NoResultJobs /> */}
 
-										<JobBoxJobs/>
+										{/* <JobBoxJobs currPage="1"/> */}
+										<JobBoxJobs />
 										<JobBoxTellent/>
 										{/* {this.props.user.isUserLogin === true && <JobBoxTellent data={this.props.search.tellentsData}/>}
 										{this.props.user.isUserLogin === true && <JobBoxJobs data={this.props.search.jobsData}/>} */}

@@ -15,18 +15,20 @@ class JobBoxJobs extends React.Component {
 		super(props)
 	}
 
+
+
 	componentDidMount = () => {
 		var StringifyQ = queryString.stringify({
 			q: JSON.stringify(getRequestJobs(this.props.configJobs))
 		});
-		
+		// alert(this.props.currPage);
 		fetchJobsData(StringifyQ, this.props.currentJobsPage).then(response => {
 			this.props.getJobsData(response.data);	
 		});
 	}
 
 	eachJob = (item, index) => {
-		return <JobBoxJobsList data={item} id={index}/>
+		return <JobBoxJobsList data={item} id={index} key={index}/>
 	}
  
   render() { 

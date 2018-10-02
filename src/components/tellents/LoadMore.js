@@ -5,24 +5,35 @@ import {fetchJobsData} from '../../functions/api';
 import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {setCurrPageTellents, setCurrPageJobs} from './../../reducers/search';
-import {jobsData, tellentsData, isTellents, isJobs} from './../../selectors';
+import {setCurrPageTellents, setCurrPageJobs, getNextJobsPage} from './../../reducers/search';
+import {jobsData, tellentsData, isTellents, isJobs, configJobs} from './../../selectors';
 import JobBoxJobsList from './JobBoxJobsList';
 const queryString = require('query-string');
 
 class LoadMore extends React.Component {
-	constructor (props) {
-		super(props)
-	}
+	// constructor (props) {
+	// 	super(props)
+	// }
 
   loadMore = () => {
     if (this.props.isJobs === true) {
-      alert(this.props.jobsData.meta.current_page + "->" + this.props.jobsData.meta.next_page);
-      if (this.props.jobsData.meta.next_page !== null) this.props.setCurrPageJobs(this.props.jobsData.meta.next_page);
+      // alert(this.props.jobsData.meta.current_page + "->" + this.props.jobsData.meta.next_page);
+      if (this.props.jobsData.meta.next_page !== null) {
+        this.props.setCurrPageJobs(this.props.jobsData.meta.next_page);
+        
+        var StringifyQ = queryString.stringify({
+          q: JSON.stringify(getRequestJobs(this.props.configJobs))
+        });
+        fetchJobsData(StringifyQ, this.props.jobsData.meta.next_page).then(response => {
+          Reactotron.log('***>',response.data);
+          this.props.getNextJobsPage(response.data);
+          // this.props.getJobsData(response.data);	
+        });
 
+      }
     }
     if (this.props.isTellents === true) {
-      alert(this.props.tellentsData.meta.current_page + "->" + this.props.tellentsData.meta.next_page);
+      // alert(this.props.tellentsData.meta.current_page + "->" + this.props.tellentsData.meta.next_page);
       if (this.props.tellentsData.meta.next_page !== null) this.props.setCurrPageTellents(this.props.tellentsData.meta.next_page);
 
     }
@@ -41,7 +52,8 @@ const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
 			{
         setCurrPageTellents,
-        setCurrPageJobs
+        setCurrPageJobs,
+        getNextJobsPage
 			},
 			dispatch
 	);
@@ -54,7 +66,7 @@ function mapStateToProps (state) {
 			isTellents:isTellents(state), 
 			jobsData:jobsData(state),
 			tellentsData:tellentsData(state),
-			// configJobs: configJobs(state)
+			configJobs: configJobs(state)
 
 	}
 }
