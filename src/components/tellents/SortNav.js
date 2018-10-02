@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // import { getData } from '../functions/api';
 import {inputSearch, inputSearchJobs, getTellentsData, getJobsData, sortFilter} from '../../reducers/search';
 import { isJobs, isTellents, configJobs, configTellents, jobsData, tellentsData } from "./../../selectors";
-import {fetchTellentsData,fetchJobsData} from '../../functions/api';
+import {fetchTellentsData, fetchJobsData} from '../../functions/api';
 import {successMessage, warningMessage} from '../../functions/function';
 import {getRequest, getRequestJobs} from '../../functions/function'
 const queryString = require('query-string');
@@ -142,7 +142,7 @@ function mapStateToProps (state) {
 				configJobs: configJobs(state),
         configTellents: configTellents(state),
         jobsData:jobsData(state),
-        tellentsData:tellentsData(state)
+        tellentsData:tellentsData(state),
 
     }
 }

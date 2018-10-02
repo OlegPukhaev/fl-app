@@ -5,7 +5,7 @@ import {getRequest} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getTellentsData, setTotalCount} from './../../reducers/search';
-import {tellentsData, isTellents, isJobs, configTellents, currentJobsPage} from './../../selectors';
+import {tellentsData, isTellents, isJobs, configTellents, currentTellentsPage} from './../../selectors';
 
 import JobBoxTellentList from './JobBoxTellentList';
 const queryString = require('query-string');
@@ -19,7 +19,7 @@ class JobBoxTellent extends React.Component {
 		var StringifyQ = queryString.stringify({
 			q: JSON.stringify(getRequest(this.props.configTellents))
 		});
-		fetchTellentsData(StringifyQ, currentJobsPage).then(response => {
+		fetchTellentsData(StringifyQ, this.props.currentTellentsPage).then(response => {
 			this.props.getTellentsData(response.data);	
 		});
 	}
@@ -55,7 +55,7 @@ function mapStateToProps (state) {
 			tellentsData:tellentsData(state),
 			isTellents:isTellents(state), 
 			isJobs: isJobs(state),
-			currentJobsPage: currentJobsPage(state)
+			currentTellentsPage: currentTellentsPage(state)
 	}
 }
 

@@ -5,7 +5,7 @@ import {fetchJobsData} from '../../functions/api';
 import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {getJobsData, setTotalCount} from './../../reducers/search';
+import {setCurrPageTellents, setCurrPageJobs} from './../../reducers/search';
 import {jobsData, tellentsData, isTellents, isJobs} from './../../selectors';
 import JobBoxJobsList from './JobBoxJobsList';
 const queryString = require('query-string');
@@ -18,11 +18,13 @@ class LoadMore extends React.Component {
   loadMore = () => {
     if (this.props.isJobs === true) {
       alert(this.props.jobsData.meta.current_page + "->" + this.props.jobsData.meta.next_page);
-      
+      if (this.props.jobsData.meta.next_page !== null) this.props.setCurrPageJobs(this.props.jobsData.meta.next_page);
 
     }
     if (this.props.isTellents === true) {
       alert(this.props.tellentsData.meta.current_page + "->" + this.props.tellentsData.meta.next_page);
+      if (this.props.tellentsData.meta.next_page !== null) this.props.setCurrPageTellents(this.props.tellentsData.meta.next_page);
+
     }
   }
 
@@ -38,8 +40,8 @@ class LoadMore extends React.Component {
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
 			{
-				// getJobsData,
-				// setTotalCount
+        setCurrPageTellents,
+        setCurrPageJobs
 			},
 			dispatch
 	);
