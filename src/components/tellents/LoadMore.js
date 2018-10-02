@@ -18,6 +18,8 @@ class LoadMore extends React.Component {
   loadMore = () => {
     if (this.props.isJobs === true) {
       alert(this.props.jobsData.meta.current_page + "->" + this.props.jobsData.meta.next_page);
+      
+
     }
     if (this.props.isTellents === true) {
       alert(this.props.tellentsData.meta.current_page + "->" + this.props.tellentsData.meta.next_page);

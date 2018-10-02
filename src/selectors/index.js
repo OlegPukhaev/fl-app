@@ -13,6 +13,8 @@ export const getSkillData = state => state.skills.skillsdata.filter(item => item
 export const getActiveCategories = state => state.skills.skillsdata.filter(item => item.selected);
 //  (v => !v.sent);
 export const jobsData = state => state.search.jobsData;
+
+
 export const tellentsData = state => state.search.tellentsData;
 export const totalCount = state => state.search.totalCount;
 export const isTellents = state => state.search.isTellents;
@@ -21,4 +23,7 @@ export const configTellents = state => state.search.config;
 export const configJobs = state => state.search.configJobs;
 export const showJobs = state => state.search.showJobs;
 export const showTellents = state => state.search.showTellents;
+
+export const currentTellentsPage = state => state.search.currentTellentsPage;
+export const currentJobsPage = state => state.search.currentJobsPage;
 

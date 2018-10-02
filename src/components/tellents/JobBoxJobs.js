@@ -6,7 +6,7 @@ import {getRequestJobs} from './../../functions/function';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {getJobsData, setTotalCount} from './../../reducers/search';
-import {jobsData, isTellents, isJobs, configJobs} from './../../selectors';
+import {jobsData, isTellents, isJobs, configJobs, currentJobsPage } from './../../selectors';
 import JobBoxJobsList from './JobBoxJobsList';
 const queryString = require('query-string');
 
@@ -20,7 +20,7 @@ class JobBoxJobs extends React.Component {
 			q: JSON.stringify(getRequestJobs(this.props.configJobs))
 		});
 		
-		fetchJobsData(StringifyQ).then(response => {
+		fetchJobsData(StringifyQ, this.props.currentJobsPage).then(response => {
 			this.props.getJobsData(response.data);	
 		});
 	}
@@ -54,8 +54,8 @@ function mapStateToProps (state) {
 			jobsData:jobsData(state),
 			isJobs: isJobs(state),
 			isTellents:isTellents(state), 
-			configJobs: configJobs(state)
-
+			configJobs: configJobs(state),
+			currentJobsPage: currentJobsPage(state)
 	}
 }
 

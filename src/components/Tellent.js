@@ -161,7 +161,7 @@ class Tellent extends React.Component {
 									{/* } */}
 									
 										<LoadMore />
-										
+
  								</div>
 
 

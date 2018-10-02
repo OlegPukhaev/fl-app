@@ -36,6 +36,10 @@ const	INPUT_PAYMENT_TO = 'INPUT_PAYMENT_TO';
 const	TOTAL_COUNT = 'TOTAL_COUNT';
 const	SORT_FILTER = 'SORT_FILTER';
 
+const	CURR_PAGE_TELLENTS = 'CURR_PAGE_TELLENTS';
+const	CURR_PAGE_JOBS = 'CURR_PAGE_JOBS';
+
+
 
 
 let initialState = {
@@ -470,9 +474,28 @@ let initialState = {
 		tellentsData: null,
 		jobsData: null,
 		totalTellentsCount:0,
-		totalJobssCount:0
+		totalJobssCount:0,
+		currentTellentsPage:1,
+		currentJobsPage:1
 	
 }
+
+  export function setCurrPageTellents(value) {
+		return dispatch => {
+			dispatch({
+				type: CURR_PAGE_TELLENTS, 
+				payload: value
+			});
+		};
+	}
+  export function setCurrPageJobs(value) {
+		return dispatch => {
+			dispatch({
+				type: CURR_PAGE_JOBS, 
+				payload: value
+			});
+		};
+	}
 
   export function setTotalCount(value) {
 		return dispatch => {
@@ -1119,7 +1142,19 @@ const actionsMap = {
 			...state, 
 			totalCount: action.payload
 		}
-	}
+	},
+	[CURR_PAGE_JOBS]: (state, action) => {
+		return {
+			...state, 
+			currentJobsPage: action.payload
+		}
+	},
+	[CURR_PAGE_TELLENTS]: (state, action) => {
+		return {
+			...state, 
+			currentTellentsPage: action.payload
+		}
+	},
 }
 
 
