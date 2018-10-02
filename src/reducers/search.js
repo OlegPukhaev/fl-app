@@ -223,6 +223,7 @@ let initialState = {
 		sort:[
 			{
 			id: "relevance",
+			request: "relevance",
 			selected : false,
 			filter: "sort",
 			name: "Relevance"
@@ -230,18 +231,21 @@ let initialState = {
 		},
 		{
 			id:"saved",
+			request:"saved",
 			selected: false,
 			filter: "sort",
 			name: "Saved"
 		},
 		{
 			id:"rate",
+			request:"rate",
 			selected: false,
 			filter: "sort",
 			name: "Rate" 
 		},
 		{
 			id:"hired",
+			request:"hired",
 			selected: false,
 			filter: "sort",
 			name: "Most Hired"

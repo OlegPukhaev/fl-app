@@ -43,6 +43,7 @@ export function getRequest (value) {
     var obj = {
         q:value.q,
         exp: returnRequestObj(value.exp),
+        sort: returnRequestObj(value.sort),
         ds: returnRequestObj(value.ds),
         skill: returnRequestObj(value.skill),
         rate: returnRequestObj(value.rate),
@@ -58,6 +59,7 @@ export function getRequestJobs (value, p_from="", p_to="") {
     var obj = {
         q:value.q,
         exp: returnRequestObjJobs(value.exp),
+        sort: returnRequestObjJobs(value.sort),
         post: returnRequestObjJobs(value.post),
         prop: returnRequestObjJobs(value.prop),
         payment: returnRequestObjJobs(value.payment),

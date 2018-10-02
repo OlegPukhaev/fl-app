@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {inputSearch, inputSearchJobs, getTellentsData, getJobsData, sortFilter} from '../../reducers/search';
 import { isJobs, isTellents, configJobs, configTellents, jobsData, tellentsData } from "./../../selectors";
 import {fetchTellentsData,fetchJobsData} from '../../functions/api';
+import {successMessage, warningMessage} from '../../functions/function';
 import {getRequest, getRequestJobs} from '../../functions/function'
 const queryString = require('query-string');
 
@@ -25,8 +26,10 @@ class SortNav extends React.Component {
             q: JSON.stringify(getRequest(this.props.configTellents))
     });
 		fetchTellentsData(StringifyQ).then(apiData => {
-            this.props.getTellentsData(apiData.data);
-            Reactotron.log("from server", apiData.data);
+      if (apiData !== "error") {
+        this.props.getTellentsData(apiData.data);
+        Reactotron.log("from server", apiData.data);
+      } else warningMessage("Server Error!!!");
     });
   }
 
@@ -35,16 +38,24 @@ class SortNav extends React.Component {
       q: JSON.stringify(getRequestJobs(this.props.configJobs))
     });
     fetchJobsData(StringifyQ).then(apiData => {
-            this.props.getJobsData(apiData.data);
-            Reactotron.log("from server", apiData.data);
+      if (apiData !== "error") {
+        this.props.getJobsData(apiData.data);
+        Reactotron.log("from server", apiData.data);
+      } else warningMessage("Server Error!!!");
     });      
   }
 
   onChangeSort = (event) => {
-    // alert(event.target.name);
-    this.props.sortFilter(event.target.name)
-    if (this.props.isJobs) this.getRequestJobs()
-      else this.getRequestTellents()
+    alert(event.target.name);
+
+    // Reactotron.log(event.target.name);
+    this.props.sortFilter(event.target.name);
+    if (this.props.isJobs) {
+      this.getRequestJobs();
+    }
+    if (this.props.isTellents) {
+      this.getRequestTellent();
+    }
   }
 
   render() { 
@@ -65,28 +76,28 @@ class SortNav extends React.Component {
             </div>
             <div class="radio-block">
               <div class="radio">
-                <input type="radio" name="relevance" id="jobs-sort-option-1" value="jobs-sort-option-1" checked="" onChange={this.onChangeSort}/>
+                <input type="radio" name="relevance" id="jobs-sort-option-1" value="jobs-sort-option-1" checked="true" onClick={this.onChangeSort}/>
                 <label for="jobs-sort-option-1">
                   <span class="check-mark icon icon-check-mark"></span>
                   <span class="radio-text">Relevance</span>
                 </label>
               </div>
               <div class="radio">
-                <input type="radio" name="saved" id="jobs-sort-option-2" value="jobs-sort-option-2" onChange={this.onChangeSort}/>
+                <input type="radio" name="saved" id="jobs-sort-option-2" value="jobs-sort-option-2" onClick={this.onChangeSort}/>
                 <label for="jobs-sort-option-2">
                   <span class="check-mark icon icon-check-mark"></span>
                   <span class="radio-text">Date</span>
                 </label>
               </div>
               <div class="radio">
-                <input type="radio" name="rate" id="jobs-sort-option-3" value="jobs-sort-option-3" onChange={this.onChangeSort}/>
+                <input type="radio" name="rate" id="jobs-sort-option-3" value="jobs-sort-option-3" onClick={this.onChangeSort}/>
                 <label for="jobs-sort-option-3">
                   <span class="check-mark icon icon-check-mark"></span>
                   <span class="radio-text">Rate</span>
                 </label>
               </div>
               <div class="radio">
-                <input type="radio" name="hired" id="jobs-sort-option-4" value="jobs-sort-option-4" onChange={this.onChangeSort}/>
+                <input type="radio" name="hired" id="jobs-sort-option-4" value="jobs-sort-option-4" onClick={this.onChangeSort}/>
                 <label for="jobs-sort-option-4">
                   <span class="check-mark icon icon-check-mark"></span>
                   <span class="radio-text">Alfabet</span>

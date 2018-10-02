@@ -43,7 +43,7 @@ export function fetchTellentsData(value){
         let dataObj = Object.assign({}, response);
         return dataObj;
     }).catch(error => {
-        console.log('my errors' , error);
+        return "error";
       });  
 }
 
@@ -53,7 +53,7 @@ export function fetchJobsData(value){
         let dataObj = Object.assign({}, response);
         return dataObj;
     }).catch(error => {
-        console.log('my errors' , error);
+        return "error";
       });  
 }
 
