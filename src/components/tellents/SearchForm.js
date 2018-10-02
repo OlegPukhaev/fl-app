@@ -41,11 +41,15 @@ class SearchForm extends React.Component {
 			});
 	}
 
+	add = (event) => {
+		Reactotron.log("Keycode", event);
+	}
+
   render() { 
     return (
 			<div class="search-form">
 			<form class="my-search-form" role="search">
-				<input type="text" class="form-control" placeholder="Search" onChange={this.onChangeSearchText} />
+				<input type="text" class="form-control" placeholder="Search" onChange={this.onChangeSearchText} onKeyDown={this.add}/>
 				<div class="search-filter radio-block">
 					<div class="radio">
 						<input type="radio" name="optionsRadios" id="option-jobs" value="option1" checked={this.props.isJobs} />

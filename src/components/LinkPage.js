@@ -42,9 +42,9 @@ componentWillMount = () => {
         <BrowserRouter>
           <div>
             <h1>Menu</h1>
-            {this.props.user.isUserLogin == false && <Link to="/user"> Login | </Link>} 
+            {this.props.user.isUserLogin == false && <Link to="/user"> Login  </Link>} 
             <Link to="/">Home </Link>
-            {this.props.user.isUserLogin === true && <Link to="/skills"> Skills | </Link>}
+            {this.props.user.isUserLogin === true && <Link to="/skills"> | Skills | </Link>}
             {this.props.user.isUserLogin == true && <Link to="/tellent"> Tellent </Link>}
             {/* <Link to="/Tellent">| Tellent </Link> */}
             
