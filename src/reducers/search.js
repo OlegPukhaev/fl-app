@@ -5,6 +5,7 @@ const
 	GET_TELLENTS_DATA = 'GET_TELLENTS_DATA',
 	GET_JOBS_DATA = 'GET_JOBS_DATA',
 	GET_NEXT_JOBS_PAGE = 'GET_NEXT_JOBS_PAGE',
+	GET_NEXT_TELLENTS_PAGE = 'GET_NEXT_TELLENTS_PAGE',
 	DATA_TOGGLER = 'DATA_TOGGLER',
 	GET_LANGUAGE = 'GET_LANGUAGE',
 	GET_COUNTRIES = 'GET_COUNTRIES',
@@ -618,6 +619,14 @@ let initialState = {
         });
       };
 		}
+  export function getNextTellentsPage(value) {
+      return dispatch => {
+        dispatch({
+          type: GET_NEXT_TELLENTS_PAGE, 
+          payload: value
+        });
+      };
+		}
   export function getJobsData(value) {
       return dispatch => {
         dispatch({
@@ -946,14 +955,25 @@ const actionsMap = {
 					tellentsData: action.payload
 		}
 	},   
-	[GET_NEXT_JOBS_PAGE]: (state, action) => {
-		var copyObj = Object.assign({}, state.jobsData);
-		var addedJobsData = copyObj.jobs.concat(action.payload.jobs);
-		state.jobsData.jobs = addedJobsData;
-		state.jobsData.meta = action.payload.meta;
+	[GET_NEXT_TELLENTS_PAGE]: (state, action) => {
+		Reactotron.log("ooo - > ",action.payload);
+		var payloadObj = Object.assign({}, action.payload);
+		var stateObj = Object.assign({}, state.tellentsData);
+		var addedTellentsData = stateObj.users.concat(payloadObj.users);
+		payloadObj.users = addedTellentsData;
 			return {
 					...state, 
-					jobsData: state.jobsData
+					tellentsData: payloadObj
+		}
+	},   
+	[GET_NEXT_JOBS_PAGE]: (state, action) => {
+		var payloadObj = Object.assign({}, action.payload);
+		var stateObj = Object.assign({}, state.jobsData);
+		var addedJobsData = stateObj.jobs.concat(payloadObj.jobs);
+		payloadObj.jobs = addedJobsData;
+			return {
+					...state, 
+					jobsData: payloadObj
 		}
 	},   
 	[GET_JOBS_DATA]: (state, action) => {

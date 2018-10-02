@@ -12,9 +12,9 @@ export const getShowSkillTagWin = state => state.skills.showSkillTagWin;
 export const getSkillData = state => state.skills.skillsdata.filter(item => item.selected);
 export const getActiveCategories = state => state.skills.skillsdata.filter(item => item.selected);
 //  (v => !v.sent);
+
+
 export const jobsData = state => state.search.jobsData;
-
-
 export const tellentsData = state => state.search.tellentsData;
 export const totalCount = state => state.search.totalCount;
 export const isTellents = state => state.search.isTellents;

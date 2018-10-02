@@ -11,9 +11,9 @@ import JobBoxJobsList from './JobBoxJobsList';
 const queryString = require('query-string');
 
 class JobBoxJobs extends React.Component {
-	constructor (props) {
-		super(props)
-	}
+	// constructor (props) {
+	// 	super(props)
+	// }
 
 
 
