@@ -94,7 +94,6 @@ export function getData(urlApi) {
         let dataObj = Object.assign({}, response);
         return dataObj
     }).then(dataObj => {
-        // Reactotron.log("Inner api resp", dataObj);
         return dataObj;
         // return dataObj = "Урраа отсюда";
     }).catch(function (error) {
