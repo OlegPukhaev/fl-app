@@ -16,6 +16,7 @@ import JobBoxTellent from './tellents/JobBoxTellent';
 import JobBoxJobs from './tellents/JobBoxJobs';
 import LeftSideBarFiltersJobs from './tellents/LeftSideBarFiltersJobs';
 import SortNav from './tellents/SortNav';
+import LoadMore from './tellents/LoadMore';
 const queryString = require('query-string');
 // import queryString fro
 
@@ -159,8 +160,10 @@ class Tellent extends React.Component {
 										{this.props.user.isUserLogin === true && <JobBoxJobs data={this.props.search.jobsData}/>} */}
 									{/* } */}
 									
-
+										<LoadMore />
+										
  								</div>
+
 
  								<div class="col-xs-3 right-sidebar">
 							
