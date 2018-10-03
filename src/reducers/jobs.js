@@ -3,16 +3,17 @@ import Reactotron from 'reactotron-react-js';
 const	SHOW_MODAL_WIN = 'SHOW_MODAL_WIN';
 
 let initialState = {
-  modalWinToggler = "display:none"
+  modalWinToggler : "hide-form"
 }
 
 export function winToggler(value) {
+  // alert(value);
   if (value === true) {
     var typeToggler = SHOW_MODAL_WIN;
-    var valueToggler = "display:block";
+    var valueToggler = "show-form";
   } else {
     var typeToggler = SHOW_MODAL_WIN;
-    var valueToggler = "display:none";
+    var valueToggler = "hide-form";
   }
   return dispatch => {
     dispatch({

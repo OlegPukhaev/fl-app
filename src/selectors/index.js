@@ -27,3 +27,8 @@ export const showTellents = state => state.search.showTellents;
 export const currentTellentsPage = state => state.search.currentTellentsPage;
 export const currentJobsPage = state => state.search.currentJobsPage;
 
+export const modalWinToggler = state => state.jobs.modalWinToggler;
+
+
+
+

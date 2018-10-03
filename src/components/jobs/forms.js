@@ -2,7 +2,8 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import {} from './../selectors';
+import {winToggler} from './../../reducers/jobs';
+import {modalWinToggler} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 
@@ -10,9 +11,10 @@ const queryString = require('query-string');
 // import queryString fro
 
 class Tellent extends React.Component {
-    render() {
+	render() {
+		Reactotron.log(this.props.modalWinToggler);
       return (
-        <div className="content post-job-content" className="hide-form">
+        <div className="content post-job-content" className={this.props.modalWinToggler}>
 				<div className="post-job-form panel panel-default">
 				<div className="post-job-title blue-color">Post a Job</div>
 					<div className="form-block">
@@ -752,7 +754,7 @@ class Tellent extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-
+				winToggler
 			},
 			dispatch
 		);
@@ -760,7 +762,7 @@ class Tellent extends React.Component {
 	
 	function mapStateToProps (state) {
 		return  {
-
+			modalWinToggler:modalWinToggler(state)
 		}
 	}
 	

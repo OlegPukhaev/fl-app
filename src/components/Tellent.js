@@ -6,6 +6,7 @@ import {fetchSignOut} from './../functions/auth';
 import '../../node_modules/toastr/build/toastr.css';
 import {arrForUpdate} from './../functions/function';
 import {getTellentsData, getJobsData, getLanguage, getCountries, getCountriesJobs, getLanguageJobs} from './../reducers/search';
+import {winToggler} from './../reducers/jobs';
 import {jobsData, tellentsData, totalCount, isTellents, isJobs} from './../selectors';
 import NoResultJobs from './tellents/NoResultJobs';
 import NoResultTellents from './tellents/NoResultTellents';
@@ -28,7 +29,7 @@ class Tellent extends React.Component {
 	}
 
 	postJobs = () => {
-		alert("modal");
+		this.props.winToggler(true);
 	}
 
     render() {
@@ -150,7 +151,8 @@ class Tellent extends React.Component {
 				getLanguage,
 				getCountries,
 				getCountriesJobs,
-				getLanguageJobs
+				getLanguageJobs,
+				winToggler
 			},
 			dispatch
 		);
