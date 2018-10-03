@@ -3,7 +3,32 @@ import Reactotron from 'reactotron-react-js';
 const	SHOW_MODAL_WIN = 'SHOW_MODAL_WIN';
 
 let initialState = {
-  modalWinToggler : "hide-form"
+  modalWinToggler : "hide-form",
+
+  title:"",
+  description: "description",
+  category: {
+    id: 1,
+    name: "Web, Mobile & Software Dev",
+    skill_categories:[]
+  },
+  skill_tags:[],
+  promotion_title: "skil",
+  promotion_description: "deskrip",
+
+
+  time_type: "short",
+  price: 10,
+  period_type: "day",
+  period: 4,
+  payment: "fixed_price",
+  level: "senior",
+  hourly_price: null,
+  contract_general_notes: "fsdfsdfdsfdsfdsf",
+  commitment: "per_week_10",
+  promotion: {
+    //from default promotions
+  }
 }
 
 export function winToggler(value) {
