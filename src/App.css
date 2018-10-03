@@ -98,7 +98,7 @@
   right: 0;
   bottom:auto;
   background-color: #222;
-  z-index: 200;
+  z-index: 300;
   /* overflow: hidden; */
   opacity: 1;
 }

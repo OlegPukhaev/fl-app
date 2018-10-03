@@ -1,12 +1,14 @@
 import Reactotron from 'reactotron-react-js';
 
 const	SHOW_MODAL_WIN = 'SHOW_MODAL_WIN';
+const	INPUT_TITLE = 'INPUT_TITLE';
+const	INPUT_DESCRIPTION = 'INPUT_DESCRIPTION';
 
 let initialState = {
   modalWinToggler : "hide-form",
 
-  title:"",
-  description: "description",
+  title:null,
+  description: null,
   category: {
     id: 1,
     name: "Web, Mobile & Software Dev",
@@ -48,11 +50,41 @@ export function winToggler(value) {
   };
 }
 
+export function inputDescription(value) {
+  return dispatch => {
+    dispatch({
+      type: INPUT_DESCRIPTION,
+      payload: value 
+    });
+  };
+}
+
+export function inputTitle(value) {
+  return dispatch => {
+    dispatch({
+      type: INPUT_TITLE,
+      payload: value 
+    });
+  };
+}
+
 const actionsMap = {
 	[SHOW_MODAL_WIN]: (state, action) => {
 		return {
       ...state, 
       modalWinToggler: action.payload
+    }
+	},
+	[INPUT_TITLE]: (state, action) => {
+		return {
+      ...state, 
+      title: action.payload
+    }
+	},
+	[INPUT_DESCRIPTION]: (state, action) => {
+		return {
+      ...state, 
+      description: action.payload
     }
 	},
 }
