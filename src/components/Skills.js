@@ -10,6 +10,8 @@ import {getSkills, setActiveWin, getMenuSkills} from '../reducers/userSkills';
 import {activeWin, backWindow, getActiveCategories} from './../selectors';
 import {arrForUpdate} from './../functions/function';
 import {fetchUserSkills, fetchSkillCategories} from './../functions/api';
+import {fetchValidateToken} from './../functions/auth';
+import {successMessage, warningMessage} from './../functions/function';
 
 class Skills extends React.Component {
 constructor () {
@@ -18,12 +20,30 @@ constructor () {
 
 componentDidMount = () => {
 
+  // if (document.cookie) {
+    fetchValidateToken().then(response => {
+      if (response !== "error" ){
+        this.props.setUserStatus(true);
+        return;
+      } else {
+        warningMessage(`Только зарегестрированные пользователи`);
+        this.props.setUserStatus(false);
+        return;
+      }
+    })
+  // } else {
+  //   this.props.setUserStatus(false);
+  //   // this.props.history.push('/user');
+  // }
   fetchUserSkills().then(response => {
     if (response !== false) {
-      this.props.getSkills(response.data.profession_categories);
-      this.props.getMenuSkills(response.data.profession_categories);
-    }
+        this.props.getSkills(response.data.profession_categories);
+        this.props.getMenuSkills(response.data.profession_categories);
+      }
   });
+
+
+
 };
 
 allSkills = (item, index) => {

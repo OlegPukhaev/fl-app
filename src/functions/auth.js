@@ -24,7 +24,7 @@ export function fetchValidateToken () {
   return Auth.validateToken()
   .then(response => response)
   .catch(error => {
-		return error;
+		return "error";
 	});
 }
 

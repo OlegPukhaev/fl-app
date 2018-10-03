@@ -68,7 +68,7 @@ class User extends React.Component {
     fetchUserLogin(this.state.email, this.state.password).then(response => {
         this.props.setUserStatus(response);
         if ( response === true ) {
-          this.props.history.push('/main');
+          this.props.history.push('/skills');
         } else this.props.history.push('/user');
       });
   }

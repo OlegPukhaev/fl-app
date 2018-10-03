@@ -24,16 +24,16 @@ class Main extends React.Component {
 	}
 
 
-	componentWillMount = () => {
-		if (document.cookie) {
-			fetchValidateToken().then(response => {
-				this.props.setUserStatus(true);
-			})
-		} else {
-			this.props.setUserStatus(false);
-			this.props.history.push('/user');
-		}
-	}
+	// componentWillMount = () => {
+	// 	if (document.cookie) {
+	// 		fetchValidateToken().then(response => {
+	// 			this.props.setUserStatus(true);
+	// 		})
+	// 	} else {
+	// 		this.props.setUserStatus(false);
+	// 		// this.props.history.push('/user');
+	// 	}
+	// }
 
   render() {
     return (
@@ -93,7 +93,8 @@ class Main extends React.Component {
 	    				<div class="user-box-nav dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span class="caret"></span></a>
 							 <ul class="dropdown-menu">
-								<li><a href="" onClick={this.onClickSignOut}>Logout</a></li>
+								<li><a onClick={this.onClickSignOut}>Logout</a></li>
+								<li><a onClick={this.onClickSignIn}><Link to="/user">Login</Link></a></li>
 							  </ul>
 						</div>
 	    			</div>
@@ -103,8 +104,8 @@ class Main extends React.Component {
 				<Switch>
 					<Route exact path="/user" component={User} />
 					{/* <Route exact path="/" component={Home} /> */}
-					<Route exact path="/skills" component={Skills} />
-					<Route exact path="/tellent" component={Tellent} />
+					<Route path="/skills" component={Skills} />
+					<Route path="/tellent" component={Tellent} />
 				</Switch>
 				<footer class="bg-white no-mrg">
 					<div class="container">
