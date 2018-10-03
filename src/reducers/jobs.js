@@ -31,7 +31,6 @@ const actionsMap = {
 	},
 }
 
-
 export default function jobs(state = initialState, action) {
   const reduceFn = actionsMap[action.type];
   if (!reduceFn) return state;
