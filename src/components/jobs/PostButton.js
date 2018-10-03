@@ -9,16 +9,14 @@ import {successMessage, warningMessage} from './../../functions/function';
 
 const queryString = require('query-string');
 
-class TitleDescription extends React.Component {
+class PostButton extends React.Component {
 
 	render() {
 		// Reactotron.log(this.props.modalWinToggler);
     return (
-      <div className="form-block">
-        <div className="post-job-inputs form-block-wrapper">
-          <input type="text" placeholder="Job Title" className="job-title form-control" />
-          <textarea placeholder="Job Description" className="form-control job-descr" rows="4"></textarea>
-        </div>
+      <div className="form-block-wrapper btn-block">
+        <button className="btn btn-blue btn-bold">Preview Before Posting</button>
+        <button className="btn btn-blue btn-bold">Continue</button>
       </div>
       );
     }
@@ -39,4 +37,4 @@ class TitleDescription extends React.Component {
 		}
 	}
 	
-	export default connect(mapStateToProps, mapDispatchToProps)(TitleDescription)
+	export default connect(mapStateToProps, mapDispatchToProps)(PostButton)
