@@ -104,7 +104,7 @@ class Tellent extends React.Component {
  									<div class="panel panel-default panel-btn">
  										<a href="">
  											<i class="icon icon-hand"></i>
- 											<span> Propose New Lesson </span>
+ 											<span> Start New Promotion </span>
  										</a>
  									</div>{/* <!--panel end--> */}
 									
