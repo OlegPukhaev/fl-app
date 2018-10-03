@@ -12,6 +12,8 @@ import {setUserStatus} from '../reducers/getUser';
 import { bindActionCreators } from 'redux';
 import '../../node_modules/toastr/build/toastr.css';
 import Tellent from './Tellent';
+import Forms from './../components/jobs/Forms'
+import './../App';
 
 class Main extends React.Component {
   constructor (props) {
@@ -38,61 +40,61 @@ class Main extends React.Component {
   render() {
     return (
 			<BrowserRouter>
-      <div class="wrapper">
+      <div className="wrapper">
 			
-        <nav class="main-top-nav flexbox justify-space-between">
-    			<div class="logo">
-    				<a class="logo-link" href="index.html"><img src="images/logo.png" height="39" width="auto" /></a>
+        <nav className="main-top-nav flexbox justify-space-between">
+    			<div className="logo">
+    				<a className="logo-link" href="index.html"><img src="images/logo.png" height="39" width="auto" /></a>
     			</div>
-    			<div type="button" class="humburger-icon">
-					<button type="button" class="btn btn-bg-transparent"><span class="icon icon-menu"></span></button>
+    			<div type="button" className="humburger-icon">
+					<button type="button" className="btn btn-bg-transparent"><span className="icon icon-menu"></span></button>
 				</div>
-    			<section class="nav-mobile flexbox justify-space-between">
-    				<section class="nav-tablet flexbox justify-space-center">
-    					<div class="search-form">
-		    				<form class="my-search-form" role="search">
-		    					<input type="text" class="form-control" placeholder="Search" />
-		    					<div class="search-filter radio-block">
-									<div class="radio">
+    			<section className="nav-mobile flexbox justify-space-between">
+    				<section className="nav-tablet flexbox justify-space-center">
+    					<div className="search-form">
+		    				<form className="my-search-form" role="search">
+		    					<input type="text" className="form-control" placeholder="Search" />
+		    					<div className="search-filter radio-block">
+									<div className="radio">
 										<input type="radio" name="profile-page-filter" id="jobs-filter" value="jobs-filter" checked />
 										<label for="jobs-filter">
-											<span class="radio-text">Jobs</span>
+											<span className="radio-text">Jobs</span>
 										</label>
 									</div>
-									<div class="radio">
+									<div className="radio">
 										<input type="radio" name="profile-page-filter" id="talents-filter" value="talents-filter" />
 										<label for="talents-filter">
-											<span class="radio-text">Talents</span>
+											<span className="radio-text">Talents</span>
 										</label>
 									</div>
 								</div>
-								<a href="" type="submit" class="btn-search"><i class="icon icon-loupe"></i></a>
+								<a href="" type="submit" className="btn-search"><i className="icon icon-loupe"></i></a>
 							</form>
 		    			</div>
-		    			<div class="nav-list">
-		    				<ul class="flexbox justify-space-between">
+		    			<div className="nav-list">
+		    				<ul className="flexbox justify-space-between">
 									<li>
-										<a><Link to="/tellent">Find </Link><div class="caret"></div></a>
+										<a><Link to="/tellents">Find </Link><div className="caret"></div></a>
 									</li>
-									<li class="active">
-										<a><Link to="/skills">Profile</Link> <div class="caret"></div></a>
-									</li>
-									<li>
-										<a href="#">Favorites <div class="caret"></div></a>
+									<li className="active">
+										<a><Link to="/skills">Profile</Link> <div className="caret"></div></a>
 									</li>
 									<li>
-										<a href="">About <div class="caret"></div></a>
+										<a href="#"> <div className="caret"></div></a>
+									</li>
+									<li>
+										<a href="">About <div className="caret"></div></a>
 									</li>
 							</ul>
 		    			</div>
     				</section>
-	    			<div class="user-box">
-	    				<div class="user-photo">
-	    					<i class="notif"></i>
+	    			<div className="user-box">
+	    				<div className="user-photo">
+	    					<i className="notif"></i>
 	    				</div>
-	    				<div class="user-box-nav dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span class="caret"></span></a>
-							 <ul class="dropdown-menu">
+	    				<div className="user-box-nav dropdown">
+							<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span className="caret"></span></a>
+							 <ul className="dropdown-menu">
 								<li><a onClick={this.onClickSignOut}>Logout</a></li>
 								<li><a onClick={this.onClickSignIn}><Link to="/user">Login</Link></a></li>
 							  </ul>
@@ -103,12 +105,16 @@ class Main extends React.Component {
         
 				<Switch>
 					<Route exact path="/user" component={User} />
-					{/* <Route exact path="/" component={Home} /> */}
-					<Route path="/skills" component={Skills} />
-					<Route path="/tellent" component={Tellent} />
+					<Route exact path="/jobs/forms" component={Forms} />
+					<Route exact path="/skills" component={Skills} />
+					<Route exact path="/tellents" component={Tellent} />
 				</Switch>
-				<footer class="bg-white no-mrg">
-					<div class="container">
+
+				<Forms />
+				
+
+				<footer className="bg-white no-mrg">
+					<div className="container">
 						<span>© 2016 Talents </span>
 						<ul>
 							<li><a href="">Terms of Use</a></li>

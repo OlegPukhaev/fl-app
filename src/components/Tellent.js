@@ -27,6 +27,10 @@ class Tellent extends React.Component {
 		this.props.history.push('/user');
 	}
 
+	postJobs = () => {
+		alert("modal");
+	}
+
     render() {
 		Reactotron.log('Get Data', this.props.search);
       return (
@@ -101,22 +105,22 @@ class Tellent extends React.Component {
 
  								<div class="col-xs-3 right-sidebar">
 							
- 									<div class="panel panel-default panel-btn">
- 										<a href="">
+ 									<div class="panel panel-default panel-btn" onClick={this.postJobs}>
+ 										<a>
  											<i class="icon icon-hand"></i>
- 											<span> Start New Promotion </span>
+ 											<span> Start New Project </span>
  										</a>
  									</div>{/* <!--panel end--> */}
 									
  									<div class="panel panel-default panel-btn">
- 										<a href="">
+ 										<a>
  											<i class="icon icon-new"></i>
  											<span> Start New Promotion </span>
  										</a>
  									</div>{/* <!--panel end--> */}
 									
  									<div class="panel panel-default panel-btn">
- 										<a href="">
+ 										<a>
  											<i class="icon icon-share"></i>
  											<span> Share Your Project</span>
  										</a>
