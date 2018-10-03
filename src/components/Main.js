@@ -39,6 +39,7 @@ class Main extends React.Component {
     return (
 			<BrowserRouter>
       <div class="wrapper">
+			
         <nav class="main-top-nav flexbox justify-space-between">
     			<div class="logo">
     				<a class="logo-link" href="index.html"><img src="images/logo.png" height="39" width="auto" /></a>
@@ -71,7 +72,7 @@ class Main extends React.Component {
 		    			<div class="nav-list">
 		    				<ul class="flexbox justify-space-between">
 									<li>
-										<a><Link to="/tellent">Teachers </Link><div class="caret"></div></a>
+										<a><Link to="/tellent">Find </Link><div class="caret"></div></a>
 									</li>
 									<li class="active">
 										<a><Link to="/skills">Profile</Link> <div class="caret"></div></a>
@@ -99,93 +100,23 @@ class Main extends React.Component {
     			</section>
     		</nav>
         
-        <div class="content">
-          <div class="container-fluid">
-            <div class="panel panel-default my-main-panel">
-              <div class="panel-body">
-                <div class="flexbox">
-								
-								
-									<div class="right-col">
-										{/* <!-- Nav tabs --> */}
-										<ul class="nav nav-pills nav-stacked my-sidebar" role="tablist">
-											<li role="presentation">
-												<a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">
-													<span class="icon icon-overview"></span>
-													Overview
-												</a>
-											</li>
-											<li role="presentation">
-												<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">
-													<span class="icon icon-message"></span>
-													Messages
-												</a>
-											</li>
-											<li role="presentation">
-												<a href="#my-jobs" aria-controls="my-jobs" role="tab" data-toggle="tab">
-													<span class="icon icon-jobs"></span>
-													My Jobs
-												</a>
-											</li>
-											<li role="presentation">
-												<a href="#my-promo" aria-controls="my-promo" role="tab" data-toggle="tab">
-													<span class="icon icon-promo"></span>
-													My Promo
-												</a>
-											</li>
-											<li role="presentation" class="active">
-												<a href="#skills" aria-controls="skills" role="tab" data-toggle="tab">
-												<span class="icon icon-skills"></span>
-													My Skills
-												</a>
-											</li>
-											<li role="presentation" >
-												<a href="#saved" aria-controls="saved" role="tab" data-toggle="tab">
-													<span class="icon icon-saved"></span>
-													Saved
-												</a>
-											</li>
-											<li role="presentation">
-												<a href="#media" aria-controls="media" role="tab" data-toggle="tab">
-													<span class="icon icon-media"></span>
-													My Media
-												</a>
-											</li>
-											<li role="presentation">
-												<a href="#accounts" aria-controls="accounts" role="tab" data-toggle="tab">
-													<span class="icon icon-accounts"></span>
-													Accounts
-												</a>
-											</li>
-											<li role="presentation">
-												<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
-													<span class="icon icon-profile"></span>
-													Profile
-												</a>
-											</li>
-										</ul>
-								</div>	{/* <!--right-col End--> */}
-
-
-									<div class="left-col">
-										<div class="tab-content my-central-info">
-											{/* <!--Skills page START --> */}
-
-											{/* {this.props.isUserLogin === true && <Skills />}
-											{this.props.isUserLogin === true && <Tellent />} */}
-											<Switch>
-												<Route exact path="/user" component={User} />
-												{/* <Route exact path="/" component={Home} /> */}
-												<Route exact path="/skills" component={Skills} />
-												<Route exact path="/tellent" component={Tellent} />
-											</Switch>
-										</div>
-									</div>
-                </div>
-              </div>
-						</div> 
-          </div>
-        </div>
+				<Switch>
+					<Route exact path="/user" component={User} />
+					{/* <Route exact path="/" component={Home} /> */}
+					<Route exact path="/skills" component={Skills} />
+					<Route exact path="/tellent" component={Tellent} />
+				</Switch>
+				<footer class="bg-white no-mrg">
+					<div class="container">
+						<span>© 2016 Talents </span>
+						<ul>
+							<li><a href="">Terms of Use</a></li>
+							<li><a href="">Privacy Policy</a></li>
+							<li><a href="">About Us</a></li>
+							<li><a href="">Blog</a></li>
+						</ul>
+					</div>
+				</footer>
       </div>
 			</BrowserRouter>
     );

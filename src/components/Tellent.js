@@ -30,52 +30,7 @@ class Tellent extends React.Component {
     render() {
 		Reactotron.log('Get Data', this.props.search);
       return (
-				<div class="wrapper">
-{/* 				
-				
-     		<nav class="main-top-nav flexbox justify-space-between">
-     			<div class="logo">
-     				<a class="logo-link" href="index.html"><img src="images/logo.png" height="39" width="auto" /></a>
-     			</div>
-     			<div type="button" class="humburger-icon">
- 					<button type="button" class="btn btn-bg-transparent"><span class="icon icon-menu"></span></button>
- 				</div>
-     			<section class="nav-mobile flexbox justify-space-between">
-     				<section class="nav-tablet flexbox justify-space-center">
-              			<SearchForm />
- 		    			<div class="nav-list">
- 		    				<ul class="flexbox justify-space-between">
- 		                        <li class="active">
- 		                            <a href="#">Teachers <div class="caret"></div></a>
- 		                        </li>
- 		                        <li>
- 		                            <a href="profile.html">Profile <div class="caret"></div></a>
- 		                        </li>
- 		                        <li>
- 		                            <a href="#">Favorites <div class="caret"></div></a>
- 		                        </li>
- 								 <li>
- 		                            <a href="#">About <div class="caret"></div></a>
- 		                        </li>
- 		                    </ul>
- 		    			</div>
-     				</section>
- 	    			<div class="user-box">
- 
-               <div class="user-photo">
- 	    					<i class="notif"></i>
- 	    				</div>
- 	    				<div class="user-box-nav dropdown">
- 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span class="caret"></span></a>
- 							 <ul class="dropdown-menu">
- 								<li><a href="" onClick={this.onClickSignOut}>Logout</a></li>
- 							  </ul>
- 						</div>
- 	    			</div>
-     			</section>
-     		</nav>
-		
-		 */}
+
 		
  			<div class="content">
  				<div class="container-fluid">
@@ -175,20 +130,9 @@ class Tellent extends React.Component {
 												
  					</div>{/* <!--main-content row End--> */}
  				</div> 
-			</div>{/* <!--content End--> */}
+			</div>
 	
-			<footer class="bg-white no-mrg">
-				<div class="container">
-					<span>© 2016 Talents </span>
-					<ul>
-						<li><a href="">Terms of Use</a></li>
-						<li><a href="">Privacy Policy</a></li>
-						<li><a href="">About Us</a></li>
-						<li><a href="">Blog</a></li>
-					</ul>
-				</div>
-			</footer>
-		</div>
+
 
       );
     }
