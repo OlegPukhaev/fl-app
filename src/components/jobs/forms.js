@@ -11,12 +11,17 @@ const queryString = require('query-string');
 // import queryString fro
 
 class Tellent extends React.Component {
+
+	closeWin = () => {
+		this.props.winToggler(false);
+	}
+	
 	render() {
 		Reactotron.log(this.props.modalWinToggler);
       return (
         <div className="content post-job-content" className={this.props.modalWinToggler}>
 				<div className="post-job-form panel panel-default">
-				<div className="post-job-title blue-color">Post a Job</div>
+				<div className="post-job-title blue-color" onClick={this.closeWin}>Post a Job </div>
 					<div className="form-block">
 						<div className="post-job-inputs form-block-wrapper">
 							<input type="text" placeholder="Job Title" className="job-title form-control" />
