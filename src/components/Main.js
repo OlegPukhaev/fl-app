@@ -2,13 +2,16 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchValidateToken} from './../functions/auth';
+import {BrowserRouter, Route, Redirect, Link, Switch} from 'react-router-dom';
 import {isUserLogin} from './../selectors'
 import {fetchSignOut} from './../functions/auth';
 import Skills from './Skills';
+import User from './User';
 import '../../node_modules/toastr/build/toastr.css';
 import {setUserStatus} from '../reducers/getUser';
 import { bindActionCreators } from 'redux';
 import '../../node_modules/toastr/build/toastr.css';
+import Tellent from './Tellent';
 
 class Main extends React.Component {
   constructor (props) {
@@ -26,11 +29,15 @@ class Main extends React.Component {
 			fetchValidateToken().then(response => {
 				this.props.setUserStatus(true);
 			})
-		} else this.props.setUserStatus(false);
+		} else {
+			this.props.setUserStatus(false);
+			this.props.history.push('/user');
+		}
 	}
 
   render() {
     return (
+			<BrowserRouter>
       <div class="wrapper">
         <nav class="main-top-nav flexbox justify-space-between">
     			<div class="logo">
@@ -64,10 +71,10 @@ class Main extends React.Component {
 		    			<div class="nav-list">
 		    				<ul class="flexbox justify-space-between">
 									<li>
-										<a href="#">Teachers <div class="caret"></div></a>
+										<a><Link to="/tellent">Teachers </Link><div class="caret"></div></a>
 									</li>
 									<li class="active">
-										<a href="#">Profile <div class="caret"></div></a>
+										<a><Link to="/skills">Profile</Link> <div class="caret"></div></a>
 									</li>
 									<li>
 										<a href="#">Favorites <div class="caret"></div></a>
@@ -97,6 +104,8 @@ class Main extends React.Component {
             <div class="panel panel-default my-main-panel">
               <div class="panel-body">
                 <div class="flexbox">
+								
+								
 									<div class="right-col">
 										{/* <!-- Nav tabs --> */}
 										<ul class="nav nav-pills nav-stacked my-sidebar" role="tablist">
@@ -155,24 +164,30 @@ class Main extends React.Component {
 												</a>
 											</li>
 										</ul>
-							
 								</div>	{/* <!--right-col End--> */}
 
-								<div class="left-col">
+
+									<div class="left-col">
 										<div class="tab-content my-central-info">
 											{/* <!--Skills page START --> */}
 
-											{this.props.isUserLogin === true && <Skills />}
-											
+											{/* {this.props.isUserLogin === true && <Skills />}
+											{this.props.isUserLogin === true && <Tellent />} */}
+											<Switch>
+												<Route exact path="/user" component={User} />
+												{/* <Route exact path="/" component={Home} /> */}
+												<Route exact path="/skills" component={Skills} />
+												<Route exact path="/tellent" component={Tellent} />
+											</Switch>
 										</div>
-								</div>
+									</div>
                 </div>
               </div>
-             </div> 
-
+						</div> 
           </div>
         </div>
       </div>
+			</BrowserRouter>
     );
   }
 }

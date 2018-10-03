@@ -30,7 +30,9 @@ class Tellent extends React.Component {
     render() {
 		Reactotron.log('Get Data', this.props.search);
       return (
-         <div class="wrapper">
+				<div class="wrapper">
+{/* 				
+				
      		<nav class="main-top-nav flexbox justify-space-between">
      			<div class="logo">
      				<a class="logo-link" href="index.html"><img src="images/logo.png" height="39" width="auto" /></a>
@@ -40,10 +42,7 @@ class Tellent extends React.Component {
  				</div>
      			<section class="nav-mobile flexbox justify-space-between">
      				<section class="nav-tablet flexbox justify-space-center">
-
               			<SearchForm />
-										{/* {this.props.search.toggler} */}
-
  		    			<div class="nav-list">
  		    				<ul class="flexbox justify-space-between">
  		                        <li class="active">
@@ -76,9 +75,10 @@ class Tellent extends React.Component {
      			</section>
      		</nav>
 		
+		 */}
+		
  			<div class="content">
  				<div class="container-fluid">
-
  					<div class="row content-header flexbox">
  						<div class="col-xs-2 left-sidebar">
  							<div class="hello-header">
@@ -106,16 +106,6 @@ class Tellent extends React.Component {
  						<div class="col-xs-10">
  							<div class="panel panel-default panel-gray job-boxes-nav">
  								<nav class="flexbox justify-space-between">
- 									{/* <div class="filter-nav">
- 										<span class="filter-list-title">Jobs for me</span>
- 										<ul class="filter-list list-unstyled">
- 											<li class="blue-color">UI design</li>
- 											<li class="blue-color">CSS/HTML</li>
- 											<li class="blue-color">
- 												<span class="icon icon-plus-button"></span>
- 											</li>
- 										</ul>
-									 </div> */}
 									<SortNav />
  								</nav>
  							</div>

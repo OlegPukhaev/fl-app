@@ -51,25 +51,27 @@ onClickBack = () => {
 
   render() { 
     return (
-    <div class="tab-content my-central-info ">
-      <div role="tabpanel" class="tab-pane my-tab active" class={this.props.activeWin} id="skills">
-        <div class="steps-nav flexbox justify-space-between">
-          <div class="steps-nav-title">Your Shared Skills</div>
-          <div class="steps-nav-btn">
-            <div class="btn-group step-2-btn clearfix">
-              <button type="button" class="btn btn-blue-border btn-bold step-1-toggler step-toggler" onClick={this.onClickBack}>Back</button>
-              <button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler" onClick={this.onClickUpdateCategories}>Done</button>
-            </div>
-            <button type="button" class="btn btn-blue btn-bold step-3-btn step-1-toggler step-toggler" onClick={this.onClickAddSkills}>Add</button>
-          </div>
-        </div>
 
-          {this.props.activeWin === "step-1-open" && <SkillsStepOne />}
-          {this.props.activeWin === "step-2-open" && <SkillsStepTwo />}
-          {this.props.activeWin === "step-3-open" && <SkillsStepThree />}
 
-      </div>
-    </div>   
+            <div class="tab-content my-central-info ">
+              <div role="tabpanel" class="tab-pane my-tab active" class={this.props.activeWin} id="skills">
+                <div class="steps-nav flexbox justify-space-between">
+                  <div class="steps-nav-title">Your Shared Skills</div>
+                  <div class="steps-nav-btn">
+                    <div class="btn-group step-2-btn clearfix">
+                      <button type="button" class="btn btn-blue-border btn-bold step-1-toggler step-toggler" onClick={this.onClickBack}>Back</button>
+                      <button type="button" class="btn btn-blue btn-bold step-3-toggler step-toggler" onClick={this.onClickUpdateCategories}>Done</button>
+                    </div>
+                    <button type="button" class="btn btn-blue btn-bold step-3-btn step-1-toggler step-toggler" onClick={this.onClickAddSkills}>Add</button>
+                  </div>
+                </div>
+
+                  {this.props.activeWin === "step-1-open" && <SkillsStepOne />}
+                  {this.props.activeWin === "step-2-open" && <SkillsStepTwo />}
+                  {this.props.activeWin === "step-3-open" && <SkillsStepThree />}
+
+              </div>
+            </div>   
     );
   }
 }

@@ -14,6 +14,7 @@ import './App.css';
 import createStore from './reducers/createStore';
 import {Provider} from 'react-redux';
 import LinkPage from './components/LinkPage';
+import Main from './components/Main';
 
 
 class App extends Component {
@@ -36,7 +37,8 @@ class App extends Component {
     // })
     return (
       <Provider store={createStore}>
-        <LinkPage />
+        {/* <LinkPage /> */}
+        <Main />
       </Provider>
     );
   }
