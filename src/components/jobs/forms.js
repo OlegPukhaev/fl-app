@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {winToggler, getSkillCategories} from './../../reducers/jobs';
 import {fetchSkillsCatJobPost} from './../../functions/api';
 
-import {modalWinToggler,skillConfig} from './../../selectors';
+import {modalWinToggler,skillConfig,activeSkillId} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import TitleDescription from './TitleDescription';
@@ -26,13 +26,14 @@ class Forms extends React.Component {
 	componentWillMount() {
 		fetchSkillsCatJobPost().then(response => {
 			if (response !== "error") {
+				Reactotron.log("fff" , response);
 				this.props.getSkillCategories(response.data.profession_categories);
 			} 
 		})  
 	}
 	
 	render() {
-		Reactotron.log(this.props.config);
+		Reactotron.log({activeSkillId: this.props.activeSkillId},{config:this.props.config});
       return (
         <div className="content post-job-content" className={this.props.modalWinToggler}>
 					<div className="post-job-form panel panel-default">
@@ -61,7 +62,8 @@ class Forms extends React.Component {
 	function mapStateToProps (state) {
 		return  {
 			modalWinToggler:modalWinToggler(state),
-			config:skillConfig(state)
+			config:skillConfig(state),
+			activeSkillId:activeSkillId(state)
 		}
 	}
 	

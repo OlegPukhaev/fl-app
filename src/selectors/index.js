@@ -28,6 +28,7 @@ export const currentTellentsPage = state => state.search.currentTellentsPage;
 export const currentJobsPage = state => state.search.currentJobsPage;
 
 export const modalWinToggler = state => state.jobs.modalWinToggler;
+export const activeSkillId = state => state.jobs.activeSkillId;
 export const title = state => state.jobs.config.title;
 export const description = state => state.jobs.config.description;
 export const skillConfig = state => state.jobs.config;

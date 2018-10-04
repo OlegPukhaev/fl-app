@@ -20,6 +20,8 @@ export function fetchSkillsCatJobPost(){
     return axios.get(`${API_URL}/profile/skills`)
     .then(response => {
         let dataObj = Object.assign({}, response);
+        // Reactotron.log("response" , response);
+        console.log(response);
         return dataObj
     }).catch(error => {
         return "error";

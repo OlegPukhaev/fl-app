@@ -9,6 +9,7 @@ const	SET_SKILL_CHECKED = 'SET_SKILL_CHECKED';
 let initialState = {
   modalWinToggler : "hide-form",
   isSkillSelected: false,
+  activeSkillId:null,
   config: {
     title:null,
     description: null,
@@ -97,15 +98,21 @@ const actionsMap = {
 		return {
       ...state, 
       config: copyObj,
-      isSkillSelected:true
+      isSkillSelected:true,
+      activeSkillId:Number(action.payload)
     }
 	},
 	[GET_SKILL_CATEGORIES]: (state, action) => {
     action.payload.map(item => {
       item.selected = false;
+      // item.id = `${item.id}`
+      item.skill_categories.map(sitem => {
+        sitem.selected = false;
+        sitem.id = `subcat-${sitem.id}`;
+      })
     });
     var copyObj = Object.assign({}, state.config)	
-    Reactotron.log("++++=",copyObj);
+    // Reactotron.log("++++=",copyObj);
     copyObj.category = action.payload;
 		return {
       ...state, 
