@@ -4,9 +4,12 @@ const	SHOW_MODAL_WIN = 'SHOW_MODAL_WIN';
 const	INPUT_TITLE = 'INPUT_TITLE';
 const	INPUT_DESCRIPTION = 'INPUT_DESCRIPTION';
 const	GET_SKILL_CATEGORIES = 'GET_SKILL_CATEGORIES';
+// const	IS_SKILL_SELECTED = 'IS_SKILL_SELECTED';
 
 let initialState = {
   modalWinToggler : "hide-form",
+  isSkillSelected: false,
+
   config: {
     title:null,
     description: null,

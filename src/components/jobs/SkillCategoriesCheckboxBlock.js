@@ -19,7 +19,7 @@ class SkillCategoriesCheckboxBlock extends React.Component {
 	render() {
     return (
       <div className="checkbox-block" key={this.props.key}>
-        <input type="checkbox" id={this.props.id} />
+        <input type="checkbox" id={this.props.id} checked={this.props.selected}/>
         <label for={this.props.id}>
           <span className="checkbox-circle">
             <span className="icon icon-check-mark"></span>
