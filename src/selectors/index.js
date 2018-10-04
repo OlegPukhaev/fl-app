@@ -30,6 +30,7 @@ export const currentJobsPage = state => state.search.currentJobsPage;
 export const modalWinToggler = state => state.jobs.modalWinToggler;
 export const title = state => state.jobs.title;
 export const description = state => state.jobs.description;
+export const skillsCategory = state => state.jobs.config.category
 
 
 

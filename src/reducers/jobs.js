@@ -35,7 +35,6 @@ let initialState = {
 }
 
 export function winToggler(value) {
-  // alert(value);
   if (value === true) {
     var typeToggler = SHOW_MODAL_WIN;
     var valueToggler = "show-form";
@@ -80,11 +79,15 @@ export function inputTitle(value) {
 
 const actionsMap = {
 	[GET_SKILL_CATEGORIES]: (state, action) => {
-    var copyObj = Object.assign({}, state.config);
-    copyObj.category = action.payload;	
+    action.payload.map(item => {
+      item.selected = false;
+    });
+    // Reactotron.log("++++=",action.payload);
 		return {
       ...state, 
-      config: copyObj
+      config: {
+        category : action.payload
+      }
     }
 	},
 	[SHOW_MODAL_WIN]: (state, action) => {

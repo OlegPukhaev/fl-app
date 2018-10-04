@@ -2,122 +2,51 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {winToggler, fetchSkillsCatJobPost} from './../../reducers/jobs';
-import {modalWinToggler} from './../../selectors';
+import {winToggler, getSkillCategories} from './../../reducers/jobs';
+import {fetchSkillsCatJobPost} from './../../functions/api';
+import {modalWinToggler, skillsCategory} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
+import SkillCategoriesCheckboxBlock from './SkillCategoriesCheckboxBlock';
 
 const queryString = require('query-string');
 
 class SkillCategories extends React.Component {
 
 componentDidMount() {
-  fetchSkillsCatJobPost  
+  fetchSkillsCatJobPost().then(response => {
+    if (response !== "error") {
+      this.props.getSkillCategories(response.data.profession_categories);
+    } 
+  })  
+}
+
+getSkillList = () => {
+  this.props.skillsCategory.map((item, index) => {
+    return <SkillCategoriesCheckboxBlock />;
+  });
 }
 
 	render() {
-		// Reactotron.log(this.props.modalWinToggler);
+		Reactotron.log(
+      {SkillCategories:this.props.skillsCategory}
+      
+    );
     return (
       <div className="form-block">
         <div className="skill-block skill-cat">
+
           <div className="skill-block-title">
             <div className="form-block-wrapper">
               Choose  Your Skill Category
               <span className="icon icon-down-arrow"></span>
             </div>
           </div>
+          
           <div className="skill-block-list">
             <form className="form-block-wrapper flexbox flex-wrap">
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-1" />
-                <label for="cat-1">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">Web, Mobile &amp; Software Dev</span>
-                </label>
-              </div>
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-2" />
-                <label for="cat-2">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">IT &amp; Networking</span>
-                </label>
-              </div>
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-3" />
-                <label for="cat-3">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">Data Science &amp; Analytics</span>
-                </label>
-              </div>
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-4" />
-                <label for="cat-4">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">Translation</span>
-                </label>
-              </div>
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-5" />
-                <label for="cat-5">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">Legal</span>
-                </label>
-              </div>
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-6" />
-                <label for="cat-6">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">Admin Support</span>
-                </label>
-              </div>
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-7" />
-                <label for="cat-7">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">Engineering &amp; Architecture</span>
-                </label>
-              </div>
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-8" />
-                <label for="cat-8">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">Customer Service</span>
-                </label>
-              </div>
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-9" />
-                <label for="cat-9">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">Design &amp; Creative</span>
-                </label>
-              </div>
-              <div className="checkbox-block">
-                <input type="checkbox" id="cat-10" />
-                <label for="cat-10">
-                  <span className="checkbox-circle">
-                    <span className="icon icon-check-mark"></span>
-                  </span>
-                  <span className="checkbox-text">Sales &amp; Marketing</span>
-                </label>
-              </div>
+              {this.getSkillList()}
+              {/* {this.props.skillsCategory.map(this.getSkillList)} */}
             </form>
           </div>
         </div>
@@ -249,7 +178,8 @@ componentDidMount() {
 		return bindActionCreators(
 			{
         winToggler,
-        fetchSkillsCatJobPost
+        fetchSkillsCatJobPost,
+        getSkillCategories
 			},
 			dispatch
 		);
@@ -257,7 +187,8 @@ componentDidMount() {
 	
 	function mapStateToProps (state) {
 		return  {
-			modalWinToggler:modalWinToggler(state)
+      modalWinToggler:modalWinToggler(state),
+      skillsCategory:skillsCategory(state)
 		}
 	}
 	

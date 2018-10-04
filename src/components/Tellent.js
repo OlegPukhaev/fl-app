@@ -33,7 +33,7 @@ class Tellent extends React.Component {
 	}
 
     render() {
-		Reactotron.log('Get Data', this.props.search);
+		// Reactotron.log('Get Data', this.props.search);
       return (
 
 		

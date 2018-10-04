@@ -22,7 +22,7 @@ export function fetchSkillsCatJobPost(){
         let dataObj = Object.assign({}, response);
         return dataObj
     }).catch(error => {
-        return error;
+        return "error";
     });  
 }  
 
