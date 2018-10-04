@@ -4,7 +4,7 @@ const	SHOW_MODAL_WIN = 'SHOW_MODAL_WIN';
 const	INPUT_TITLE = 'INPUT_TITLE';
 const	INPUT_DESCRIPTION = 'INPUT_DESCRIPTION';
 const	GET_SKILL_CATEGORIES = 'GET_SKILL_CATEGORIES';
-// const	IS_SKILL_SELECTED = 'IS_SKILL_SELECTED';
+const	SET_SKILL_CHECKED = 'SET_SKILL_CHECKED';
 
 let initialState = {
   modalWinToggler : "hide-form",
@@ -58,6 +58,15 @@ export function inputDescription(value) {
   };
 }
 
+export function setSkillChecked(value) {
+  return dispatch => {
+    dispatch({
+      type: SET_SKILL_CHECKED,
+      payload: value 
+    });
+  };
+}
+
 export function getSkillCategories(value) {
   return dispatch => {
     dispatch({
@@ -77,6 +86,26 @@ export function inputTitle(value) {
 }
 
 const actionsMap = {
+	[SET_SKILL_CHECKED]: (state, action) => {
+    // alert("ehhf");
+    var copyObj = Object.assign({}, state.config)	
+
+    // Reactotron.log("++++=",Number(action.payload) ,copyObj.category);
+		copyObj.category.map(item => {
+        if (item.id === Number(action.payload)) {
+          Reactotron.log(item.id , Number(action.payload));
+          if(item.selected === true) {
+            item.selected = false;
+            }	else item.selected = true;
+        } else item.selected = false;  
+    });
+    Reactotron.log("mmmmmmmmmmmmmmmm",copyObj.category);
+
+		return {
+      ...state, 
+      config: copyObj
+    }
+	},
 	[GET_SKILL_CATEGORIES]: (state, action) => {
     action.payload.map(item => {
       item.selected = false;
