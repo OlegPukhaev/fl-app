@@ -9,7 +9,6 @@ const	SET_SKILL_CHECKED = 'SET_SKILL_CHECKED';
 let initialState = {
   modalWinToggler : "hide-form",
   isSkillSelected: false,
-
   config: {
     title:null,
     description: null,
@@ -29,8 +28,7 @@ let initialState = {
     promotion: {
       //from default promotions
     }
-  },
-  configForResponse :{  }
+  }
 }
 
 export function winToggler(value) {
@@ -87,23 +85,20 @@ export function inputTitle(value) {
 
 const actionsMap = {
 	[SET_SKILL_CHECKED]: (state, action) => {
-    // alert("ehhf");
-    var copyObj = Object.assign({}, state.config)	
-
-    // Reactotron.log("++++=",Number(action.payload) ,copyObj.category);
+		var copyObj = Object.assign({}, state.config)	
 		copyObj.category.map(item => {
-        if (item.id === Number(action.payload)) {
-          Reactotron.log(item.id , Number(action.payload));
-          if(item.selected === true) {
-            item.selected = false;
-            }	else item.selected = true;
-        } else item.selected = false;  
-    });
-    Reactotron.log("mmmmmmmmmmmmmmmm",copyObj.category);
 
+			if (item.id === Number(action.payload)) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+    // copyObj.category[0].selected = true;
 		return {
       ...state, 
-      config: copyObj
+      config: copyObj,
+      isSkillSelected:true
     }
 	},
 	[GET_SKILL_CATEGORIES]: (state, action) => {

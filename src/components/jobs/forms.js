@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {winToggler, getSkillCategories} from './../../reducers/jobs';
 import {fetchSkillsCatJobPost} from './../../functions/api';
 
-import {modalWinToggler,skillsCategory} from './../../selectors';
+import {modalWinToggler,skillConfig} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import TitleDescription from './TitleDescription';
@@ -38,7 +38,7 @@ class Forms extends React.Component {
 					<div className="post-job-form panel panel-default">
 					<div className="post-job-title blue-color" onClick={this.closeWin}>Post a Job </div>
 						<TitleDescription />
-						{this.props.skillsCategory !== null && <SkillCategories />}
+						{this.props.config.category !== null && <SkillCategories />}
 						<PromoSample />
 						<PaymentDetails />
 						<PostButton />
@@ -61,7 +61,7 @@ class Forms extends React.Component {
 	function mapStateToProps (state) {
 		return  {
 			modalWinToggler:modalWinToggler(state),
-			skillsCategory:skillsCategory(state)
+			config:skillConfig(state)
 		}
 	}
 	
