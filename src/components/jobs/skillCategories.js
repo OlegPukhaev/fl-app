@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {winToggler} from './../../reducers/jobs';
+import {winToggler, fetchSkillsCatJobPost} from './../../reducers/jobs';
 import {modalWinToggler} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
@@ -10,6 +10,10 @@ import {successMessage, warningMessage} from './../../functions/function';
 const queryString = require('query-string');
 
 class SkillCategories extends React.Component {
+
+componentDidMount() {
+  fetchSkillsCatJobPost  
+}
 
 	render() {
 		// Reactotron.log(this.props.modalWinToggler);
@@ -244,7 +248,8 @@ class SkillCategories extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-				winToggler
+        winToggler,
+        fetchSkillsCatJobPost
 			},
 			dispatch
 		);

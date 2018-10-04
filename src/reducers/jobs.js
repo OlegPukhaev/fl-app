@@ -3,34 +3,35 @@ import Reactotron from 'reactotron-react-js';
 const	SHOW_MODAL_WIN = 'SHOW_MODAL_WIN';
 const	INPUT_TITLE = 'INPUT_TITLE';
 const	INPUT_DESCRIPTION = 'INPUT_DESCRIPTION';
+const	GET_SKILL_CATEGORIES = 'GET_SKILL_CATEGORIES';
 
 let initialState = {
   modalWinToggler : "hide-form",
-
-  title:null,
-  description: null,
-  category: {
-    id: 1,
-    name: "Web, Mobile & Software Dev",
-    skill_categories:[]
+  config: {
+    title:null,
+    description: null,
+    category: {
+      id: 1,
+      name: "Web, Mobile & Software Dev",
+      skill_categories:[]
+    },
+    skill_tags:[],
+    promotion_title: "skil",
+    promotion_description: "deskrip",
+    time_type: "short",
+    price: 10,
+    period_type: "day",
+    period: 4,
+    payment: "fixed_price",
+    level: "senior",
+    hourly_price: null,
+    contract_general_notes: "fsdfsdfdsfdsfdsf",
+    commitment: "per_week_10",
+    promotion: {
+      //from default promotions
+    }
   },
-  skill_tags:[],
-  promotion_title: "skil",
-  promotion_description: "deskrip",
-
-
-  time_type: "short",
-  price: 10,
-  period_type: "day",
-  period: 4,
-  payment: "fixed_price",
-  level: "senior",
-  hourly_price: null,
-  contract_general_notes: "fsdfsdfdsfdsfdsf",
-  commitment: "per_week_10",
-  promotion: {
-    //from default promotions
-  }
+  configForResponse :{  }
 }
 
 export function winToggler(value) {
@@ -59,6 +60,15 @@ export function inputDescription(value) {
   };
 }
 
+export function getSkillCategories(value) {
+  return dispatch => {
+    dispatch({
+      type: GET_SKILL_CATEGORIES,
+      payload: value 
+    });
+  };
+}
+
 export function inputTitle(value) {
   return dispatch => {
     dispatch({
@@ -69,6 +79,14 @@ export function inputTitle(value) {
 }
 
 const actionsMap = {
+	[GET_SKILL_CATEGORIES]: (state, action) => {
+    var copyObj = Object.assign({}, state.config);
+    copyObj.category = action.payload;	
+		return {
+      ...state, 
+      config: copyObj
+    }
+	},
 	[SHOW_MODAL_WIN]: (state, action) => {
 		return {
       ...state, 
