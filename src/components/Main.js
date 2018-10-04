@@ -22,7 +22,7 @@ class Main extends React.Component {
 
 	onClickSignOut = () => {
 		fetchSignOut();
-		this.props.history.push('/user');
+		// this.props.history.push('/user');
 	}
 
 
@@ -95,7 +95,7 @@ class Main extends React.Component {
 	    				<div className="user-box-nav dropdown">
 							<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Philip Seamor<span className="caret"></span></a>
 							 <ul className="dropdown-menu">
-								<li><a onClick={this.onClickSignOut}>Logout</a></li>
+								<li><a onClick={this.onClickSignOut}><Link to="/user">Logout</Link></a></li>
 								<li><a onClick={this.onClickSignIn}><Link to="/user">Login</Link></a></li>
 							  </ul>
 						</div>
