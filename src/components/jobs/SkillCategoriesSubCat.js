@@ -2,9 +2,9 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {setSubCatChecked, searchSkillTagWin} from './../../reducers/jobs';
+import {setSubCatChecked, searchSkillTagWin,setTagInput} from './../../reducers/jobs';
 import {fetchSkillsCatJobPost} from './../../functions/api';
-import {skillConfig,  activeSkillId, showSkillTagWin} from './../../selectors';
+import {skillConfig,  activeSkillId, showSkillTagWin, tagInput} from './../../selectors';
 import { fetchSkillTags } from './../../functions/api';
 import SkillSearchList from './SkillSearchList';
 import './../../App';
@@ -40,6 +40,7 @@ class SkillCategoriesSubCat extends React.Component {
 
   onChangeGetTag = (event) => {
   // this.props.setInputEmpty(event.target.value);
+    this.props.setTagInput(event.target.value);
     fetchSkillTags(event.target.value).then(response => {
       this.setState({
           tags: response
@@ -76,9 +77,9 @@ render() {
             </div>
           </div>
           <div className="skill-sub-block">
-          {this.props.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.activeSkillId-1}/>}
+          {this.props.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.activeSkillId-1} value={this.props.tagInput}/>}
             <form className="form-group">
-              <input type="text" className="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag}/>
+              <input type="text" className="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag} value={this.props.tagInput}/>
               <button className="add-btn btn btn-blue">
                 <span className="icon icon-add"></span>
               </button>
@@ -104,7 +105,8 @@ render() {
 		return bindActionCreators(
 			{
         setSubCatChecked,
-        searchSkillTagWin
+        searchSkillTagWin,
+        setTagInput
 			},
 			dispatch
 		);
@@ -114,7 +116,8 @@ render() {
 		return  {
       config:skillConfig(state),
       activeSkillId:activeSkillId(state),
-      showSkillTagWin:showSkillTagWin(state)
+      showSkillTagWin:showSkillTagWin(state),
+      tagInput:tagInput(state),
 		}
 	}
 	

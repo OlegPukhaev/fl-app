@@ -6,18 +6,22 @@ import { bindActionCreators } from 'redux';
 // import '../App.css';
 // import '../../node_modules/toastr/build/toastr.css';
 // import axios from 'axios';
-import {searchSkillTagWin} from './../../reducers/jobs';
+import {searchSkillTagWin,addSkillTagsJobs} from './../../reducers/jobs';
+import {skillConfig,activeSkillId,showSkillTagWin} from './../../selectors';
 
 class SkillSearchList extends React.Component {
     constructor (props) {
       super(props);
+
+      this.state = {text: ""}
     }
 
-    // onClickAddTag = (event) => {
-    //   this.props.addSkillTags(this.props.skillid, this.props.data[event.target.id].id, this.props.data[event.target.id].name);
-    //   this.props.searchSkillTagWin(false);
-    //   this.props.setInputEmpty("");
-    // }
+    onClickAddTag = (event) => {
+      alert(event.target.id);
+      this.props.addSkillTagsJobs(this.props.data[event.target.id].id, this.props.data[event.target.id].name);
+      this.props.searchSkillTagWin(false);
+      // this.props.setInputEmpty("");
+    }
   
     render () {
       // Reactotron.log('oleg ',this.props.data);
@@ -39,6 +43,7 @@ class SkillSearchList extends React.Component {
     return bindActionCreators(
       {
         searchSkillTagWin,
+        addSkillTagsJobs
         // addSkillTags,
         // setInputEmpty
       },
@@ -48,7 +53,9 @@ class SkillSearchList extends React.Component {
   
   function mapStateToProps (state) {
     return  {
-      skills: state.skills
+      config:skillConfig(state),
+      activeSkillId:activeSkillId(state),
+      showSkillTagWin:showSkillTagWin(state)
     }
   }
   

@@ -7,12 +7,16 @@ const	GET_SKILL_CATEGORIES = 'GET_SKILL_CATEGORIES';
 const	SET_SKILL_CHECKED = 'SET_SKILL_CHECKED';
 const	SET_SUBCAT_CHECKED = 'SET_SUBCAT_CHECKED';
 const	SHOW_TAG_WIN = 'SHOW_TAG_WIN';
+const ADD_SKILL_TAG_JOB = 'ADD_SKILL_TAG_JOB';
+const TAG_INPUT_SET = 'TAG_INPUT_SET';
+
 
 let initialState = {
   modalWinToggler : "hide-form",
   isSkillSelected: false,
   activeSkillId:null,
   showSkillTagWin:false,
+  tagInput:"",
   config: {
     title:null,
     description: null,
@@ -33,6 +37,25 @@ let initialState = {
       //from default promotions
     }
   }
+}
+
+export function setTagInput(value) {
+  return dispatch => {
+    dispatch({
+      type: TAG_INPUT_SET, 
+      payload: value,
+    });
+  }; 
+}
+export function addSkillTagsJobs(tagId, tagName) {
+  return dispatch => {
+    dispatch({
+      type: ADD_SKILL_TAG_JOB, 
+      tagId: tagId,
+      tagName: tagName,
+
+    });
+  }; 
 }
 
 export function winToggler(value) {
@@ -155,12 +178,30 @@ const actionsMap = {
       config: copyObj
     }
 	},
+	[TAG_INPUT_SET]: (state, action) => {
+		return {
+      ...state, 
+      tagInput: action.payload
+    }
+  },
 	[SHOW_MODAL_WIN]: (state, action) => {
 		return {
       ...state, 
       modalWinToggler: action.payload
     }
-	},
+  },
+
+  [ADD_SKILL_TAG_JOB]: (state, action) => {
+    var copyObj = Object.assign({}, state.config)	
+    copyObj.skill_tags.push({"id": action.tagId, "name": action.tagName});
+    // state.skillsdata[action.skillId].skill_tags.push({"id": action.tagId, "name": action.tagName});
+    return {
+      ...state,
+        config: copyObj,
+        tagInput:""
+    }
+  },
+  
 	[SHOW_TAG_WIN]: (state, action) => {
 		return {
       ...state, 
