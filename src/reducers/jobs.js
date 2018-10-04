@@ -5,6 +5,7 @@ const	INPUT_TITLE = 'INPUT_TITLE';
 const	INPUT_DESCRIPTION = 'INPUT_DESCRIPTION';
 const	GET_SKILL_CATEGORIES = 'GET_SKILL_CATEGORIES';
 const	SET_SKILL_CHECKED = 'SET_SKILL_CHECKED';
+const	SET_SUBCAT_CHECKED = 'SET_SUBCAT_CHECKED';
 
 let initialState = {
   modalWinToggler : "hide-form",
@@ -48,6 +49,16 @@ export function winToggler(value) {
   };
 }
 
+export function setSubCatChecked(catId, subCatId) {
+  // alert(catId +" " + subCatId);
+  return dispatch => {
+    dispatch({
+      type: SET_SUBCAT_CHECKED,
+      catId: catId,
+      subCatId: subCatId 
+    });
+  };
+}
 export function inputDescription(value) {
   return dispatch => {
     dispatch({
@@ -85,7 +96,21 @@ export function inputTitle(value) {
 }
 
 const actionsMap = {
-	[SET_SKILL_CHECKED]: (state, action) => {
+	[SET_SUBCAT_CHECKED]: (state, action) => {//checker
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.category[action.catId-1].skill_categories.map(item => {
+			if (item.id === action.subCatId) {
+        if(item.selected === true) {
+        item.selected = false;
+        }	else item.selected = true;
+  }
+});
+		return {
+      ...state, 
+      config: copyObj
+    }
+	},
+	[SET_SKILL_CHECKED]: (state, action) => {//radio
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.category.map(item => {
 

@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {winToggler, getSkillCategories} from './../../reducers/jobs';
+import {setSubCatChecked} from './../../reducers/jobs';
 import {fetchSkillsCatJobPost} from './../../functions/api';
 import {modalWinToggler, skillsCategory, skillConfig,  activeSkillId} from './../../selectors';
 import './../../App';
@@ -16,13 +16,14 @@ class SkillCategoriesSubCat extends React.Component {
   }
 
   selectSubCat = (event) => {
-    // alert(event.target.id);
+    // alert(event.target.id + " " +this.props.activeSkillId);
+    this.props.setSubCatChecked(this.props.activeSkillId, event.target.id);
   }
 
   getSubCatList = (item, index) => {
     return (
       <div className="checkbox-block" key={`subcat-${index}`}>
-        <input type="checkbox" id={item.id} onClick={this.selectSubCat}/>
+        <input type="checkbox" id={item.id} checked={item.selected} onClick={this.selectSubCat}/>
         <label for={item.id}>
           <span className="checkbox-circle">
             <span className="icon icon-check-mark"></span>
@@ -86,7 +87,7 @@ render() {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-
+        setSubCatChecked
 			},
 			dispatch
 		);
