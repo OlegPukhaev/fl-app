@@ -11,16 +11,20 @@ import {successMessage, warningMessage} from './../../functions/function';
 const queryString = require('query-string');
 
 class SkillCategoriesCheckboxBlock extends React.Component {
+  constructor (props) {
+    super(props);
+  }
+
 
 	render() {
     return (
-      <div className="checkbox-block">
-        <input type="checkbox" id="cat-1" />
-        <label for="cat-1">
+      <div className="checkbox-block" key={this.props.key}>
+        <input type="checkbox" id={this.props.id} />
+        <label for={this.props.id}>
           <span className="checkbox-circle">
             <span className="icon icon-check-mark"></span>
           </span>
-          <span className="checkbox-text">Web, Mobile &amp; Software Dev</span>
+          <span className="checkbox-text">{this.props.name}</span>
         </label>
       </div>      
       );
@@ -30,9 +34,7 @@ class SkillCategoriesCheckboxBlock extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-        winToggler,
-        fetchSkillsCatJobPost,
-        getSkillCategories
+
 			},
 			dispatch
 		);
@@ -40,8 +42,7 @@ class SkillCategoriesCheckboxBlock extends React.Component {
 	
 	function mapStateToProps (state) {
 		return  {
-      modalWinToggler:modalWinToggler(state),
-      skillsCategory:skillsCategory(state)
+
 		}
 	}
 	

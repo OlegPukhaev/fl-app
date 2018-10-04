@@ -23,8 +23,8 @@ class JobBoxTellentList extends React.Component {
 		return valname;
 	} 
 
-	skillTags =(item)=> {
-		return <div class="skill-tag">{item.name}</div>
+	skillTags =(item, index)=> {
+		return <div class="skill-tag" key={index}>{item.name}</div>
 	}
 
   render() { 

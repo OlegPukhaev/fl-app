@@ -10,11 +10,7 @@ let initialState = {
   config: {
     title:null,
     description: null,
-    category: {
-      id: 1,
-      name: "Web, Mobile & Software Dev",
-      skill_categories:[]
-    },
+    category:null,
     skill_tags:[],
     promotion_title: "skil",
     promotion_description: "deskrip",

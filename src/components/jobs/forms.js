@@ -2,8 +2,10 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {winToggler} from './../../reducers/jobs';
-import {modalWinToggler} from './../../selectors';
+import {winToggler, getSkillCategories} from './../../reducers/jobs';
+import {fetchSkillsCatJobPost} from './../../functions/api';
+
+import {modalWinToggler,skillsCategory} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import TitleDescription from './TitleDescription';
@@ -20,6 +22,14 @@ class Forms extends React.Component {
 	closeWin = () => {
 		this.props.winToggler(false);
 	}
+
+	componentWillMount() {
+		fetchSkillsCatJobPost().then(response => {
+			if (response !== "error") {
+				this.props.getSkillCategories(response.data.profession_categories);
+			} 
+		})  
+	}
 	
 	render() {
 		// Reactotron.log(this.props.modalWinToggler);
@@ -28,7 +38,7 @@ class Forms extends React.Component {
 					<div className="post-job-form panel panel-default">
 					<div className="post-job-title blue-color" onClick={this.closeWin}>Post a Job </div>
 						<TitleDescription />
-						<SkillCategories />
+						{this.props.skillsCategory !== null && <SkillCategories />}
 						<PromoSample />
 						<PaymentDetails />
 						<PostButton />
@@ -41,7 +51,8 @@ class Forms extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-				winToggler
+				winToggler,
+				getSkillCategories
 			},
 			dispatch
 		);
@@ -49,7 +60,8 @@ class Forms extends React.Component {
 	
 	function mapStateToProps (state) {
 		return  {
-			modalWinToggler:modalWinToggler(state)
+			modalWinToggler:modalWinToggler(state),
+			skillsCategory:skillsCategory(state)
 		}
 	}
 	

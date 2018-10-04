@@ -13,24 +13,19 @@ const queryString = require('query-string');
 
 class SkillCategories extends React.Component {
 
-componentDidMount() {
-  fetchSkillsCatJobPost().then(response => {
-    if (response !== "error") {
-      this.props.getSkillCategories(response.data.profession_categories);
-    } 
-  })  
-}
-
-getSkillList = () => {
-  this.props.skillsCategory.map((item, index) => {
-    return <SkillCategoriesCheckboxBlock />;
-  });
+getSkillList = (item, index) => {
+  return <SkillCategoriesCheckboxBlock 
+    key={index} 
+    id={item.id}
+    name={item.name}
+    selected={item.selected}
+  />;
 }
 
 	render() {
 		Reactotron.log(
-      {SkillCategories:this.props.skillsCategory}
-      
+      {SkillCategories:this.props.skillsCategory},
+      {SkillCategories:this.props.skillsCategory.length}
     );
     return (
       <div className="form-block">
@@ -45,8 +40,9 @@ getSkillList = () => {
           
           <div className="skill-block-list">
             <form className="form-block-wrapper flexbox flex-wrap">
-              {this.getSkillList()}
-              {/* {this.props.skillsCategory.map(this.getSkillList)} */}
+              {/* {this.props.skillsCategory.length >> 0 && this.getSkillList()} */}
+              {this.props.skillsCategory.map(this.getSkillList)}
+              {/* {this.getSkillList()} */}
             </form>
           </div>
         </div>
