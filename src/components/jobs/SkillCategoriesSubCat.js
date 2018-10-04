@@ -2,9 +2,11 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {setSubCatChecked} from './../../reducers/jobs';
+import {setSubCatChecked, searchSkillTagWin} from './../../reducers/jobs';
 import {fetchSkillsCatJobPost} from './../../functions/api';
-import {modalWinToggler, skillsCategory, skillConfig,  activeSkillId} from './../../selectors';
+import {skillConfig,  activeSkillId, showSkillTagWin} from './../../selectors';
+import { fetchSkillTags } from './../../functions/api';
+import SkillSearchList from './SkillSearchList';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 
@@ -13,6 +15,8 @@ const queryString = require('query-string');
 class SkillCategoriesSubCat extends React.Component {
   constructor (props) {
     super(props);
+
+    this.state = {tags:null}
   }
 
   selectSubCat = (event) => {
@@ -31,6 +35,17 @@ class SkillCategoriesSubCat extends React.Component {
           <span className="checkbox-text">{item.name}</span>
         </label>
       </div>
+    );
+  }
+
+  onChangeGetTag = (event) => {
+  // this.props.setInputEmpty(event.target.value);
+    fetchSkillTags(event.target.value).then(response => {
+      this.setState({
+          tags: response
+        });
+      this.props.searchSkillTagWin(true);
+      }
     );
   }
 
@@ -61,8 +76,9 @@ render() {
             </div>
           </div>
           <div className="skill-sub-block">
+          {this.props.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.activeSkillId-1}/>}
             <form className="form-group">
-              <input type="text" className="form-control" placeholder="Write new skill" />
+              <input type="text" className="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag}/>
               <button className="add-btn btn btn-blue">
                 <span className="icon icon-add"></span>
               </button>
@@ -87,7 +103,8 @@ render() {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-        setSubCatChecked
+        setSubCatChecked,
+        searchSkillTagWin
 			},
 			dispatch
 		);
@@ -96,8 +113,8 @@ render() {
 	function mapStateToProps (state) {
 		return  {
       config:skillConfig(state),
-      activeSkillId:activeSkillId(state)
-
+      activeSkillId:activeSkillId(state),
+      showSkillTagWin:showSkillTagWin(state)
 		}
 	}
 	

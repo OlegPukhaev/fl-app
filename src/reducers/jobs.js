@@ -6,11 +6,13 @@ const	INPUT_DESCRIPTION = 'INPUT_DESCRIPTION';
 const	GET_SKILL_CATEGORIES = 'GET_SKILL_CATEGORIES';
 const	SET_SKILL_CHECKED = 'SET_SKILL_CHECKED';
 const	SET_SUBCAT_CHECKED = 'SET_SUBCAT_CHECKED';
+const	SHOW_TAG_WIN = 'SHOW_TAG_WIN';
 
 let initialState = {
   modalWinToggler : "hide-form",
   isSkillSelected: false,
   activeSkillId:null,
+  showSkillTagWin:false,
   config: {
     title:null,
     description: null,
@@ -49,6 +51,15 @@ export function winToggler(value) {
   };
 }
 
+export function searchSkillTagWin(value) {
+  // alert(catId +" " + subCatId);
+  return dispatch => {
+    dispatch({
+      type: SHOW_TAG_WIN,
+      payload:value
+    });
+  };
+}
 export function setSubCatChecked(catId, subCatId) {
   // alert(catId +" " + subCatId);
   return dispatch => {
@@ -148,6 +159,12 @@ const actionsMap = {
 		return {
       ...state, 
       modalWinToggler: action.payload
+    }
+	},
+	[SHOW_TAG_WIN]: (state, action) => {
+		return {
+      ...state, 
+      showSkillTagWin: action.payload
     }
 	},
 	[INPUT_TITLE]: (state, action) => {

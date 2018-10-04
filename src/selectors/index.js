@@ -33,6 +33,7 @@ export const title = state => state.jobs.config.title;
 export const description = state => state.jobs.config.description;
 export const skillConfig = state => state.jobs.config;
 export const isSkillSelected = state => state.jobs.isSkillSelected;
+export const showSkillTagWin = state => state.jobs.showSkillTagWin;
 
 
 
