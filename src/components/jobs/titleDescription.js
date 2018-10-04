@@ -20,7 +20,7 @@ class TitleDescription extends React.Component {
 	}
 
 	render() {
-		Reactotron.log(this.props.title, this.props.description);
+		// Reactotron.log(this.props.title, this.props.description);
     return (
       <div className="form-block">
         <div className="post-job-inputs form-block-wrapper">

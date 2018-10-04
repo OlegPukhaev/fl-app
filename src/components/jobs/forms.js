@@ -32,7 +32,7 @@ class Forms extends React.Component {
 	}
 	
 	render() {
-		// Reactotron.log(this.props.modalWinToggler);
+		Reactotron.log(this.props.config);
       return (
         <div className="content post-job-content" className={this.props.modalWinToggler}>
 					<div className="post-job-form panel panel-default">

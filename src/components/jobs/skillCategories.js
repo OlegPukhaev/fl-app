@@ -6,11 +6,11 @@ import {winToggler, getSkillCategories,setSkillChecked} from './../../reducers/j
 import {fetchSkillsCatJobPost} from './../../functions/api';
 import {modalWinToggler, skillConfig, isSkillSelected} from './../../selectors';
 import './../../App';
-import {successMessage, warningMessage} from './../../functions/function';
-import SkillCategoriesCheckboxBlock from './SkillCategoriesCheckboxBlock';
+// import {successMessage, warningMessage} from './../../functions/function';
+// import SkillCategoriesCheckboxBlock from './SkillCategoriesCheckboxBlock';
 import SkillCategoriesSubCat from './SkillCategoriesSubCat';
 
-const queryString = require('query-string');
+// const queryString = require('query-string');
 
 class SkillCategories extends React.Component {
 
@@ -27,24 +27,15 @@ getSkillList = (item, index) => {
     </div>   
   );
 }
-// getSkillList = (item, index) => {
-//   return <SkillCategoriesCheckboxBlock 
-//     key={index} 
-//     id={item.id}
-//     name={item.name}
-//     selected={item.selected}
-//   />;
-// }
 
 selectSkill = (event) => {
   this.props.setSkillChecked(event.target.id);  
-  // alert(event.target.id);
 }
 
 	render() {
-		Reactotron.log(
-      this.props.config
-    );
+		// Reactotron.log(
+    //   this.props.config
+    // );
     return (
       <div className="form-block">
         <div className="skill-block skill-cat">
@@ -64,9 +55,6 @@ selectSkill = (event) => {
         </div>
       
         {this.props.isSkillSelected === true && <SkillCategoriesSubCat />}
-
-
-
 
       </div>
       );

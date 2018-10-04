@@ -94,7 +94,6 @@ const actionsMap = {
 					}	else item.selected = true;
 			} else item.selected = false;
 		});
-    // copyObj.category[0].selected = true;
 		return {
       ...state, 
       config: copyObj,
@@ -105,12 +104,12 @@ const actionsMap = {
     action.payload.map(item => {
       item.selected = false;
     });
-    // Reactotron.log("++++=",action.payload);
+    var copyObj = Object.assign({}, state.config)	
+    Reactotron.log("++++=",copyObj);
+    copyObj.category = action.payload;
 		return {
       ...state, 
-      config: {
-        category : action.payload
-      }
+      config: copyObj
     }
 	},
 	[SHOW_MODAL_WIN]: (state, action) => {
@@ -120,15 +119,19 @@ const actionsMap = {
     }
 	},
 	[INPUT_TITLE]: (state, action) => {
+    var copyObj = Object.assign({}, state.config)	
+    copyObj.title = action.payload;
 		return {
       ...state, 
-      title: action.payload
+      config: copyObj
     }
 	},
 	[INPUT_DESCRIPTION]: (state, action) => {
+    var copyObj = Object.assign({}, state.config)	
+    copyObj.description = action.payload;
 		return {
       ...state, 
-      description: action.payload
+      config:copyObj
     }
 	},
 }
