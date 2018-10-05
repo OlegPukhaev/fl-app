@@ -15,7 +15,7 @@ const PROMOTION_TITLE = 'PROMOTION_TITLE';
 const PROMOTION_DESCRIPTION = 'PROMOTION_DESCRIPTION';
 const SELECT_CHOUSE_PROMO = 'SELECT_CHOUSE_PROMO';
 const SELECT_CREATE_PROMO = 'SELECT_CREATE_PROMO';
-// const CREATE_PROMOTION = 'CREATE_PROMOTION';
+const GET_DEFAUTL_PROMOTIONS = 'GET_DEFAUTL_PROMOTIONS';
 // const CHOOSE_PROMOTION = 'CHOOSE_PROMOTION';
 
 
@@ -35,6 +35,7 @@ let initialState = {
     skill_tags:[],
     promotion_title: null,
     promotion_description: null,
+    promotion:null,
     time_type: "short",
     price: 10,
     period_type: "day",
@@ -43,13 +44,18 @@ let initialState = {
     level: "senior",
     hourly_price: null,
     contract_general_notes: "fsdfsdfdsfdsfdsf",
-    commitment: "per_week_10",
-    promotion: {
-      //from default promotions
-    }
+    commitment: "per_week_10"
   }
 }
 
+export function getDefautlPromotions(value) {
+  return dispatch => {
+    dispatch({
+      type: GET_DEFAUTL_PROMOTIONS,
+      payload:value
+    });
+  };
+}
 export function selectCreatePromo() {
   return dispatch => {
     dispatch({
@@ -307,6 +313,14 @@ const actionsMap = {
 	[PROMOTION_DESCRIPTION]: (state, action) => {
     var copyObj = Object.assign({}, state.config)	
     copyObj.promotion_description = action.payload;
+		return {
+      ...state, 
+      config:copyObj
+    }
+	},
+	[GET_DEFAUTL_PROMOTIONS]: (state, action) => {
+    var copyObj = Object.assign({}, state.config)	
+    copyObj.promotion = action.payload;
 		return {
       ...state, 
       config:copyObj
