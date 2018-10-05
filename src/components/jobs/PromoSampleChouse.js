@@ -3,7 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {selectChousePromo, setCategoryCheked} from './../../reducers/jobs';
-import {chooseIsChecked, defautlPromotions} from './../../selectors';
+import {chooseIsChecked, defautlPromotions, promCatName} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import PromoSampleNew from './PromoSampleNew';
@@ -16,32 +16,30 @@ class PromoSampleChouse extends React.Component {
     this.props.selectChousePromo();
   }
 
-  categoriesList = (item, index) => {
-    return (
-      // <div className="radio" key={item.index}>
-      //   <input type="radio" name="numb-options" id={`${item.id}-term`} value={`${item.id}-term`} onClick={this.selectCategory} checked={item.selected}/>
-      //   <label for={`${item.id}-term`}>
-      //     <span className="radio-text">{item.name}</span>
-      //   </label>
-      // </div>
-      														<div class="radio">
-                                  <input type="radio" name="numb-options" id="1-term" value="1-term" checked="" />
-                                  <label for="1-term">
-                                    <span class="radio-text">1</span>
-                                  </label>
-                                </div>
-    );
-  }
 
   selectCategory = (event) => {
     this.props.setCategoryCheked(event.target.id);
   }
 
+  categoriesList = (item, index) => {
+
+      return (
+        <div class="radio">
+          <input type="radio" name="numb-options" id={`${item.id}`} value={item.name} onChange={this.selectCategory} checked={item.selected}/>
+          <label for={`${item.id}`}>
+            <span class="radio-text">{item.name}</span>
+          </label>
+        </div>
+    );
+  }
+
+ 
+
 	render() {
     return (
           <div className="radio-block">
             <div className="radio">
-              <input type="radio" name="promo-sample" id="promo-ch" value="promo-ch" checked={this.props.chooseIsChecked} onClick={this.selectCheckbox} checked=""/>
+              <input type="radio" name="promo-sample" id="promo-ch" value="promo-ch" checked={this.props.chooseIsChecked} onClick={this.selectCheckbox}/>
               <label for="promo-ch">
                 <span className="checkbox-sqw">
                   <span className="icon icon-check-mark"></span>
@@ -58,14 +56,19 @@ class PromoSampleChouse extends React.Component {
                 
                   <div className="my-select-box form-control">
                     <span className="my-select-result flexbox justify-space-between">
-                      <span className="text">Category</span> 
+                      <span className="text">{this.props.promCatName}</span> 
                       <span className="caret"></span>
                     </span>
                     <div className="my-select-options">
                       <div className="radio-block">
 
-                        {/* {this.props.promotion !== null && this.props.promotion.categories.map(this.categoriesList)} */}
-                        <div class="radio">
+                        {this.props.promotion !== null && this.props.promotion.categories.map(this.categoriesList)}
+
+
+
+
+                        
+                        {/* <div class="radio">
                           <input type="radio" name="numb-options" id="1-term" value="1-term" checked="" />
                           <label for="1-term">
                             <span class="radio-text">1dfsdfsd</span>
@@ -74,9 +77,9 @@ class PromoSampleChouse extends React.Component {
                         <div class="radio">
                           <input type="radio" name="numb-options" id="1-term" value="1-term" checked="" />
                           <label for="1-term">
-                            <span class="radio-text">2222</span>
+                            <span class="radio-text">1dfsdfsd</span>
                           </label>
-                        </div>
+                        </div> */}
 
                       </div>	
                     </div>
@@ -201,7 +204,8 @@ class PromoSampleChouse extends React.Component {
 	function mapStateToProps (state) {
 		return  {
       chooseIsChecked:chooseIsChecked(state),
-      promotion:defautlPromotions(state)
+      promotion:defautlPromotions(state),
+      promCatName:promCatName(state)
 
 		}
 	}

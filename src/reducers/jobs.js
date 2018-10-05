@@ -27,6 +27,7 @@ let initialState = {
   isDisabled:false,
   createIsChecked:true,
   chooseIsChecked:false,
+  promCatName:"Category",
   config: {
     title:null,
     description: null,
@@ -244,9 +245,10 @@ const actionsMap = {
 	},
 	[SET_CATEGORY_CHECKED]: (state, action) => {//radio
 		var copyObj = Object.assign({}, state.config)	
+    var catName;
 		copyObj.promotion.categories.map(item => {
-
 			if (item.id === action.payload) {
+        catName = item.name;
 				if(item.selected === true) {
 					item.selected = false;
 					}	else item.selected = true;
@@ -255,6 +257,7 @@ const actionsMap = {
 		return {
       ...state, 
       config: copyObj,
+      promCatName: catName
     }
 	},
 	[GET_SKILL_CATEGORIES]: (state, action) => {
