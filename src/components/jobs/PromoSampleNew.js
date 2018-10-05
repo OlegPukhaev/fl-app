@@ -2,8 +2,8 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {} from './../../reducers/jobs';
-import {isDisabled, createIsChecked, chooseIsChecked} from './../../selectors';
+import {selectCreatePromo} from './../../reducers/jobs';
+import {isDisabled, createIsChecked} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 
@@ -17,11 +17,15 @@ class PromoSampleNew extends React.Component {
 
   }
 
+  selectCheckbox = () => {
+    this.props.selectCreatePromo();
+  }
+
 	render() {
     return (
       <div className="radio-block">
         <div className="radio">
-          <input type="radio" name="promo-sample" id="promo-cr" value="promo-cr" checked={this.props.createIsChecked} />
+          <input type="radio" name="promo-sample" id="promo-cr" value="promo-cr" checked={this.props.createIsChecked} onClick={this.selectCheckbox} />
           <label for="promo-cr">
             <span className="checkbox-sqw">
               <span className="icon icon-check-mark"></span>
@@ -42,6 +46,7 @@ class PromoSampleNew extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
+        selectCreatePromo
 			},
 			dispatch
 		);
@@ -51,7 +56,6 @@ class PromoSampleNew extends React.Component {
 		return  {
       isDisabled:isDisabled(state),
       createIsChecked:createIsChecked(state),
-      // chooseIsChecked:chooseIsChecked(state)
 		}
 	}
 	

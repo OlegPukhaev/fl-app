@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {winToggler} from './../../reducers/jobs';
+import {selectChousePromo} from './../../reducers/jobs';
 import {chooseIsChecked} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
@@ -12,11 +12,15 @@ const queryString = require('query-string');
 
 class PromoSampleChouse extends React.Component {
 
+  selectCheckbox = () => {
+    this.props.selectChousePromo();
+  }
+
 	render() {
     return (
           <div className="radio-block">
             <div className="radio">
-              <input type="radio" name="promo-sample" id="promo-ch" value="promo-ch" checked={this.props.chooseIsChecked} />
+              <input type="radio" name="promo-sample" id="promo-ch" value="promo-ch" checked={this.props.chooseIsChecked} onClick={this.selectCheckbox}/>
               <label for="promo-ch">
                 <span className="checkbox-sqw">
                   <span className="icon icon-check-mark"></span>
@@ -24,7 +28,7 @@ class PromoSampleChouse extends React.Component {
                 <span className="radio-text">Or Chouse Sample</span>
               </label>
             </div>
-            <div className="promo-block-form">
+            <div className="promo-block-form" onClick={this.selectCheckbox}>
               <div className="promo-block-form-header flexbox justify-space-between">
                 <div className="filter-nav flexbox justify-space-between">
                   <div className="my-select-box form-control">
@@ -152,6 +156,7 @@ class PromoSampleChouse extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
+        selectChousePromo
 			},
 			dispatch
 		);

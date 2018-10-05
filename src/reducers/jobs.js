@@ -13,8 +13,10 @@ const REMOVE_SKILL_TAG_JOB = 'REMOVE_SKILL_TAG_JOB';
 
 const PROMOTION_TITLE = 'PROMOTION_TITLE';
 const PROMOTION_DESCRIPTION = 'PROMOTION_DESCRIPTION';
-const CREATE_PROMOTION = 'CREATE_PROMOTION';
-const CHOOSE_PROMOTION = 'CHOOSE_PROMOTION';
+const SELECT_CHOUSE_PROMO = 'SELECT_CHOUSE_PROMO';
+const SELECT_CREATE_PROMO = 'SELECT_CREATE_PROMO';
+// const CREATE_PROMOTION = 'CREATE_PROMOTION';
+// const CHOOSE_PROMOTION = 'CHOOSE_PROMOTION';
 
 
 let initialState = {
@@ -48,6 +50,26 @@ let initialState = {
   }
 }
 
+export function selectCreatePromo() {
+  return dispatch => {
+    dispatch({
+      type: SELECT_CREATE_PROMO,
+      createIsChecked: true,
+      chooseIsChecked: false,
+      isDisabled: false
+    });
+  };
+}
+export function selectChousePromo() {
+  return dispatch => {
+    dispatch({
+      type: SELECT_CHOUSE_PROMO,
+      createIsChecked: false,
+      chooseIsChecked: true,
+      isDisabled: true
+    });
+  };
+}
 export function inputTitle(value) {
   return dispatch => {
     dispatch({
@@ -159,6 +181,22 @@ export function inputPromoDescription(value) {
 }
 
 const actionsMap = {
+	[SELECT_CREATE_PROMO]: (state, action) => {//checker
+		return {
+      ...state, 
+      isDisabled:action.isDisabled,
+      createIsChecked:action.createIsChecked,
+      chooseIsChecked:action.chooseIsChecked
+    }
+	},
+	[SELECT_CHOUSE_PROMO]: (state, action) => {//checker
+		return {
+      ...state, 
+      isDisabled:action.isDisabled,
+      createIsChecked:action.createIsChecked,
+      chooseIsChecked:action.chooseIsChecked
+    }
+	},
 	[SET_SUBCAT_CHECKED]: (state, action) => {//checker
 		var copyObj = Object.assign({}, state.config)	
 		copyObj.category[action.catId-1].skill_categories.map(item => {
