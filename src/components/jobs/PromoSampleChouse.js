@@ -3,7 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {winToggler} from './../../reducers/jobs';
-import {modalWinToggler} from './../../selectors';
+import {chooseIsChecked} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import PromoSampleNew from './PromoSampleNew';
@@ -16,7 +16,7 @@ class PromoSampleChouse extends React.Component {
     return (
           <div className="radio-block">
             <div className="radio">
-              <input type="radio" name="promo-sample" id="promo-ch" value="promo-ch" checked="checked" />
+              <input type="radio" name="promo-sample" id="promo-ch" value="promo-ch" checked={this.props.chooseIsChecked} />
               <label for="promo-ch">
                 <span className="checkbox-sqw">
                   <span className="icon icon-check-mark"></span>
@@ -159,7 +159,7 @@ class PromoSampleChouse extends React.Component {
 	
 	function mapStateToProps (state) {
 		return  {
-            chooseIsChecked:chooseIsChecked(state)
+      chooseIsChecked:chooseIsChecked(state)
 
 		}
 	}
