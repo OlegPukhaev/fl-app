@@ -129,9 +129,6 @@ let initialState = {
   }
 
 const actionsMap = {
-  
-
-
 	[GET_MENU_SKILLS]: (state, action) => {
     var copy = Object.assign([], action.payload)
     return {

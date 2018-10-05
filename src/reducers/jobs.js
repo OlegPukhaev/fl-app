@@ -9,6 +9,7 @@ const	SET_SUBCAT_CHECKED = 'SET_SUBCAT_CHECKED';
 const	SHOW_TAG_WIN = 'SHOW_TAG_WIN';
 const ADD_SKILL_TAG_JOB = 'ADD_SKILL_TAG_JOB';
 const TAG_INPUT_SET = 'TAG_INPUT_SET';
+const REMOVE_SKILL_TAG_JOB = 'REMOVE_SKILL_TAG_JOB';
 
 
 let initialState = {
@@ -57,7 +58,6 @@ export function addSkillTagsJobs(tagId, tagName) {
     });
   }; 
 }
-
 export function winToggler(value) {
   if (value === true) {
     var typeToggler = SHOW_MODAL_WIN;
@@ -73,7 +73,6 @@ export function winToggler(value) {
     });
   };
 }
-
 export function searchSkillTagWin(value) {
   // alert(catId +" " + subCatId);
   return dispatch => {
@@ -101,7 +100,6 @@ export function inputDescription(value) {
     });
   };
 }
-
 export function setSkillChecked(value) {
   return dispatch => {
     dispatch({
@@ -110,7 +108,6 @@ export function setSkillChecked(value) {
     });
   };
 }
-
 export function getSkillCategories(value) {
   return dispatch => {
     dispatch({
@@ -119,7 +116,6 @@ export function getSkillCategories(value) {
     });
   };
 }
-
 export function inputTitle(value) {
   return dispatch => {
     dispatch({
@@ -127,6 +123,15 @@ export function inputTitle(value) {
       payload: value 
     });
   };
+}
+export function removeSkillTags(tId) {
+  alert(tId);
+  return dispatch => {
+    dispatch({
+      type: REMOVE_SKILL_TAG_JOB, 
+      tagId: tId
+    });
+  }; 
 }
 
 const actionsMap = {
@@ -194,11 +199,19 @@ const actionsMap = {
   [ADD_SKILL_TAG_JOB]: (state, action) => {
     var copyObj = Object.assign({}, state.config)	
     copyObj.skill_tags.push({"id": action.tagId, "name": action.tagName});
-    // state.skillsdata[action.skillId].skill_tags.push({"id": action.tagId, "name": action.tagName});
     return {
       ...state,
         config: copyObj,
         tagInput:""
+    }
+  },
+  [REMOVE_SKILL_TAG_JOB]: (state, action) => {
+    var copyObj = Object.assign({}, state.config)	
+    // copyObj.skill_tags.splice(action.tagId, 1);
+    copyObj.skill_tags.filter(item => item.id !== action.tagId);
+    return {
+      ...state,
+        config: copyObj,
     }
   },
   
