@@ -20,7 +20,6 @@ class SkillCategoriesSubCat extends React.Component {
   }
 
   selectSubCat = (event) => {
-    // alert(event.target.id + " " +this.props.activeSkillId);
     this.props.setSubCatChecked(this.props.activeSkillId, event.target.id);
   }
 
@@ -50,6 +49,16 @@ class SkillCategoriesSubCat extends React.Component {
     );
   }
 
+  removeTag = () => {
+    alert("remove");
+  }
+
+  tagList = (item, index) => {
+    return (
+      <div className="skill-tag" key={`tags-${index}`} onClick={this.removeTag}>{item.name}</div>
+    );
+  }
+
 render() {
     return (
       <div className="skill-subcat">
@@ -62,16 +71,6 @@ render() {
             
             <div className="skill-block-list">
               <form>
-
-                {/* <div className="checkbox-block">
-                  <input type="checkbox" id="math-1" />
-                  <label for="math-1">
-                    <span className="checkbox-circle">
-                      <span className="icon icon-check-mark"></span>
-                    </span>
-                    <span className="checkbox-text">Lorem ipsum dolor sit amet, consectetur</span>
-                  </label>
-                </div> */}
                   {this.props.config.category[this.props.activeSkillId-1].skill_categories.map(this.getSubCatList)}
               </form>
             </div>
@@ -85,14 +84,8 @@ render() {
               </button>
             </form>
             <div className="skill-tags-block clearfix">
-              <div className="skill-tag">Math</div>
-              <div className="skill-tag">Trigonometry</div>
-              <div className="skill-tag">Calculus</div>
-              <div className="skill-tag">Trigonometry</div>
-              <div className="skill-tag">Calculus</div>
-              <div className="skill-tag">Trigonometry</div>
-              <div className="skill-tag">Calculus</div>
-              <div className="skill-tag">Math</div>
+              {this.props.config.skill_tags.length !== 0 && this.props.config.skill_tags.map(this.tagList)}
+              
             </div>
           </div>
         </div>

@@ -17,7 +17,7 @@ class SkillSearchList extends React.Component {
     }
 
     onClickAddTag = (event) => {
-      alert(event.target.id);
+      // alert(event.target.id);
       this.props.addSkillTagsJobs(this.props.data[event.target.id].id, this.props.data[event.target.id].name);
       this.props.searchSkillTagWin(false);
       // this.props.setInputEmpty("");
