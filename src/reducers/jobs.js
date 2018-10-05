@@ -16,6 +16,7 @@ const PROMOTION_DESCRIPTION = 'PROMOTION_DESCRIPTION';
 const SELECT_CHOUSE_PROMO = 'SELECT_CHOUSE_PROMO';
 const SELECT_CREATE_PROMO = 'SELECT_CREATE_PROMO';
 const GET_DEFAUTL_PROMOTIONS = 'GET_DEFAUTL_PROMOTIONS';
+const SET_CATEGORY_CHECKED = 'SET_CATEGORY_CHECKED';
 
 let initialState = {
   modalWinToggler : "hide-form",
@@ -183,6 +184,15 @@ export function inputPromoDescription(value) {
     });
   };
 }
+export function setCategoryCheked(value) {
+  // alert(value);
+  return dispatch => {
+    dispatch({
+      type: SET_CATEGORY_CHECKED,
+      payload: value 
+    });
+  };
+}
 
 const actionsMap = {
 	[SELECT_CREATE_PROMO]: (state, action) => {//checker
@@ -230,6 +240,21 @@ const actionsMap = {
       config: copyObj,
       isSkillSelected:true,
       activeSkillId:Number(action.payload)
+    }
+	},
+	[SET_CATEGORY_CHECKED]: (state, action) => {//radio
+		var copyObj = Object.assign({}, state.config)	
+		copyObj.promotion.categories.map(item => {
+
+			if (item.id === action.payload) {
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+      ...state, 
+      config: copyObj,
     }
 	},
 	[GET_SKILL_CATEGORIES]: (state, action) => {
@@ -322,6 +347,7 @@ const actionsMap = {
     copyObj.promotion = action.payload;
     copyObj.promotion.categories.map(item => {
       item.selected = false;
+      item.id=`dpromo-${item.id}`;
     });
 		return {
       ...state, 

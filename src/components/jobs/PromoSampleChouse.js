@@ -18,12 +18,18 @@ class PromoSampleChouse extends React.Component {
 
   categoriesList = (item, index) => {
     return (
-      <div className="radio" key={item.index}>
-        <input type="radio" name="numb-options" id={item.id} value="1-term" onClick={this.selectCategory}/>
-        <label for={item.id}>
-          <span className="radio-text">{item.name}</span>
-        </label>
-      </div>
+      // <div className="radio" key={item.index}>
+      //   <input type="radio" name="numb-options" id={`${item.id}-term`} value={`${item.id}-term`} onClick={this.selectCategory} checked={item.selected}/>
+      //   <label for={`${item.id}-term`}>
+      //     <span className="radio-text">{item.name}</span>
+      //   </label>
+      // </div>
+      														<div class="radio">
+                                  <input type="radio" name="numb-options" id="1-term" value="1-term" checked="" />
+                                  <label for="1-term">
+                                    <span class="radio-text">1</span>
+                                  </label>
+                                </div>
     );
   }
 
@@ -46,7 +52,7 @@ class PromoSampleChouse extends React.Component {
 
 
             
-            <div className="promo-block-form" onClick={this.selectCheckbox}>
+            <div className="promo-block-form">
               <div className="promo-block-form-header flexbox justify-space-between">
                 <div className="filter-nav flexbox justify-space-between">
                 
@@ -58,8 +64,20 @@ class PromoSampleChouse extends React.Component {
                     <div className="my-select-options">
                       <div className="radio-block">
 
-                        {this.props.promotion !== null && this.props.promotion.categories.map(this.categoriesList)}
-                        
+                        {/* {this.props.promotion !== null && this.props.promotion.categories.map(this.categoriesList)} */}
+                        <div class="radio">
+                          <input type="radio" name="numb-options" id="1-term" value="1-term" checked="" />
+                          <label for="1-term">
+                            <span class="radio-text">1dfsdfsd</span>
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <input type="radio" name="numb-options" id="1-term" value="1-term" checked="" />
+                          <label for="1-term">
+                            <span class="radio-text">2222</span>
+                          </label>
+                        </div>
+
                       </div>	
                     </div>
                   </div>
