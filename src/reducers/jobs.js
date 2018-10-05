@@ -124,8 +124,9 @@ export function inputTitle(value) {
     });
   };
 }
-export function removeSkillTags(tId) {
-  alert(tId);
+
+export function removeSkillTagsJobs(tId) {
+  // alert(tId);
   return dispatch => {
     dispatch({
       type: REMOVE_SKILL_TAG_JOB, 
@@ -207,11 +208,10 @@ const actionsMap = {
   },
   [REMOVE_SKILL_TAG_JOB]: (state, action) => {
     var copyObj = Object.assign({}, state.config)	
-    // copyObj.skill_tags.splice(action.tagId, 1);
-    copyObj.skill_tags.filter(item => item.id !== action.tagId);
+    copyObj.skill_tags =state.config.skill_tags.filter(item => item.id !== Number(action.tagId));
     return {
       ...state,
-        config: copyObj,
+        config: copyObj
     }
   },
   

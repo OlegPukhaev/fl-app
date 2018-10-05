@@ -40,3 +40,27 @@ function todos(state = [], action) {
         return state
     }
   }
+
+
+
+  // ///////////////////////////////
+  // добавление в редьюсер
+  // [ADD_SKILL_TAG_JOB]: (state, action) => {
+  //   var copyObj = Object.assign({}, state.config)	
+  //   copyObj.skill_tags.push({"id": action.tagId, "name": action.tagName});
+  //   return {
+  //     ...state,
+  //       config: copyObj,
+  //       tagInput:""
+  //   }
+  // },
+
+  // //удаление из редьюсера
+  // [REMOVE_SKILL_TAG_JOB]: (state, action) => {
+  //   var copyObj = Object.assign({}, state.config)	
+  //   copyObj.skill_tags =state.config.skill_tags.filter(item => item.id !== Number(action.tagId));
+  //   return {
+  //     ...state,
+  //       config: copyObj
+  //   }
+  // },

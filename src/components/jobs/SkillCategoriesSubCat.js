@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {setSubCatChecked, searchSkillTagWin,setTagInput, removeSkillTags} from './../../reducers/jobs';
+import {setSubCatChecked, searchSkillTagWin,setTagInput, removeSkillTagsJobs} from './../../reducers/jobs';
 import {fetchSkillsCatJobPost} from './../../functions/api';
 import {skillConfig,  activeSkillId, showSkillTagWin, tagInput} from './../../selectors';
 import { fetchSkillTags } from './../../functions/api';
@@ -51,7 +51,7 @@ class SkillCategoriesSubCat extends React.Component {
 
   removeTag = (event) => {
     // alert(event.target.id);
-    this.props.removeSkillTags(event.target.id);
+    this.props.removeSkillTagsJobs(event.target.id);
   }
 
   tagList = (item, index) => {
@@ -101,7 +101,7 @@ render() {
         setSubCatChecked,
         searchSkillTagWin,
         setTagInput,
-        removeSkillTags
+        removeSkillTagsJobs
 			},
 			dispatch
 		);
