@@ -11,6 +11,11 @@ const ADD_SKILL_TAG_JOB = 'ADD_SKILL_TAG_JOB';
 const TAG_INPUT_SET = 'TAG_INPUT_SET';
 const REMOVE_SKILL_TAG_JOB = 'REMOVE_SKILL_TAG_JOB';
 
+const PROMOTION_TITLE = 'PROMOTION_TITLE';
+const PROMOTION_DESCRIPTION = 'PROMOTION_DESCRIPTION';
+const CREATE_PROMOTION = 'CREATE_PROMOTION';
+const CHOOSE_PROMOTION = 'CHOOSE_PROMOTION';
+
 
 let initialState = {
   modalWinToggler : "hide-form",
@@ -18,13 +23,16 @@ let initialState = {
   activeSkillId:null,
   showSkillTagWin:false,
   tagInput:"",
+  isDisabled:false,
+  createIsChecked:true,
+  chooseIsChecked:false,
   config: {
     title:null,
     description: null,
     category:null,
     skill_tags:[],
-    promotion_title: "skil",
-    promotion_description: "deskrip",
+    promotion_title: null,
+    promotion_description: null,
     time_type: "short",
     price: 10,
     period_type: "day",
@@ -40,6 +48,22 @@ let initialState = {
   }
 }
 
+export function inputTitle(value) {
+  return dispatch => {
+    dispatch({
+      type: INPUT_TITLE,
+      payload: value 
+    });
+  };
+}
+export function inputDescription(value) {
+  return dispatch => {
+    dispatch({
+      type: INPUT_DESCRIPTION,
+      payload: value 
+    });
+  };
+}
 export function setTagInput(value) {
   return dispatch => {
     dispatch({
@@ -92,14 +116,6 @@ export function setSubCatChecked(catId, subCatId) {
     });
   };
 }
-export function inputDescription(value) {
-  return dispatch => {
-    dispatch({
-      type: INPUT_DESCRIPTION,
-      payload: value 
-    });
-  };
-}
 export function setSkillChecked(value) {
   return dispatch => {
     dispatch({
@@ -116,23 +132,30 @@ export function getSkillCategories(value) {
     });
   };
 }
-export function inputTitle(value) {
-  return dispatch => {
-    dispatch({
-      type: INPUT_TITLE,
-      payload: value 
-    });
-  };
-}
-
 export function removeSkillTagsJobs(tId) {
-  // alert(tId);
   return dispatch => {
     dispatch({
       type: REMOVE_SKILL_TAG_JOB, 
       tagId: tId
     });
   }; 
+}
+
+export function inputPromoTitle(value) {
+  return dispatch => {
+    dispatch({
+      type: PROMOTION_TITLE,
+      payload: value 
+    });
+  };
+}
+export function inputPromoDescription(value) {
+  return dispatch => {
+    dispatch({
+      type: PROMOTION_DESCRIPTION,
+      payload: value 
+    });
+  };
 }
 
 const actionsMap = {
@@ -196,7 +219,6 @@ const actionsMap = {
       modalWinToggler: action.payload
     }
   },
-
   [ADD_SKILL_TAG_JOB]: (state, action) => {
     var copyObj = Object.assign({}, state.config)	
     copyObj.skill_tags.push({"id": action.tagId, "name": action.tagName});
@@ -214,7 +236,6 @@ const actionsMap = {
         config: copyObj
     }
   },
-  
 	[SHOW_TAG_WIN]: (state, action) => {
 		return {
       ...state, 

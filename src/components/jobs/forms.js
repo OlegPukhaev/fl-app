@@ -26,7 +26,6 @@ class Forms extends React.Component {
 	componentWillMount() {
 		fetchSkillsCatJobPost().then(response => {
 			if (response !== "error") {
-				Reactotron.log("fff" , response);
 				this.props.getSkillCategories(response.data.profession_categories);
 			} 
 		})  

@@ -10,18 +10,10 @@ import PromoSampleNew from './PromoSampleNew';
 
 const queryString = require('query-string');
 
-class PromoSample extends React.Component {
+class PromoSampleChouse extends React.Component {
 
 	render() {
     return (
-      <div className="form-block">
-        <div className="form-block-wrapper promo-sample-block">
-
-        
-          <PromoSampleNew />
-
-
-
           <div className="radio-block">
             <div className="radio">
               <input type="radio" name="promo-sample" id="promo-ch" value="promo-ch" checked="checked" />
@@ -152,8 +144,6 @@ class PromoSample extends React.Component {
             </div>
             <button className="btn btn-bold btn-blue">Add Promotion</button>
           </div>
-        </div>
-      </div>
     
       );
     }
@@ -162,7 +152,6 @@ class PromoSample extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-				winToggler
 			},
 			dispatch
 		);
@@ -170,8 +159,9 @@ class PromoSample extends React.Component {
 	
 	function mapStateToProps (state) {
 		return  {
-			modalWinToggler:modalWinToggler(state)
+            chooseIsChecked:chooseIsChecked(state)
+
 		}
 	}
 	
-	export default connect(mapStateToProps, mapDispatchToProps)(PromoSample)
+	export default connect(mapStateToProps, mapDispatchToProps)(PromoSampleChouse)

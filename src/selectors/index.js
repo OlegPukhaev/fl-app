@@ -36,6 +36,9 @@ export const isSkillSelected = state => state.jobs.isSkillSelected;
 export const showSkillTagWin = state => state.jobs.showSkillTagWin;
 export const tagInput = state => state.jobs.tagInput;
 
+export const isDisabled = state => state.jobs.isDisabled;
+export const createIsChecked = state => state.jobs.createIsChecked;
+
 
 
 
