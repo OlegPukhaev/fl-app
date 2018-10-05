@@ -40,12 +40,14 @@ export function fetchSkillTags(value){
     return axios.get(`${API_URL}/profile/skills/search?q=${value}`)
     .then(response => {
       var size = Object.keys(response.data.skills).length;
-      if (size > 0){
+      console.log(size, response);
+    //   if (size >> 0){
         return response;
-      }
+    //   }
     })
     .catch(error => {
-      console.log('my errors' , error);
+    //   console.log('my errors' , error);
+      return "error";
     });
 }    
   

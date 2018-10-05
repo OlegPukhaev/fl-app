@@ -46,7 +46,7 @@ class SkillTags extends React.Component {
     return (
       <div class="skill-sub-block">
       
-        {this.props.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.id}/>}
+        {(this.props.showSkillTagWin === true && this.state.tags.data.skills.length !==0 )&& <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.id}/>}
         <form class="form-group">
           <input type="text" class="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag} value={this.props.emptyInput}/>
           <button class="add-btn btn btn-blue">

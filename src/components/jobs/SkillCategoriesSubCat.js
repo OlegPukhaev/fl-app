@@ -77,7 +77,7 @@ render() {
             </div>
           </div>
           <div className="skill-sub-block">
-          {this.props.showSkillTagWin === true && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.activeSkillId-1} value={this.props.tagInput}/>}
+          {(this.props.showSkillTagWin === true && this.state.tags.data.skills.length !== 0) && <SkillSearchList data={this.state.tags.data.skills} skillid={this.props.activeSkillId-1} value={this.props.tagInput}/>}
             <form className="form-group">
               <input type="text" className="form-control" placeholder="Write new skill" onChange={this.onChangeGetTag} value={this.props.tagInput}/>
               <button className="add-btn btn btn-blue">
