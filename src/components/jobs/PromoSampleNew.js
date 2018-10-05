@@ -2,19 +2,19 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectCreatePromo} from './../../reducers/jobs';
+import {selectCreatePromo, inputPromoTitle, inputPromoDescription} from './../../reducers/jobs';
 import {isDisabled, createIsChecked} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 
 class PromoSampleNew extends React.Component {
 
-  inputTitle = () => {
-    
+  inputTitle = (event) => {
+    this.props.inputPromoTitle(event.target.value);
   }
 
-  inputDescription = () => {
-
+  inputDescription = (event) => {
+    this.props.inputPromoDescription(event.target.value);
   }
 
   selectCheckbox = () => {
@@ -34,8 +34,8 @@ class PromoSampleNew extends React.Component {
           </label>
         </div>
         <div className="post-job-inputs">
-          <input type="text" placeholder="Job Title" className="job-title form-control" disabled={this.props.isDisabled}/>
-          <textarea placeholder="Job Description" className="form-control job-descr" rows="4" disabled={this.props.isDisabled}></textarea>
+          <input type="text" placeholder="Job Title" className="job-title form-control" disabled={this.props.isDisabled} onChange={this.inputTitle}/>
+          <textarea placeholder="Job Description" className="form-control job-descr" rows="4" disabled={this.props.isDisabled} onChange={this.inputDescription}></textarea>
         </div>
         <button className="btn btn-bold btn-blue">Create Promotion</button>
       </div>
@@ -46,7 +46,10 @@ class PromoSampleNew extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-        selectCreatePromo
+        selectCreatePromo,
+        inputPromoTitle,
+        inputPromoDescription
+
 			},
 			dispatch
 		);

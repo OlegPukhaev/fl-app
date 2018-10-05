@@ -296,8 +296,23 @@ const actionsMap = {
       config:copyObj
     }
 	},
+	[PROMOTION_TITLE]: (state, action) => {
+    var copyObj = Object.assign({}, state.config)	
+    copyObj.promotion_title = action.payload;
+		return {
+      ...state, 
+      config: copyObj
+    }
+	},
+	[PROMOTION_DESCRIPTION]: (state, action) => {
+    var copyObj = Object.assign({}, state.config)	
+    copyObj.promotion_description = action.payload;
+		return {
+      ...state, 
+      config:copyObj
+    }
+	},
 }
-
 export default function jobs(state = initialState, action) {
   const reduceFn = actionsMap[action.type];
   if (!reduceFn) return state;
