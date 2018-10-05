@@ -2,8 +2,8 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectChousePromo} from './../../reducers/jobs';
-import {chooseIsChecked} from './../../selectors';
+import {selectChousePromo, setCategoryCheked} from './../../reducers/jobs';
+import {chooseIsChecked, defautlPromotions} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import PromoSampleNew from './PromoSampleNew';
@@ -16,11 +16,26 @@ class PromoSampleChouse extends React.Component {
     this.props.selectChousePromo();
   }
 
+  categoriesList = (item, index) => {
+    return (
+      <div className="radio" key={item.index}>
+        <input type="radio" name="numb-options" id={item.id} value="1-term" onClick={this.selectCategory}/>
+        <label for={item.id}>
+          <span className="radio-text">{item.name}</span>
+        </label>
+      </div>
+    );
+  }
+
+  selectCategory = (event) => {
+    this.props.setCategoryCheked(event.target.id);
+  }
+
 	render() {
     return (
           <div className="radio-block">
             <div className="radio">
-              <input type="radio" name="promo-sample" id="promo-ch" value="promo-ch" checked={this.props.chooseIsChecked} onClick={this.selectCheckbox}/>
+              <input type="radio" name="promo-sample" id="promo-ch" value="promo-ch" checked={this.props.chooseIsChecked} onClick={this.selectCheckbox} checked=""/>
               <label for="promo-ch">
                 <span className="checkbox-sqw">
                   <span className="icon icon-check-mark"></span>
@@ -28,9 +43,13 @@ class PromoSampleChouse extends React.Component {
                 <span className="radio-text">or choose existing skill test</span>
               </label>
             </div>
+
+
+            
             <div className="promo-block-form" onClick={this.selectCheckbox}>
               <div className="promo-block-form-header flexbox justify-space-between">
                 <div className="filter-nav flexbox justify-space-between">
+                
                   <div className="my-select-box form-control">
                     <span className="my-select-result flexbox justify-space-between">
                       <span className="text">Category</span> 
@@ -38,21 +57,13 @@ class PromoSampleChouse extends React.Component {
                     </span>
                     <div className="my-select-options">
                       <div className="radio-block">
-                        <div className="radio">
-                          <input type="radio" name="numb-options" id="1-term" value="1-term" checked="" />
-                          <label for="1-term">
-                            <span className="radio-text">1</span>
-                          </label>
-                        </div>
-                        <div className="radio">
-                          <input type="radio" name="numb-options" id="2-term" value="2-term" checked="" />
-                          <label for="2-term">
-                            <span className="radio-text">2</span>
-                          </label>
-                        </div>
+
+                        {this.props.promotion !== null && this.props.promotion.categories.map(this.categoriesList)}
+                        
                       </div>	
                     </div>
                   </div>
+
                   <div className="my-select-box form-control">
                     <span className="my-select-result flexbox justify-space-between">
                       <span className="text">Sub Category</span> 
@@ -75,11 +86,17 @@ class PromoSampleChouse extends React.Component {
                       </div>	
                     </div>
                   </div>
+
+
                 </div>
+
+
                 <div className="results-numb">
                   <span className="numb">12</span> results
                 </div>
               </div>
+
+              
               <div className="promo-block-form-body">
                 <div className="checkbox-block">
                   <input type="checkbox" id="skill-test-1" />
@@ -156,7 +173,8 @@ class PromoSampleChouse extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-        selectChousePromo
+        selectChousePromo,
+        setCategoryCheked
 			},
 			dispatch
 		);
@@ -164,7 +182,8 @@ class PromoSampleChouse extends React.Component {
 	
 	function mapStateToProps (state) {
 		return  {
-      chooseIsChecked:chooseIsChecked(state)
+      chooseIsChecked:chooseIsChecked(state),
+      promotion:defautlPromotions(state)
 
 		}
 	}

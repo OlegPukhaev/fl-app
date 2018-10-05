@@ -39,6 +39,7 @@ export const tagInput = state => state.jobs.tagInput;
 export const isDisabled = state => state.jobs.isDisabled;
 export const createIsChecked = state => state.jobs.createIsChecked;
 export const chooseIsChecked = state => state.jobs.chooseIsChecked;
+export const defautlPromotions = state => state.jobs.config.promotion;
 
 
 

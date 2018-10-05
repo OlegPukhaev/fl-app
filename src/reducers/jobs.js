@@ -16,8 +16,6 @@ const PROMOTION_DESCRIPTION = 'PROMOTION_DESCRIPTION';
 const SELECT_CHOUSE_PROMO = 'SELECT_CHOUSE_PROMO';
 const SELECT_CREATE_PROMO = 'SELECT_CREATE_PROMO';
 const GET_DEFAUTL_PROMOTIONS = 'GET_DEFAUTL_PROMOTIONS';
-// const CHOOSE_PROMOTION = 'CHOOSE_PROMOTION';
-
 
 let initialState = {
   modalWinToggler : "hide-form",
@@ -320,7 +318,11 @@ const actionsMap = {
 	},
 	[GET_DEFAUTL_PROMOTIONS]: (state, action) => {
     var copyObj = Object.assign({}, state.config)	
+    console.log(action.payload);
     copyObj.promotion = action.payload;
+    copyObj.promotion.categories.map(item => {
+      item.selected = false;
+    });
 		return {
       ...state, 
       config:copyObj
