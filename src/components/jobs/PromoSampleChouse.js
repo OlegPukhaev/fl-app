@@ -25,7 +25,7 @@ class PromoSampleChouse extends React.Component {
                 <span className="checkbox-sqw">
                   <span className="icon icon-check-mark"></span>
                 </span>
-                <span className="radio-text">Or Chouse Sample</span>
+                <span className="radio-text">or choose existing skill test</span>
               </label>
             </div>
             <div className="promo-block-form" onClick={this.selectCheckbox}>
@@ -146,7 +146,7 @@ class PromoSampleChouse extends React.Component {
                 </div>
               </div>
             </div>
-            <button className="btn btn-bold btn-blue">Add Promotion</button>
+            {/* <button className="btn btn-bold btn-blue">Add Promotion</button> */}
           </div>
     
       );

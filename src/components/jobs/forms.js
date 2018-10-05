@@ -2,8 +2,8 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {winToggler, getSkillCategories} from './../../reducers/jobs';
-import {fetchSkillsCatJobPost} from './../../functions/api';
+import {winToggler, getSkillCategories, getDefautlPromotions} from './../../reducers/jobs';
+import {fetchSkillsCatJobPost,fetchDefaultPromotions} from './../../functions/api';
 
 import {modalWinToggler,skillConfig,activeSkillId} from './../../selectors';
 import './../../App';
@@ -13,9 +13,6 @@ import SkillCategories from './SkillCategories';
 import PromoSample from './PromoSample';
 import PaymentDetails from './PaymentDetails';
 import PostButton from './PostButton';
-
-const queryString = require('query-string');
-// import queryString fro
 
 class Forms extends React.Component {
 
@@ -28,7 +25,13 @@ class Forms extends React.Component {
 			if (response !== "error") {
 				this.props.getSkillCategories(response.data.profession_categories);
 			} 
-		})  
+		});
+		fetchDefaultPromotions().then(response => {
+			if (response !== "error") {
+				console.log(response.data);
+				this.props.getDefautlPromotions(response.data);
+			} 
+		});
 	}
 	
 	render() {
@@ -52,7 +55,8 @@ class Forms extends React.Component {
 		return bindActionCreators(
 			{
 				winToggler,
-				getSkillCategories
+				getSkillCategories,
+				getDefautlPromotions
 			},
 			dispatch
 		);

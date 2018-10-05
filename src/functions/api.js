@@ -36,6 +36,15 @@ export function fetchLanguage(){
     });  
 }  
 
+export function fetchDefaultPromotions(value){
+    return axios.get(`${API_URL}/profile/default_promotions`)
+    .then(response => {
+        return response;
+    })
+    .catch(error => {
+      return "error";
+    });
+}    
 export function fetchSkillTags(value){
     return axios.get(`${API_URL}/profile/skills/search?q=${value}`)
     .then(response => {

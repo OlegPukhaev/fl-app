@@ -37,7 +37,7 @@ class PromoSampleNew extends React.Component {
           <input type="text" placeholder="Job Title" className="job-title form-control" disabled={this.props.isDisabled} onChange={this.inputTitle}/>
           <textarea placeholder="Job Description" className="form-control job-descr" rows="4" disabled={this.props.isDisabled} onChange={this.inputDescription}></textarea>
         </div>
-        <button className="btn btn-bold btn-blue">Create Promotion</button>
+        {/* <button className="btn btn-bold btn-blue">Create Promotion</button> */}
       </div>
     );
   }
