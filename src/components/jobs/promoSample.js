@@ -3,7 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {winToggler} from './../../reducers/jobs';
-import {modalWinToggler} from './../../selectors';
+import {modalWinToggler,defautlPromotions} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import PromoSampleNew from './PromoSampleNew';
@@ -37,7 +37,8 @@ class PromoSample extends React.Component {
 	
 	function mapStateToProps (state) {
 		return  {
-			modalWinToggler:modalWinToggler(state)
+			modalWinToggler:modalWinToggler(state),
+			promotion:defautlPromotions(state)
 		}
 	}
 	

@@ -28,6 +28,7 @@ let initialState = {
   createIsChecked:true,
   chooseIsChecked:false,
   promCatName:"Category",
+  listToggler:"show-list",
   config: {
     title:null,
     description: null,
@@ -190,7 +191,8 @@ export function setCategoryCheked(value) {
   return dispatch => {
     dispatch({
       type: SET_CATEGORY_CHECKED,
-      payload: value 
+      payload: value,
+      hideCats: "hide-list"
     });
   };
 }
@@ -257,7 +259,8 @@ const actionsMap = {
 		return {
       ...state, 
       config: copyObj,
-      promCatName: catName
+      promCatName: catName,
+      listToggler:action.hideCats
     }
 	},
 	[GET_SKILL_CATEGORIES]: (state, action) => {

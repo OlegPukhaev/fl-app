@@ -99,8 +99,16 @@
   bottom:auto;
   background-color: #222;
   z-index: 300;
-  /* overflow: hidden; */
   opacity: 1;
+}
+
+.hide-list{
+  display: none;  
+}
+
+.show-list{
+  display: block;  
+  z-index: 400;
 }
 
 

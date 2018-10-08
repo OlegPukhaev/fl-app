@@ -41,8 +41,8 @@ class Forms extends React.Component {
 					<div className="post-job-form panel panel-default">
 					<div className="post-job-title blue-color" onClick={this.closeWin}>Post a Job </div>
 						<TitleDescription />
-						{this.props.config.category !== null && <SkillCategories />}
-						<PromoSample />
+							{this.props.config.category !== null && <SkillCategories />}
+							<PromoSample />
 						<PaymentDetails />
 						<PostButton />
 					</div>
