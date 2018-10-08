@@ -3,12 +3,18 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {selectChousePromo, setCategoryCheked} from './../../reducers/jobs';
-import {chooseIsChecked, defautlPromotions, promCatName, listToggler,skillConfig} from './../../selectors';
+import {chooseIsChecked, defautlPromotions, promCatName, listToggler,skillConfig, promoId} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import PromoSampleNew from './PromoSampleNew';
 
 class PromoSampleChouse extends React.Component {
+constructor () {
+  super();
+
+  this.state = {count:0}
+}
+
 
   selectCheckbox = () => {
     this.props.selectChousePromo();
@@ -23,13 +29,53 @@ class PromoSampleChouse extends React.Component {
 
       return (
         <div class="radio">
-          <label>
-            <span class="radio-text">{item.name}</span>
-            <input type="radio" name="numb-options" id={item.id} value={item.name} onChange={this.selectCategory}/>
+          <label htmlFor={`prom-${item.id}`}>
+            <span className="radio-text">{item.name}</span>
+            <input type="radio" name="numb-options" id={`prom-${item.id}`} value={item.name} onChange={this.selectCategory}/>
           </label>
         </div>
-    )
+    );
   }
+
+  selectDefaultPromo = (event) => {
+    alert(event.target.id);
+  }
+
+  listPromotions = (item, index) => {
+    if (this.props.promoId === item.profession_category_id || this.props.promoId === null) {
+
+        return (
+          <div className="checkbox-block" id={item.id} >
+          <input type="checkbox" id={item.id} onClick={this.selectDefaultPromo}/>
+          <label for="skill-test-3">
+            <div className="panel-block flexbox">
+              <span className="checkbox-circle checkbox-sqw">
+                <span className="icon icon-check-mark"></span>
+              </span>
+              <div className="panel-wrapper">
+                <div className="panel panel-pink">
+                  <div className="panel-title flexbox justify-space-between">
+                    <span>{item.title}</span>
+                    <span className="btn btn-blue-border btn-bold">Free</span>
+                  </div>
+                  <div className="panel-text">
+                    {item.description}
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </label>
+        </div>
+        );
+      }
+  }
+
+ getCount = () => {
+  if(this.props.config.promotion !== null) {
+    return (this.props.config.promotion.promotions.filter(item => (item.profession_category_id === this.props.promoId || this.props.promoId === null )).length);
+  }
+ }
 
 	render() {
     return (
@@ -56,6 +102,7 @@ class PromoSampleChouse extends React.Component {
                           <div class="my-select-options">
                             <div class="radio-block">
                               {this.props.config.promotion !== null && this.props.config.promotion.categories.map(this.categoriesList)}
+                              
                             </div>	
                           </div>
 
@@ -90,75 +137,17 @@ class PromoSampleChouse extends React.Component {
 
 
                 <div className="results-numb">
-                  <span className="numb">12</span> results
+                  <span className="numb">
+
+                    {this.getCount()}
+                    {/* {this.state.count} */}
+                  </span> results
                 </div>
               </div>
 
               
-              <div className="promo-block-form-body">
-                <div className="checkbox-block">
-                  <input type="checkbox" id="skill-test-1" />
-                  <label for="skill-test-1">
-                    <div className="panel-block flexbox">
-                      <span className="checkbox-circle checkbox-sqw">
-                        <span className="icon icon-check-mark"></span>
-                      </span>
-                      <div className="panel-wrapper">
-                        <div className="panel panel-blue">
-                          <div className="panel-title flexbox justify-space-between">
-                            <span>Math  Home Tutoring</span>
-                            <span className="btn btn-blue-border btn-bold">Free</span>
-                          </div>
-                          <div className="panel-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </label>
-                </div>
-                <div className="checkbox-block">
-                  <input type="checkbox" id="skill-test-2" />
-                  <label for="skill-test-2">
-                    <div className="panel-block flexbox">
-                      <span className="checkbox-circle checkbox-sqw">
-                        <span className="icon icon-check-mark"></span>
-                      </span>
-                      <div className="panel-wrapper">
-                        <div className="panel panel-orange">
-                          <div className="panel-title flexbox justify-space-between">
-                            <span>Math  Home Tutoring</span>
-                            <span className="btn btn-blue-border btn-bold">Free</span>
-                          </div>
-                          <div className="panel-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </label>
-                </div>
-                <div className="checkbox-block">
-                  <input type="checkbox" id="skill-test-3" />
-                  <label for="skill-test-3">
-                    <div className="panel-block flexbox">
-                      <span className="checkbox-circle checkbox-sqw">
-                        <span className="icon icon-check-mark"></span>
-                      </span>
-                      <div className="panel-wrapper">
-                        <div className="panel panel-pink">
-                          <div className="panel-title flexbox justify-space-between">
-                            <span>Math  Home Tutoring</span>
-                            <span className="btn btn-blue-border btn-bold">Free</span>
-                          </div>
-                          <div className="panel-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </label>
-                </div>
+               <div className="promo-block-form-body">
+                  {this.props.config.promotion !== null && this.props.config.promotion.promotions.map(this.listPromotions)}
               </div>
             </div>
             {/* <button className="btn btn-bold btn-blue">Add Promotion</button> */}
@@ -184,7 +173,8 @@ class PromoSampleChouse extends React.Component {
       promotion:defautlPromotions(state),
       promCatName:promCatName(state),
       listToggler:listToggler(state),
-      config:skillConfig(state)
+      config:skillConfig(state),
+      promoId:promoId(state)
 
 		}
 	}

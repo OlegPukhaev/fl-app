@@ -42,6 +42,8 @@ export const chooseIsChecked = state => state.jobs.chooseIsChecked;
 export const defautlPromotions = state => state.jobs.config.promotion;
 export const promCatName = state => state.jobs.promCatName;
 export const listToggler = state => state.jobs.listToggler;
+export const promoId = state => state.jobs.promoId;
+
 
 
 

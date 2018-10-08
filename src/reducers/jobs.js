@@ -29,6 +29,7 @@ let initialState = {
   chooseIsChecked:false,
   promCatName:"Category",
   listToggler:"show-list",
+  promoId:null,
   config: {
     title:null,
     description: null,
@@ -191,8 +192,7 @@ export function setCategoryCheked(value) {
   return dispatch => {
     dispatch({
       type: SET_CATEGORY_CHECKED,
-      payload: value,
-      hideCats: "hide-list"
+      payload: value
     });
   };
 }
@@ -246,11 +246,14 @@ const actionsMap = {
     }
 	},
 	[SET_CATEGORY_CHECKED]: (state, action) => {//radio
-		var copyObj = Object.assign({}, state.config)	
+		var copyObj = Object.assign({}, state.config);
     var catName;
+    var prId;
 		copyObj.promotion.categories.map(item => {
-			if (item.id === action.payload) {
+			if (`prom-${item.id}` === action.payload) {
         catName = item.name;
+        prId = item.id;
+        // alert(prId);
 				if(item.selected === true) {
 					item.selected = false;
 					}	else item.selected = true;
@@ -260,7 +263,8 @@ const actionsMap = {
       ...state, 
       config: copyObj,
       promCatName: catName,
-      listToggler:action.hideCats
+      listToggler:action.hideCats,
+      promoId:prId
     }
 	},
 	[GET_SKILL_CATEGORIES]: (state, action) => {
@@ -353,7 +357,7 @@ const actionsMap = {
     copyObj.promotion = action.payload;
     copyObj.promotion.categories.map(item => {
       item.selected = false;
-      item.id=`dpromo-${item.id}`;
+      // item.id=`${item.id}`;
     });
 		return {
       ...state, 
