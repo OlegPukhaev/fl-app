@@ -2,17 +2,41 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {winToggler} from './../../reducers/jobs';
-import {modalWinToggler} from './../../selectors';
-import './../../App';
-import {successMessage, warningMessage} from './../../functions/function';
-
-const queryString = require('query-string');
 
 class PaymentDetails extends React.Component {
+  state = {
+    payment:null,
+    hourly_price_disabled:false,
+    
+    price:null,//Job Price
+    hourly_price:null,//Hourly Price
+    
+    period: null,
+    period_type: null,
+  }
+
+  onPaymentClick = (e) => {
+    this.setState({payment:e.target.value});
+    if (e.target.value === "fixed_price") {
+      this.setState({
+        hourly_price_disabled:true,
+        hourly_price:""
+      });
+     } else {
+       this.setState({hourly_price_disabled:false});
+     }
+  }
+  onPriceChange = (e) => this.setState({[e.target.name] : e.target.value});
+  // onJobPriceChange = (e) => this.setState({price:e.target.value});
 
 	render() {
-		// Reactotron.log(this.props.modalWinToggler);
+    // const {payment , hourly_price, hourly_price_disabled, price} = this.state;
+    const {payment , hourly_price, hourly_price_disabled, price} = this.state;
+    Reactotron.warn({ 
+      payment:payment,
+      hourly_price:hourly_price,
+      price: price,
+    });
     return (
 	
       <div className="form-block">
@@ -25,7 +49,13 @@ class PaymentDetails extends React.Component {
             </div>
             <div className="radio-block">
               <div className="radio">
-                <input type="radio" name="job-payment" id="fixed-payment" value="fixed-payment" checked="" />
+                <input 
+                  type="radio"
+                  name="job-payment" 
+                  id="fixed-payment" 
+                  value="fixed_price" 
+                  onClick={this.onPaymentClick}
+                />
                 <label for="fixed-payment">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -34,14 +64,27 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="job-payment" id="hourly-payment" value="hourly-payment" />
+                <input 
+                  type="radio" 
+                  name="job-payment" 
+                  id="hourly-payment" 
+                  value="hourly" 
+                  onClick={this.onPaymentClick}
+                />
                 <label for="hourly-payment">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
                   </span>
                   <span className="radio-text">Hourly</span>
                   <span className="job-payment-input-wrapper">
-                    <input type="text" value="20" className="form-control" />
+                    <input 
+                      type="text" 
+                      name="hourly_price"
+                      value={hourly_price}
+                      className="form-control" 
+                      onChange={this.onPriceChange}
+                      disabled={hourly_price_disabled}
+                    />
                     $ / hour
                   </span>
                 </label>
@@ -55,11 +98,18 @@ class PaymentDetails extends React.Component {
               </div>
             </div>
             <div className="job-price-input-wrapper">
-              <input className="form-control" type="text" value="500" /> $
+              <input 
+                className="form-control" 
+                name="price"
+                type="text" 
+                value={price} 
+                onChange={this.onPriceChange}
+              /> $
               <p className="small">Enter here how much you think it should cost you..</p>
             </div>
           </div>
         </div>
+
         <div className="form-block-wrapper">
           <div className="form-block-section job-time-block col-100">
             <div className="form-block-header">
@@ -367,7 +417,6 @@ class PaymentDetails extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
-				winToggler
 			},
 			dispatch
 		);
@@ -375,7 +424,6 @@ class PaymentDetails extends React.Component {
 	
 	function mapStateToProps (state) {
 		return  {
-			modalWinToggler:modalWinToggler(state)
 		}
 	}
 	
