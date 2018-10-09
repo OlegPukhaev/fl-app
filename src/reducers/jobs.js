@@ -260,10 +260,10 @@ const actionsMap = {
     var catName;
     var prId;
 		copyObj.promotion.categories.map(item => {
-			if (`${item.id}` === action.payload) {
+			if (item.id === action.payload) {
+        // alert("урра");
         catName = item.name;
         prId = item.id;
-        // alert(prId);
 				if(item.selected === true) {
 					item.selected = false;
 					}	else item.selected = true;
@@ -279,12 +279,13 @@ const actionsMap = {
 	},
 	[SET_SUB_CATEGORY_CHECKED]: (state, action) => {//radio
 		var copyObj = Object.assign({}, state.config);
-    var catName;
-    var prId;
-		copyObj.promotion.categories.map(item => {
-			if (`prom-${item.id}` === action.payload) {
-        catName = item.name;
-        prId = item.id;
+    // var catName;
+    // var prId;
+    alert(action.payload);
+		copyObj.promotion.categories.skill_categories.map(item => {
+			if (item.id === action.payload) {
+        // catName = item.name;
+        // prId = item.id;
         // alert(prId);
 				if(item.selected === true) {
 					item.selected = false;
@@ -294,9 +295,9 @@ const actionsMap = {
 		return {
       ...state, 
       config: copyObj,
-      promCatName: catName,
-      listToggler:action.hideCats,
-      promoId:prId
+      // promCatName: catName,
+      // listToggler:action.hideCats,
+      // promoId:prId
     }
 	},
 	[GET_SKILL_CATEGORIES]: (state, action) => {
@@ -389,10 +390,14 @@ const actionsMap = {
     copyObj.promotion = action.payload;
     copyObj.promotion.categories.map(item => {
       item.selected = false;
+      item.id=`prom-${item.id}`;
       item.skill_categories.map(item => {
         item.selected = false;
+        item.category_id = `prom-${item.id}`;
       });
-      // item.id=`${item.id}`;
+    });
+    copyObj.promotion.promotions.map(item => {
+      item.profession_category_id = `prom-${item.profession_category_id}`;
     });
 		return {
       ...state, 

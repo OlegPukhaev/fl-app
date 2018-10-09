@@ -30,8 +30,8 @@ constructor () {
   }
 
   selectSubCategory = (event) => {
+    alert(event.target.id);
     this.setState({subCatName:event.target.value});
-    // alert(event.target.value);
     this.props.setSubCategoryCheked(event.target.id);
   }
 
@@ -39,9 +39,9 @@ constructor () {
 
       return (
         <div class="radio">
-          <label htmlFor={`prom-${item.id}`}>
+          <label htmlFor={item.id}>
             <span className="radio-text">{item.name}</span>
-            <input type="radio" name="numb-options" id={`prom-${item.id}`} value={item.name} onChange={this.selectCategory}/>
+            <input type="radio" name="numb-options" id={item.id} value={item.name} onChange={this.selectCategory}/>
           </label>
         </div>
     );
@@ -94,8 +94,8 @@ constructor () {
       return (
         
         <div className="radio">
-          <input type="radio" name="numb-options" id={`subcat-${item.id}`} value={item.name} checked="" onChange={this.selectSubCategory} />
-          <label for={`subcat-${item.id}`}>
+          <input type="radio" name="numb-options" id={item.id} value={item.name} checked="" onChange={this.selectSubCategory} />
+          <label for={item.id}>
             <span className="radio-text">{item.name}</span>
           </label> 
         </div>
@@ -132,8 +132,6 @@ constructor () {
                               
                             </div>	
                           </div>
-
-
                   </div>
 
                   <div className="my-select-box form-control">
@@ -142,26 +140,11 @@ constructor () {
                       <span className="caret"></span>
                     </span>
                     <div className="my-select-options">
-
-                    
                       <div className="radio-block">
                        {(this.props.config.promotion !== null && this.props.promoId !== null) && this.props.config.promotion.categories.map(this.subCategoriesList)}
-
-{/*                         
-                        
-                        <div className="radio">
-                          <input type="radio" name="numb-options" id="2-term" value="2-term" checked="" />
-                          <label for="2-term">
-                            <span className="radio-text">2</span>
-                          </label>
-                        </div> */}
-                        
-                        
                       </div>	
                     </div>
                   </div>
-
-
                 </div>
 
 
