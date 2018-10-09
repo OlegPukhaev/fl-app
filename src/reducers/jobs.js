@@ -19,6 +19,8 @@ const GET_DEFAUTL_PROMOTIONS = 'GET_DEFAUTL_PROMOTIONS';
 const SET_CATEGORY_CHECKED = 'SET_CATEGORY_CHECKED';
 const SET_SUB_CATEGORY_CHECKED = 'SET_SUB_CATEGORY_CHECKED';
 
+const ADD_PAYMENT_DETAILS = 'ADD_PAYMENT_DETAILS';
+
 let initialState = {
   modalWinToggler : "hide-form",
   isSkillSelected: false,
@@ -39,16 +41,28 @@ let initialState = {
     promotion_title: null,
     promotion_description: null,
     promotion:null,
-    time_type: "short",
-    price: 10,
-    period_type: "day",
-    period: 4,
-    payment: "fixed_price",
-    level: "senior",
+
+    payment: null,
+    price: null,
     hourly_price: null,
-    contract_general_notes: "fsdfsdfdsfdsfdsf",
-    commitment: "per_week_10"
+
+    period: null,
+    period_type: null,
+
+    commitment: null,
+    level: null,
+    time_type: null,
+    contract_general_notes: null,
   }
+}
+
+export function addPaymentDetails(value) {
+  return dispatch => {
+    dispatch({
+      type: ADD_PAYMENT_DETAILS,
+      payload:value
+    });
+  };
 }
 
 export function getDefautlPromotions(value) {
@@ -208,6 +222,22 @@ export function setSubCategoryCheked(value) {
 }
 
 const actionsMap = {
+	[ADD_PAYMENT_DETAILS]: (state, action) => {//checker
+    var copyObj = Object.assign({}, state.config)
+    copyObj.payment = action.payload.payment;
+    copyObj.price = action.payload.price;
+    copyObj.hourly_price = action.payload.hourly_price;
+    copyObj.period = action.payload.period;
+    copyObj.period_type = action.payload.period_type;
+    copyObj.commitment = action.payload.commitment;
+    copyObj.level = action.payload.level;
+    copyObj.time_type = action.payload.time_type;
+    copyObj.contract_general_notes = action.payload.contract_general_notes;
+    return {
+      ...state, 
+      config: copyObj
+    }
+	},
 	[SELECT_CREATE_PROMO]: (state, action) => {//checker
 		return {
       ...state, 
