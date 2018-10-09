@@ -13,6 +13,12 @@ class PaymentDetails extends React.Component {
 
     period: null,
     period_type: null,
+
+    commitment:null,
+    level:null,
+    time_type:null,
+    contract_general_notes:null
+
   }
 
   onPaymentClick = (e) => {
@@ -29,31 +35,19 @@ class PaymentDetails extends React.Component {
   onPriceChange = (e) => this.setState({[e.target.name] : e.target.value});
   onChangeSelected = (e) => this.setState({[e.target.name] : e.target.value});
 
-
-  // onJobPriceChange = (e) => this.setState({price:e.target.value});
-
-
-  // static defaultProps = {
-  //   payment:null,
-  //   hourly_price_disabled:false,
-    
-  //   price:null,//Job Price
-  //   hourly_price:null,//Hourly Price
-
-  //   period: null,
-  //   period_type: null,
-  // } 
-
 	render() {
-    // const {payment , hourly_price, hourly_price_disabled, price} = this.state;
-    const {payment , hourly_price, hourly_price_disabled, price, period, period_type} = this.state;
+    const {payment , hourly_price, hourly_price_disabled, price, period, period_type, commitment, level, time_type, contract_general_notes} = this.state;
 
     Reactotron.warn({ 
-      payment:payment,
-      hourly_price:hourly_price,
-      price: price,
-      period: period,
-      period_type: period_type,
+      // payment:payment,
+      // hourly_price:hourly_price,
+      // price: price,
+      // period: period,
+      // period_type: period_type,
+      commitment:commitment,
+      level:level,
+      time_type:time_type,
+      contract_general_notes:contract_general_notes
     });
     return (
 	
@@ -260,6 +254,7 @@ class PaymentDetails extends React.Component {
             </div>
           </div>
         </div>
+        
         <div className="form-block-wrapper flexbox justify-space-between">
           <div className="form-block-section col-30">
             <div className="form-block-header">
@@ -269,7 +264,7 @@ class PaymentDetails extends React.Component {
             </div>
             <div className="radio-block">
               <div className="radio">
-                <input type="radio" name="commitment-option" id="later" value="later" checked="" />
+                <input type="radio" name="commitment" id="later" value="decide_later" onChange={this.onChangeSelected} />
                 <label for="later">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -278,7 +273,7 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="commitment-option" id="10hrs" value="10hrs" />
+                <input type="radio" name="commitment" id="10hrs" value="per_week_10" onChange={this.onChangeSelected} />
                 <label for="10hrs">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -287,7 +282,7 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="commitment-option" id="30hrs" value="30hrs" />
+                <input type="radio" name="commitment" id="30hrs" value="per_week_up_to_30" onChange={this.onChangeSelected} />
                 <label for="30hrs">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -296,7 +291,7 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="commitment-option" id="30morehrs" value="30morehrs" />
+                <input type="radio" name="commitment" id="30morehrs" value="per_week_more_than_30" onChange={this.onChangeSelected} />
                 <label for="30morehrs">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -314,7 +309,7 @@ class PaymentDetails extends React.Component {
             </div>
             <div className="radio-block">
               <div className="radio">
-                <input type="radio" name="lavel-otion" id="level-int" value="level-int" checked="" />
+                <input type="radio" name="level" id="level-int" value="intern" onChange={this.onChangeSelected} />
                 <label for="level-int">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -323,7 +318,7 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="lavel-otion" id="level-jun" value="level-jun" />
+                <input type="radio" name="level" id="level-jun" value="junior" onChange={this.onChangeSelected}/>
                 <label for="level-jun">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -332,7 +327,7 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="lavel-otion" id="level-sen" value="level-sen" />
+                <input type="radio" name="level" id="level-sen" value="senior" onChange={this.onChangeSelected} />
                 <label for="level-sen">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -341,7 +336,7 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="lavel-otion" id="level-exp" value="level-exp" />
+                <input type="radio" name="level" id="level-exp" value="expert" onChange={this.onChangeSelected} />
                 <label for="level-exp">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -359,7 +354,7 @@ class PaymentDetails extends React.Component {
             </div>
             <div className="radio-block">
               <div className="radio">
-                <input type="radio" name="quantity-option" id="quantity-1" value="quantity-1" checked="" />
+                <input type="radio" name="time_type" id="quantity-1" value="one_time" onChange={this.onChangeSelected} />
                 <label for="quantity-1">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -368,7 +363,7 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="quantity-option" id="quantity-3" value="quantity-3" />
+                <input type="radio" name="time_type" id="quantity-3" value="long_term" onChange={this.onChangeSelected} />
                 <label for="quantity-3">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -377,7 +372,7 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="quantity-option" id="quantity-5" value="quantity-5" />
+                <input type="radio" name="time_type" id="quantity-5" value="short" onChange={this.onChangeSelected} />
                 <label for="quantity-5">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -386,7 +381,7 @@ class PaymentDetails extends React.Component {
                 </label>
               </div>
               <div className="radio">
-                <input type="radio" name="quantity-option" id="quantity-infinity" value="quantity-infinity" />
+                <input type="radio" name="time_type" id="quantity-infinity" value="not_sure" onChange={this.onChangeSelected} />
                 <label for="quantity-infinity">
                   <span className="checkbox-circle">
                     <span className="icon icon-check-mark"></span>
@@ -397,6 +392,8 @@ class PaymentDetails extends React.Component {
             </div>
           </div>
         </div>
+
+        
         <div className="form-block-wrapper">
           <div className="form-block-section col-100">
             <div className="form-block-header">
@@ -405,7 +402,7 @@ class PaymentDetails extends React.Component {
               </div>
             </div>
             <div>
-              <textarea className="form-control comments-area" placeholder="Enter here Comments for the contract"></textarea>
+              <textarea name="contract_general_notes" className="form-control comments-area" placeholder="Enter here Comments for the contract" value={contract_general_notes} onChange={this.onChangeSelected}>{contract_general_notes}</textarea>
             </div>
           </div>
         </div>
