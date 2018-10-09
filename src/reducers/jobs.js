@@ -32,6 +32,7 @@ let initialState = {
   chooseIsChecked:false,
   promCatName:"Category",
   listToggler:"show-list",
+  terms_agree:true,
   promoId:null,
   config: {
     title:null,
@@ -222,7 +223,8 @@ export function setSubCategoryCheked(value) {
 }
 
 const actionsMap = {
-	[ADD_PAYMENT_DETAILS]: (state, action) => {//checker
+  [ADD_PAYMENT_DETAILS]: (state, action) => {//checker
+    alert(action.payload.terms_agree);
     var copyObj = Object.assign({}, state.config)
     copyObj.payment = action.payload.payment;
     copyObj.price = action.payload.price;
@@ -235,7 +237,8 @@ const actionsMap = {
     copyObj.contract_general_notes = action.payload.contract_general_notes;
     return {
       ...state, 
-      config: copyObj
+      config: copyObj,
+      terms_agree:action.payload.terms_agree
     }
 	},
 	[SELECT_CREATE_PROMO]: (state, action) => {//checker

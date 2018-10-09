@@ -66,7 +66,7 @@ class Forms extends React.Component {
 		return  {
 			modalWinToggler:modalWinToggler(state),
 			config:skillConfig(state),
-			activeSkillId:activeSkillId(state)
+			activeSkillId:activeSkillId(state),
 		}
 	}
 	

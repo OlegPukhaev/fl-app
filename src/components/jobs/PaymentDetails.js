@@ -18,7 +18,8 @@ class PaymentDetails extends React.Component {
     commitment:null,
     level:null,
     time_type:null,
-    contract_general_notes:null
+    contract_general_notes:null,
+    terms_agree:false
   }
 
   onPaymentClick = (e) => {
@@ -42,10 +43,22 @@ class PaymentDetails extends React.Component {
     this.props.addPaymentDetails(this.state);
   }
 
-	render() {
-    const {payment , hourly_price, hourly_price_disabled, price, period, period_type, commitment, level, time_type, contract_general_notes} = this.state;
+  setTermsAgree = () => {
+    if (this.state.terms_agree === false) {
+      this.setState({terms_agree:true});
+      this.props.addPaymentDetails(this.state);
 
-    Reactotron.warn(this.state);
+    } else {
+      this.setState({terms_agree:false});
+      this.props.addPaymentDetails(this.state);
+    }
+    
+  }
+
+	render() {
+    const {payment , hourly_price, hourly_price_disabled, price, period, period_type, commitment, level, time_type, contract_general_notes, terms_agree} = this.state;
+
+    // Reactotron.warn(this.state);
     return (
 	
       <div className="form-block">
@@ -403,6 +416,7 @@ class PaymentDetails extends React.Component {
             </div>
           </div>
         </div>
+
         <div className="form-block-wrapper">
           <div className="form-block-section finish-block col-100">
             <div className="form-block-header">
@@ -411,7 +425,7 @@ class PaymentDetails extends React.Component {
               </div>
             </div>
             <div className="checkbox-block">
-              <input type="checkbox" id="terms-agree" />
+              <input type="checkbox" id="terms-agree" name="terms_agree" checked={this.state.terms_agree} onClick={this.setTermsAgree}/>
               <label for="terms-agree">
                 <span className="checkbox-circle">
                   <span className="icon icon-check-mark"></span>
