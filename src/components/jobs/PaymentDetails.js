@@ -10,7 +10,7 @@ class PaymentDetails extends React.Component {
     
     price:null,//Job Price
     hourly_price:null,//Hourly Price
-    
+
     period: null,
     period_type: null,
   }
@@ -27,15 +27,33 @@ class PaymentDetails extends React.Component {
      }
   }
   onPriceChange = (e) => this.setState({[e.target.name] : e.target.value});
+  onChangeSelected = (e) => this.setState({[e.target.name] : e.target.value});
+
+
   // onJobPriceChange = (e) => this.setState({price:e.target.value});
+
+
+  // static defaultProps = {
+  //   payment:null,
+  //   hourly_price_disabled:false,
+    
+  //   price:null,//Job Price
+  //   hourly_price:null,//Hourly Price
+
+  //   period: null,
+  //   period_type: null,
+  // } 
 
 	render() {
     // const {payment , hourly_price, hourly_price_disabled, price} = this.state;
-    const {payment , hourly_price, hourly_price_disabled, price} = this.state;
+    const {payment , hourly_price, hourly_price_disabled, price, period, period_type} = this.state;
+
     Reactotron.warn({ 
       payment:payment,
       hourly_price:hourly_price,
       price: price,
+      period: period,
+      period_type: period_type,
     });
     return (
 	
@@ -121,79 +139,80 @@ class PaymentDetails extends React.Component {
               <button className="btn btn-bg-transparent">
                 <div className="my-select-box">
                     <span className="my-select-result">
-                      <span className="text">3</span> 
+                      <span className="text">1</span> 
                       <span className="caret"></span>
                     </span>
                     <div className="my-select-options">
                       <div className="radio-block">
+
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="1-term" value="1-term" checked="" />
-                        <label for="1-term">
+                        <input type="radio" name="period" id="2-term" value="1" onChange={this.onChangeSelected}/>
+                        <label for="2-term">
                           <span className="radio-text">1</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="2-term" value="2-term" checked="" />
+                        <input type="radio" name="period" id="2-term" value="2" onChange={this.onChangeSelected}/>
                         <label for="2-term">
                           <span className="radio-text">2</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="3-term" value="3-term" checked="" />
+                        <input type="radio" name="period" id="3-term" value="3" onChange={this.onChangeSelected}/>
                         <label for="3-term">
                           <span className="radio-text">3</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="4-term" value="4-term" checked="" />
+                        <input type="radio" name="period" id="4-term" value="4" onChange={this.onChangeSelected}/>
                         <label for="4-term">
                           <span className="radio-text">4</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="5-term" value="5-term" checked="" />
+                        <input type="radio" name="period" id="5-term" value="5" onChange={this.onChangeSelected}/>
                         <label for="5-term">
                           <span className="radio-text">5</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="6-term" value="6-term" checked="" />
+                        <input type="radio" name="period" id="6-term" value="6" onChange={this.onChangeSelected}/>
                         <label for="6-term">
                           <span className="radio-text">6</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="7-term" value="7-term" checked="" />
+                        <input type="radio" name="period" id="7-term" value="7" onChange={this.onChangeSelected}/>
                         <label for="7-term">
                           <span className="radio-text">7</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="8-term" value="8-term" checked="" />
+                        <input type="radio" name="period" id="8-term" value="8" onChange={this.onChangeSelected}/>
                         <label for="8-term">
                           <span className="radio-text">8</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="9-term" value="9-term" checked="" />
+                        <input type="radio" name="period" id="9-term" value="9" onChange={this.onChangeSelected}/>
                         <label for="9-term">
                           <span className="radio-text">9</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="10-term" value="10-term" />
+                        <input type="radio" name="period" id="10-term" value="10" onChange={this.onChangeSelected}/>
                         <label for="10-term">
                           <span className="radio-text">10</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="11-term" value="11-term" />
+                        <input type="radio" name="period" id="11-term" value="11" onChange={this.onChangeSelected}/>
                         <label for="11-term">
                           <span className="radio-text"> 11</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="numb-options" id="12-term" value="12-term" />
+                        <input type="radio" name="period" id="12-term" value="12" onChange={this.onChangeSelected}/>
                         <label for="12-term">
                           <span className="radio-text">12</span>
                         </label>
@@ -211,25 +230,25 @@ class PaymentDetails extends React.Component {
                     <div className="my-select-options">
                       <div className="radio-block">
                       <div className="radio">
-                        <input type="radio" name="period-options" id="d-term" value="d-term" checked="" />
+                        <input type="radio" name="period_type" id="d-term" value="day" onChange={this.onChangeSelected}/>
                         <label for="d-term">
                           <span className="radio-text">Day</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="period-options" id="w-term" value="w-term" />
+                        <input type="radio" name="period_type" id="w-term" value="week" onChange={this.onChangeSelected}/>
                         <label for="w-term">
                           <span className="radio-text">Week</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="period-options" id="m-term" value="m-term" />
+                        <input type="radio" name="period_type" id="m-term" value="month" onChange={this.onChangeSelected}/>
                         <label for="m-term">
                           <span className="radio-text"> Month</span>
                         </label>
                       </div>
                       <div className="radio">
-                        <input type="radio" name="period-options" id="y-term" value="y-term" />
+                        <input type="radio" name="period_type" id="y-term" value="year" onChange={this.onChangeSelected}/>
                         <label for="y-term">
                           <span className="radio-text">Year</span>
                         </label>

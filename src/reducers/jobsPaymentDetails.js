@@ -27,9 +27,7 @@ const actionsMap = {
 	[TEMP]: (state, action) => {//checker
 		return {
       ...state, 
-      isDisabled:action.isDisabled,
-      createIsChecked:action.createIsChecked,
-      chooseIsChecked:action.chooseIsChecked
+      isDisabled:action.payload
     }
 	},
 }
