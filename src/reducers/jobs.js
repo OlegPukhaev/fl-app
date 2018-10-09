@@ -224,7 +224,7 @@ export function setSubCategoryCheked(value) {
 
 const actionsMap = {
   [ADD_PAYMENT_DETAILS]: (state, action) => {//checker
-    alert(action.payload.terms_agree);
+    // alert(action.payload.terms_agree);
     var copyObj = Object.assign({}, state.config)
     copyObj.payment = action.payload.payment;
     copyObj.price = action.payload.price;
@@ -314,7 +314,7 @@ const actionsMap = {
 		var copyObj = Object.assign({}, state.config);
     // var catName;
     // var prId;
-    alert(action.payload);
+    // alert(action.payload);
 		copyObj.promotion.categories.skill_categories.map(item => {
 			if (item.id === action.payload) {
         // catName = item.name;

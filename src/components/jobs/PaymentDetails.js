@@ -19,7 +19,7 @@ class PaymentDetails extends React.Component {
     level:null,
     time_type:null,
     contract_general_notes:null,
-    terms_agree:false
+    terms_agree:true
   }
 
   onPaymentClick = (e) => {

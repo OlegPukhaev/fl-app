@@ -9,6 +9,17 @@ export function getToken(){
         else return false;
 }
 
+export function getPostJobsObject(obj){
+    // const returnObj = JSON.parse(Object.assign({}, obj));
+    console.log ('Урраа обжектос ' , obj);
+
+    var requestConfig = {
+        title:obj.title,
+    };
+        return requestConfig;
+}
+
+
 export function getObject(obj){
     const returnObj = JSON.parse(Object.assign({}, obj));
     console.log ('getObjekt ' , returnObj);
