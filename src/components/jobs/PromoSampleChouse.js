@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectChousePromo, setCategoryCheked} from './../../reducers/jobs';
+import {selectChousePromo, setCategoryCheked, setSubCategoryCheked} from './../../reducers/jobs';
 import {chooseIsChecked, defautlPromotions, promCatName, listToggler,skillConfig, promoId} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
@@ -12,7 +12,11 @@ class PromoSampleChouse extends React.Component {
 constructor () {
   super();
 
-  this.state = {count:0}
+  this.state = {
+    count:0,
+    catName:"Select Categories...",
+    subCatName:"Select Sub categories...",
+  }
 }
 
 
@@ -23,6 +27,12 @@ constructor () {
 
   selectCategory = (event) => {
     this.props.setCategoryCheked(event.target.id);
+  }
+
+  selectSubCategory = (event) => {
+    this.setState({subCatName:event.target.value});
+    // alert(event.target.value);
+    this.props.setSubCategoryCheked(event.target.id);
   }
 
   categoriesList = (item , index) => {
@@ -77,6 +87,23 @@ constructor () {
   }
  }
 
+ subCategoriesList = (item, index) => {
+  //  alert("fff");
+  if (this.props.promoId === item.id){
+    return item.skill_categories.map(item => {
+      return (
+        
+        <div className="radio">
+          <input type="radio" name="numb-options" id={`subcat-${item.id}`} value={item.name} checked="" onChange={this.selectSubCategory} />
+          <label for={`subcat-${item.id}`}>
+            <span className="radio-text">{item.name}</span>
+          </label> 
+        </div>
+      )
+    })
+  }
+ }
+
 	render() {
     return (
           <div className="radio-block">
@@ -111,23 +138,25 @@ constructor () {
 
                   <div className="my-select-box form-control">
                     <span className="my-select-result flexbox justify-space-between">
-                      <span className="text">Sub Category</span> 
+                      <span className="text">{this.state.subCatName}</span> 
                       <span className="caret"></span>
                     </span>
                     <div className="my-select-options">
+
+                    
                       <div className="radio-block">
-                        <div className="radio">
-                          <input type="radio" name="numb-options" id="1-term" value="1-term" checked="" />
-                          <label for="1-term">
-                            <span className="radio-text">1</span>
-                          </label> 
-                        </div>
+                       {(this.props.config.promotion !== null && this.props.promoId !== null) && this.props.config.promotion.categories.map(this.subCategoriesList)}
+
+{/*                         
+                        
                         <div className="radio">
                           <input type="radio" name="numb-options" id="2-term" value="2-term" checked="" />
                           <label for="2-term">
                             <span className="radio-text">2</span>
                           </label>
-                        </div>
+                        </div> */}
+                        
+                        
                       </div>	
                     </div>
                   </div>
@@ -161,7 +190,8 @@ constructor () {
 		return bindActionCreators(
 			{
         selectChousePromo,
-        setCategoryCheked
+        setCategoryCheked,
+        setSubCategoryCheked
 			},
 			dispatch
 		);

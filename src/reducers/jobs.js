@@ -17,6 +17,7 @@ const SELECT_CHOUSE_PROMO = 'SELECT_CHOUSE_PROMO';
 const SELECT_CREATE_PROMO = 'SELECT_CREATE_PROMO';
 const GET_DEFAUTL_PROMOTIONS = 'GET_DEFAUTL_PROMOTIONS';
 const SET_CATEGORY_CHECKED = 'SET_CATEGORY_CHECKED';
+const SET_SUB_CATEGORY_CHECKED = 'SET_SUB_CATEGORY_CHECKED';
 
 let initialState = {
   modalWinToggler : "hide-form",
@@ -196,6 +197,15 @@ export function setCategoryCheked(value) {
     });
   };
 }
+export function setSubCategoryCheked(value) {
+  // alert(value);
+  return dispatch => {
+    dispatch({
+      type: SET_SUB_CATEGORY_CHECKED,
+      payload: value
+    });
+  };
+}
 
 const actionsMap = {
 	[SELECT_CREATE_PROMO]: (state, action) => {//checker
@@ -250,6 +260,28 @@ const actionsMap = {
     var catName;
     var prId;
 		copyObj.promotion.categories.map(item => {
+			if (`${item.id}` === action.payload) {
+        catName = item.name;
+        prId = item.id;
+        // alert(prId);
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+      ...state, 
+      config: copyObj,
+      promCatName: catName,
+      listToggler:action.hideCats,
+      promoId:prId
+    }
+	},
+	[SET_SUB_CATEGORY_CHECKED]: (state, action) => {//radio
+		var copyObj = Object.assign({}, state.config);
+    var catName;
+    var prId;
+		copyObj.promotion.categories.map(item => {
 			if (`prom-${item.id}` === action.payload) {
         catName = item.name;
         prId = item.id;
@@ -270,7 +302,7 @@ const actionsMap = {
 	[GET_SKILL_CATEGORIES]: (state, action) => {
     action.payload.map(item => {
       item.selected = false;
-      // item.id = `${item.id}`
+      // item.id = `${item.id}`;
       item.skill_categories.map(sitem => {
         sitem.selected = false;
         sitem.id = `subcat-${sitem.id}`;
@@ -357,6 +389,9 @@ const actionsMap = {
     copyObj.promotion = action.payload;
     copyObj.promotion.categories.map(item => {
       item.selected = false;
+      item.skill_categories.map(item => {
+        item.selected = false;
+      });
       // item.id=`${item.id}`;
     });
 		return {
