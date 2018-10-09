@@ -2,6 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import {addPaymentDetails} from './../../reducers/jobs';
 
 class PaymentDetails extends React.Component {
   state = {
@@ -18,7 +19,6 @@ class PaymentDetails extends React.Component {
     level:null,
     time_type:null,
     contract_general_notes:null
-
   }
 
   onPaymentClick = (e) => {
@@ -28,27 +28,24 @@ class PaymentDetails extends React.Component {
         hourly_price_disabled:true,
         hourly_price:""
       });
+      this.props.addPaymentDetails(this.state);
      } else {
        this.setState({hourly_price_disabled:false});
      }
   }
-  onPriceChange = (e) => this.setState({[e.target.name] : e.target.value});
-  onChangeSelected = (e) => this.setState({[e.target.name] : e.target.value});
+  onPriceChange = (e) => {
+    this.setState({[e.target.name] : e.target.value});
+    this.props.addPaymentDetails(this.state);
+  } 
+  onChangeSelected = (e) => {
+    this.setState({[e.target.name] : e.target.value});
+    this.props.addPaymentDetails(this.state);
+  }
 
 	render() {
     const {payment , hourly_price, hourly_price_disabled, price, period, period_type, commitment, level, time_type, contract_general_notes} = this.state;
 
-    Reactotron.warn({ 
-      // payment:payment,
-      // hourly_price:hourly_price,
-      // price: price,
-      // period: period,
-      // period_type: period_type,
-      commitment:commitment,
-      level:level,
-      time_type:time_type,
-      contract_general_notes:contract_general_notes
-    });
+    Reactotron.warn(this.state);
     return (
 	
       <div className="form-block">
@@ -433,6 +430,7 @@ class PaymentDetails extends React.Component {
 	const mapDispatchToProps = dispatch => {
 		return bindActionCreators(
 			{
+        addPaymentDetails
 			},
 			dispatch
 		);
