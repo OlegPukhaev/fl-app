@@ -102,6 +102,18 @@ export function fetchSkillCategories (value) {
 	});
 }
 
+export function fetchPostJob (value) {
+	return axios({
+		method: 'post',
+		url: `${API_URL}/client_jobs`,
+		data: value
+	}).then(request => {
+        successMessage("Post Job success");
+    }).catch(error => {
+        warningMessage("Error post Jobs");  
+    });
+}
+
 export function getCookies() {
 	var tokenObject;
 	if (document.cookie) {

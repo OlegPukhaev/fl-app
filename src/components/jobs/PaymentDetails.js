@@ -27,7 +27,7 @@ class PaymentDetails extends React.Component {
     if (e.target.value === "fixed_price") {
       this.setState({
         hourly_price_disabled:true,
-        hourly_price:""
+        hourly_price:null
       });
       this.props.addPaymentDetails(this.state);
      } else {

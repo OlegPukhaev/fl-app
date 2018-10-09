@@ -13,10 +13,28 @@ export function getPostJobsObject(obj){
     // const returnObj = JSON.parse(Object.assign({}, obj));
     console.log ('Урраа обжектос ' , obj);
 
-    var requestConfig = {
-        title:obj.title,
-    };
-        return requestConfig;
+       
+
+    var requestConfig = {};
+
+    // alert(obj.category.length);
+
+    if (obj.title !== null) requestConfig.title = obj.title;
+    if (obj.description !== null) requestConfig.description = obj.description;
+    if (obj.category.filter(item => item.selected).lengh !== 0) requestConfig.category = obj.category.filter(item => item.selected).lengh;
+    if (obj.commitment !== null) requestConfig.commitment = obj.commitment;
+    if (obj.contract_general_notes !== null) requestConfig.contract_general_notes =obj.contract_general_notes;
+    if (obj.hourly_price !== null) requestConfig.hourly_price = Number(obj.hourly_price);
+    if (obj.level !== null) requestConfig.level = obj.level;
+    if (obj.payment !== null) requestConfig.payment = obj.payment;
+    if (obj.period !== null) requestConfig.period = Number(obj.period);
+    if (obj.period_type !== null) requestConfig.period_type = Number(obj.period_type);
+    if (obj.price !== null) requestConfig.price = Number(obj.price);
+    if (obj.promotion_description !== null) requestConfig.promotion_description = obj.promotion_description;
+    if (obj.promotion_title !== null) requestConfig.promotion_title = obj.promotion_title;
+    requestConfig.skill_tags = obj.skill_tags ;
+    if (obj.time_type !== null) requestConfig.time_type = obj.time_type;
+    return requestConfig;
 }
 
 
