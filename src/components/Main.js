@@ -22,7 +22,7 @@ class Main extends React.Component {
 
 	onClickSignOut = () => {
 		fetchSignOut();
-		// this.props.history.push('/user');
+		this.props.history.push('/user');
 	}
 
 

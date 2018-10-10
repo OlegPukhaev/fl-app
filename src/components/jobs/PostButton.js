@@ -5,18 +5,30 @@ import { connect } from 'react-redux';
 import {winToggler} from './../../reducers/jobs';
 import {modalWinToggler, termsAgree, skillConfig} from './../../selectors';
 import './../../App';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
 import {successMessage, warningMessage, getPostJobsObject} from './../../functions/function';
 import {fetchPostJob} from './../../functions/api';
 
 const queryString = require('query-string');
 
 class PostButton extends React.Component {
+constructor (props) {
+	super(props);
+}
 
 	onButtonClick = () => {
 		var request = getPostJobsObject(this.props.config);
 		fetchPostJob(request).then(response => {
-			successMessage(response);
-		});
+			if (request !== "Error") {
+				// this.props.history.push('/tellents');
+				}
+			});
 			Reactotron.log({request: request});
 
 	}

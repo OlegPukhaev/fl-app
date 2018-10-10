@@ -111,6 +111,7 @@ export function fetchPostJob (value) {
         successMessage("Post Job success");
     }).catch(error => {
         warningMessage("Error post Jobs");  
+        return "Error";
     });
 }
 
