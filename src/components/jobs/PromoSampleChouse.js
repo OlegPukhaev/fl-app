@@ -72,9 +72,9 @@ constructor (props) {
   listPromotions = (item, index) => {
     if (this.props.promoId === item.profession_category_id || this.props.promoId === null) {
         return (
-          <div className="checkbox-block" id={item.id} >
+          <div className="checkbox-block" id={item.id} onClick={this.selectDefaultPromo}>
           <input type="checkbox" id={item.id} onClick={this.selectDefaultPromo}/>
-          <label for="skill-test-3">
+          <label for={item.id}>
             <div className="panel-block flexbox">
               <span className="checkbox-circle checkbox-sqw">
                 <span className="icon icon-check-mark"></span>
@@ -87,7 +87,7 @@ constructor (props) {
                   </div>
                   <div className="panel-text">
                     {item.description}
-                    Lorem ipsum dolor sit amet
+                    {/* Lorem ipsum dolor sit amet */}
                   </div>
                 </div>
               </div>
@@ -116,18 +116,6 @@ constructor (props) {
 
   
 	render() {
-    // Reactotron.log("dfdfdf",this.props.config.promotion.categories);
-    // const CatListItems = 
-    //  <div class="radio">
-    //     <label htmlFor="{item.id}">
-    //       <span className="radio-text">sdfsfdfsdfsfsdf</span>
-    //     </label>
-    //       <input type="radio" name="{item.name}" id="{item.id}" value="{item.name}"/>
-    //   </div>;
-    
-
-    
-
     return (
           <div className="radio-block">
             <div className="radio">
