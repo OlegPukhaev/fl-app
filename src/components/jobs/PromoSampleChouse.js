@@ -87,7 +87,7 @@ constructor (props) {
 
  getCount = () => {
   if(this.props.config.promotion !== null) {
-    return (this.props.config.promotion.promotions.filter(item => (item.profession_category_id === this.props.promoId || this.props.promoId === null )).length);
+    return (this.props.config.promotion.promotions.filter(item => (`prom-${item.profession_category_id}` === this.props.promoId || this.props.promoId === null )).length);
   }
  }
 
@@ -167,11 +167,8 @@ constructor (props) {
               </div>
 
                 
-                {this.props.config.promotion && <PromoBlockFormBody promotions={this.props.config.promotion.promotions.filter(item => (item.profession_category_id === this.props.promoId || this.props.promoId === null ))} promoId={this.props.promoId}/>}
-               {/* <div className="promo-block-form-body">
-                  {this.props.config.promotion && this.props.config.promotion.promotions.map(this.listPromotions)} */}
-                  {/* {this.props.config.promotion.promotions.map(this.listPromotions)} */}
-              {/* </div> */}
+                {/* {this.props.config.promotion && <PromoBlockFormBody promotions={this.props.config.promotion.promotions.filter(item => (item.profession_category_id === this.props.promoId || this.props.promoId === null ))} promoId={this.props.promoId}/>} */}
+                {this.props.config.promotion && <PromoBlockFormBody />}
             </div>
             {/* <button className="btn btn-bold btn-blue">Add Promotion</button> */}
           </div>

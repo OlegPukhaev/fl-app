@@ -12,11 +12,7 @@ export function getToken(){
 export function getPostJobsObject(obj){
     // const returnObj = JSON.parse(Object.assign({}, obj));
     console.log ('Урраа обжектос ' , obj);
-
-       
-
     var requestConfig = {};
-
     // alert(obj.category.length);
 
     if (obj.title !== null) requestConfig.title = obj.title;

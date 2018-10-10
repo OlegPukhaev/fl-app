@@ -20,6 +20,7 @@ const SET_CATEGORY_CHECKED = 'SET_CATEGORY_CHECKED';
 const SET_SUB_CATEGORY_CHECKED = 'SET_SUB_CATEGORY_CHECKED';
 
 const ADD_PAYMENT_DETAILS = 'ADD_PAYMENT_DETAILS';
+const SELECT_PROMOTION_DEFAULT = 'SELECT_PROMOTION_DEFAULT';
 
 let initialState = {
   modalWinToggler : "hide-form",
@@ -55,6 +56,15 @@ let initialState = {
     time_type: null,
     contract_general_notes: null,
   }
+}
+
+export function selectPromotionDefault(value) {
+  return dispatch => {
+    dispatch({
+      type: SELECT_PROMOTION_DEFAULT,
+      payload:value
+    });
+  };
 }
 
 export function addPaymentDetails(value) {
@@ -414,6 +424,24 @@ const actionsMap = {
       config: copyObj
     }
 	},
+	[SELECT_PROMOTION_DEFAULT]: (state, action) => {
+    alert("ffff"+ action.payload);
+    var copyObj = Object.assign({}, state.config)	
+    copyObj.promotion.promotions.map(item => {
+			if (item.id === Number(action.payload)) {
+        alert("урра");
+        // catName = item.name;
+        // prId = item.id;
+				if(item.selected === true) {
+					item.selected = false;
+					}	else item.selected = true;
+			} else item.selected = false;
+		});
+		return {
+      ...state, 
+      config:copyObj
+    }
+	},
 	[PROMOTION_DESCRIPTION]: (state, action) => {
     var copyObj = Object.assign({}, state.config)	
     copyObj.promotion_description = action.payload;
@@ -436,7 +464,8 @@ const actionsMap = {
       });
     });
     copyObj.promotion.promotions.map(item => {
-      item.profession_category_id = `prom-${item.profession_category_id}`;
+      // item.profession_category_id = `prom-${item.profession_category_id}`;
+      item.id=Number(item.id);
     });
 		return {
       ...state, 

@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import {selectPromotionDefault} from './../../reducers/jobs';
+import {skillConfig, promoId} from './../../selectors';
 
 class PromoBlockFormBody extends Component {
   constructor(props) {
@@ -7,18 +11,19 @@ class PromoBlockFormBody extends Component {
   }
 
   onClickCard = (e) => {
-    alert(e.target.id , this.props.promoId);
+    // alert(e.target.id , this.props.promoId);
+    this.props.selectPromotionDefault(e.target.id);
   }
 
   
 
   render() { 
-    const cardList = this.props.promotions.map(item => {
-      // if (this.props.id === item.profession_category_id || this.props.id === null){
+    const cardList = this.props.config.promotion.promotions.map(item => {
+      if (this.props.promoId === `prom-${item.profession_category_id}` || this.props.promoId === null){
           return (
             <div className="checkbox-block">
-              <input type="checkbox" id={item.id} onClick={this.onClickCard}/>
-              <label htmlFor={item.id}  >
+              <input type="checkbox" id={item.id} onClick={this.onClickCard} checked={item.selected}/>
+              <label htmlFor={item.id} >
                 <div className="panel-block flexbox"  >
                   <span className="checkbox-circle checkbox-sqw"  >
                     <span className="icon icon-check-mark"></span>
@@ -39,7 +44,7 @@ class PromoBlockFormBody extends Component {
               </label>
             </div>
       );
-    // }
+    }
     });
     return ( 
     <div className="promo-block-form-body">
@@ -51,4 +56,20 @@ class PromoBlockFormBody extends Component {
   }
 }
  
-export default PromoBlockFormBody;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      selectPromotionDefault
+    },
+    dispatch
+  );
+ };
+
+function mapStateToProps (state) {
+  return  {
+    config:skillConfig(state),
+    promoId:promoId(state)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PromoBlockFormBody);
