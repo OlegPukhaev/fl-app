@@ -18,6 +18,7 @@ constructor (props) {
     count:0,
     catName:"Select Categories...",
     subCatName:"Select Sub categories...",
+    hideList:"hide-list"
   }
 }
 
@@ -36,18 +37,6 @@ constructor (props) {
     this.props.setSubCategoryCheked(event.target.id);
   }
 
-  categoriesList = (item , index) => {
-
-      return (
-        <div class="radio">
-          <label htmlFor={item.id}>
-            <span className="radio-text">{item.name}</span>
-          </label>
-            <input type="radio" name={item.name} id={item.id} value={item.name} onChange={this.selectCategory}/>
-        </div>
-    );
-  }
-
   subCategoriesList = (item, index) => {
     //  alert("fff");
     if (this.props.promoId === item.id){
@@ -55,7 +44,7 @@ constructor (props) {
         return (
           
           <div className="radio">
-            <input type="radio" name="numb-options" id={item.id} value={item.name} onChange={this.selectSubCategory} />
+            <input type="radio" name={item.name} id={item.id} value={item.name} onClick={this.selectSubCategory} />
             <label for={item.id}>
               <span className="radio-text">{item.name}</span>
             </label> 
@@ -72,20 +61,20 @@ constructor (props) {
   listPromotions = (item, index) => {
     if (this.props.promoId === item.profession_category_id || this.props.promoId === null) {
         return (
-          <div className="checkbox-block" id={item.id} onClick={this.selectDefaultPromo}>
-          <input type="checkbox" id={item.id} onClick={this.selectDefaultPromo}/>
-          <label for={item.id}>
-            <div className="panel-block flexbox">
-              <span className="checkbox-circle checkbox-sqw">
+          <div className="checkbox-block" id={item.id}>
+          <input type="checkbox" id={item.id} />
+          <label htmlFor={item.id} id={item.id} >
+            <div className="panel-block flexbox" id={item.id} >
+              <span className="checkbox-circle checkbox-sqw" id={item.id} >
                 <span className="icon icon-check-mark"></span>
               </span>
-              <div className="panel-wrapper">
-                <div className="panel panel-pink">
-                  <div className="panel-title flexbox justify-space-between">
+              <div className="panel-wrapper" id={item.id} >
+                <div className="panel panel-pink" id={item.id} >
+                  <div className="panel-title flexbox justify-space-between" id={item.id} >
                     <span>{item.title}</span>
                     <span className="btn btn-blue-border btn-bold">Free</span>
                   </div>
-                  <div className="panel-text">
+                  <div className="panel-text" id={item.id} >
                     {item.description}
                     {/* Lorem ipsum dolor sit amet */}
                   </div>
@@ -141,8 +130,16 @@ constructor (props) {
                               {/* <CatList promotions={this.props.config.promotion}/> */}
                       <div class="my-select-options">
                         <div class="radio-block">
-                          {this.props.config.promotion !== null && this.props.config.promotion.categories.map(this.categoriesList)}
-                          {/* {CatListItems} */}
+
+                          {this.props.config.promotion !== null && this.props.config.promotion.categories.map((item) => 
+                            <div class="radio" > 
+                              <label for={item.id}>
+                                <span className="radio-text">{item.name}</span>
+                              </label>
+                              <input type="radio" name={item.name} id={item.id} value={item.name} checked="" onClick={this.selectCategory}/>
+                          </div>
+
+                          )}
                         </div>	
                       </div>
                   </div>
@@ -173,7 +170,7 @@ constructor (props) {
 
               
                <div className="promo-block-form-body">
-                  {this.props.config.promotion !== null && this.props.config.promotion.promotions.map(this.listPromotions)}
+                  {this.props.config.promotion && this.props.config.promotion.promotions.map(this.listPromotions)}
                   {/* {this.props.config.promotion.promotions.map(this.listPromotions)} */}
               </div>
             </div>

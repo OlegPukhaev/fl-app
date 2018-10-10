@@ -104,12 +104,13 @@
 
 .hide-list{
   display: none;  
+  z-index: 2000;
 }
 
-.show-list{
-  display: block;  
-  z-index: 400;
+.my-select-options {
+  display: none;  
 }
+
 
 
 
