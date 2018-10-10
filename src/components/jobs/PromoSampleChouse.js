@@ -8,10 +8,11 @@ import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import {fetchDefaultPromotions} from './../../functions/api';
 import PromoSampleNew from './PromoSampleNew';
+// import PromoCatList from './PromoCatList';
 
 class PromoSampleChouse extends React.Component {
-constructor () {
-  super();
+constructor (props) {
+  super(props);
 
   this.state = {
     count:0,
@@ -19,7 +20,6 @@ constructor () {
     subCatName:"Select Sub categories...",
   }
 }
-
 
   selectCheckbox = () => {
     this.props.selectChousePromo();
@@ -31,7 +31,7 @@ constructor () {
   }
 
   selectSubCategory = (event) => {
-    alert(event.target.id);
+    // alert(event.target.id);
     this.setState({subCatName:event.target.value});
     this.props.setSubCategoryCheked(event.target.id);
   }
@@ -42,11 +42,28 @@ constructor () {
         <div class="radio">
           <label htmlFor={item.id}>
             <span className="radio-text">{item.name}</span>
-            <input type="radio" name="numb-options" id={item.id} value={item.name} onChange={this.selectCategory}/>
           </label>
+            <input type="radio" name={item.name} id={item.id} value={item.name} onChange={this.selectCategory}/>
         </div>
     );
   }
+
+  subCategoriesList = (item, index) => {
+    //  alert("fff");
+    if (this.props.promoId === item.id){
+      return item.skill_categories.map(item => {
+        return (
+          
+          <div className="radio">
+            <input type="radio" name="numb-options" id={item.id} value={item.name} onChange={this.selectSubCategory} />
+            <label for={item.id}>
+              <span className="radio-text">{item.name}</span>
+            </label> 
+          </div>
+        )
+      })
+    }
+   }
 
   selectDefaultPromo = (event) => {
     alert(event.target.id);
@@ -54,7 +71,6 @@ constructor () {
 
   listPromotions = (item, index) => {
     if (this.props.promoId === item.profession_category_id || this.props.promoId === null) {
-
         return (
           <div className="checkbox-block" id={item.id} >
           <input type="checkbox" id={item.id} onClick={this.selectDefaultPromo}/>
@@ -71,7 +87,7 @@ constructor () {
                   </div>
                   <div className="panel-text">
                     {item.description}
-                    {/* Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation  */}
+                    Lorem ipsum dolor sit amet
                   </div>
                 </div>
               </div>
@@ -88,40 +104,30 @@ constructor () {
   }
  }
 
- subCategoriesList = (item, index) => {
-  //  alert("fff");
-  if (this.props.promoId === item.id){
-    return item.skill_categories.map(item => {
-      return (
-        
-        <div className="radio">
-          <input type="radio" name="numb-options" id={item.id} value={item.name} checked="" onChange={this.selectSubCategory} />
-          <label for={item.id}>
-            <span className="radio-text">{item.name}</span>
-          </label> 
-        </div>
-      )
-    })
-  }
- }
-
   async componentWillMount() {
-
-
-    
         const res = await fetchDefaultPromotions().then(response => {
           // const resp = await response;
           return response;
         });
-
         Reactotron.log("--->",await res.data.categories);
         this.props.getDefautlPromotions(res.data); 
   }
 
 
-
+  
 	render() {
-    // Reactotron.log({configfff:this.props.config.promotion.categories});
+    // Reactotron.log("dfdfdf",this.props.config.promotion.categories);
+    // const CatListItems = 
+    //  <div class="radio">
+    //     <label htmlFor="{item.id}">
+    //       <span className="radio-text">sdfsfdfsdfsfsdf</span>
+    //     </label>
+    //       <input type="radio" name="{item.name}" id="{item.id}" value="{item.name}"/>
+    //   </div>;
+    
+
+    
+
     return (
           <div className="radio-block">
             <div className="radio">
@@ -143,13 +149,14 @@ constructor () {
                       <span class="text">{this.props.promCatName}</span> 
                       <span class="caret"></span>
                     </span>
-                          <div class="my-select-options">
-                            <div class="radio-block">
-                              {this.props.config.promotion !== null && this.props.config.promotion.categories.map(this.categoriesList)}
-                             {/* {this.props.config.promotion.categories.map(this.categoriesList)} */}
-                              {/* Reactotron.log */}
-                            </div>	
-                          </div>
+ 
+                              {/* <CatList promotions={this.props.config.promotion}/> */}
+                      <div class="my-select-options">
+                        <div class="radio-block">
+                          {this.props.config.promotion !== null && this.props.config.promotion.categories.map(this.categoriesList)}
+                          {/* {CatListItems} */}
+                        </div>	
+                      </div>
                   </div>
 
                   <div className="my-select-box form-control">
@@ -160,6 +167,7 @@ constructor () {
                     <div className="my-select-options">
                       <div className="radio-block">
                        {(this.props.config.promotion !== null && this.props.promoId !== null) && this.props.config.promotion.categories.map(this.subCategoriesList)}
+                       {/* {this.props.config.promotion.categories.map(this.subCategoriesList)} */}
                       </div>	
                     </div>
                   </div>
@@ -178,6 +186,7 @@ constructor () {
               
                <div className="promo-block-form-body">
                   {this.props.config.promotion !== null && this.props.config.promotion.promotions.map(this.listPromotions)}
+                  {/* {this.props.config.promotion.promotions.map(this.listPromotions)} */}
               </div>
             </div>
             {/* <button className="btn btn-bold btn-blue">Add Promotion</button> */}

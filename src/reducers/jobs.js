@@ -315,15 +315,20 @@ const actionsMap = {
     // var catName;
     // var prId;
     // alert(action.payload);
-		copyObj.promotion.categories.skill_categories.map(item => {
-			if (item.id === action.payload) {
+		copyObj.promotion.categories.map(item => {
+      if (item.selected === true) {
         // catName = item.name;
         // prId = item.id;
         // alert(prId);
-				if(item.selected === true) {
-					item.selected = false;
-					}	else item.selected = true;
-			} else item.selected = false;
+        item.skill_categories.map(sitem => {
+          if (sitem.id === action.payload) {
+            if(sitem.selected === true) {
+              sitem.selected = false;
+              }	else sitem.selected = true;
+          } else sitem.selected = false;
+        
+        });
+     }
 		});
 		return {
       ...state, 
@@ -426,6 +431,7 @@ const actionsMap = {
       item.id=`prom-${item.id}`;
       item.skill_categories.map(item => {
         item.selected = false;
+        item.id = `psc-${item.id}`
         item.category_id = `prom-${item.id}`;
       });
     });
