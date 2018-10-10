@@ -37,7 +37,6 @@ export function getPostJobsObject(obj){
     return requestConfig;
 }
 
-
 export function getObject(obj){
     const returnObj = JSON.parse(Object.assign({}, obj));
     console.log ('getObjekt ' , returnObj);

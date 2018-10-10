@@ -2,7 +2,7 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchValidateToken} from './../functions/auth';
-import {BrowserRouter, Route, Redirect, Link, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Redirect, Link, Switch, withRouter} from 'react-router-dom';
 import {isUserLogin} from './../selectors'
 import {fetchSignOut} from './../functions/auth';
 import Skills from './Skills';

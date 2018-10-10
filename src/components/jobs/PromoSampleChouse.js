@@ -2,10 +2,11 @@ import Reactotron from 'reactotron-react-js';
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectChousePromo, setCategoryCheked, setSubCategoryCheked} from './../../reducers/jobs';
+import {selectChousePromo, setCategoryCheked, setSubCategoryCheked, getDefautlPromotions} from './../../reducers/jobs';
 import {chooseIsChecked, defautlPromotions, promCatName, listToggler,skillConfig, promoId} from './../../selectors';
 import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
+import {fetchDefaultPromotions} from './../../functions/api';
 import PromoSampleNew from './PromoSampleNew';
 
 class PromoSampleChouse extends React.Component {
@@ -70,7 +71,7 @@ constructor () {
                   </div>
                   <div className="panel-text">
                     {item.description}
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                    {/* Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation  */}
                   </div>
                 </div>
               </div>
@@ -104,7 +105,23 @@ constructor () {
   }
  }
 
+  async componentWillMount() {
+
+
+    
+        const res = await fetchDefaultPromotions().then(response => {
+          // const resp = await response;
+          return response;
+        });
+
+        Reactotron.log("--->",await res.data.categories);
+        this.props.getDefautlPromotions(res.data); 
+  }
+
+
+
 	render() {
+    // Reactotron.log({configfff:this.props.config.promotion.categories});
     return (
           <div className="radio-block">
             <div className="radio">
@@ -129,7 +146,8 @@ constructor () {
                           <div class="my-select-options">
                             <div class="radio-block">
                               {this.props.config.promotion !== null && this.props.config.promotion.categories.map(this.categoriesList)}
-                              
+                             {/* {this.props.config.promotion.categories.map(this.categoriesList)} */}
+                              {/* Reactotron.log */}
                             </div>	
                           </div>
                   </div>
@@ -174,7 +192,8 @@ constructor () {
 			{
         selectChousePromo,
         setCategoryCheked,
-        setSubCategoryCheked
+        setSubCategoryCheked,
+        getDefautlPromotions
 			},
 			dispatch
 		);
