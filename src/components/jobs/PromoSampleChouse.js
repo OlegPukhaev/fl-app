@@ -8,6 +8,8 @@ import './../../App';
 import {successMessage, warningMessage} from './../../functions/function';
 import {fetchDefaultPromotions} from './../../functions/api';
 import PromoSampleNew from './PromoSampleNew';
+import PromoBlockFormBody from './PromoBlockFormBody';
+
 // import PromoCatList from './PromoCatList';
 
 class PromoSampleChouse extends React.Component {
@@ -53,10 +55,6 @@ constructor (props) {
       })
     }
    }
-
-  selectDefaultPromo = (event) => {
-    alert(event.target.id);
-  }
 
   listPromotions = (item, index) => {
     if (this.props.promoId === item.profession_category_id || this.props.promoId === null) {
@@ -168,11 +166,12 @@ constructor (props) {
                 </div>
               </div>
 
-              
-               <div className="promo-block-form-body">
-                  {this.props.config.promotion && this.props.config.promotion.promotions.map(this.listPromotions)}
+                
+                {this.props.config.promotion && <PromoBlockFormBody promotions={this.props.config.promotion.promotions.filter(item => (item.profession_category_id === this.props.promoId || this.props.promoId === null ))} promoId={this.props.promoId}/>}
+               {/* <div className="promo-block-form-body">
+                  {this.props.config.promotion && this.props.config.promotion.promotions.map(this.listPromotions)} */}
                   {/* {this.props.config.promotion.promotions.map(this.listPromotions)} */}
-              </div>
+              {/* </div> */}
             </div>
             {/* <button className="btn btn-bold btn-blue">Add Promotion</button> */}
           </div>
