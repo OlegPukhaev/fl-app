@@ -19,7 +19,7 @@ class PaymentDetails extends React.Component {
     level:null,
     time_type:null,
     contract_general_notes:null,
-    terms_agree:true
+    terms_agree:false
   }
 
   onPaymentClick = (e) => {
@@ -425,7 +425,7 @@ class PaymentDetails extends React.Component {
               </div>
             </div>
             <div className="checkbox-block">
-              <input type="checkbox" id="terms-agree" name="terms_agree" checked={this.state.terms_agree} onClick={this.setTermsAgree}/>
+              <input type="checkbox" id="terms-agree" name="terms_agree" checked={terms_agree} onClick={this.setTermsAgree}/>
               <label for="terms-agree">
                 <span className="checkbox-circle">
                   <span className="icon icon-check-mark"></span>
