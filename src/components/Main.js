@@ -12,7 +12,7 @@ import {setUserStatus} from '../reducers/getUser';
 import { bindActionCreators } from 'redux';
 import '../../node_modules/toastr/build/toastr.css';
 import Tellent from './Tellent';
-import Forms from './../components/jobs/Forms'
+import Forms from './../components/jobs/forms';
 import './../App';
 
 class Main extends React.Component {

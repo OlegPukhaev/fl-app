@@ -33,7 +33,7 @@ let initialState = {
   chooseIsChecked:false,
   promCatName:"Category",
   listToggler:"show-list",
-  terms_agree:false,
+  terms_agree:true,
   promoId:null,
   config: {
     title:null,
