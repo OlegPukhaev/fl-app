@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {selectPromotionDefault} from './../../reducers/jobs';
+import {selectPromotionDefault, selectChousePromo} from './../../reducers/jobs';
 import {skillConfig, promoId} from './../../selectors';
 
 class PromoBlockFormBody extends Component {
@@ -13,6 +13,8 @@ class PromoBlockFormBody extends Component {
   onClickCard = (e) => {
     // alert(e.target.id , this.props.promoId);
     this.props.selectPromotionDefault(e.target.id);
+    this.props.selectChousePromo();
+
   }
 
   
@@ -59,7 +61,8 @@ class PromoBlockFormBody extends Component {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      selectPromotionDefault
+      selectPromotionDefault,
+      selectChousePromo
     },
     dispatch
   );

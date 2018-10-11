@@ -19,8 +19,8 @@ constructor (props) {
   this.state = {
     count:0,
     catName:"Select Categories...",
-    subCatName:"Select Sub categories...",
-    hideList:"hide-list"
+    subCatName:"Select Sub categories..."
+    // hideList:"hide-list"
   }
 }
 
@@ -37,6 +37,7 @@ constructor (props) {
     // alert(event.target.id);
     this.setState({subCatName:event.target.value});
     this.props.setSubCategoryCheked(event.target.id);
+
   }
 
   subCategoriesList = (item, index) => {
@@ -56,36 +57,7 @@ constructor (props) {
     }
    }
 
-  listPromotions = (item, index) => {
-    if (this.props.promoId === item.profession_category_id || this.props.promoId === null) {
-        return (
-          <div className="checkbox-block" id={item.id}>
-          <input type="checkbox" id={item.id} />
-          <label htmlFor={item.id} id={item.id} >
-            <div className="panel-block flexbox" id={item.id} >
-              <span className="checkbox-circle checkbox-sqw" id={item.id} >
-                <span className="icon icon-check-mark"></span>
-              </span>
-              <div className="panel-wrapper" id={item.id} >
-                <div className="panel panel-pink" id={item.id} >
-                  <div className="panel-title flexbox justify-space-between" id={item.id} >
-                    <span>{item.title}</span>
-                    <span className="btn btn-blue-border btn-bold">Free</span>
-                  </div>
-                  <div className="panel-text" id={item.id} >
-                    {item.description}
-                    {/* Lorem ipsum dolor sit amet */}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </label>
-        </div>
-        );
-      }
-  }
-
- getCount = () => {
+   getCount = () => {
   if(this.props.config.promotion !== null) {
     return (this.props.config.promotion.promotions.filter(item => (`prom-${item.profession_category_id}` === this.props.promoId || this.props.promoId === null )).length);
   }
@@ -93,14 +65,11 @@ constructor (props) {
 
   async componentWillMount() {
         const res = await fetchDefaultPromotions().then(response => {
-          // const resp = await response;
           return response;
         });
         Reactotron.log("--->",await res.data.categories);
         this.props.getDefautlPromotions(res.data); 
   }
-
-
   
 	render() {
     return (
@@ -125,7 +94,6 @@ constructor (props) {
                       <span class="caret"></span>
                     </span>
  
-                              {/* <CatList promotions={this.props.config.promotion}/> */}
                       <div class="my-select-options">
                         <div class="radio-block">
 
@@ -150,18 +118,15 @@ constructor (props) {
                     <div className="my-select-options">
                       <div className="radio-block">
                        {(this.props.config.promotion !== null && this.props.promoId !== null) && this.props.config.promotion.categories.map(this.subCategoriesList)}
-                       {/* {this.props.config.promotion.categories.map(this.subCategoriesList)} */}
                       </div>	
                     </div>
                   </div>
                 </div>
 
-
                 <div className="results-numb">
                   <span className="numb">
 
                     {this.getCount()}
-                    {/* {this.state.count} */}
                   </span> results
                 </div>
               </div>

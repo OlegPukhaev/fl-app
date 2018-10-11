@@ -3,7 +3,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {winToggler} from './../../reducers/jobs';
-import {modalWinToggler, termsAgree, skillConfig} from './../../selectors';
+import {modalWinToggler, termsAgree, skillConfig, chooseIsChecked} from './../../selectors';
 import './../../App';
 import {
   BrowserRouter as Router,
@@ -23,7 +23,7 @@ constructor (props) {
 }
 
 	onButtonClick = () => {
-		var request = getPostJobsObject(this.props.config);
+		var request = getPostJobsObject(this.props.config, chooseIsChecked);
 		fetchPostJob(request).then(response => {
 			if (request !== "Error") {
 				// this.props.history.push('/tellents');
@@ -35,6 +35,7 @@ constructor (props) {
 
 	render() {
 		// Reactotron.log({terms: this.props.termsAgree});
+		const { chooseIsChecked } = this.props;
     return (
       <div className="form-block-wrapper btn-block">
         <button className="btn btn-blue btn-bold" disabled={this.props.termsAgree} onClick={this.onButtonClick}>Continue</button>

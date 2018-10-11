@@ -9,11 +9,8 @@ export function getToken(){
         else return false;
 }
 
-export function getPostJobsObject(obj){
-    // const returnObj = JSON.parse(Object.assign({}, obj));
-    console.log ('Урраа обжектос ' , obj);
+export function getPostJobsObject(obj, chooseIsChecked){
     var requestConfig = {};
-    // alert(obj.category.length);
 
     if (obj.title !== null) requestConfig.title = obj.title;
     if (obj.description !== null) requestConfig.description = obj.description;
@@ -26,8 +23,20 @@ export function getPostJobsObject(obj){
     if (obj.period !== null) requestConfig.period = Number(obj.period);
     if (obj.period_type !== null) requestConfig.period_type = Number(obj.period_type);
     if (obj.price !== null) requestConfig.price = Number(obj.price);
-    if (obj.promotion_description !== null) requestConfig.promotion_description = obj.promotion_description;
-    if (obj.promotion_title !== null) requestConfig.promotion_title = obj.promotion_title;
+    if (chooseIsChecked) {
+        if (obj.promotion !== null) {
+            requestConfig.promotion = obj.promotion.promotions.filter(item => {
+                if (item.selected === true) {
+                    requestConfig.promotion_description = item.description;
+                    requestConfig.promotion_title = item.title;
+                    return item;
+                }
+            });
+        }
+    } else {
+        if (obj.promotion_description !== null) requestConfig.promotion_description = obj.promotion_description;
+        if (obj.promotion_title !== null) requestConfig.promotion_title = obj.promotion_title;
+    }
     requestConfig.skill_tags = obj.skill_tags ;
     if (obj.time_type !== null) requestConfig.time_type = obj.time_type;
     return requestConfig;

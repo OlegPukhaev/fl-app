@@ -33,13 +33,14 @@ let initialState = {
   chooseIsChecked:false,
   promCatName:"Category",
   listToggler:"show-list",
-  terms_agree:true,
+  terms_agree:false,
   promoId:null,
   config: {
     title:null,
     description: null,
     category:null,
     skill_tags:[],
+
     promotion_title: null,
     promotion_description: null,
     promotion:null,
@@ -425,11 +426,11 @@ const actionsMap = {
     }
 	},
 	[SELECT_PROMOTION_DEFAULT]: (state, action) => {
-    alert("ffff"+ action.payload);
+    // alert("ffff"+ action.payload);
     var copyObj = Object.assign({}, state.config)	
     copyObj.promotion.promotions.map(item => {
 			if (item.id === Number(action.payload)) {
-        alert("урра");
+        // alert("урра");
         // catName = item.name;
         // prId = item.id;
 				if(item.selected === true) {
@@ -466,6 +467,7 @@ const actionsMap = {
     copyObj.promotion.promotions.map(item => {
       // item.profession_category_id = `prom-${item.profession_category_id}`;
       item.id=Number(item.id);
+      item.selected = false;
     });
 		return {
       ...state, 
