@@ -72,6 +72,8 @@ constructor (props) {
   }
   
 	render() {
+    const {promCatName} = this.props;
+    const {subCatName} = this.state;
     return (
           <div className="radio-block">
             <div className="radio">
@@ -90,7 +92,11 @@ constructor (props) {
                 
                   <div class="my-select-box form-control">
                     <span class="my-select-result flexbox justify-space-between">
-                      <span class="text">{this.props.promCatName}</span> 
+                      <span class="text">
+                        {promCatName.substr(0, 20)}
+                        {(promCatName.length >= 20) && "..."}
+                        
+                      </span> 
                       <span class="caret"></span>
                     </span>
  
@@ -112,7 +118,10 @@ constructor (props) {
 
                   <div className="my-select-box form-control">
                     <span className="my-select-result flexbox justify-space-between">
-                      <span className="text">{this.state.subCatName}</span> 
+                      <span className="text">
+                        {subCatName.substr(0, 18)}
+                        {(subCatName.length >= 18) && "..."}
+                      </span> 
                       <span className="caret"></span>
                     </span>
                     <div className="my-select-options">
