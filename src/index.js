@@ -7,6 +7,10 @@ import './styles/styles.css';
 import './styles/media.css';
 import './ReactotronConfig';
 import $ from 'jquery';
+
+// require('./js/jquery-2.1.1.min.js');
+// require('./js/main.js');
+// require('./bootstrap/js/bootstrap.min.js');
 // import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
